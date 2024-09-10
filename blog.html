@@ -21,6 +21,7 @@
     href="https://fonts.cdnfonts.com/css/gloss-and-bloom"
     rel="stylesheet"
   />
+  <link rel="stylesheet" href="assests/css/aboutUsStyles.css">
 
   <link rel="stylesheet" href="assests/css/style.css" />
 
@@ -301,66 +302,93 @@
     </section>
 
     
-    <footer class="footer">
+    <div class="footerSection overflow-hidden position-relative">
+        <div class="footerLeftShape position-absolute">
+            <img src="./assests/images/left-tree.png" alt="">
+        </div>
+        <div class="footerRightShape position-absolute">
+            <img src="./assests/images/right-tree.png" alt="">
+        </div>
         <div class="container">
             <div class="row">
-
-                <div class="col-md-3 logoSection col-sm-12">
-                    <img src="/assests/images/white-logo.png" alt="Logo" class="mb-3"> 
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua.</p>
-                    <div class="socialIcons">
-                        <a href="#"><i class="fab fa-facebook-f icon"></i></a>
-                        <a href="#"><i class="fab fa-twitter icon"></i></a>
-                        <a href="#"><i class="fab fa-instagram icon"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in icon"></i></a>
+                <div class="col-xl-3 col-lg-4 col-md-6">
+                    <div class="footerBlock fotCol1">
+                        <div class="footerLogo">
+                            <a href="index.html"><img src="./assests/images/logo.png" alt=""></a>
+                        </div>
+                        <div class="footerContent">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed doeiusmod tempor incididunt ut labore et dolore magna aliqua. Ut</p>
+                            <div class="footerSocialIcons position-relative">
+                                <a href="#"><i class="flaticon-facebook-app-symbol text-light"></i></a>
+                                <a href="#"><i class="flaticon-twitter"></i></a>
+                                <a href="#"><i class="flaticon-skype"></i></a>
+                                <a href="#"><i class="flaticon-linkedin"></i></a>
+                            </div>
+                        </div>
                     </div>
                 </div>
-
-                <div class="col-md-3 col-sm-12">
-                    <h5>Company</h5>
-                    <ul>
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">About us</a></li>
-                        <li><a href="#">Blog update</a></li>
-                        <li><a href="#">Our services</a></li>
-                        <li><a href="#">Testimonial</a></li>
-                    </ul>
+                <div class="col-xl-3 col-lg-4 col-md-6">
+                    <div class="footerBlock fotCol2">
+                        <h3 class="footerBlockTitle text-uppercase text-decoration-underline">Company:</h3>
+                        <div class="footerList">
+                            <ul>
+                                <li><a href="#">Home</a></li>
+                                <li><a href="#">About us</a></li>
+                                <li><a href="#">Blog update</a></li>
+                                <li><a href="#">Our services</a></li>
+                                <li><a href="#">Testimonial</a></li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
-
-                <div class="col-md-3 col-sm-12">
-                    <h5>Quick Links</h5>
-                    <ul>
-                        <li><a href="#">Privacy & policy</a></li>
-                        <li><a href="#">Terms & conditions</a></li>
-                        <li><a href="#">FAQ</a></li>
-                        <li><a href="#">Hydropower Plants</a></li>
-                        <li><a href="#">Customer support</a></li>
-                    </ul>
+                <div class="col-xl-3 col-lg-4 col-md-6">
+                    <div class="footerBlock fotCol3">
+                        <h3 class="footerBlockTitle text-uppercase text-decoration-underline">Quick links:</h3>
+                        <div class="footerList">
+                            <ul>
+                                <li><a href="#">Privacy & policy</a></li>
+                                <li><a href="#">Terms & conditions</a></li>
+                                <li><a href="#">FAQ</a></li>
+                                <li><a href="#">Hydropowe Plants</a></li>
+                                <li><a href="#">Customer support</a></li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-md-3 col-sm-12">
-                    <h5>Subscribe Newsletter</h5>
-                    <form class="newsletter">
-                        <input type="email" placeholder="Enter Your Email">
-                        <button type="submit">Subscribe Now</button>
-                    </form>
+                <div class="col-xl-3 col-lg-4 col-md-6 z-3">
+                    <div class="footerBlock fotCol4">
+                        <h3 class="footerBlockTitle text-uppercase text-decoration-underline">Subscribe Newsletter:</h3>
+                        <div class="footerForm">
+                            <form action="#">
+                                <div class="footerInput">
+                                    <input id="email" autocomplete="email" type="email" placeholder="Enter Your Email:">
+                                </div>
+                                <button type="submit" class="btn footerBtn">Subscribe Now</button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-
-        <div class="footerBottom">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-6 col-sm-6 text-left">
-                        <p>Copyright &copy; 2024 <a href="#">Travello</a>. All Rights Reserved</p>
+    </div>
+    <div class="copyrightSection z-3 position-relative">
+        <div class="container">
+            <div class="copyrightWrap z-2">
+                <div class="row align-items-center">
+                    <div class="col-xl-6 col-lg-6">
+                        <div class="copyrightText text-center text-lg-start">
+                            <p class="mb-0">Copyright © 2024 <span><a href="#">Travello</a></span> All Right Reserved</p>
+                        </div>
                     </div>
-                    <div class="col-md-6 col-sm-6 text-right">
-                        <p><a href="#">Privacy & Policy</a> | <a href="#">Terms & Conditions</a></p>
+                    <div class="col-xl-6 col-lg-6 d-none d-lg-block">
+                        <div class="copyrightPrivacy text-end">
+                            <a class="text-decoration-none" href="#">Privacy & Policy || Terms & Conditions</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </footer>
+    </div>
 
 </body>
 </html>
