@@ -75,7 +75,6 @@
         <a href="#">
           <img src="./assests/images/logo (1).png" width="108" height="29" />
         </a>
-
         <button
           class="navbar-toggler"
           style="color: black; border-color: black"
@@ -88,7 +87,6 @@
         >
           <span class="navbar-toggler-icon"></span>
         </button>
-
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav" style="margin-left: auto">
             <li class="nav-item me-4">
@@ -97,25 +95,36 @@
                 class="nav-link active text-dark"
                 style="font-size: 18px"
                 aria-current="page"
-                href="#"
                 >Home</a
               >
             </li>
-            <li class="nav-item me-4">
+
+            <li class="nav-item dropdown me-4">
               <a
-                href="tour-detail.html"
-                class="nav-link text-dark"
-                style="font-size: 18px"
+                class="nav-link dropdown-toggle text-dark"
                 href="#"
-                >Tours</a
+                id="navbarDropdownTours"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+                style="font-size: 18px"
               >
+                Tours
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdownTours">
+                <li><a class="dropdown-item" href="tour_grid.html">Tour</a></li>
+                <li>
+                  <a class="dropdown-item" href="tour-detail.html"
+                    >Tour Detail</a
+                  >
+                </li>
+              </ul>
             </li>
             <li class="nav-item me-4">
               <a
                 href="destination.html"
                 class="nav-link text-dark"
                 style="font-size: 18px"
-                href="#"
                 >Destination</a
               >
             </li>
@@ -124,18 +133,30 @@
                 href="about-us.html"
                 class="nav-link text-dark"
                 style="font-size: 18px"
-                href="#"
                 >About</a
               >
             </li>
-            <li class="nav-item me-4">
+
+            <li class="nav-item dropdown me-4">
               <a
-                href="blog.html"
-                class="nav-link text-dark"
-                style="font-size: 18px"
+                class="nav-link dropdown-toggle text-dark"
                 href="#"
-                >Blog</a
+                id="navbarDropdownBlog"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+                style="font-size: 18px"
               >
+                Blog
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdownBlog">
+                <li><a class="dropdown-item" href="blog.html">Blog</a></li>
+                <li>
+                  <a class="dropdown-item" href="blogDetails.html"
+                    >Blog Detail</a
+                  >
+                </li>
+              </ul>
             </li>
           </ul>
           <div style="margin-left: auto">
