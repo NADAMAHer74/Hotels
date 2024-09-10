@@ -11,7 +11,7 @@
 
 @font-face {
     font-family: "flaticon_mycollection";
-    src: url("fonts/flaticon_mycollection.woff2") format("woff2"),
+    src: url(flaticon_mycollection.woff2) format("woff2"),
 }
 
 i[class^="flaticon-"]:before, i[class*=" flaticon-"]:before {
