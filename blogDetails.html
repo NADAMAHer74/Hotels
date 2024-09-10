@@ -1,343 +1,548 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Travel Blog</title>
     <!-- Bootstrap CSS -->
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome for Icons -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
-        rel="stylesheet">
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome for Icons -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="assests/fonts/fonts/flaticon_travel-and-tour.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assests/css/aboutUsStyles.css" />
+
+    <link rel="stylesheet" href="assests/css/style.css" />
+
     <style>
-        /* Custom Styles */
-        body {
-            font-family: "DM Sans", sans-serif;
-            font-optical-sizing: auto;
-            font-weight: 400;
-            font-style: normal;
-        }
+      /* Custom Styles */
+      body {
+        font-family: "DM Sans", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 400;
+        font-style: normal;
+      }
 
-        .header {
-            background-image: url('/assests/images/slider-1-1.jpg'); /* Replace with your background image URL */
-            background-size: cover;
-            background-position: center;
-            color: white;
-            height: 80vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-            margin-bottom: 120px;
-        }
+      .header {
+        background-image: url("/assests/images/slider-1-1.jpg"); /* Replace with your background image URL */
+        background-size: cover;
+        background-position: center;
+        color: white;
+        height: 80vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        margin-bottom: 120px;
+      }
 
-        .header h1 {
-            font-size: 3rem;
-            text-align: center;
-        }
+      .header h1 {
+        font-size: 3rem;
+        text-align: center;
+      }
 
+      .content-section {
+        margin-top: 40px;
+      }
 
+      .content-section h2 {
+        font-size: 2rem;
+        margin-bottom: 20px;
+      }
 
-        .content-section {
-            margin-top: 40px;
-        }
+      .content-section img {
+        width: 100%;
+        border-radius: 10px;
+        margin-bottom: 20px;
+      }
 
-        .content-section h2 {
-            font-size: 2rem;
-            margin-bottom: 20px;
-        }
+      .recent-posts {
+        margin-top: 40px;
+      }
 
-        .content-section img {
-            width: 100%;
-            border-radius: 10px;
-            margin-bottom: 20px;
-        }
+      .recent-posts h4 {
+        margin-bottom: 20px;
+      }
 
-        .recent-posts {
-            margin-top: 40px;
-        }
+      .recent-post {
+        margin-bottom: 15px;
+      }
 
-        .recent-posts h4 {
-            margin-bottom: 20px;
-        }
+      .recent-post img {
+        width: 80px;
+        height: 80px;
+        object-fit: cover;
+        border-radius: 10px;
+        margin-right: 15px;
+      }
 
-        .recent-post {
-            margin-bottom: 15px;
-        }
+      .recent-post p {
+        margin-bottom: 5px;
+      }
 
-        .recent-post img {
-            width: 80px;
-            height: 80px;
-            object-fit: cover;
-            border-radius: 10px;
-            margin-right: 15px;
-        }
+      .recent-post i {
+        color: #11bb67;
+        margin-right: 5px;
+      }
+      .BlogDetailsPath {
+        background-color: #11bb67;
+        position: absolute;
+        padding: 10px 20px;
+        border-radius: 5px;
+        bottom: -40px;
+      }
+      .footer {
+        background-color: #121b1f;
+        padding: 60px 0;
+        color: white;
+        position: relative;
+      }
 
-        .recent-post p {
-            margin-bottom: 5px;
-        }
+      .footer .logoSection p {
+        color: rgba(255, 255, 255, 0.7);
+      }
 
-        .recent-post i {
-            color: #11BB67;
-            margin-right: 5px;
-        }
-        .BlogDetailsPath {
-            background-color: #11BB67;
-            position: absolute;
-            padding: 10px 20px;
-            border-radius: 5px;
-            bottom: -40px;
-        }
-        .footer {
-            background-color: #121b1f;
-            padding: 60px 0;
-            color: white;
-            position: relative;
-        }
+      .footer .logoSection .socialIcons i {
+        font-size: 18px;
+        color: white;
+        transition: color 0.3s ease-in-out;
+      }
 
-        .footer .logoSection p {
-            color: rgba(255, 255, 255, 0.7);
-        }
+      .footer .logoSection .socialIcons i:hover {
+        color: #11bb67;
+      }
 
-        .footer .logoSection .socialIcons i {
-            font-size: 18px;
-            color: white;
-            transition: color 0.3s ease-in-out;
-        }
+      .footer h5 {
+        font-size: 18px;
+        margin-bottom: 20px;
+        color: white;
+        text-decoration: underline;
+      }
 
-        .footer .logoSection .socialIcons i:hover {
-            color: #11BB67;
-        }
+      .footer ul {
+        list-style-type: none;
+        padding-left: 0;
+      }
 
-        .footer h5 {
-            font-size: 18px;
-            margin-bottom: 20px;
-            color: white;
-            text-decoration: underline;
-        }
+      .footer ul li {
+        margin-bottom: 10px;
+      }
 
-        .footer ul {
-            list-style-type: none;
-            padding-left: 0;
-        }
+      .footer ul li a {
+        color: rgba(255, 255, 255, 0.7);
+        text-decoration: none;
+        transition: color 0.3s ease-in-out;
+      }
 
-        .footer ul li {
-            margin-bottom: 10px;
-        }
+      .footer ul li a:hover {
+        color: #11bb67;
+      }
 
-        .footer ul li a {
-            color: rgba(255, 255, 255, 0.7);
-            text-decoration: none;
-            transition: color 0.3s ease-in-out;
-        }
+      .footer .newsletter input[type="email"] {
+        border-radius: 5px;
+        padding: 10px;
+        border: none;
+        width: 100%;
+        margin-bottom: 15px;
+      }
 
-        .footer ul li a:hover {
-            color: #11BB67;
-        }
+      .footer .newsletter button {
+        background-color: #11bb67;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        transition: background-color 0.3s ease-in-out;
+      }
 
-        .footer .newsletter input[type="email"] {
-            border-radius: 5px;
-            padding: 10px;
-            border: none;
-            width: 100%;
-            margin-bottom: 15px;
-        }
+      .footer .newsletter button:hover {
+        background-color: #11bb67;
+      }
 
-        .footer .newsletter button {
-            background-color: #11BB67;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            transition: background-color 0.3s ease-in-out;
-        }
+      .footerBottom {
+        background-color: #1c252b;
+        padding: 20px 0;
+        color: rgba(255, 255, 255, 0.7);
+        text-align: center;
+        font-size: 14px;
+        width: 74%;
+        position: absolute;
+        bottom: 0px;
+        left: 13%;
+        border-radius: 7px;
+        height: 60px;
+      }
 
-        .footer .newsletter button:hover {
-            background-color: #11BB67;
-        }
+      .footerBottom a {
+        color: rgba(255, 255, 255, 0.7);
+        text-decoration: none;
+      }
 
-        .footerBottom {
-            background-color: #1c252b;
-            padding: 20px 0;
-            color: rgba(255, 255, 255, 0.7);
-            text-align: center;
-            font-size: 14px;
-            width: 74%;
-            position: absolute;
-            bottom: 0px;
-            left: 13%;
-            border-radius: 7px;
-            height: 60px;
-        }
+      .footerBottom a:hover {
+        color: #11bb67;
+      }
 
-        .footerBottom a {
-            color: rgba(255, 255, 255, 0.7);
-            text-decoration: none;
+      .socialIcons {
+        margin-top: 20px;
+      }
 
-        }
+      .socialIcons a {
+        color: white;
+        margin-right: 15px;
+      }
 
-        .footerBottom a:hover {
-            color: #11BB67;
-        }
-
-
-        .socialIcons {
-            margin-top: 20px;
-        }
-
-        .socialIcons a {
-            color: white;
-            margin-right: 15px;
-        }
-
-        .icon {
-            border: white 1px solid;
-            border-radius: 30px;
-            padding: 12px;
-        }
-        
+      .icon {
+        border: white 1px solid;
+        border-radius: 30px;
+        padding: 12px;
+      }
     </style>
-</head>
+  </head>
 
-<body>
+  <body>
+    <div class="top-bar">
+      <div class="container d-flex justify-content-around align-items-center">
+        <div class="contact-info">
+          <a href="#"
+            ><i class="fa-solid fa-phone-volume" style="color: #11bb67"></i
+            ><span>(000) 967-237-96</span></a
+          >
+          <a href="#"
+            ><i class="fa-regular fa-envelope" style="color: #11bb67"></i
+            ><span>toursinfo@gmail.com</span></a
+          >
+          <a href="#">
+            <i class="fa-solid fa-location-dot" style="color: #11bb67"></i
+            ><span>290 Grand Avenue Maitland, FL 32751</span></a
+          >
+        </div>
+        <div
+          class="social-icons"
+          style="border: 0; border-left: 1px solid white"
+        >
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fa-brands fa-twitter"></i></a>
+          <a href="#"><i class="fa-brands fa-skype"></i></a>
+          <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <nav
+      class="navbar sticky-top navbar-expand-lg bg-white"
+      data-bs-theme="dark"
+    >
+      <div
+        class="container text-dark pe-5 ps-5"
+        style="justify-content: space-between !important"
+      >
+        <a href="#">
+          <img src="./assests/images/logo (1).png" width="108" height="29" />
+        </a>
+
+        <button
+          class="navbar-toggler"
+          style="color: black; border-color: black"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav" style="margin-left: auto">
+            <li class="nav-item me-4">
+              <a
+                href="index.html"
+                class="nav-link active text-dark"
+                style="font-size: 18px"
+                aria-current="page"
+                href="#"
+                >Home</a
+              >
+            </li>
+            <li class="nav-item me-4">
+              <a
+                href="tour-detail.html"
+                class="nav-link text-dark"
+                style="font-size: 18px"
+                href="#"
+                >Tours</a
+              >
+            </li>
+            <li class="nav-item me-4">
+              <a
+                href="destination.html"
+                class="nav-link text-dark"
+                style="font-size: 18px"
+                href="#"
+                >Destination</a
+              >
+            </li>
+            <li class="nav-item me-4">
+              <a
+                href="about-us.html"
+                class="nav-link text-dark"
+                style="font-size: 18px"
+                href="#"
+                >About</a
+              >
+            </li>
+            <li class="nav-item me-4">
+              <a
+                href="blog.html"
+                class="nav-link text-dark"
+                style="font-size: 18px"
+                href="#"
+                >Blog</a
+              >
+            </li>
+          </ul>
+          <div style="margin-left: auto">
+            <a href="ContsactUs.html">
+              <button
+                style="
+                  padding: 10px 20px;
+                  border-radius: 5px;
+                  border: 0;
+                  background-color: #11bb67;
+                "
+              >
+                Contact Us
+              </button></a
+            >
+          </div>
+        </div>
+      </div>
+    </nav>
 
     <!-- Header Section -->
     <div class="header">
-        <h1>TOP TRAVEL BLOGS TO DISCOVER THIS WINTER</h1>
-        <ol class="breadcrumb BlogDetailsPath">
-            <li class="">Home //</li>
-            <li class="" aria-current="page">Discover Island Kayak Tour</li>
-        </ol>
+      <h1>TOP TRAVEL BLOGS TO DISCOVER THIS WINTER</h1>
+      <ol class="breadcrumb BlogDetailsPath">
+        <li class="">Home //</li>
+        <li class="" aria-current="page">Discover Island Kayak Tour</li>
+      </ol>
     </div>
 
     <!-- Content Section -->
     <div class="container content-section">
-        <div class="row">
-            <!-- Main Content -->
-            <div class="col-md-8">
-                <div class="blog-post">
-                    <img src="/assests/images/slider-1-1.jpg" alt="Travel Blog Image" height="400px" > <!-- Replace with your image URL -->
-                    <div class="post-meta d-flex align-items-center mb-3">
-                        <i class="fas fa-calendar-alt text-success"></i>
-                        <span>14 Jan 2024</span>
-                    </div>
-                    <h2>Top travel blogs to discover this winter</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                        et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                        aliquip ex ea commodo consequat.</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                        et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                        aliquip ex ea commodo consequat.</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                        et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                        aliquip ex ea commodo consequat.</p>
-                </div>
+      <div class="row">
+        <!-- Main Content -->
+        <div class="col-md-8">
+          <div class="blog-post">
+            <img
+              src="/assests/images/slider-1-1.jpg"
+              alt="Travel Blog Image"
+              height="400px"
+            />
+            <!-- Replace with your image URL -->
+            <div class="post-meta d-flex align-items-center mb-3">
+              <i class="fas fa-calendar-alt text-success"></i>
+              <span>14 Jan 2024</span>
             </div>
-
-            <!-- Sidebar -->
-            <div class="col-md-4 recent-posts">
-                <h4>Recent post:</h4>
-                <!-- Recent Post Item -->
-                <div class="recent-post d-flex">
-                    <img src="/assests/images/blog-1-4.jpg" alt="Recent Post 1"> <!-- Replace with your image URL -->
-                    <div>
-                        <p><i class="fas fa-calendar-alt"></i> 02 Jan, 2024</p>
-                        <a href="#">THINGS TO SEE AND DO WHEN VISITING JAPAN</a>
-                    </div>
-                    <hr>
-                </div>
-                <hr>
-                <!-- Recent Post Item -->
-                <div class="recent-post d-flex">
-                    <img src="/assests/images/blog-1-4.jpg" alt="Recent Post 2"> <!-- Replace with your image URL -->
-                    <div>
-                        <p><i class="fas fa-calendar-alt"></i> 02 Jan, 2024</p>
-                        <a href="#">A PLACE WHERE TO START NEW LIFE WITH ADVENTURE TRAVEL</a>
-                    </div>
-                </div>
-                <hr>
-
-                <!-- Recent Post Item -->
-                <div class="recent-post d-flex">
-                    <img src="/assests/images/blog-1-4.jpg" alt="Recent Post 3"> <!-- Replace with your image URL -->
-                    <div>
-                        <p><i class="fas fa-calendar-alt"></i> 02 Jan, 2024</p>
-                        <a href="#">THE VIBRANT HARBOR CITY DOWN UNDER</a>
-                    </div>
-                </div>
-            </div>
+            <h2>Top travel blogs to discover this winter</h2>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea commodo consequat.
+            </p>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea commodo consequat.
+            </p>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea commodo consequat.
+            </p>
+          </div>
         </div>
+
+        <!-- Sidebar -->
+        <div class="col-md-4 recent-posts">
+          <h4>Recent post:</h4>
+          <!-- Recent Post Item -->
+          <div class="recent-post d-flex">
+            <img src="/assests/images/blog-1-4.jpg" alt="Recent Post 1" />
+            <!-- Replace with your image URL -->
+            <div>
+              <p><i class="fas fa-calendar-alt"></i> 02 Jan, 2024</p>
+              <a href="#">THINGS TO SEE AND DO WHEN VISITING JAPAN</a>
+            </div>
+            <hr />
+          </div>
+          <hr />
+          <!-- Recent Post Item -->
+          <div class="recent-post d-flex">
+            <img src="/assests/images/blog-1-4.jpg" alt="Recent Post 2" />
+            <!-- Replace with your image URL -->
+            <div>
+              <p><i class="fas fa-calendar-alt"></i> 02 Jan, 2024</p>
+              <a href="#"
+                >A PLACE WHERE TO START NEW LIFE WITH ADVENTURE TRAVEL</a
+              >
+            </div>
+          </div>
+          <hr />
+
+          <!-- Recent Post Item -->
+          <div class="recent-post d-flex">
+            <img src="/assests/images/blog-1-4.jpg" alt="Recent Post 3" />
+            <!-- Replace with your image URL -->
+            <div>
+              <p><i class="fas fa-calendar-alt"></i> 02 Jan, 2024</p>
+              <a href="#">THE VIBRANT HARBOR CITY DOWN UNDER</a>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <footer class="footer">
-        <div class="container">
-            <div class="row">
-
-                <div class="col-md-3 logoSection col-sm-12">
-                    <img src="white-logo.png" alt="Logo" class="mb-3"> 
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua.</p>
-                    <div class="socialIcons">
-                        <a href="#"><i class="fab fa-facebook-f icon"></i></a>
-                        <a href="#"><i class="fab fa-twitter icon"></i></a>
-                        <a href="#"><i class="fab fa-instagram icon"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in icon"></i></a>
-                    </div>
+    <div class="footerSection overflow-hidden position-relative">
+      <div class="footerLeftShape position-absolute">
+        <img src="assests/images/left-tree.png" alt="" />
+      </div>
+      <div class="footerRightShape position-absolute">
+        <img src="assests/images/right-tree.png" alt="" />
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-xl-3 col-lg-4 col-md-6">
+            <div class="footerBlock fotCol1">
+              <div class="footerLogo">
+                <a href="index.html"
+                  ><img src="assests/images/logo.png" alt=""
+                /></a>
+              </div>
+              <div class="footerContent">
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                  doeiusmod tempor incididunt ut labore et dolore magna aliqua.
+                  Ut
+                </p>
+                <div class="footerSocialIcons position-relative">
+                  <a href="#"
+                    ><i class="flaticon-facebook-app-symbol text-light me-0"></i
+                  ></a>
+                  <a href="#"><i class="flaticon-twitter"></i></a>
+                  <a href="#"><i class="flaticon-skype"></i></a>
+                  <a href="#"><i class="flaticon-linkedin"></i></a>
                 </div>
-
-                <div class="col-md-3 col-sm-12">
-                    <h5>Company</h5>
-                    <ul>
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">About us</a></li>
-                        <li><a href="#">Blog update</a></li>
-                        <li><a href="#">Our services</a></li>
-                        <li><a href="#">Testimonial</a></li>
-                    </ul>
-                </div>
-
-                <div class="col-md-3 col-sm-12">
-                    <h5>Quick Links</h5>
-                    <ul>
-                        <li><a href="#">Privacy & policy</a></li>
-                        <li><a href="#">Terms & conditions</a></li>
-                        <li><a href="#">FAQ</a></li>
-                        <li><a href="#">Hydropower Plants</a></li>
-                        <li><a href="#">Customer support</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-3 col-sm-12">
-                    <h5>Subscribe Newsletter</h5>
-                    <form class="newsletter">
-                        <input type="email" placeholder="Enter Your Email">
-                        <button type="submit">Subscribe Now</button>
-                    </form>
-                </div>
+              </div>
             </div>
-        </div>
-
-        <div class="footerBottom">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-6 col-sm-6 text-left">
-                        <p>Copyright &copy; 2024 <a href="#">Travello</a>. All Rights Reserved</p>
-                    </div>
-                    <div class="col-md-6 col-sm-6 text-right">
-                        <p><a href="#">Privacy & Policy</a> | <a href="#">Terms & Conditions</a></p>
-                    </div>
-                </div>
+          </div>
+          <div class="col-xl-3 col-lg-4 col-md-6">
+            <div class="footerBlock fotCol2">
+              <h3
+                class="footerBlockTitle text-uppercase text-decoration-underline"
+              >
+                Company:
+              </h3>
+              <div class="footerList">
+                <ul>
+                  <li><a href="#">Home</a></li>
+                  <li><a href="#">About us</a></li>
+                  <li><a href="#">Blog update</a></li>
+                  <li><a href="#">Our services</a></li>
+                  <li><a href="#">Testimonial</a></li>
+                </ul>
+              </div>
             </div>
+          </div>
+          <div class="col-xl-3 col-lg-4 col-md-6">
+            <div class="footerBlock fotCol3">
+              <h3
+                class="footerBlockTitle text-uppercase text-decoration-underline"
+              >
+                Quick links:
+              </h3>
+              <div class="footerList">
+                <ul>
+                  <li><a href="#">Privacy & policy</a></li>
+                  <li><a href="#">Terms & conditions</a></li>
+                  <li><a href="#">FAQ</a></li>
+                  <li><a href="#">Hydropowe Plants</a></li>
+                  <li><a href="#">Customer support</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-lg-4 col-md-6 z-3">
+            <div class="footerBlock fotCol4">
+              <h3
+                class="footerBlockTitle text-uppercase text-decoration-underline"
+              >
+                Subscribe Newsletter:
+              </h3>
+              <div class="footerForm">
+                <form action="#">
+                  <div class="footerInput">
+                    <input
+                      id="email"
+                      autocomplete="email"
+                      type="email"
+                      placeholder="Enter Your Email:"
+                    />
+                  </div>
+                  <button type="submit" class="btn footerBtn">
+                    Subscribe Now
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
         </div>
-    </footer>
+      </div>
+    </div>
+    <div class="copyrightSection z-3 position-relative">
+      <div class="container">
+        <div class="copyrightWrap z-2">
+          <div class="row align-items-center">
+            <div class="col-xl-6 col-lg-6">
+              <div class="copyrightText text-center text-lg-start">
+                <p class="mb-0">
+                  Copyright © 2024 <span><a href="#">Travello</a></span> All
+                  Right Reserved
+                </p>
+              </div>
+            </div>
+            <div class="col-xl-6 col-lg-6 d-none d-lg-block">
+              <div class="copyrightPrivacy text-end">
+                <a class="text-decoration-none" href="#"
+                  >Privacy & Policy || Terms & Conditions</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     <!-- Bootstrap JS and dependencies -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>
-
+  </body>
 </html>
