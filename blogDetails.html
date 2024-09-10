@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Blog</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
+        rel="stylesheet">
+    <style>
+        /* Custom Styles */
+        body {
+            font-family: "DM Sans", sans-serif;
+            font-optical-sizing: auto;
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        .header {
+            background-image: url('/assests/images/slider-1-1.jpg'); /* Replace with your background image URL */
+            background-size: cover;
+            background-position: center;
+            color: white;
+            height: 80vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            margin-bottom: 120px;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            text-align: center;
+        }
+
+
+
+        .content-section {
+            margin-top: 40px;
+        }
+
+        .content-section h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .content-section img {
+            width: 100%;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .recent-posts {
+            margin-top: 40px;
+        }
+
+        .recent-posts h4 {
+            margin-bottom: 20px;
+        }
+
+        .recent-post {
+            margin-bottom: 15px;
+        }
+
+        .recent-post img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-right: 15px;
+        }
+
+        .recent-post p {
+            margin-bottom: 5px;
+        }
+
+        .recent-post i {
+            color: #11BB67;
+            margin-right: 5px;
+        }
+        .BlogDetailsPath {
+            background-color: #11BB67;
+            position: absolute;
+            padding: 10px 20px;
+            border-radius: 5px;
+            bottom: -40px;
+        }
+        .footer {
+            background-color: #121b1f;
+            padding: 60px 0;
+            color: white;
+            position: relative;
+        }
+
+        .footer .logoSection p {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .footer .logoSection .socialIcons i {
+            font-size: 18px;
+            color: white;
+            transition: color 0.3s ease-in-out;
+        }
+
+        .footer .logoSection .socialIcons i:hover {
+            color: #11BB67;
+        }
+
+        .footer h5 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: white;
+            text-decoration: underline;
+        }
+
+        .footer ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .footer ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer ul li a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.3s ease-in-out;
+        }
+
+        .footer ul li a:hover {
+            color: #11BB67;
+        }
+
+        .footer .newsletter input[type="email"] {
+            border-radius: 5px;
+            padding: 10px;
+            border: none;
+            width: 100%;
+            margin-bottom: 15px;
+        }
+
+        .footer .newsletter button {
+            background-color: #11BB67;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .footer .newsletter button:hover {
+            background-color: #11BB67;
+        }
+
+        .footerBottom {
+            background-color: #1c252b;
+            padding: 20px 0;
+            color: rgba(255, 255, 255, 0.7);
+            text-align: center;
+            font-size: 14px;
+            width: 74%;
+            position: absolute;
+            bottom: 0px;
+            left: 13%;
+            border-radius: 7px;
+            height: 60px;
+        }
+
+        .footerBottom a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+
+        }
+
+        .footerBottom a:hover {
+            color: #11BB67;
+        }
+
+
+        .socialIcons {
+            margin-top: 20px;
+        }
+
+        .socialIcons a {
+            color: white;
+            margin-right: 15px;
+        }
+
+        .icon {
+            border: white 1px solid;
+            border-radius: 30px;
+            padding: 12px;
+        }
+        
+    </style>
+</head>
+
+<body>
+
+    <!-- Header Section -->
+    <div class="header">
+        <h1>TOP TRAVEL BLOGS TO DISCOVER THIS WINTER</h1>
+        <ol class="breadcrumb BlogDetailsPath">
+            <li class="">Home //</li>
+            <li class="" aria-current="page">Discover Island Kayak Tour</li>
+        </ol>
+    </div>
+
+    <!-- Content Section -->
+    <div class="container content-section">
+        <div class="row">
+            <!-- Main Content -->
+            <div class="col-md-8">
+                <div class="blog-post">
+                    <img src="/assests/images/slider-1-1.jpg" alt="Travel Blog Image" height="400px" > <!-- Replace with your image URL -->
+                    <div class="post-meta d-flex align-items-center mb-3">
+                        <i class="fas fa-calendar-alt text-success"></i>
+                        <span>14 Jan 2024</span>
+                    </div>
+                    <h2>Top travel blogs to discover this winter</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+                        et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                        aliquip ex ea commodo consequat.</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+                        et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                        aliquip ex ea commodo consequat.</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+                        et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                        aliquip ex ea commodo consequat.</p>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="col-md-4 recent-posts">
+                <h4>Recent post:</h4>
+                <!-- Recent Post Item -->
+                <div class="recent-post d-flex">
+                    <img src="/assests/images/blog-1-4.jpg" alt="Recent Post 1"> <!-- Replace with your image URL -->
+                    <div>
+                        <p><i class="fas fa-calendar-alt"></i> 02 Jan, 2024</p>
+                        <a href="#">THINGS TO SEE AND DO WHEN VISITING JAPAN</a>
+                    </div>
+                    <hr>
+                </div>
+                <hr>
+                <!-- Recent Post Item -->
+                <div class="recent-post d-flex">
+                    <img src="/assests/images/blog-1-4.jpg" alt="Recent Post 2"> <!-- Replace with your image URL -->
+                    <div>
+                        <p><i class="fas fa-calendar-alt"></i> 02 Jan, 2024</p>
+                        <a href="#">A PLACE WHERE TO START NEW LIFE WITH ADVENTURE TRAVEL</a>
+                    </div>
+                </div>
+                <hr>
+
+                <!-- Recent Post Item -->
+                <div class="recent-post d-flex">
+                    <img src="/assests/images/blog-1-4.jpg" alt="Recent Post 3"> <!-- Replace with your image URL -->
+                    <div>
+                        <p><i class="fas fa-calendar-alt"></i> 02 Jan, 2024</p>
+                        <a href="#">THE VIBRANT HARBOR CITY DOWN UNDER</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-3 logoSection col-sm-12">
+                    <img src="white-logo.png" alt="Logo" class="mb-3"> 
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                        labore et dolore magna aliqua.</p>
+                    <div class="socialIcons">
+                        <a href="#"><i class="fab fa-facebook-f icon"></i></a>
+                        <a href="#"><i class="fab fa-twitter icon"></i></a>
+                        <a href="#"><i class="fab fa-instagram icon"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in icon"></i></a>
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-sm-12">
+                    <h5>Company</h5>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">About us</a></li>
+                        <li><a href="#">Blog update</a></li>
+                        <li><a href="#">Our services</a></li>
+                        <li><a href="#">Testimonial</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3 col-sm-12">
+                    <h5>Quick Links</h5>
+                    <ul>
+                        <li><a href="#">Privacy & policy</a></li>
+                        <li><a href="#">Terms & conditions</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Hydropower Plants</a></li>
+                        <li><a href="#">Customer support</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 col-sm-12">
+                    <h5>Subscribe Newsletter</h5>
+                    <form class="newsletter">
+                        <input type="email" placeholder="Enter Your Email">
+                        <button type="submit">Subscribe Now</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="footerBottom">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 text-left">
+                        <p>Copyright &copy; 2024 <a href="#">Travello</a>. All Rights Reserved</p>
+                    </div>
+                    <div class="col-md-6 col-sm-6 text-right">
+                        <p><a href="#">Privacy & Policy</a> | <a href="#">Terms & Conditions</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>
