@@ -27,7 +27,7 @@ img{
     background-color: var(--color-secondary) !important;
 }
 /* Start header */
-.topMenu ul li {
+/* .topMenu ul li {
     padding: 13px 0 ;
     list-style: none;
     font-family: var(--main-font);
@@ -63,7 +63,110 @@ img{
 }
 .nav{
     background-color: white;
-}
+} */
+
+.top-bar {
+    background-color: #000;
+    color: #fff;
+    padding: 10px 0px;
+  }
+  .top-bar .contact-info span {
+    margin-right: 20px;
+    font-weight: lighter;
+  }
+  .top-bar .contact-info i {
+    margin-right: 10px;
+  }
+  .top-bar .contact-info a {
+    margin-right: 10px;
+    color: #fff;
+    text-decoration: none;
+  }
+  .top-bar .social-icons a {
+    margin-right: 10px;
+    color: #fff;
+  }
+  .top-bar .social-icons {
+    padding-left: 40px;
+    margin-left: 10%;
+  }
+  .navbar-nav .nav-link {
+    font-size: 18px;
+    color: #000;
+    font-family: sans-serif;
+  }
+  .contact-btn {
+    padding: 10px 20px;
+    border: 0;
+    color: white;
+    border-right: 1px solid white;
+  }
+
+  .greenDiv {
+    position: absolute;
+    display: flex;
+    top: auto;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #11bb67;
+    padding: 15px;
+    text-align: center;
+    color: white;
+    font-size: 1.2em;
+    min-width: fit-content;
+    border-radius: 4px;
+  }
+  
+  .greenDiv a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    margin-right: 5px;
+  }
+  
+  .greenDiv .breadcrumb-separator {
+    margin: 0 5px;
+  }
+  
+  .greenDiv .current-page {
+    color: #f0f0f0;
+  }
+  
+  @media (max-width: 768px) {
+    .greenDiv {
+      top: auto;
+    }
+  }
+  @media (max-width: 1024px) {
+    .top-bar .contact-info {
+      display: none;
+    }
+  }
+  @media (max-width: 768px) {
+    .top-bar .container {
+        flex-direction: column; 
+        align-items: flex-start; 
+    }
+  
+    .top-bar .social-icons {
+        margin-left: 0;
+        padding-left: 0;
+        margin-top: 10px;
+        justify-content: flex-start; 
+    }
+  
+    .top-bar .contact-info span {
+        display: block; 
+        margin-bottom: 10px;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .top-bar .contact-info span {
+        font-size: 14px; 
+    }
+  }
+  
 /* End header */
 /* start about us banner */
 .aboutUsBanner{
