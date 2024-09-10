@@ -226,3 +226,217 @@
 .pagination ul li a:hover {
   background-color: #ddd;
 }
+
+body {
+  font-family: "DM Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* Blog Section Styles */
+.blogSection {
+  padding: 50px 0;
+  text-align: center;
+  position: relative;
+  background-color: #fff;
+}
+
+.blogSection .sticker {
+  object-fit: cover;
+  position: absolute;
+  z-index: 1;
+  left: 50px;
+  top: 20px;
+}
+
+.cardTitle {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.blogSection h3 {
+  color: #FF6525;
+  margin-bottom: 25px;
+  font-family: 'Gloss And Bloom', sans-serif;
+  font-size: 20px;
+}
+
+.blogSection h2 {
+  font-size: 36px;
+  margin-bottom: 10px;
+  color: #000;
+  width: 40%;
+  margin-left: 30%;
+  font-weight:bold;
+}
+.travelCard {
+  max-width: 350px;
+  margin: 20px auto;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+}
+
+.travelCard img {
+  width: 100%;
+  height: auto;
+}
+
+.categoryBadge {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  background-color: #FF6525;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+.cardBody {
+  padding: 20px;
+  text-align: left;
+}
+
+.card-date {
+  color: #757575;
+  font-size: 0.9rem;
+  margin-bottom: 10px;
+}
+
+.cardTitle {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.cardBtn {
+  background-color: #b5e4ca;
+  color: #00a65a;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.cardBtn:hover {
+  background-color: #a4d3b5;
+}
+
+.calenderSticker{
+  color: #11BB67;
+}
+
+.footer {
+  background-color: #121b1f;
+  padding: 60px 0;
+  color: white;
+  position: relative;
+}
+
+.footer .logoSection p {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.footer .logoSection .socialIcons i {
+  font-size: 18px;
+  margin-right: 10px;
+  color: white;
+  transition: color 0.3s ease-in-out;
+}
+
+.footer .logoSection .socialIcons i:hover {
+  color: #11BB67;
+}
+
+.footer h5 {
+  font-size: 18px;
+  margin-bottom: 20px;
+  color: white;
+}
+
+.footer ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.footer ul li {
+  margin-bottom: 10px;
+}
+
+.footer ul li a {
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  transition: color 0.3s ease-in-out;
+}
+
+.footer ul li a:hover {
+  color: #11BB67;
+}
+
+.footer .newsletter input[type="email"] {
+  border-radius: 5px;
+  padding: 10px;
+  border: none;
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.footer .newsletter button {
+  background-color: #11BB67;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.footer .newsletter button:hover {
+  background-color: #11BB67;
+}
+
+.footerBottom {
+  background-color: #1c252b;
+  padding: 20px 0;
+  color: rgba(255, 255, 255, 0.7);
+  text-align: center;
+  font-size: 14px;
+  width: 74%;
+  position: absolute;
+  bottom: 0px;
+  left: 13%;
+  border-radius: 7px;
+  height: 60px;
+}
+
+.footerBottom a {
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+
+}
+
+.footerBottom a:hover {
+  color: #11BB67;
+}
+
+
+.socialIcons {
+  margin-top: 20px;
+}
+
+.socialIcons a {
+  color: white;
+  margin-right: 15px;
+}
+
+.icon {
+  border: white 1px solid;
+  border-radius: 20px;
+  padding: 8px;
+}
