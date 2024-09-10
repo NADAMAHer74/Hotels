@@ -183,7 +183,7 @@ img{
 }
 /* start video banner */
 .videoSection {
-    background-image: url(../images/video-bg.jpg);
+    background-image: url(../images/video-bg-about.jpg);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
