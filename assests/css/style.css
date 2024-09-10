@@ -23,11 +23,11 @@ body {
 }
 
 .top-destinations {
-  font-family: 'Gloss And Bloom', sans-serif;    color: #FF6525;
+  font-family: "Gloss And Bloom", sans-serif;
+  color: #ff6525;
   font-weight: bold;
   margin-top: 20px;
 }
-
 
 .title {
   font-size: 36px;
@@ -37,7 +37,7 @@ body {
 .card-container {
   position: relative;
   margin-bottom: 20px;
-  height: 300px; 
+  height: 300px;
   overflow: hidden;
   border-radius: 10px;
 }
@@ -48,14 +48,14 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.4); 
+  background: rgba(0, 0, 0, 0.4);
   z-index: 1;
 }
 
 .card-container img {
   width: 100%;
-  height: 100%; 
-  object-fit: cover; 
+  height: 100%;
+  object-fit: cover;
 }
 
 .card-text {
@@ -64,7 +64,7 @@ body {
   left: 10px;
   color: white;
   text-align: left;
-  z-index: 2; 
+  z-index: 2;
 }
 
 .card-text h5 {
@@ -82,7 +82,6 @@ body {
   padding: 80px 0;
   background-color: #f4f8f9;
   overflow: hidden;
- 
 }
 
 .background-overlay {
@@ -92,11 +91,11 @@ body {
   /* width: 100%;
   height: 100%; */
   background-size: cover;
-  opacity: 0.8; 
+  opacity: 0.8;
   z-index: 0;
 }
 
-.backImage{
+.backImage {
   width: 100%;
   height: 200%;
 }
@@ -108,7 +107,7 @@ body {
 
 .image-stack {
   position: relative;
-  height: 500px; 
+  height: 500px;
 }
 
 .image-stack img {
@@ -124,9 +123,9 @@ body {
   z-index: 3;
   width: 50%;
   height: 240px;
-  border: 5px solid white; 
-  box-sizing: border-box; 
-  border-radius: 10px; 
+  border: 5px solid white;
+  box-sizing: border-box;
+  border-radius: 10px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
@@ -149,7 +148,8 @@ body {
 }
 
 .section-title {
-  font-family: 'Gloss And Bloom', sans-serif;    color: #FF6525;
+  font-family: "Gloss And Bloom", sans-serif;
+  color: #ff6525;
 
   font-size: 24px;
 }
@@ -173,7 +173,7 @@ body {
   margin-bottom: 20px;
 }
 
-.iconName{
+.iconName {
   font-weight: bold;
 }
 
@@ -292,11 +292,11 @@ body {
 }
 .translateValues {
   right: 10%;
-  bottom: 37%;
+  bottom: 40%;
 }
 @media screen and (max-width: 750px) {
   .translateValues {
-    bottom: 30%;
+    bottom: 40%;
   }
 }
 .spacing {
