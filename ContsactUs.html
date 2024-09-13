@@ -10,26 +10,28 @@
       rel="stylesheet"
       integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
       crossorigin="anonymous"
-
-    /><link
-
+    />
+    <link />
+    <link
+      rel="stylesheet"
+      href="assests/fonts/fonts/flaticon_travel-and-tour.css"
     />
     <link
-    rel="stylesheet"
-    href="assests/fonts/fonts/flaticon_travel-and-tour.css"
-  />
-    <link
-
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
       integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <link href="https://fonts.cdnfonts.com/css/gloss-and-bloom" rel="stylesheet">
-    <link rel="stylesheet" href="assests/css/aboutUsStyles.css">
+    <link
+      href="https://fonts.cdnfonts.com/css/gloss-and-bloom"
+      rel="stylesheet"
+    />
+    <!-- <link rel="stylesheet" href="assests/css/aboutUsStyles.css" /> -->
 
-    <link rel="stylesheet" href="assests/css/style.css" />
+    <!-- <link rel="stylesheet" href="assests/css/style.css" /> -->
+
+    <link rel="stylesheet" href="assests/css/general.css" />
 
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
@@ -44,21 +46,20 @@
         font-style: normal;
       }
 
-      .contactHeader {
-        background-image: url("./assests/images/slider-1-1.jpg");
-        background-size: cover;
-        background-position: center;
-        color: white;
-        height: 80vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        position: relative;
+      /* .bannerOverlay {
+        background-color: rgba(0, 0, 0, 0.4);
+        position: absolute;
+        width: 100%;
+        height: 100%;
       }
 
       .contactHeader h1 {
         font-size: 3rem;
-      }
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      } */
 
       .contactForm {
         padding: 50px 0;
@@ -227,77 +228,189 @@
   </head>
 
   <body>
-    <div class="top-bar ">
+    <div class="top-bar">
       <div class="container d-flex justify-content-around align-items-center">
-          <div class="contact-info">
-              <a href="#"><i class="fa-solid fa-phone-volume" style="color: #11BB67;"></i><span>(000) 967-237-96</span></a>
-             <a href="#"><i class="fa-regular fa-envelope" style="color: #11BB67;"></i><span>toursinfo@gmail.com</span></a> 
-             <a href="#"> <i class="fa-solid fa-location-dot" style="color: #11BB67;"></i><span>290 Grand Avenue Maitland, FL 32751</span></a>
-          </div>
-          <div class="social-icons" style="border: 0; border-left: 1px solid white;">
-              <a href="#"><i class="fab fa-facebook-f"></i></a>
-              <a href="#"><i class="fa-brands fa-twitter"></i></a>
-              <a href="#"><i class="fa-brands fa-skype"></i></a>
-              <a href="#"><i class="fa-brands fa-linkedin"></i></a>
-
-          </div>
-      </div>
-  </div>
-
-  <nav class="navbar sticky-top navbar-expand-lg bg-white " data-bs-theme="dark">
-      <div class="container text-dark pe-5 ps-5" style="justify-content: space-between !important;">
+        <div class="contact-info">
+          <a href="#"
+            ><i class="fa-solid fa-phone-volume" style="color: #11bb67"></i
+            ><span>(000) 967-237-96</span></a
+          >
+          <a href="#"
+            ><i class="fa-regular fa-envelope" style="color: #11bb67"></i
+            ><span>toursinfo@gmail.com</span></a
+          >
           <a href="#">
-              <img src="./assests/images/logo (1).png" width="108" height="29">
-          </a>
-          <button class="navbar-toggler" style="color: black; border-color: black;" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNav">
-              <ul class="navbar-nav" style="margin-left: auto;">
-                  <li class="nav-item me-4">
-                      <a href="index.html" class="nav-link active text-dark" style="font-size:18px;" aria-current="page">Home</a>
-                  </li>
-                  
-                  <li class="nav-item dropdown me-4">
-                      <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdownTours" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="font-size:18px;">
-                          Tours
-                      </a>
-                      <ul class="dropdown-menu" aria-labelledby="navbarDropdownTours">
-                          <li><a class="dropdown-item" href="tour_grid.html">Tour</a></li>
-                          <li><a class="dropdown-item" href="tour-detail.html">Tour Detail</a></li>
-                      </ul>
-                  </li>
-                  <li class="nav-item me-4">
-                      <a href="destination.html" class="nav-link text-dark" style="font-size:18px;">Destination</a>
-                  </li>
-                  <li class="nav-item me-4">
-                      <a href="about-us.html" class="nav-link text-dark" style="font-size:18px;">About</a>
-                  </li>
-                 
-                  <li class="nav-item dropdown me-4">
-                      <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdownBlog" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="font-size:18px;">
-                          Blog
-                      </a>
-                      <ul class="dropdown-menu" aria-labelledby="navbarDropdownBlog">
-                          <li><a class="dropdown-item" href="blog.html">Blog</a></li>
-                          <li><a class="dropdown-item" href="blogDetails.html">Blog Detail</a></li>
-                      </ul>
-                  </li>
-              </ul>
-              <div style="margin-left: auto;">
-                  <a href="ContsactUs.html"> <button style="padding: 10px 20px; border-radius: 5px; border: 0; background-color: #11BB67;">Contact Us</button></a>
-              </div>
-          </div>
+            <i class="fa-solid fa-location-dot" style="color: #11bb67"></i
+            ><span>290 Grand Avenue Maitland, FL 32751</span></a
+          >
+        </div>
+        <div
+          class="social-icons"
+          style="border: 0; border-left: 1px solid white"
+        >
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fa-brands fa-twitter"></i></a>
+          <a href="#"><i class="fa-brands fa-skype"></i></a>
+          <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+        </div>
       </div>
-  </nav>
+    </div>
+
+    <nav
+      class="navbar sticky-top navbar-expand-lg bg-white"
+      data-bs-theme="dark"
+    >
+      <div
+        class="container text-dark pe-5 ps-5"
+        style="justify-content: space-between !important"
+      >
+        <a href="#">
+          <img src="./assests/images/logo (1).png" width="108" height="29" />
+        </a>
+        <button
+          class="navbar-toggler"
+          style="color: black; border-color: black"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav" style="margin-left: auto">
+            <li class="nav-item me-4">
+              <a
+                href="index.html"
+                class="nav-link active text-dark"
+                style="font-size: 18px"
+                aria-current="page"
+                >Home</a
+              >
+            </li>
+
+            <li class="nav-item dropdown me-4">
+              <a
+                class="nav-link dropdown-toggle text-dark"
+                href="#"
+                id="navbarDropdownTours"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+                style="font-size: 18px"
+              >
+                Tours
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdownTours">
+                <li><a class="dropdown-item" href="tour_grid.html">Tour</a></li>
+                <li>
+                  <a class="dropdown-item" href="tour-detail.html"
+                    >Tour Detail</a
+                  >
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item me-4">
+              <a
+                href="destination.html"
+                class="nav-link text-dark"
+                style="font-size: 18px"
+                >Destination</a
+              >
+            </li>
+            <li class="nav-item me-4">
+              <a
+                href="about-us.html"
+                class="nav-link text-dark"
+                style="font-size: 18px"
+                >About</a
+              >
+            </li>
+
+            <li class="nav-item dropdown me-4">
+              <a
+                class="nav-link dropdown-toggle text-dark"
+                href="#"
+                id="navbarDropdownBlog"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+                style="font-size: 18px"
+              >
+                Blog
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdownBlog">
+                <li><a class="dropdown-item" href="blog.html">Blog</a></li>
+                <li>
+                  <a class="dropdown-item" href="blogDetails.html"
+                    >Blog Detail</a
+                  >
+                </li>
+              </ul>
+            </li>
+          </ul>
+          <div style="margin-left: auto">
+            <a href="ContsactUs.html">
+              <button
+                style="
+                  padding: 10px 20px;
+                  border-radius: 5px;
+                  border: 0;
+                  background-color: #11bb67;
+                "
+              >
+                Contact Us
+              </button></a
+            >
+          </div>
+        </div>
+      </div>
+    </nav>
+    <section class="banner">
+      <img
+        src="./assests/images/image22.jpg"
+        alt="Discovery Island Kayak Tour"
+        class="bannerImage"
+      />
+      <div class="bannerOverlay">
+        <div class="bannerText">
+          <h1>Discovery Island Kayak Tour</h1>
+        </div>
+      </div>
+    </section>
+    <div class="greenDiv">
+      <a href="home.html" class="home-link">Home</a>
+      <span class="breadcrumb-separator">//</span>
+      <span class="current-page">Discovery Island Kayak Tour</span>
+    </div>
     <!-- Contact Header -->
-    <div class="contactHeader">
-      <h1>CONTACT US</h1>
-      <ol class="breadcrumb contactUsPath">
+    <!-- <div class="banner">
+      <img src="./assests/images/image22.jpg" />
+      <div class="bannerOverlay">
+        <h1>CONTACT US</h1>
+      </div>
+      <div class="greenDiv">
+        <a href="#" class="home-link">Home</a>
+        <span class="breadcrumb-separator">//</span>
+        <span class="current-page">Blog</span>
+      </div>
+    </div> -->
+
+    <!-- <ol class="greenDiv">
         <li class="">Home //</li>
         <li class="" aria-current="page">Contact</li>
       </ol>
-    </div>
+    </div> -->
+    <!-- <div class="banner">
+      <img src="./assests/images/image22.jpg" />
+      <div class="bannerOverlay">
+        <div class="bannerText">
+          <h1>Blog</h1>
+        </div>
+      </div>
+    </div> -->
 
     <div class="container contactForm">
       <div class="row">
