@@ -513,11 +513,6 @@ img {
 
 
 /*Media Queries*/
-@media (max-width: 1024px) {
-  .topBar .contactInfo {
-      display: none;
-  }
-}
 
 
 @media screen and (max-width: 395px) {
@@ -533,6 +528,9 @@ img {
       margin-top: 20px;
       margin-bottom: 20px !important;
   }
+  .topBar .contactInfo {
+    display: none;
+}
 }
 
 

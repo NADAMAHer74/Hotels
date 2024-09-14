@@ -612,12 +612,6 @@ img {
 
 /*Media Queries*/
 
-@media (max-width: 1024px) {
-    .topBar .contactInfo {
-        display: none;
-    }
-}
-
 
 @media screen and (max-width: 395px) {
     .dropdownCompanyInfo > a{
@@ -634,6 +628,9 @@ img {
     }
     .aboutThumb2 img {
         width: 100%;
+    }
+    .topBar .contactInfo {
+        display: none;
     }
 }
 
