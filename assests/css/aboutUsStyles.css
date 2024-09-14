@@ -1,31 +1,38 @@
-*{
+* {
     box-sizing: border-box;
 }
+
 @font-face {
     font-family: gloss;
-    src:url(../fonts/fonts/Gloss\ And\ Bloom\ Font.ttf)
+    src: url(../fonts/fonts/Gloss\ And\ Bloom\ Font.ttf)
 }
-:root{
+
+:root {
     --color-primary: #11BB67;
     --color-secondary: #FF6525;
     --main-font: "DM Sans", sans-serif;
     --second-font: gloss;
 }
-body{
+
+body {
     font-family: "DM Sans", sans-serif;
 }
-img{
+
+img {
     max-width: 100%;
 }
-.contactNavBtn{
+
+.contactNavBtn {
     background-color: var(--color-primary) !important;
     color: white;
     font-family: var(--main-font);
     font-weight: 700;
 }
-.contactNavBtn:hover{
+
+.contactNavBtn:hover {
     background-color: var(--color-secondary) !important;
 }
+
 /* Start header */
 /* .topMenu ul li {
     padding: 13px 0 ;
@@ -69,40 +76,116 @@ img{
     background-color: #000;
     color: #fff;
     padding: 10px 0px;
-  }
-  .topBar .contactInfo span {
+    transition: 0.3s ease-in-out;
+}
+
+
+
+.topBar .container .dropdownCompanyInfo i{
+    transition: 0.5s ease-in-out;
+    cursor: pointer;
+    margin-right: 1rem;
+    font-size: 18px;
+}
+
+.topBar .container .dropdownCompanyInfo > i:hover{
+    transform: rotate(90deg);
+}
+
+/**/
+
+@media screen and (max-width: 768px) {
+    .topBar .container{
+        justify-content: space-between !important;
+        flex-direction: row !important;
+    }
+    .topBar .socialIcons{
+        border-left: none !important;
+    }
+}
+
+.dropdownCompanyInfo{
+    position: relative;
+}
+
+.contactMenu{
+    transition: 0.3s ease-in-out;
+    list-style: none;
+    display: none;
+    position: absolute;
+    background: #ffffff;
+    border-radius: 4px;
+    z-index: 99999;
+    padding: 1rem 0.9rem 2rem 0.9rem;
+    flex-direction: column;
+    top: 2.5rem;
+    gap: 1.8rem;
+    animation: openUpMenu 0.3s alternate;
+    box-shadow: 2px 2px 7px rgba(0, 0, 0, 0.5);
+}
+
+@keyframes openUpMenu {
+    0%{
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    100%{
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+.contactMenu a{
+    color: black;
+    font-weight: 600;
+}
+
+
+/*
+.contactMenu{
+    
+}
+*/
+
+
+.topBar .contactInfo span {
     margin-right: 20px;
     font-weight: 400;
-  }
-  .topBar .contactInfo i {
+}
+
+.topBar .contactInfo i {
     margin-right: 10px;
-  }
-  .topBar .contactInfo a {
+}
+
+.topBar .contactInfo a {
     margin-right: 10px;
     color: #fff;
     text-decoration: none;
-  }
-  .topBar .socialIcons a {
+}
+
+.topBar .socialIcons a {
     margin-right: 10px;
     color: #fff;
-  }
-  .topBar .socialIcons {
+}
+
+.topBar .socialIcons {
     padding-left: 40px;
     margin-left: 10%;
-  }
-  .navbar-nav .nav-link {
+}
+
+.navbar-nav .nav-link {
     font-size: 18px;
     color: #000;
     font-family: sans-serif;
-  }
-  .contact-btn {
+}
+
+.contact-btn {
     padding: 10px 20px;
     border: 0;
     color: white;
     border-right: 1px solid white;
-  }
+}
 
-  .greenDiv {
+.greenDiv {
     position: absolute;
     display: flex;
     top: auto;
@@ -115,68 +198,71 @@ img{
     font-size: 1.2em;
     min-width: fit-content;
     border-radius: 4px;
-  }
-  
-  .greenDiv a {
+}
+
+.greenDiv a {
     color: white;
     text-decoration: none;
     font-weight: bold;
     margin-right: 5px;
-  }
-  
-  .greenDiv .breadcrumb-separator {
+}
+
+.greenDiv .breadcrumb-separator {
     margin: 0 5px;
-  }
-  
-  .greenDiv .current-page {
+}
+
+.greenDiv .current-page {
     color: #f0f0f0;
-  }
-  
-  @media (max-width: 768px) {
+}
+
+@media (max-width: 768px) {
     .greenDiv {
-      top: auto;
+        top: auto;
     }
-  }
-  @media (max-width: 1024px) {
+}
+
+@media (max-width: 1024px) {
     .topBar .contactInfo {
-      display: none;
+        display: none;
     }
-  }
-  @media (max-width: 768px) {
+}
+
+@media (max-width: 768px) {
     .topBar .container {
-        flex-direction: column; 
-        align-items: flex-start; 
+        flex-direction: column;
+        align-items: flex-start;
     }
-  
+
     .topBar .socialIcons {
         margin-left: 0;
         padding-left: 0;
         margin-top: 10px;
-        justify-content: flex-start; 
+        justify-content: flex-start;
     }
-  
+
     .topBar .contactInfo span {
-        display: block; 
+        display: block;
         margin-bottom: 10px;
     }
-  }
-  
-  @media (max-width: 576px) {
+}
+
+@media (max-width: 576px) {
     .topBar .contactInfo span {
-        font-size: 14px; 
+        font-size: 14px;
     }
-  }
-  
+}
+
 /* End header */
 /* start about us banner */
-.aboutUsBanner{
+.aboutUsBanner {
     background-image: url(../images/breadcrumb.jpg);
     height: 400px;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
 }
-.aboutUsBanner::before{
+
+.aboutUsBanner::before {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -187,52 +273,63 @@ img{
     background: #000000ab;
     z-index: -1;
 }
-.aboutUsBanner h3{
+
+.aboutUsBanner h3 {
     font-weight: 700;
     font-size: 60px;
     line-height: 1.4;
     color: white;
     letter-spacing: -6px;
 }
-.bannerBreadcrumbListWrap{
+
+.bannerBreadcrumbListWrap {
     left: 0;
     right: 0;
     bottom: -24px;
 }
-.bannerBreadcrumbListWrap a{
+
+.bannerBreadcrumbListWrap a {
     color: white;
 }
-.bannerBreadcrumbListContent{
+
+.bannerBreadcrumbListContent {
     color: white;
     border-radius: 5px;
     padding: 18px 30px;
     background-color: var(--color-primary);
 }
-.bannerBreadcrumbListContent span{
+
+.bannerBreadcrumbListContent span {
     text-transform: capitalize;
     font-size: 18px;
     font-weight: 500;
 }
+
 /* end about us banner */
 /* main section */
-.aboutThumbWrap img{
+.aboutThumbWrap img {
     border-radius: 15px;
 }
-.aboutThumbBox{
+
+.aboutThumbBox {
     margin-right: 30px;
 }
-.aboutThumb1{
+
+.aboutThumb1 {
     margin-bottom: 30px;
 }
-.aboutThumb2 img{
+
+.aboutThumb2 img {
     width: 100%;
     max-width: inherit;
 }
-.aboutTitleBox{
+
+.aboutTitleBox {
     margin-bottom: 3rem;
     font-family: var(--main-font);
 }
-.aboutTitleBox .aboutTitle{
+
+.aboutTitleBox .aboutTitle {
     font-family: var(--second-font);
     font-size: 18px;
     font-weight: 500;
@@ -240,34 +337,42 @@ img{
     margin-bottom: 15px;
     margin-top: 15px;
 }
-.aboutsubtitle{
+
+.aboutsubtitle {
     font-weight: 700;
     font-size: 50px;
     line-height: 1.2;
     letter-spacing: -2px;
 }
-.about{
+
+.about {
     padding: 100px 0;
 }
+
 .aboutTitleBox p {
     font-size: 17px;
 }
-.aboutCounterBox{
+
+.aboutCounterBox {
     font-family: var(--main-font);
     margin-bottom: 3rem;
 }
-.aboutCounterText{
+
+.aboutCounterText {
     border-right: 1px dashed;
 }
+
 .aboutCounterNumber {
     font-size: 26px;
 }
-.aboutCounterText p{
+
+.aboutCounterText p {
     font-size: 16px;
     color: black;
     margin-bottom: 0;
 }
-.discoverBtn .btn{
+
+.discoverBtn .btn {
     color: white;
     padding: 20px 30px;
     font-size: 15px;
@@ -275,14 +380,17 @@ img{
     border-radius: 5px;
     font-weight: 500;
 }
+
 .discoverBtn .btn:hover {
     color: white;
     background-color: var(--color-secondary) !important;
     border-color: var(--color-secondary) !important;
 }
-.discoverBtn .btn span svg{
+
+.discoverBtn .btn span svg {
     margin-left: 10px;
 }
+
 /* start video banner */
 .videoBlock {
     background-image: url(../images/video-bg-about.jpg);
@@ -291,7 +399,8 @@ img{
     background-repeat: no-repeat;
     padding: 150px 0;
 }
-.videoBtn .btn{
+
+.videoBtn .btn {
     color: white;
     padding: 20px 40px;
     font-size: 15px;
@@ -299,14 +408,17 @@ img{
     border-radius: 5px;
     font-weight: 500;
 }
+
 .videoBtn .btn:hover {
     color: white;
     background-color: var(--color-primary) !important;
     border-color: var(--color-primary) !important;
 }
-.videoBlock .row{
+
+.videoBlock .row {
     color: white;
 }
+
 .videoBlock::before {
     position: absolute;
     width: 100%;
@@ -315,25 +427,29 @@ img{
     left: 0;
     right: 0;
     content: "";
-    background: #161b18; 
+    background: #161b18;
     opacity: 0.8;
     z-index: 0;
 }
-.videoContent{
+
+.videoContent {
     font-family: var(--main-font);
 }
-.videoAboutSubtitle{
+
+.videoAboutSubtitle {
     font-size: 48px;
     font-weight: 700;
     line-height: 1.2;
     letter-spacing: -2px;
 }
-.videoContent p{
+
+.videoContent p {
     font-size: 17px;
     font-weight: 500;
     line-height: 26px;
 }
-.popupVideo{
+
+.popupVideo {
     font-size: 17px;
     width: 104px;
     height: 104px;
@@ -342,7 +458,8 @@ img{
     border-radius: 50%;
     background-color: azure;
 }
-.videoIcon a::before{
+
+.videoIcon a::before {
     position: absolute;
     left: 50%;
     top: 50%;
@@ -354,7 +471,8 @@ img{
     z-index: -1;
     border-radius: 50%;
 }
-.videoIcon a::after{
+
+.videoIcon a::after {
     position: absolute;
     left: 50%;
     top: 50%;
@@ -367,83 +485,101 @@ img{
     z-index: -1;
     border-radius: 50%;
 }
-.videoKite{
+
+.videoKite {
     right: -16%;
 }
+
 /* end video banner */
 /* start Why you choose us */
-.chooseUs{
+.chooseUs {
     padding: 120px 0;
     font-family: var(--main-font);
 }
-.chooseUsTitleBox span{
+
+.chooseUsTitleBox span {
     font-family: var(--second-font);
     font-size: 18px;
     font-weight: 500;
     color: var(--color-secondary);
     margin-bottom: 15px;
 }
-.chooseUsTitle{
+
+.chooseUsTitle {
     font-weight: 700;
     font-size: 50px;
     line-height: 1.2;
     letter-spacing: -2px;
 }
-.chooseUsTitleBox p{
+
+.chooseUsTitleBox p {
     margin-bottom: 30px;
     margin-right: 50px;
-    
+
 }
-.aboutService{
+
+.aboutService {
     margin-bottom: 40px;
 }
-.aboutServiceIcon{
+
+.aboutServiceIcon {
     margin-bottom: 15px;
     margin-right: 20px;
 }
-.aboutServiceTitle{
+
+.aboutServiceTitle {
     font-weight: 700;
     font-size: 20px;
     letter-spacing: -1px;
 }
-.aboutServiceDescription p{
+
+.aboutServiceDescription p {
     color: rgb(107, 107, 107)
 }
-.chooseUsThumb{
+
+.chooseUsThumb {
     transform: scale(0.9);
 }
-.chooseUsThumb img{
+
+.chooseUsThumb img {
     max-width: 100%;
     border-radius: 5px;
 }
+
 /* end Why you choose us */
 /* start footer */
-.footer{
+.footer {
     padding: 120px 0;
     color: white;
     font-family: var(--main-font);
     background: #161b18;
 }
-.footerLeftShape{
+
+.footerLeftShape {
     bottom: 0;
     left: 0;
 }
-.footerRightShape{
+
+.footerRightShape {
     bottom: 0;
     right: 0;
 }
-.footerLogo{
+
+.footerLogo {
     margin-bottom: 30px;
 }
-.footerContent{
+
+.footerContent {
     margin-bottom: 30px;
 }
-.footerContent p{
+
+.footerContent p {
     margin-bottom: 40px;
     font-weight: 500;
     font-size: 17px;
 }
-.footerSocialIcons a{
+
+.footerSocialIcons a {
     border-radius: 50%;
     width: 54px;
     height: 54px;
@@ -456,33 +592,40 @@ img{
     border-radius: 50%;
     border: 1px solid white;
 }
-.footerSocialIcons a i{
+
+.footerSocialIcons a i {
     color: white;
     font-size: 1rem;
 }
-.footerBlockTitle{
+
+.footerBlockTitle {
     font-weight: 700;
     font-size: 18px;
     margin-bottom: 45px;
 }
-.fotCol2{
+
+.fotCol2 {
     padding-left: 80px;
     margin-bottom: 60px;
 }
-.footerList ul{
+
+.footerList ul {
     padding-left: 0;
 }
-.footerList li{
+
+.footerList li {
     list-style: none;
 }
-.footerList ul li a{
+
+.footerList ul li a {
     font-weight: 600;
     color: white;
     text-decoration: none;
     display: block;
     margin-bottom: 20px;
 }
-.footerForm input{
+
+.footerForm input {
     font-size: 16px;
     width: 90%;
     padding: 15px 33px 15px 10px;
@@ -490,125 +633,153 @@ img{
     margin-bottom: 25px;
     border-radius: 5px;
 }
-.footerForm input::placeholder{
+
+.footerForm input::placeholder {
     color: black;
 }
-.footerForm .btn{
+
+.footerForm .btn {
     color: white;
     padding: 15px 24px;
 }
-.footerBtn{
+
+.footerBtn {
     background-color: var(--color-primary) !important;
     color: white;
     font-family: var(--main-font);
     font-weight: 700;
 }
-.copyrightWrap{
+
+.copyrightWrap {
     padding: 29px 70px;
     background-color: #2d322f;
     border-radius: 5px 5px 0 0;
     color: white;
-    margin-top:-83px;
+    margin-top: -83px;
 }
 
-.copyrightText a{
+.copyrightText a {
     color: var(--color-primary);
 }
-.copyrightPrivacy a{
+
+.copyrightPrivacy a {
     color: white;
 }
+
 /* end footer */
 @keyframes videoIconAnimation {
-    0%{
+    0% {
         transform: translate(-50%, -50%) scale(1);
     }
-    60%{
+
+    60% {
         opacity: 1;
     }
-    100%{
+
+    100% {
         transform: translate(-50%, -50%) scale(2.2);
         opacity: 0;
     }
 }
+
 @keyframes videoIconAnimation2 {
-    0%{
+    0% {
         transform: translate(-50%, -50%) scale(1);
     }
-    60%{
+
+    60% {
         opacity: 1;
     }
-    100%{
+
+    100% {
         transform: translate(-50%, -50%) scale(2.2);
         opacity: 0;
     }
 }
+
 @media (max-width: 320px) {
     .headerTopLeft ul li a {
         font-size: small;
     }
 }
+
 @media (max-width: 1199px) {
-    .topRightSocial a i{
+    .topRightSocial a i {
         font-size: 2rem;
     }
-    .topRightSocial::before{
+
+    .topRightSocial::before {
         height: 40px;
     }
 }
+
 @media (max-width: 991px) {
-    .navbar-collapse .navbar-nav{
+    .navbar-collapse .navbar-nav {
         gap: 1rem !important;
         margin-top: 20px;
         margin-bottom: 20px !important;
     }
 }
+
 @media (max-width: 767px) {
     .fotCol2 {
         padding-left: 0px;
     }
-    .aboutThumb1 img{
+
+    .aboutThumb1 img {
         width: 100%
     }
-    .aboutThumbBox{
+
+    .aboutThumbBox {
         margin-right: 0px !important;
 
     }
-    .aboutThumbSingle img{
+
+    .aboutThumbSingle img {
         margin-top: 10px;
         width: 100%;
     }
-    .aboutCounterText{
+
+    .aboutCounterText {
         text-align: center;
     }
+
     .aboutCounterText p {
         margin-bottom: 1rem;
     }
-    .aboutService{
+
+    .aboutService {
         text-align: center;
     }
-    .topRightSocial a i{
+
+    .topRightSocial a i {
         font-size: 2rem;
     }
-    .topRightSocial::before{
+
+    .topRightSocial::before {
         display: none;
     }
 }
+
 @media only screen and (min-width: 576px) and (max-width: 767px) {
     .aboutCounterText {
         text-align: inherit;
     }
 }
+
 @media only screen and (min-width: 768px) and (max-width: 991px) {
     .fotCol2 {
         padding-left: 45px;
     }
-    
+
 }
+
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
     .aboutThumb2 img {
         width: 100%;
     }
 }
+
 ::selection {
     background: var(--color-primary);
     color: white;
