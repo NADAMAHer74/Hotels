@@ -2,10 +2,10 @@ body {
   font-family: Arial, sans-serif;
 }
 
-.container {
+/* .container {
   max-width: 1140px;
   margin: auto;
-}
+} */
 
 .balloon {
   position: absolute;
@@ -324,28 +324,28 @@ body {
   }
 }
 
-.top-bar {
+.topBar {
   background-color: #000;
   color: #fff;
   padding: 10px 0px;
 }
-.top-bar .contact-info span {
+.topBar .contactInfo span {
   margin-right: 20px;
-  font-weight: lighter;
+  font-weight: 400;
 }
-.top-bar .contact-info i {
+.topBar .contactInfo i {
   margin-right: 10px;
 }
-.top-bar .contact-info a {
+.topBar .contactInfo a {
   margin-right: 10px;
   color: #fff;
   text-decoration: none;
 }
-.top-bar .social-icons a {
+.topBar .socialIcons a {
   margin-right: 10px;
   color: #fff;
 }
-.top-bar .social-icons {
+.topBar .socialIcons {
   padding-left: 40px;
   margin-left: 10%;
 }
@@ -360,7 +360,7 @@ body {
   border-right: 1px solid white;
 }
 @media (max-width: 1024px) {
-  .top-bar .contact-info {
+  .topBar .contactInfo {
     display: none;
   }
 }
@@ -744,9 +744,9 @@ body {
   color: #11bb67;
 }
 
-.socialIcons {
+/* .socialIcons {
   margin-top: 20px;
-}
+} */
 
 .socialIcons a {
   color: white;
@@ -766,28 +766,28 @@ body {
   text-decoration: none;
   /* overflow-x: hidden; */
 }
-.top-bar {
+.topBar {
   background-color: #000;
   color: #fff;
   padding: 10px 0px;
 }
-.top-bar .contact-info span {
+.topBar .contactInfo span {
   margin-right: 20px;
   font-weight: lighter;
 }
-.top-bar .contact-info i {
+.topBar .contactInfo i {
   margin-right: 10px;
 }
-.top-bar .contact-info a {
+.topBar .contactInfo a {
   margin-right: 10px;
   color: #fff;
   text-decoration: none;
 }
-.top-bar .social-icons a {
+.topBar .socialIcons a {
   margin-right: 10px;
   color: #fff;
 }
-.top-bar .social-icons {
+.topBar .socialIcons {
   padding-left: 40px;
   margin-left: 10%;
 }
@@ -802,26 +802,26 @@ body {
   border-right: 1px solid white;
 }
 @media (max-width: 768px) {
-  .top-bar .container {
+  .topBar .container {
     flex-direction: column;
     align-items: flex-start;
   }
 
-  .top-bar .social-icons {
+  .topBar .socialIcons {
     margin-left: 0;
     padding-left: 0;
     margin-top: 10px;
     justify-content: flex-start;
   }
 
-  .top-bar .contact-info span {
+  .topBar .contactInfo span {
     display: block;
     margin-bottom: 10px;
   }
 }
 
 @media (max-width: 576px) {
-  .top-bar .contact-info span {
+  .topBar .contactInfo span {
     font-size: 14px;
   }
 }
