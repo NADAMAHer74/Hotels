@@ -32,62 +32,18 @@ img {
 .contactNavBtn:hover {
     background-color: var(--color-secondary) !important;
 }
-
-/* Start header */
-/* .topMenu ul li {
-    padding: 13px 0 ;
-    list-style: none;
-    font-family: var(--main-font);
-}
-.topMenu ul li a{
-    color: white;
-}
-.topMenu ul li span{
-    margin-right: 10px;
-    margin-left: 5px;
-}
-.headerTopLeft ul{
-    padding-left: 1rem;
-
-}
-.headerTopLeft i{
-    color: var(--color-primary);
-    vertical-align: middle;
-    font-size: 22px;
-}
-.topRightSocial a{
-    margin-right: 10px;
-}
-.topRightSocial::before{
-    position: relative;
-    width: 1px;
-    height: 20px;
-    left: -34px;
-    content: "";
-    display: inline-block;
-    vertical-align: sub;
-    background-color: white;
-}
-.nav{
-    background-color: white;
-} */
-
 .topBar {
     background-color: #000;
     color: #fff;
     padding: 10px 0px;
     transition: 0.3s ease-in-out;
 }
-
-
-
 .topBar .container .dropdownCompanyInfo i{
     transition: 0.5s ease-in-out;
     cursor: pointer;
     margin-right: 1rem;
     font-size: 18px;
 }
-
 .topBar .container .dropdownCompanyInfo > i:hover{
     transform: rotate(90deg);
 }
@@ -100,21 +56,6 @@ img {
     padding: 0.8rem 0.7rem;
 }
 
-@media screen and (max-width: 768px) {
-    .topBar .container{
-        justify-content: space-between !important;
-        flex-direction: row !important;
-    }
-    .topBar .socialIcons{
-        border-left: none !important;
-    }
-}
-
-@media screen and (max-width: 395px) {
-    .dropdownCompanyInfo > a{
-        display: none;
-    }
-}
 
 .dropdownCompanyInfo{
     position: relative;
@@ -209,72 +150,7 @@ img {
     border-right: 1px solid white;
 }
 
-.greenDiv {
-    position: absolute;
-    display: flex;
-    top: auto;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #11bb67;
-    padding: 15px;
-    text-align: center;
-    color: white;
-    font-size: 1.2em;
-    min-width: fit-content;
-    border-radius: 4px;
-}
 
-.greenDiv a {
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-    margin-right: 5px;
-}
-
-.greenDiv .breadcrumb-separator {
-    margin: 0 5px;
-}
-
-.greenDiv .current-page {
-    color: #f0f0f0;
-}
-
-@media (max-width: 768px) {
-    .greenDiv {
-        top: auto;
-    }
-}
-
-@media (max-width: 1024px) {
-    .topBar .contactInfo {
-        display: none;
-    }
-}
-
-@media (max-width: 768px) {
-    .topBar .container {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .topBar .socialIcons {
-        margin-left: 0;
-        padding-left: 0;
-        margin-top: 10px;
-        justify-content: flex-start;
-    }
-
-    .topBar .contactInfo span {
-        display: block;
-        margin-bottom: 10px;
-    }
-}
-
-@media (max-width: 576px) {
-    .topBar .contactInfo span {
-        font-size: 14px;
-    }
-}
 
 /* End header */
 /* start about us banner */
@@ -721,6 +597,28 @@ img {
     }
 }
 
+/*Media Queries*/
+
+@media (max-width: 1024px) {
+    .topBar .contactInfo {
+        display: none;
+    }
+}
+
+
+@media (max-width: 576px) {
+    .topBar .contactInfo span {
+        font-size: 14px;
+    }
+}
+
+
+@media screen and (max-width: 395px) {
+    .dropdownCompanyInfo > a{
+        display: none;
+    }
+}
+
 @media (max-width: 320px) {
     .headerTopLeft ul li a {
         font-size: small;
@@ -745,7 +643,31 @@ img {
     }
 }
 
+
+@media screen and (max-width: 575px) {
+    .aboutThumbBox{
+        margin-right: 0 !important;
+    }
+}
+
 @media (max-width: 767px) {
+    .topBar .container {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .topBar .socialIcons {
+        margin-left: 0;
+        padding-left: 0;
+        margin-top: 10px;
+        justify-content: flex-start;
+    }
+
+    .topBar .contactInfo span {
+        display: block;
+        margin-bottom: 10px;
+    }
+    
     .fotCol2 {
         padding-left: 0px;
     }
@@ -754,9 +676,16 @@ img {
         width: 100%
     }
 
-    .aboutThumbBox {
-        margin-right: 0px !important;
-
+    .topBar .container{
+        justify-content: space-between !important;
+        flex-direction: row !important;
+        padding: 0 2rem;
+    }
+    .aboutThumbBox{
+        margin-right: 2rem;
+    }
+    .topBar .socialIcons{
+        border-left: none !important;
     }
 
     .aboutThumbSingle img {
@@ -791,12 +720,6 @@ img {
     }
 }
 
-@media only screen and (min-width: 768px) and (max-width: 991px) {
-    .fotCol2 {
-        padding-left: 45px;
-    }
-
-}
 
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
     .aboutThumb2 img {
