@@ -92,7 +92,13 @@ img {
     transform: rotate(90deg);
 }
 
-/**/
+.navbar-toggler-icon{
+    background-image: url(../images/menuCollapse.png) !important;
+}
+.navbar-toggler{
+    background-color: var(--color-primary);
+    padding: 0.8rem 0.7rem;
+}
 
 @media screen and (max-width: 768px) {
     .topBar .container{
@@ -101,6 +107,12 @@ img {
     }
     .topBar .socialIcons{
         border-left: none !important;
+    }
+}
+
+@media screen and (max-width: 395px) {
+    .dropdownCompanyInfo > a{
+        display: none;
     }
 }
 
