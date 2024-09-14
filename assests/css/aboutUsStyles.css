@@ -606,13 +606,6 @@ img {
 }
 
 
-@media (max-width: 576px) {
-    .topBar .contactInfo span {
-        font-size: 14px;
-    }
-}
-
-
 @media screen and (max-width: 395px) {
     .dropdownCompanyInfo > a{
         display: none;
@@ -635,18 +628,27 @@ img {
     }
 }
 
-@media (max-width: 991px) {
+@media (max-width: 992px) {
     .navbar-collapse .navbar-nav {
         gap: 1rem !important;
         margin-top: 20px;
         margin-bottom: 20px !important;
     }
+    .aboutThumb2 img {
+        width: 100%;
+    }
 }
 
 
-@media screen and (max-width: 575px) {
+@media screen and (max-width: 576px) {
     .aboutThumbBox{
         margin-right: 0 !important;
+    }
+    .aboutCounterText {
+        text-align: inherit;
+    }
+    .topBar .contactInfo span {
+        font-size: 14px;
     }
 }
 
@@ -679,7 +681,6 @@ img {
     .topBar .container{
         justify-content: space-between !important;
         flex-direction: row !important;
-        padding: 0 2rem;
     }
     .aboutThumbBox{
         margin-right: 2rem;
@@ -714,18 +715,7 @@ img {
     }
 }
 
-@media only screen and (min-width: 576px) and (max-width: 767px) {
-    .aboutCounterText {
-        text-align: inherit;
-    }
-}
 
-
-@media only screen and (min-width: 992px) and (max-width: 1199px) {
-    .aboutThumb2 img {
-        width: 100%;
-    }
-}
 
 ::selection {
     background: var(--color-primary);
