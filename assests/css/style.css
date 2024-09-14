@@ -38,6 +38,9 @@ body {
   font-weight: bold;
   margin-top: 20px;
 }
+.my-5{
+  margin-top: 8rem !important;
+}
 
 .title {
   font-size: 36px;
@@ -87,7 +90,7 @@ body {
   font-size: 14px;
   margin: 0;
 }
-.about-section {
+.about-company {
   position: relative;
   padding: 80px 0;
   background-color: #f4f8f9;
