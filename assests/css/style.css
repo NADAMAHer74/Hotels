@@ -833,12 +833,13 @@ body {
   background-size: cover;
   margin-right: auto;
   background-position: center;
-  height: 70vh;
+  /* height: 70vh; */
+  height: 400px;
   position: relative;
 }
 .whole {
   width: 100%;
-  height: 70vh;
+  height: 100%;
   background-color: #000000ab;
 }
 
