@@ -109,6 +109,7 @@ img {
 }
 
 .contactMenu{
+    width: fit-content;
     transition: 0.3s ease-in-out;
     list-style: none;
     display: none;
@@ -116,12 +117,23 @@ img {
     background: #ffffff;
     border-radius: 4px;
     z-index: 99999;
-    padding: 1rem 0.9rem 2rem 0.9rem;
+    padding: 0;
     flex-direction: column;
     top: 2.5rem;
-    gap: 1.8rem;
-    animation: openUpMenu 0.3s alternate;
+    animation: openUpMenu 0.5s alternate;
     box-shadow: 2px 2px 7px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+}
+
+.contactMenu li{
+    transition: 0.3s ease-in-out;
+}
+.contactMenu li:hover{
+    background-color: var(--color-secondary);
+}
+
+.topBar .socialIcons{
+    font-size: x-large;
 }
 
 @keyframes openUpMenu {
