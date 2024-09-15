@@ -28,11 +28,23 @@ img {
   max-width: 100%;
 }
 
+
 .contactNavBtn {
   background-color: var(--color-primary) !important;
   color: white;
   font-family: var(--main-font);
-  font-weight: 700;
+  font-weight: 500;
+  transition: 0.3s ease-in-out;
+  border-radius: 5px;
+  cursor: pointer;
+  display: inline-block;
+}
+.contactNavBtn a{
+  display: block;
+  text-decoration: none;
+  color: white;
+  width: 100%;
+  padding: 10px 20px;
 }
 
 .contactNavBtn:hover {
@@ -44,29 +56,38 @@ img {
   padding: 10px 0px;
   transition: 0.3s ease-in-out;
 }
-.topBar .container .dropdownCompanyInfo i {
+/**/
+.topBar .container .dropdownCompanyInfo a i{
+  color: var(--color-primary);
   transition: 0.5s ease-in-out;
   cursor: pointer;
   margin-right: 1rem;
   font-size: 18px;
 }
-.topBar .container .dropdownCompanyInfo > i:hover {
+.topBar .container .dropdownCompanyInfo i{
+  transition: 0.5s ease-in-out;
+  cursor: pointer;
+  margin-right: 1rem;
+  font-size: 18px;
+}
+.topBar .container .dropdownCompanyInfo > i:hover{
   transform: rotate(90deg);
 }
 
-.navbar-toggler-icon {
+.navbar-toggler-icon{
   background-image: url(../images/menuCollapse.png) !important;
 }
-.navbar-toggler {
+.navbar-toggler{
   background-color: var(--color-primary);
   padding: 0.8rem 0.7rem;
 }
 
-.dropdownCompanyInfo {
+
+.dropdownCompanyInfo{
   position: relative;
 }
 
-.contactMenu {
+.contactMenu{
   width: fit-content;
   transition: 0.3s ease-in-out;
   list-style: none;
@@ -83,33 +104,33 @@ img {
   overflow: hidden;
 }
 
-.contactMenu li {
+.contactMenu li{
   transition: 0.3s ease-in-out;
 }
-.contactMenu li:hover {
+.contactMenu li:hover{
   background-color: var(--color-secondary);
 }
 
-.topBar .socialIcons {
+.topBar .socialIcons{
   font-size: x-large;
 }
 
 @keyframes openUpMenu {
-  0% {
-    opacity: 0;
-    transform: translateY(-30px);
+  0%{
+      opacity: 0;
+      transform: translateY(-30px);
   }
-  100% {
-    opacity: 1;
-    transform: translateY(0px);
+  100%{
+      opacity: 1;
+      transform: translateY(0px);
   }
 }
-.contactMenu a {
+.contactMenu a{
   color: black;
   font-weight: 600;
 }
 
-/*Start Navbar & Top menu*/
+
 .topBar .contactInfo span {
   margin-right: 20px;
   font-weight: 400;
@@ -132,8 +153,7 @@ img {
 
 .topBar .socialIcons {
   padding-left: 40px;
-  /*     margin-left: 10%;
-*/
+  border-left: 1px solid white;
 }
 
 .navbar-nav .nav-link {
@@ -149,23 +169,10 @@ img {
   border-right: 1px solid white;
 }
 
-.contactNavBtn {
-  background-color: var(--color-primary) !important;
-  color: white;
-  font-family: var(--main-font);
-  font-weight: 500;
-  transition: 0.3s ease-in-out;
-  border-radius: 5px;
-  cursor: pointer;
-  display: inline-block;
+.contactInfo a i{
+  color: var(--color-primary);
 }
-.contactNavBtn a {
-  display: block;
-  text-decoration: none;
-  color: white;
-  width: 100%;
-  padding: 10px 20px;
-}
+
 
 .banner {
   position: relative;
