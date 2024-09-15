@@ -639,6 +639,29 @@ img {
   color: white;
 }
 
+
+
+.scrollTop{
+  transition: 0.3s ease-in-out;
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  pad: 15px;
+  right: 10px;
+  z-index: 99;
+  border-radius: 50%;
+  background-color: var(--color-primary);
+  border: none;
+}
+.scrollTop i{
+  padding: 5px 0;
+  color: white;
+}
+
+.scrollTop:hover{
+  background-color: var(--color-secondary);
+}
+
 /* end footer */
 @keyframes videoIconAnimation {
   0% {
