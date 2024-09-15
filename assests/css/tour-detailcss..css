@@ -141,11 +141,9 @@
 
 
 
-
-
-
-
-
+.page-body{
+    margin-top: 10% !important;
+}
 
 
 .discover-image{
@@ -165,22 +163,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .package-section {
     background-color: #F3F8F6;
     border-radius: 8px;
@@ -188,8 +170,7 @@
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     
 }
-
-.section-title {
+.package-section h3 {
     width: 100%;
     background-color: #4ca029;
     color: white;
@@ -198,6 +179,7 @@
     font-size: 1.4em;
     border-radius: 5px 5px 0 0;
     margin-bottom: 15px;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 .package-form {
@@ -210,6 +192,12 @@ label {
 
     margin-bottom: 5px;
     color: #333;
+}
+.package-form .date{
+    font-weight: bold;
+}
+.package-form .time{
+    font-weight: bold;
 }
 
 .input-group {
@@ -358,24 +346,6 @@ select {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .tour-header {
     text-align: left;
     /* padding: 20px; */
@@ -394,6 +364,12 @@ select {
     margin: 0;
     font-size: 1rem;
     color: #555;
+}
+.location-review .location i{
+    color: #11BB67;
+}
+.location-review .review i{
+    color: #FF6525;
 }
 
 .location-review .icon-location {
@@ -473,6 +449,9 @@ select {
     font-size: 0.9rem;
     display: inline-flex;
     align-items: center;
+  }
+  .amenities-list span i{
+    color: #FF6525;
   }
   
   .amenities-list span::before {
