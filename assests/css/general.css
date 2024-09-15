@@ -107,13 +107,6 @@ img {
   font-weight: 600;
 }
 
-
-/*
-.contactMenu{
-  
-}
-*/
-
 /*Start Navbar & Top menu*/
 .topBar .contactInfo span {
   margin-right: 20px;
@@ -153,7 +146,23 @@ img {
   border-right: 1px solid white;
 }
 
-
+.contactNavBtn {
+  background-color: var(--color-primary) !important;
+  color: white;
+  font-family: var(--main-font);
+  font-weight: 500;
+  transition: 0.3s ease-in-out;
+  border-radius: 5px;
+  cursor: pointer;
+  display: inline-block;
+}
+.contactNavBtn a{
+  display: block;
+  text-decoration: none;
+  color: white;
+  width: 100%;
+  padding: 10px 20px;
+}
 
 
 
