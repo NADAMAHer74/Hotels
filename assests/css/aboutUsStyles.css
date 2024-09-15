@@ -177,7 +177,6 @@ img {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  background-color: rgba(0, 0, 0, 0.7);
 
 }
 
@@ -187,7 +186,6 @@ img {
   height: 100%;
   object-fit: cover;
   z-index: -1;
-  opacity: 0.25;
 }
 
 .mainBanner::before {
@@ -199,7 +197,8 @@ img {
   right: 0;
   content: "";
   z-index: -1;
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: #161b18;
+  opacity: 0.84;
 }
 
 .mainBanner h3 {

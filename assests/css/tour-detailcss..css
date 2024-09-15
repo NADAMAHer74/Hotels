@@ -5,46 +5,7 @@
     text-decoration: none;
     /* overflow-x: hidden; */
 }
-.topBar {
-    background-color: #000;
-    color: #fff;
-    padding: 10px 0px;
-}
-.topBar .contactInfo span {
-    margin-right: 20px;
-    font-weight: lighter;
-}
-.topBar .contactInfo i{
-    margin-right: 10px;
-}
-.topBar .contactInfo a{
-    margin-right: 10px;
-    color: #fff;
-    text-decoration: none;
-}
-.topBar .socialIcons a {
-    margin-right: 10px;
-    color: #fff;
-}
-.topBar .socialIcons{
-    padding-left: 40px;
-    margin-left: 10%;
-}
-.navbar-nav .nav-link {
-    font-size: 18px;
-    color: #000;
-}
-.contact-btn {
-    padding: 10px 20px;
-    border: 0;
-    color: white;
-    border-right: 1px solid white;
-}
-@media (max-width: 1024px) {
-     .topBar .contactInfo{
-        display: none;
-     }
-}
+
 
 .hero {
     background-image: url('../images/breadcrumb.jpg');
