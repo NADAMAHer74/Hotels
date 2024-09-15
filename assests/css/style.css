@@ -224,7 +224,7 @@
 } */
 .translateValues {
   right: 10%;
-  bottom: 40%;
+  bottom: 38%;
 }
 @media screen and (max-width: 750px) {
   .translateValues {
@@ -640,4 +640,26 @@
 .btn-next {
   background-color: #28a745;
   color: white;
+}
+.greenBackground {
+  background-color: #11bb67;
+}
+.iconsWhite {
+  color: white;
+}
+.orangColor {
+  color: #ff6525;
+}
+
+.buttonHover {
+  cursor: pointer;
+  opacity: 0.5;
+  transition: opacity 0.3s;
+}
+/* .buttonHover :hover {
+  opacity: 1;
+} */
+.buttonHover:hover {
+  background-color: #11bb67;
+  opacity: 1;
 }
