@@ -547,7 +547,7 @@ img {
 
 
 .footerSocialIcons a:hover::before{
-    transform: translate(-50%, -50%) scale(1.2);
+    transform: translate(-50%, -50%) scale(1);
 }
 .footerSocialIcons a:hover {
     border-color: transparent;
