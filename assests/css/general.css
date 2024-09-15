@@ -78,3 +78,140 @@
     top: auto;
   }
 }
+.videoBlock {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 150px 0;
+}
+
+.videoBtn .btn {
+  color: rgb(230, 236, 232);
+  padding: 20px 40px;
+  font-size: 15px;
+  border-radius: 5px;
+  font-weight: 500;
+  background-color: #ff6525;
+}
+
+.videoBtn .btn:hover {
+  color: white;
+  background-color: transparent;
+  border-color: #f0eeed;
+}
+
+.videoBlock .row {
+  color: white;
+}
+
+.videoBlock::before {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  content: "";
+  background: #161b18;
+  opacity: 0.8;
+  z-index: 0;
+}
+
+.videoContent {
+  font-family: var(--main-font);
+}
+
+.videoAboutSubtitle {
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -2px;
+}
+
+.videoContent p {
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 26px;
+}
+
+.popupVideo {
+  font-size: 17px;
+  width: 104px;
+  height: 104px;
+  line-height: 104px;
+  color: #11bb67;
+  border-radius: 50%;
+  background-color: azure;
+}
+
+.videoIcon a::before {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 80%;
+  height: 80%;
+  content: "";
+  background-color: rgba(255, 255, 255, 0.4);
+  animation: videoIconAnimation 2s linear infinite;
+  z-index: -1;
+  border-radius: 50%;
+}
+
+.videoIcon a::after {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 60%;
+  height: 60%;
+  content: "";
+  transform: scale(2.5);
+  border: 1px solid rgba(255, 255, 255, 0.472);
+  animation: videoIconAnimation2 2s linear infinite;
+  z-index: -1;
+  border-radius: 50%;
+}
+
+.videoKite {
+  right: -16%;
+}
+
+@keyframes videoIconAnimation {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  60% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate(-50%, -50%) scale(2.2);
+    opacity: 0;
+  }
+}
+
+@keyframes videoIconAnimation2 {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  60% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate(-50%, -50%) scale(2.2);
+    opacity: 0;
+  }
+}
+
+.parent:hover img {
+  transform: scale(1.2);
+  transition: 0.8s ease-in-out;
+}
+.greenColor {
+  color: #11bb67;
+}
+.orangBackground {
+  background-color: #ff6525;
+}
