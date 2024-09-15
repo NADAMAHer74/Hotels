@@ -22,82 +22,108 @@
     rel="stylesheet">
     <link rel="stylesheet" href="assests/css/general.css">
   <link rel="stylesheet" href="assests/css/style.css">
-  <!-- <link rel="stylesheet" href="assests/css/aboutUsStyles.css"> -->
-
-  
+ <link rel="stylesheet" href="assests/css/general.css">
 </head>
 
 <body>
-
-  <div class="topBar">
-    <div class="container d-flex justify-content-around align-items-center">
-      <div class="contactInfo">
-        <a href="#"><i class="fa-solid fa-phone-volume" style="color: #11BB67;"></i><span>(000) 967-237-96</span></a>
-        <a href="#"><i class="fa-regular fa-envelope" style="color: #11BB67;"></i><span>toursinfo@gmail.com</span></a>
-        <a href="#"> <i class="fa-solid fa-location-dot" style="color: #11BB67;"></i><span>290 Grand Avenue Maitland, FL
-            32751</span></a>
-      </div>
-      <div class="socialIcons" style="border: 0; border-left: 1px solid white;">
-        <a href="#"><i class="fab fa-facebook-f"></i></a>
-        <a href="#"><i class="fa-brands fa-twitter"></i></a>
-        <a href="#"><i class="fa-brands fa-skype"></i></a>
-        <a href="#"><i class="fa-brands fa-linkedin"></i></a>
-
-      </div>
-    </div>
-  </div>
-
-  <nav class="navbar sticky-top navbar-expand-lg bg-white " data-bs-theme="dark">
-    <div class="container text-dark pe-5 ps-5" style="justify-content: space-between !important;">
-      <a href="#">
-        <img src="./assests/images/logo.png" width="108" height="29">
-      </a>
-      <button class="navbar-toggler" style="color: black; border-color: black;" type="button" data-bs-toggle="collapse"
-        data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav" style="margin-left: auto;">
-          <li class="nav-item me-4">
-            <a href="index.html" class="nav-link active text-dark" style="font-size:18px;" aria-current="page">Home</a>
-          </li>
-
-          <li class="nav-item dropdown me-4">
-            <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdownTours" role="button"
-              data-bs-toggle="dropdown" aria-expanded="false" style="font-size:18px;">
-              Tours
+  <div class="topBar ">
+    <div class="container d-flex justify-content-between align-items-center flex-sm-row">
+        <div class="dropdownCompanyInfo d-xl-none d-lg-none  d-inline-block">
+            <i class="fa-solid fa-chevron-right toggleChevron"></i><a class="text-decoration-none text-light" href="#">
+                <i class="fa-solid fa-phone-volume" style="color: #11BB67;"></i>
+                (000) 967-237-96
             </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdownTours">
-              <li><a class="dropdown-item" href="tour_grid.html">Tour</a></li>
-              <li><a class="dropdown-item" href="tour-detail.html">Tour Detail</a></li>
+            <ul class="contactMenu collapseList">
+                  <li class="p-3">
+                    <a class="text-decoration-none d-flex align-items-center" href="#">
+                        <i class="fa-solid fa-phone-volume" style="color: #11BB67;"></i>
+                        (000) 967-237-96
+                    </a>
+                </li>
+                <li class="p-3">
+                    <a class="text-decoration-none d-flex align-items-center" href="#">
+                        <i class="fa-regular fa-envelope" style="color: #11BB67;"></i>
+                        toursinfo@gmail.com
+                    </a>
+                </li>
+                <li class="p-3">
+                    <a class="text-decoration-none d-flex align-items-center" href="#">
+                        <i class="fa-solid fa-location-dot" style="color: #11BB67;"></i>
+                        290 Grand Avenue Maitland, FL 32751
+                    </a>
+                </li>
             </ul>
-          </li>
-          <li class="nav-item me-4">
-            <a href="destination.html" class="nav-link text-dark" style="font-size:18px;">Destination</a>
-          </li>
-          <li class="nav-item me-4">
-            <a href="about-us.html" class="nav-link text-dark" style="font-size:18px;">About</a>
-          </li>
-
-          <li class="nav-item dropdown me-4">
-            <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdownBlog" role="button"
-              data-bs-toggle="dropdown" aria-expanded="false" style="font-size:18px;">
-              Blog
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdownBlog">
-              <li><a class="dropdown-item" href="blog.html">Blog</a></li>
-              <li><a class="dropdown-item" href="blogDetails.html">Blog Detail</a></li>
-            </ul>
-          </li>
-        </ul>
-        <div style="margin-left: auto;">
-          <a href="ContsactUs.html"> <button
-              style="padding: 10px 20px; border-radius: 5px; border: 0; background-color: #11BB67;">Contact
-              Us</button></a>
         </div>
-      </div>
+        
+        <div class="contactInfo">
+            <a href="#"><i class="fa-solid fa-phone-volume" style="color: #11BB67;"></i><span>(000)
+                    967-237-96</span></a>
+            <a href="#"><i class="fa-regular fa-envelope"
+                    style="color: #11BB67;"></i><span>toursinfo@gmail.com</span></a>
+            <a href="#"> <i class="fa-solid fa-location-dot" style="color: #11BB67;"></i><span>290 Grand Avenue
+                    Maitland, FL 32751</span></a>
+        </div>
+        <div class="socialIcons" style="border: 0; border-left: 1px solid white;">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fa-brands fa-twitter"></i></a>
+            <a href="#"><i class="fa-brands fa-skype"></i></a>
+            <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+
+        </div>
     </div>
-  </nav>
+</div>
+
+<nav class="navbar sticky-top navbar-expand-lg bg-white " data-bs-theme="dark">
+    <div class="container text-dark " style="justify-content: space-between !important;">
+        <a href="index.html">
+            <img src="./assests/images/logo.png" alt="Logo" width="108" height="29">
+        </a>
+        <button class="navbar-toggler"  type="button"
+            data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav" style="margin-left: auto;">
+                <li class="nav-item me-4">
+                    <a href="index.html" class="nav-link active text-dark" style="font-size:18px;"
+                        aria-current="page">Home</a>
+                </li>
+
+                <li class="nav-item dropdown me-4">
+                    <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdownTours" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false" style="font-size:18px;">
+                        Tours
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownTours">
+                        <li><a class="dropdown-item" href="tour_grid.html">Tour</a></li>
+                        <li><a class="dropdown-item" href="tour-detail.html">Tour Detail</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item me-4">
+                    <a href="destination.html" class="nav-link text-dark" style="font-size:18px;">Destination</a>
+                </li>
+                <li class="nav-item me-4">
+                    <a href="about-us.html" class="nav-link text-dark" style="font-size:18px;">About</a>
+                </li>
+
+                <li class="nav-item dropdown me-4">
+                    <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdownBlog" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        Blog
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownBlog">
+                        <li><a class="dropdown-item" href="blog.html">Blog</a></li>
+                        <li><a class="dropdown-item" href="blogDetails.html">Blog Detail</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="contactNavBtn" style="margin-left: auto;">
+                <a href="ContsactUs.html">Contact Us</a>
+            </div>
+        </div>
+    </div>
+</nav>
 
 
   <section class="super">
@@ -112,10 +138,10 @@
   <div class="container text-center my-5 position-relative">
     <div class="row">
       <div class="col-12">
-        <img src="./assests/Images/Ballon-1.png" alt="Balloon" class="balloon">
+        <img src="./assests/Images/Ballon-1.png" alt="Balloon" class="balloon img-fluid d-none d-md-inline-block">
         <h2 class="top-destinations">Top Destinations</h2>
         <h1 class="title">Explore the Beautiful Places <br>Around the World</h1>
-        <img src="./assests/Images/star.png" alt="Star" class="star">
+        <img src="./assests/Images/star.png" alt="Star" class="star img-fluid d-none d-md-inline-block">
       </div>
     </div>
   </div>
@@ -168,7 +194,7 @@
     </div>
   </div>
 
-  <section class="about-section position-relative">
+  <section class="about-company position-relative">
     <div class="container">
       <div class="row align-items-center">
         <div class="col-12 col-md-6 mb-4 mb-md-0">
@@ -209,7 +235,7 @@
       </div>
     </div>
     <div class="background-overlay">
-      <img src="./assests/Images/about-bg.png" class="backImage">
+      <img src="./assests/Images/about-bg.png" class="backImage" alt="backgroundImage">
     </div>
   </section>
 
@@ -434,7 +460,8 @@
     </div>
   </div> -->
 
-  <div class="videoBlock videoOverlay position-relative overflow-hidden" style="background-image: url(assests/images/video-bg.jpg);">
+  <div class="videoBlock videoOverlay position-relative overflow-hidden">
+    <img class="videoBackgroundImg" src="assests/images/video-bg.jpg" alt="Video Background">
     <div class="container">
         <div class="row position-relative align-items-center position-relative z-1 ">
             <div class="col">
@@ -442,6 +469,10 @@
                     <h3 class="videoAboutSubtitle mb-4">
                         Ready to travel with real adventure and enjoy natural
                     </h3>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                        eiusmod tempor incididunt.
+                    </p>
                     <div class="videoBtn">
                         <a href="contact.html" class="btn d-inline-block text-capitalize">Start Booking</a>
                     </div>
@@ -450,9 +481,13 @@
             <div class="col-lg-6 col-sm-12 ">
                 <div class="videoBlockRight position-relative d-flex align-items-center justify-content-center">
                     <div class="videoIcon">
-                        <a class="popupVideo position-relative d-inline-block text-center z-1" href="https://www.youtube.com/watch?v=8mSG40o-iJ0">
-                            <i class="fa-solid fa-play" ></i>
+                        <a class="popupVideo position-relative d-inline-block text-center z-1"
+                            href="https://www.youtube.com/watch?v=8mSG40o-iJ0">
+                            <i class="fa-solid fa-play"></i>
                         </a>
+                    </div>
+                    <div class="videoKite position-absolute d-none d-xxl-block">
+                        <img src="assests/images/inn-rocket.png" alt="rocket image">
                     </div>
                 </div>
             </div>
@@ -540,85 +575,74 @@
 
   <div class="footer overflow-hidden position-relative">
     <div class="footerLeftShape position-absolute">
-      <img src="assests/images/left-tree.png" alt="" />
+        <img src="assests/images/left-tree.png" alt="">
     </div>
     <div class="footerRightShape position-absolute">
-      <img src="assests/images/right-tree.png" alt="" />
+        <img src="assests/images/right-tree.png" alt="">
     </div>
     <div class="container">
-      <div class="row">
-        <div class="col-xl-3 col-lg-4 col-md-6">
-          <div class="footerBlock fotCol1">
-            <div class="footerLogo">
-              <a href="index.html"><img src="assests/images/logo.png" alt="" /></a>
-            </div>
-            <div class="footerContent">
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                doeiusmod tempor incididunt ut labore et dolore magna aliqua.
-                Ut
-              </p>
-              <div class="footerSocialIcons position-relative">
-                <a href="#" class="me-0"><i class="flaticon-facebook-app-symbol text-light me-0"></i></a>
-                <a href="#" class="me-0"><i class="flaticon-twitter "></i></a>
-                <a href="#" class="me-0"><i class="flaticon-skype "></i></a>
-                <a href="#" class="me-0"><i class="flaticon-linkedin "></i></a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-xl-3 col-lg-4 col-md-6">
-          <div class="footerBlock fotCol2">
-            <h3 class="footerBlockTitle text-uppercase text-decoration-underline">
-              Company:
-            </h3>
-            <div class="footerList">
-              <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">About us</a></li>
-                <li><a href="#">Blog update</a></li>
-                <li><a href="#">Our services</a></li>
-                <li><a href="#">Testimonial</a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div class="col-xl-3 col-lg-4 col-md-6">
-          <div class="footerBlock fotCol3">
-            <h3 class="footerBlockTitle text-uppercase text-decoration-underline">
-              Quick links:
-            </h3>
-            <div class="footerList">
-              <ul>
-                <li><a href="#">Privacy & policy</a></li>
-                <li><a href="#">Terms & conditions</a></li>
-                <li><a href="#">FAQ</a></li>
-                <li><a href="#">Hydropowe Plants</a></li>
-                <li><a href="#">Customer support</a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div class="col-xl-3 col-lg-4 col-md-6 z-3">
-          <div class="footerBlock fotCol4">
-            <h3 class="footerBlockTitle text-uppercase text-decoration-underline">
-              Subscribe Newsletter:
-            </h3>
-            <div class="footerForm">
-              <form action="#">
-                <div class="footerInput">
-                  <input id="email" autocomplete="email" type="email" placeholder="Enter Your Email:" />
+        <div class="row">
+            <div class="col-xl-3 col-lg-4 col-md-6">
+                <div class="footerBlock fotCol1">
+                    <div class="footerLogo">
+                        <a href="index.html"><img src="assests/images/logo.png" alt="Travello"></a>
+                    </div>
+                    <div class="footerContent">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed doeiusmod tempor incididunt
+                            ut labore et dolore magna aliqua. Ut</p>
+                        <div class="footerSocialIcons position-relative">
+                            <a href="#"><i class="flaticon-facebook-app-symbol text-light"></i></a>
+                            <a href="#"><i class="flaticon-twitter"></i></a>
+                            <a href="#"><i class="flaticon-skype"></i></a>
+                            <a href="#"><i class="flaticon-linkedin"></i></a>
+                        </div>
+                    </div>
                 </div>
-                <button type="submit" class="btn footerBtn">
-                  Subscribe Now
-                </button>
-              </form>
             </div>
-          </div>
+            <div class="col-xl-3 col-lg-4 col-md-6">
+                <div class="footerBlock fotCol2">
+                    <h3 class="footerBlockTitle text-uppercase text-decoration-underline">Company:</h3>
+                    <div class="footerList">
+                        <ul>
+                            <li><a href="#">Home</a></li>
+                            <li><a href="#">About us</a></li>
+                            <li><a href="#">Blog update</a></li>
+                            <li><a href="#">Our services</a></li>
+                            <li><a href="#">Testimonial</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6">
+                <div class="footerBlock fotCol3">
+                    <h3 class="footerBlockTitle text-uppercase text-decoration-underline">Quick links:</h3>
+                    <div class="footerList">
+                        <ul>
+                            <li><a href="#">Privacy & policy</a></li>
+                            <li><a href="#">Terms & conditions</a></li>
+                            <li><a href="#">FAQ</a></li>
+                            <li><a href="#">Hydropowe Plants</a></li>
+                            <li><a href="#">Customer support</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 z-3">
+                <div class="footerBlock fotCol4">
+                    <h3 class="footerBlockTitle text-uppercase text-decoration-underline">Subscribe Newsletter:</h3>
+                    <div class="footerForm">
+                        <form action="#">
+                            <div class="footerInput">
+                                <input id="email" autocomplete="email" type="email" placeholder="Enter Your Email:">
+                            </div>
+                            <button type="submit" class="btn footerBtn">Subscribe Now</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
+</div>
   <div class="copyright z-3 position-relative">
     <div class="container">
       <div class="copyrightWrap z-2">
@@ -644,6 +668,8 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
   integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
   crossorigin="anonymous"></script>
+  <script src="assests/js/script.js">
+  </script>
 
 </body>
 

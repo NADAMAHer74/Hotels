@@ -1,3 +1,166 @@
+* {
+  box-sizing: border-box;
+}
+
+@font-face {
+  font-family: gloss;
+  src: url(../fonts/fonts/Gloss\ And\ Bloom\ Font.ttf);
+}
+
+:root {
+  --color-primary: #11bb67;
+  --color-secondary: #ff6525;
+  --main-font: "DM Sans", sans-serif;
+  --second-font: gloss;
+}
+
+body {
+  font-family: "DM Sans", sans-serif;
+}
+
+img {
+  max-width: 100%;
+}
+
+.contactNavBtn {
+  background-color: var(--color-primary) !important;
+  color: white;
+  font-family: var(--main-font);
+  font-weight: 700;
+}
+
+.contactNavBtn:hover {
+  background-color: var(--color-secondary) !important;
+}
+.topBar {
+  background-color: #000;
+  color: #fff;
+  padding: 10px 0px;
+  transition: 0.3s ease-in-out;
+}
+.topBar .container .dropdownCompanyInfo i {
+  transition: 0.5s ease-in-out;
+  cursor: pointer;
+  margin-right: 1rem;
+  font-size: 18px;
+}
+.topBar .container .dropdownCompanyInfo > i:hover {
+  transform: rotate(90deg);
+}
+
+.navbar-toggler-icon {
+  background-image: url(../images/menuCollapse.png) !important;
+}
+.navbar-toggler {
+  background-color: var(--color-primary);
+  padding: 0.8rem 0.7rem;
+}
+
+.dropdownCompanyInfo {
+  position: relative;
+}
+
+.contactMenu {
+  width: fit-content;
+  transition: 0.3s ease-in-out;
+  list-style: none;
+  display: none;
+  position: absolute;
+  background: #ffffff;
+  border-radius: 4px;
+  z-index: 99999;
+  padding: 0;
+  flex-direction: column;
+  top: 2.5rem;
+  animation: openUpMenu 0.5s alternate;
+  box-shadow: 2px 2px 7px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+}
+
+.contactMenu li {
+  transition: 0.3s ease-in-out;
+}
+.contactMenu li:hover {
+  background-color: var(--color-secondary);
+}
+
+.topBar .socialIcons {
+  font-size: x-large;
+}
+
+@keyframes openUpMenu {
+  0% {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+.contactMenu a {
+  color: black;
+  font-weight: 600;
+}
+
+/*Start Navbar & Top menu*/
+.topBar .contactInfo span {
+  margin-right: 20px;
+  font-weight: 400;
+}
+
+.topBar .contactInfo i {
+  margin-right: 10px;
+}
+
+.topBar .contactInfo a {
+  margin-right: 10px;
+  color: #fff;
+  text-decoration: none;
+}
+
+.topBar .socialIcons a {
+  margin-right: 10px;
+  color: #fff;
+}
+
+.topBar .socialIcons {
+  padding-left: 40px;
+  /*     margin-left: 10%;
+*/
+}
+
+.navbar-nav .nav-link {
+  font-size: 18px;
+  color: #000;
+  font-family: sans-serif;
+}
+
+.contact-btn {
+  padding: 10px 20px;
+  border: 0;
+  color: white;
+  border-right: 1px solid white;
+}
+
+.contactNavBtn {
+  background-color: var(--color-primary) !important;
+  color: white;
+  font-family: var(--main-font);
+  font-weight: 500;
+  transition: 0.3s ease-in-out;
+  border-radius: 5px;
+  cursor: pointer;
+  display: inline-block;
+}
+.contactNavBtn a {
+  display: block;
+  text-decoration: none;
+  color: white;
+  width: 100%;
+  padding: 10px 20px;
+}
+
 .banner {
   position: relative;
   height: 70vh;
@@ -78,26 +241,43 @@
     top: auto;
   }
 }
+
+/*----------------Video Block--------------AO*/
 .videoBlock {
+  /*     background-image: url(../images/video-bg-about.jpg);
+   */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  padding: 150px 0;
+  /*     padding: 150px 0;
+   */
+}
+
+.videoBlock .container {
+  padding: 150px 20px;
+}
+
+.videoBackgroundImg {
+  object-fit: cover;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
 }
 
 .videoBtn .btn {
-  color: rgb(230, 236, 232);
+  color: white;
   padding: 20px 40px;
   font-size: 15px;
+  background-color: var(--color-secondary);
   border-radius: 5px;
   font-weight: 500;
-  background-color: #ff6525;
 }
 
 .videoBtn .btn:hover {
   color: white;
-  background-color: transparent;
-  border-color: #f0eeed;
+  background-color: var(--color-primary) !important;
+  border-color: var(--color-primary) !important;
 }
 
 .videoBlock .row {
@@ -114,7 +294,7 @@
   content: "";
   background: #161b18;
   opacity: 0.8;
-  z-index: 0;
+  z-index: 1;
 }
 
 .videoContent {
@@ -139,7 +319,7 @@
   width: 104px;
   height: 104px;
   line-height: 104px;
-  color: #11bb67;
+  color: var(--color-primary);
   border-radius: 50%;
   background-color: azure;
 }
@@ -164,7 +344,7 @@
   width: 60%;
   height: 60%;
   content: "";
-  transform: scale(2.5);
+  transform: scale(1.5);
   border: 1px solid rgba(255, 255, 255, 0.472);
   animation: videoIconAnimation2 2s linear infinite;
   z-index: -1;
@@ -204,14 +384,221 @@
     opacity: 0;
   }
 }
+/*End video Block*/
+/*Start Footer and copyrights*/
+.footer {
+  padding: 120px 0;
+  color: white;
+  font-family: var(--main-font);
+  background: #161b18;
+}
 
-.parent:hover img {
-  transform: scale(1.2);
-  transition: 0.8s ease-in-out;
+.footerLeftShape {
+  bottom: 0;
+  left: 0;
 }
-.greenColor {
-  color: #11bb67;
+
+.footerRightShape {
+  bottom: 0;
+  right: 0;
 }
-.orangBackground {
-  background-color: #ff6525;
+
+.footerLogo {
+  margin-bottom: 30px;
+}
+
+.footerContent {
+  margin-bottom: 30px;
+}
+
+.footerContent p {
+  margin-bottom: 40px;
+  font-weight: 500;
+  font-size: 17px;
+}
+
+.footerSocialIcons a {
+  border-radius: 50%;
+  width: 54px;
+  height: 54px;
+  line-height: 57px;
+  text-align: center;
+  text-decoration: none;
+  margin-right: 5px;
+  display: inline-block;
+  color: white;
+  border-radius: 50%;
+  border: 1px solid white;
+  position: relative;
+  transition: 0.3s ease-in-out;
+}
+
+.footerSocialIcons a i {
+  color: white;
+  font-size: 1rem;
+  z-index: 5;
+  position: relative;
+}
+
+.footerSocialIcons a::before {
+  position: absolute;
+  content: "";
+  background-color: var(--color-primary);
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  transform: translate(-50%, -50%) scale(0);
+  border-radius: 50%;
+  z-index: 0;
+  transition: 0.3s ease-in-out;
+}
+
+.footerSocialIcons a:hover::before {
+  transform: translate(-50%, -50%) scale(1);
+}
+.footerSocialIcons a:hover {
+  border-color: var(--color-primary);
+}
+
+.footerBlockTitle {
+  font-weight: 700;
+  font-size: 18px;
+  margin-bottom: 45px;
+}
+
+.fotCol2 {
+  padding-left: 80px;
+  margin-bottom: 60px;
+}
+
+.footerList ul {
+  padding-left: 0;
+}
+
+.footerList li {
+  list-style: none;
+}
+
+.footerList ul li a {
+  font-weight: 600;
+  color: white;
+  text-decoration: none;
+  display: block;
+  margin-bottom: 20px;
+}
+
+.footerForm input {
+  font-size: 16px;
+  width: 90%;
+  padding: 15px 33px 15px 10px;
+  background: white;
+  margin-bottom: 25px;
+  border-radius: 5px;
+}
+
+.footerForm input::placeholder {
+  color: black;
+}
+
+.footerForm .btn {
+  color: white;
+  padding: 15px 24px;
+}
+
+.footerBtn {
+  background-color: var(--color-primary) !important;
+  color: white;
+  font-family: var(--main-font);
+  font-weight: 700;
+  transition: 0.3s ease-in-out;
+}
+
+.footerBtn:hover {
+  background-color: var(--color-secondary) !important;
+}
+.copyrightWrap {
+  padding: 29px 70px;
+  background-color: #2d322f;
+  border-radius: 5px 5px 0 0;
+  color: white;
+  margin-top: -83px;
+}
+
+.copyrightText a {
+  color: var(--color-primary);
+}
+
+.copyrightPrivacy a {
+  color: white;
+}
+/*End Footer & copyrights*/
+
+::selection {
+  background: var(--color-primary);
+  color: white;
+  text-shadow: none;
+}
+
+.dropdown-item:active {
+  background-color: var(--color-primary);
+}
+
+/*Media Queries*/
+
+@media screen and (max-width: 395px) {
+  .dropdownCompanyInfo > a {
+    display: none;
+  }
+}
+
+@media (max-width: 992px) {
+  .navbar-collapse .navbar-nav {
+    gap: 1rem !important;
+    margin-top: 20px;
+    margin-bottom: 20px !important;
+  }
+  .topBar .contactInfo {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .topBar .contactInfo span {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 767px) {
+  .topBar .container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .topBar .socialIcons {
+    margin-left: 0;
+    padding-left: 0;
+    justify-content: flex-start;
+  }
+
+  .topBar .contactInfo span {
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  .fotCol2 {
+    padding-left: 0px;
+  }
+
+  .aboutThumb1 img {
+    width: 100%;
+  }
+
+  .topBar .container {
+    justify-content: space-between !important;
+    flex-direction: row !important;
+  }
+  .topBar .socialIcons {
+    border-left: none !important;
+  }
 }

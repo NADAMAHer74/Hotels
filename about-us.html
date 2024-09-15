@@ -27,8 +27,8 @@
 
 <body>
     <div class="topBar ">
-        <div class="container d-flex justify-content-around align-items-center flex-sm-row">
-            <div class="dropdownCompanyInfo d-xl-none d-lg-none d-md-none d-inline-block">
+        <div class="container d-flex justify-content-between align-items-center flex-sm-row">
+            <div class="dropdownCompanyInfo d-xl-none d-lg-none  d-inline-block">
                 <i class="fa-solid fa-chevron-right toggleChevron"></i><a class="text-decoration-none text-light" href="#">
                     <i class="fa-solid fa-phone-volume" style="color: #11BB67;"></i>
                     (000) 967-237-96
@@ -74,7 +74,7 @@
     </div>
 
     <nav class="navbar sticky-top navbar-expand-lg bg-white " data-bs-theme="dark">
-        <div class="container text-dark pe-5 ps-5" style="justify-content: space-between !important;">
+        <div class="container text-dark " style="justify-content: space-between !important;">
             <a href="index.html">
                 <img src="./assests/images/logo.png" alt="Logo" width="108" height="29">
             </a>
@@ -109,7 +109,7 @@
 
                     <li class="nav-item dropdown me-4">
                         <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdownBlog" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false" style="font-size:18px;">
+                            data-bs-toggle="dropdown" aria-expanded="false">
                             Blog
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownBlog">
@@ -118,15 +118,14 @@
                         </ul>
                     </li>
                 </ul>
-                <div style="margin-left: auto;">
-                    <a href="ContsactUs.html"> <button
-                            style="padding: 10px 20px; border-radius: 5px; border: 0; background-color: #11BB67;">Contact
-                            Us</button></a>
+                <div class="contactNavBtn" style="margin-left: auto;">
+                    <a href="ContsactUs.html">Contact Us</a>
                 </div>
             </div>
         </div>
     </nav>
     <div class="aboutUsBanner position-relative d-flex align-items-center justify-content-center z-1">
+        <img src="assests/images/breadcrumb.jpg" draggable="false" class="aboutUsBannerImg" alt="About Us">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
@@ -222,6 +221,7 @@
         </div>
     </div>
     <div class="videoBlock videoOverlay position-relative overflow-hidden">
+        <img class="videoBackgroundImg" src="assests/images/video-bg-about.jpg" alt="Video Background">
         <div class="container">
             <div class="row position-relative align-items-center position-relative z-1 ">
                 <div class="col-xl-6 col-lg-7">
@@ -798,17 +798,7 @@
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
 
-        <script>
-            document.querySelector('.toggleChevron').addEventListener('click', function () {
-              var contactMenu = document.querySelector('.contactMenu');
-              
-              // Toggle the display of the contact menu
-              if (contactMenu.style.display === 'none' || contactMenu.style.display === '') {
-                contactMenu.style.display = 'flex'; // Show the list
-              } else {
-                contactMenu.style.display = 'none'; // Hide the list
-              }
-            });
+        <script src="assests/js/script.js">
           </script>
           
 </body>
