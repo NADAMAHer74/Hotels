@@ -171,7 +171,7 @@ img {
 
 /* End header */
 /* start about us banner */
-.aboutUsBanner {
+.mainBanner {
   position: relative;
   height: 450px;
   background-size: cover;
@@ -181,7 +181,7 @@ img {
 
 }
 
-.aboutUsBannerImg{
+.mainBannerImg{
   position: absolute;
   width: 100%;
   height: 100%;
@@ -190,7 +190,7 @@ img {
   opacity: 0.25;
 }
 
-.aboutUsBanner::before {
+.mainBanner::before {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -202,7 +202,7 @@ img {
   background-color: rgba(0, 0, 0, 0.7);
 }
 
-.aboutUsBanner h3 {
+.mainBanner h3 {
   font-weight: 700;
   font-size: 60px;
   line-height: 1.4;
