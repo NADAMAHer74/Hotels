@@ -57,6 +57,12 @@ img {
   margin-right: 1rem;
   font-size: 18px;
 }
+.topBar .container .dropdownCompanyInfo i{
+  transition: 0.5s ease-in-out;
+  cursor: pointer;
+  margin-right: 1rem;
+  font-size: 18px;
+}
 .topBar .container .dropdownCompanyInfo > i:hover{
   transform: rotate(90deg);
 }
