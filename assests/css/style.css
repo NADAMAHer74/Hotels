@@ -378,7 +378,7 @@ body {
   background-size: auto;
   margin-right: auto;
   background-position: center;
-  height: 400px;
+  height: 650px;
   position: relative;
   /* transform:scaleX(1.3); */
   animation-name: change;
@@ -401,7 +401,7 @@ body {
 
 .sub {
   width: 100%;
-  height: 400px;
+  height: 100%;
   background-color: #0000006d;
 }
 
@@ -837,7 +837,7 @@ body {
   margin-right: auto;
   background-position: center;
   /* height: 70vh; */
-  height: 400px;
+  height: 450px;
   position: relative;
 }
 .whole {

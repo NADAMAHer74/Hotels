@@ -26,7 +26,18 @@ img {
     background-color: var(--color-primary) !important;
     color: white;
     font-family: var(--main-font);
-    font-weight: 700;
+    font-weight: 500;
+    transition: 0.3s ease-in-out;
+    border-radius: 5px;
+    cursor: pointer;
+    display: inline-block;
+}
+.contactNavBtn a{
+    display: block;
+    text-decoration: none;
+    color: white;
+    width: 100%;
+    padding: 10px 20px;
 }
 
 .contactNavBtn:hover {
@@ -149,7 +160,7 @@ img {
 /* start about us banner */
 .aboutUsBanner {
     position: relative;
-    height: 400px;
+    height: 450px;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
