@@ -4,12 +4,12 @@
 
 @font-face {
   font-family: gloss;
-  src: url(../fonts/fonts/Gloss\ And\ Bloom\ Font.ttf);
+  src: url(../fonts/fonts/Gloss\ And\ Bloom\ Font.ttf)
 }
 
 :root {
-  --color-primary: #11bb67;
-  --color-secondary: #ff6525;
+  --color-primary: #11BB67;
+  --color-secondary: #FF6525;
   --main-font: "DM Sans", sans-serif;
   --second-font: gloss;
 }
@@ -26,22 +26,18 @@ img {
   background-color: var(--color-primary) !important;
   color: white;
   font-family: var(--main-font);
-  font-weight: 700;
-    background-color: var(--color-primary) !important;
-    color: white;
-    font-family: var(--main-font);
-    font-weight: 500;
-    transition: 0.3s ease-in-out;
-    border-radius: 5px;
-    cursor: pointer;
-    display: inline-block;
+  font-weight: 500;
+  transition: 0.3s ease-in-out;
+  border-radius: 5px;
+  cursor: pointer;
+  display: inline-block;
 }
 .contactNavBtn a{
-    display: block;
-    text-decoration: none;
-    color: white;
-    width: 100%;
-    padding: 10px 20px;
+  display: block;
+  text-decoration: none;
+  color: white;
+  width: 100%;
+  padding: 10px 20px;
 }
 
 .contactNavBtn:hover {
@@ -53,29 +49,30 @@ img {
   padding: 10px 0px;
   transition: 0.3s ease-in-out;
 }
-.topBar .container .dropdownCompanyInfo i {
+.topBar .container .dropdownCompanyInfo i{
   transition: 0.5s ease-in-out;
   cursor: pointer;
   margin-right: 1rem;
   font-size: 18px;
 }
-.topBar .container .dropdownCompanyInfo > i:hover {
+.topBar .container .dropdownCompanyInfo > i:hover{
   transform: rotate(90deg);
 }
 
-.navbar-toggler-icon {
+.navbar-toggler-icon{
   background-image: url(../images/menuCollapse.png) !important;
 }
-.navbar-toggler {
+.navbar-toggler{
   background-color: var(--color-primary);
   padding: 0.8rem 0.7rem;
 }
 
-.dropdownCompanyInfo {
+
+.dropdownCompanyInfo{
   position: relative;
 }
 
-.contactMenu {
+.contactMenu{
   width: fit-content;
   transition: 0.3s ease-in-out;
   list-style: none;
@@ -92,37 +89,31 @@ img {
   overflow: hidden;
 }
 
-.contactMenu li {
+.contactMenu li{
   transition: 0.3s ease-in-out;
 }
-.contactMenu li:hover {
+.contactMenu li:hover{
   background-color: var(--color-secondary);
 }
 
-.topBar .socialIcons {
+.topBar .socialIcons{
   font-size: x-large;
 }
 
 @keyframes openUpMenu {
-  0% {
-    opacity: 0;
-    transform: translateY(-30px);
+  0%{
+      opacity: 0;
+      transform: translateY(-30px);
   }
-  100% {
-    opacity: 1;
-    transform: translateY(0px);
+  100%{
+      opacity: 1;
+      transform: translateY(0px);
   }
 }
-.contactMenu a {
+.contactMenu a{
   color: black;
   font-weight: 600;
 }
-
-/*
-.contactMenu{
-    
-}
-*/
 
 
 .topBar .contactInfo span {
@@ -147,11 +138,8 @@ img {
 
 .topBar .socialIcons {
   padding-left: 40px;
-  margin-left: 10%;
-}
-    padding-left: 40px;
 /*     margin-left: 10%;
- */}
+*/}
 
 .navbar-nav .nav-link {
   font-size: 18px;
@@ -166,30 +154,27 @@ img {
   border-right: 1px solid white;
 }
 
+
+
 /* End header */
 /* start about us banner */
 .aboutUsBanner {
-  background-image: url(../images/breadcrumb.jpg);
-  height: 400px;
+  position: relative;
+  height: 450px;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-    position: relative;
-    height: 450px;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.7);
 
 }
 
 .aboutUsBannerImg{
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: -1;
-    opacity: 0.25;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+  opacity: 0.25;
 }
 
 .aboutUsBanner::before {
@@ -200,17 +185,8 @@ img {
   left: 0;
   right: 0;
   content: "";
-  background: #000000ab;
   z-index: -1;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    right: 0;
-    content: "";
-    z-index: -1;
-    background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.7);
 }
 
 .aboutUsBanner h3 {
@@ -224,10 +200,7 @@ img {
 .bannerBreadcrumbListWrap {
   left: 0;
   right: 0;
-  bottom: -24px;
-    left: 0;
-    right: 0;
-    bottom: -30px;
+  bottom: -30px;
 }
 
 .bannerBreadcrumbListWrap a {
@@ -269,9 +242,7 @@ img {
 .aboutTitleBox {
   margin-bottom: 3rem;
   font-family: var(--main-font);
-    margin-bottom: 3rem;
-    font-family: var(--main-font);
-    transition: 0.6s ease-in-out;
+  transition: 0.6s ease-in-out;
 }
 
 .aboutTitleBox .aboutTitle {
@@ -339,22 +310,22 @@ img {
 /* start video banner */
 .videoBlock {
 /*     background-image: url(../images/video-bg-about.jpg);
- */    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+*/    background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 /*     padding: 150px 0;
- */}
+*/}
 
 .videoBlock .container{
-    padding: 150px 20px;
+  padding: 150px 20px;
 }
 
 .videoBackgroundImg{
-    object-fit: cover;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    z-index: 0;
+  object-fit: cover;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
 }
 
 .videoBtn .btn {
@@ -386,17 +357,7 @@ img {
   content: "";
   background: #161b18;
   opacity: 0.8;
-  z-index: 0;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    right: 0;
-    content: "";
-    background: #161b18;
-    opacity: 0.8;
-    z-index: 1;
+  z-index: 1;
 }
 
 .videoContent {
@@ -454,7 +415,7 @@ img {
 }
 
 .videoKite {
-    right: -16%;
+  right: -16%;
 }
 
 /* end video banner */
@@ -482,6 +443,7 @@ img {
 .chooseUsTitleBox p {
   margin-bottom: 30px;
   margin-right: 50px;
+
 }
 
 .aboutService {
@@ -500,7 +462,7 @@ img {
 }
 
 .aboutServiceDescription p {
-  color: rgb(107, 107, 107);
+  color: rgb(107, 107, 107)
 }
 
 .chooseUsThumb {
@@ -557,51 +519,38 @@ img {
   color: white;
   border-radius: 50%;
   border: 1px solid white;
-    border-radius: 50%;
-    width: 54px;
-    height: 54px;
-    line-height: 57px;
-    text-align: center;
-    text-decoration: none;
-    margin-right: 5px;
-    display: inline-block;
-    color: white;
-    border-radius: 50%;
-    border: 1px solid white;
-    position: relative;
-    transition: 0.3s ease-in-out;
-    overflow: hidden;
+  position: relative;
+  transition: 0.3s ease-in-out;
+  overflow: hidden;
 }
 
 .footerSocialIcons a i {
   color: white;
   font-size: 1rem;
-    color: white;
-    font-size: 1rem;
-    z-index: 5;
-    position: relative;
+  z-index: 5;
+  position: relative;
 }
 
 .footerSocialIcons a::before{
-    position: absolute;
-    content: '';
-    background-color: var(--color-primary);
-    top: 50%;
-    left: 50%;
-    width: 100%;
-    height: 100%;
-    transform: translate(-50%, -50%) scale(0);
-    border-radius: 50%;
-    z-index: 0;
-    transition: 0.3s ease-in-out;
+  position: absolute;
+  content: '';
+  background-color: var(--color-primary);
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  transform: translate(-50%, -50%) scale(0);
+  border-radius: 50%;
+  z-index: 0;
+  transition: 0.3s ease-in-out;
 }
 
 
 .footerSocialIcons a:hover::before{
-    transform: translate(-50%, -50%) scale(1);
+  transform: translate(-50%, -50%) scale(1);
 }
 .footerSocialIcons a:hover {
-    border-color: transparent;
+  border-color: transparent;
 }
 
 .footerBlockTitle {
@@ -654,15 +603,11 @@ img {
   color: white;
   font-family: var(--main-font);
   font-weight: 700;
-    background-color: var(--color-primary) !important;
-    color: white;
-    font-family: var(--main-font);
-    font-weight: 700;
-    transition: 0.3s ease-in-out;
+  transition: 0.3s ease-in-out;
 }
 
 .footerBtn:hover {
-    background-color: var(--color-secondary) !important;
+  background-color: var(--color-secondary) !important;
 }
 
 .copyrightWrap {
@@ -682,199 +627,126 @@ img {
 }
 
 /* end footer */
-/* @keyframes videoIconAnimation {
+@keyframes videoIconAnimation {
   0% {
-    transform: translate(-50%, -50%) scale(1);
+      transform: translate(-50%, -50%) scale(1);
   }
 
   60% {
-    opacity: 1;
+      opacity: 1;
   }
 
   100% {
-    transform: translate(-50%, -50%) scale(2.2);
-    opacity: 0;
+      transform: translate(-50%, -50%) scale(2.2);
+      opacity: 0;
   }
 }
 
 @keyframes videoIconAnimation2 {
   0% {
-    transform: translate(-50%, -50%) scale(1);
+      transform: translate(-50%, -50%) scale(1);
   }
 
   60% {
-    opacity: 1;
+      opacity: 1;
   }
 
   100% {
-    transform: translate(-50%, -50%) scale(2.2);
-    opacity: 0;
+      transform: translate(-50%, -50%) scale(2.2);
+      opacity: 0;
   }
-} */
+}
 
 /*Media Queries*/
 
-@media (max-width: 1024px) {
-  .topBar .contactInfo {
-    display: none;
-  }
-}
-
-@media (max-width: 576px) {
-  .topBar .contactInfo span {
-    font-size: 14px;
-  }
-}
-
 
 @media screen and (max-width: 395px) {
-  .dropdownCompanyInfo > a {
-    display: none;
+  .dropdownCompanyInfo > a{
+      display: none;
   }
 }
 
-@media (max-width: 320px) {
-  .headerTopLeft ul li a {
-    font-size: small;
-  }
-}
 
-@media (max-width: 1199px) {
-  .topRightSocial a i {
-    font-size: 2rem;
-  }
-
-  .topRightSocial::before {
-    height: 40px;
-  }
-}
-
-@media (max-width: 991px) {
-  .navbar-collapse .navbar-nav {
-    gap: 1rem !important;
-    margin-top: 20px;
-    margin-bottom: 20px !important;
-  }
 @media (max-width: 992px) {
-    .navbar-collapse .navbar-nav {
-        gap: 1rem !important;
-        margin-top: 20px;
-        margin-bottom: 20px !important;
-    }
-    .aboutThumb2 img {
-        width: 100%;
-    }
-    .topBar .contactInfo {
-        display: none;
-    }
+  .navbar-collapse .navbar-nav {
+      gap: 1rem !important;
+      margin-top: 20px;
+      margin-bottom: 20px !important;
+  }
+  .aboutThumb2 img {
+      width: 100%;
+  }
+  .topBar .contactInfo {
+      display: none;
+  }
 }
 
-@media screen and (max-width: 575px) {
-  .aboutThumbBox {
-    margin-right: 0 !important;
-  }
+
 @media screen and (max-width: 576px) {
-    .aboutThumbBox{
-        margin-right: 0 !important;
-    }
-    .aboutCounterText {
-        text-align: inherit;
-    }
-    .topBar .contactInfo span {
-        font-size: 14px;
-    }
+  .aboutThumbBox{
+      margin-right: 0 !important;
+  }
+  .aboutCounterText {
+      text-align: inherit;
+  }
+  .topBar .contactInfo span {
+      font-size: 14px;
+  }
 }
 
 @media (max-width: 767px) {
   .topBar .container {
-    flex-direction: column;
-    align-items: flex-start;
+      flex-direction: column;
+      align-items: flex-start;
   }
 
   .topBar .socialIcons {
-    margin-left: 0;
-    padding-left: 0;
-    margin-top: 10px;
-    justify-content: flex-start;
+      margin-left: 0;
+      padding-left: 0;
+      justify-content: flex-start;
   }
-    .topBar .socialIcons {
-        margin-left: 0;
-        padding-left: 0;
-        justify-content: flex-start;
-    }
 
   .topBar .contactInfo span {
-    display: block;
-    margin-bottom: 10px;
+      display: block;
+      margin-bottom: 10px;
   }
-
+  
   .fotCol2 {
-    padding-left: 0px;
+      padding-left: 0px;
   }
 
   .aboutThumb1 img {
-    width: 100%;
+      width: 100%
   }
 
-  .topBar .container {
-    justify-content: space-between !important;
-    flex-direction: row !important;
-    padding: 0 2rem;
+  .topBar .container{
+      justify-content: space-between !important;
+      flex-direction: row !important;
   }
-  .aboutThumbBox {
-    margin-right: 2rem;
+  .aboutThumbBox{
+      margin-right: 2rem;
   }
-  .topBar .socialIcons {
-    border-left: none !important;
+  .topBar .socialIcons{
+      border-left: none !important;
   }
-    .topBar .container{
-        justify-content: space-between !important;
-        flex-direction: row !important;
-    }
-    .aboutThumbBox{
-        margin-right: 2rem;
-    }
-    .topBar .socialIcons{
-        border-left: none !important;
-    }
 
   .aboutThumbSingle img {
-    margin-top: 10px;
-    width: 100%;
+      margin-top: 10px;
+      width: 100%;
   }
 
   .aboutCounterText {
-    text-align: center;
+      text-align: center;
   }
 
   .aboutCounterText p {
-    margin-bottom: 1rem;
+      margin-bottom: 1rem;
   }
 
   .aboutService {
-    text-align: center;
+      text-align: center;
   }
 
-  .topRightSocial a i {
-    font-size: 2rem;
-  }
-
-  .topRightSocial::before {
-    display: none;
-  }
-}
-
-@media only screen and (min-width: 576px) and (max-width: 767px) {
-  .aboutCounterText {
-    text-align: inherit;
-  }
-}
-
-@media only screen and (min-width: 992px) and (max-width: 1199px) {
-  .aboutThumb2 img {
-    width: 100%;
-  }
-}
 }
 
 
