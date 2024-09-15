@@ -4,12 +4,12 @@
 
 @font-face {
   font-family: gloss;
-  src: url(../fonts/fonts/Gloss\ And\ Bloom\ Font.ttf)
+  src: url(../fonts/fonts/Gloss\ And\ Bloom\ Font.ttf);
 }
 
 :root {
-  --color-primary: #11BB67;
-  --color-secondary: #FF6525;
+  --color-primary: #11bb67;
+  --color-secondary: #ff6525;
   --main-font: "DM Sans", sans-serif;
   --second-font: gloss;
 }
@@ -21,9 +21,6 @@ body {
 img {
   max-width: 100%;
 }
-
-
-
 
 .contactNavBtn {
   background-color: var(--color-primary) !important;
@@ -41,30 +38,29 @@ img {
   padding: 10px 0px;
   transition: 0.3s ease-in-out;
 }
-.topBar .container .dropdownCompanyInfo i{
+.topBar .container .dropdownCompanyInfo i {
   transition: 0.5s ease-in-out;
   cursor: pointer;
   margin-right: 1rem;
   font-size: 18px;
 }
-.topBar .container .dropdownCompanyInfo > i:hover{
+.topBar .container .dropdownCompanyInfo > i:hover {
   transform: rotate(90deg);
 }
 
-.navbar-toggler-icon{
+.navbar-toggler-icon {
   background-image: url(../images/menuCollapse.png) !important;
 }
-.navbar-toggler{
+.navbar-toggler {
   background-color: var(--color-primary);
   padding: 0.8rem 0.7rem;
 }
 
-
-.dropdownCompanyInfo{
+.dropdownCompanyInfo {
   position: relative;
 }
 
-.contactMenu{
+.contactMenu {
   width: fit-content;
   transition: 0.3s ease-in-out;
   list-style: none;
@@ -81,28 +77,28 @@ img {
   overflow: hidden;
 }
 
-.contactMenu li{
+.contactMenu li {
   transition: 0.3s ease-in-out;
 }
-.contactMenu li:hover{
+.contactMenu li:hover {
   background-color: var(--color-secondary);
 }
 
-.topBar .socialIcons{
+.topBar .socialIcons {
   font-size: x-large;
 }
 
 @keyframes openUpMenu {
-  0%{
-      opacity: 0;
-      transform: translateY(-30px);
+  0% {
+    opacity: 0;
+    transform: translateY(-30px);
   }
-  100%{
-      opacity: 1;
-      transform: translateY(0px);
+  100% {
+    opacity: 1;
+    transform: translateY(0px);
   }
 }
-.contactMenu a{
+.contactMenu a {
   color: black;
   font-weight: 600;
 }
@@ -130,8 +126,9 @@ img {
 
 .topBar .socialIcons {
   padding-left: 40px;
-/*     margin-left: 10%;
-*/}
+  /*     margin-left: 10%;
+*/
+}
 
 .navbar-nav .nav-link {
   font-size: 18px;
@@ -156,16 +153,13 @@ img {
   cursor: pointer;
   display: inline-block;
 }
-.contactNavBtn a{
+.contactNavBtn a {
   display: block;
   text-decoration: none;
   color: white;
   width: 100%;
   padding: 10px 20px;
 }
-
-
-
 
 .banner {
   position: relative;
@@ -251,142 +245,144 @@ img {
 /*----------------Video Block--------------AO*/
 .videoBlock {
   /*     background-image: url(../images/video-bg-about.jpg);
-   */    background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
+   */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   /*     padding: 150px 0;
-   */}
-  
-  .videoBlock .container{
-      padding: 150px 20px;
-  }
-  
-  .videoBackgroundImg{
-      object-fit: cover;
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      z-index: 0;
-  }
-  
-  .videoBtn .btn {
-      color: white;
-      padding: 20px 40px;
-      font-size: 15px;
-      background-color: var(--color-secondary);
-      border-radius: 5px;
-      font-weight: 500;
-  }
-  
-  .videoBtn .btn:hover {
-      color: white;
-      background-color: var(--color-primary) !important;
-      border-color: var(--color-primary) !important;
-  }
-  
-  .videoBlock .row {
-      color: white;
-  }
-  
-  .videoBlock::before {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      top: 0;
-      left: 0;
-      right: 0;
-      content: "";
-      background: #161b18;
-      opacity: 0.8;
-      z-index: 1;
-  }
-  
-  .videoContent {
-      font-family: var(--main-font);
-  }
-  
-  .videoAboutSubtitle {
-      font-size: 48px;
-      font-weight: 700;
-      line-height: 1.2;
-      letter-spacing: -2px;
-  }
-  
-  .videoContent p {
-      font-size: 17px;
-      font-weight: 500;
-      line-height: 26px;
-  }
-  
-  .popupVideo {
-      font-size: 17px;
-      width: 104px;
-      height: 104px;
-      line-height: 104px;
-      color: var(--color-primary);
-      border-radius: 50%;
-      background-color: azure;
-  }
-  
-  .videoIcon a::before {
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      width: 80%;
-      height: 80%;
-      content: "";
-      background-color: rgba(255, 255, 255, 0.4);
-      animation: videoIconAnimation 2s linear infinite;
-      z-index: -1;
-      border-radius: 50%;
-  }
-  
-  .videoIcon a::after {
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      width: 60%;
-      height: 60%;
-      content: "";
-      transform: scale(1.5);
-      border: 1px solid rgba(255, 255, 255, 0.472);
-      animation: videoIconAnimation2 2s linear infinite;
-      z-index: -1;
-      border-radius: 50%;
-  }
-  
-  .videoKite {
-      right: -16%;
+   */
+}
+
+.videoBlock .container {
+  padding: 150px 20px;
+}
+
+.videoBackgroundImg {
+  object-fit: cover;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.videoBtn .btn {
+  color: white;
+  padding: 20px 40px;
+  font-size: 15px;
+  background-color: var(--color-secondary);
+  border-radius: 5px;
+  font-weight: 500;
+}
+
+.videoBtn .btn:hover {
+  color: white;
+  background-color: var(--color-primary) !important;
+  border-color: var(--color-primary) !important;
+}
+
+.videoBlock .row {
+  color: white;
+}
+
+.videoBlock::before {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  content: "";
+  background: #161b18;
+  opacity: 0.8;
+  z-index: 1;
+}
+
+.videoContent {
+  font-family: var(--main-font);
+}
+
+.videoAboutSubtitle {
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -2px;
+}
+
+.videoContent p {
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 26px;
+}
+
+.popupVideo {
+  font-size: 17px;
+  width: 104px;
+  height: 104px;
+  line-height: 104px;
+  color: var(--color-primary);
+  border-radius: 50%;
+  background-color: azure;
+}
+
+.videoIcon a::before {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 80%;
+  height: 80%;
+  content: "";
+  background-color: rgba(255, 255, 255, 0.4);
+  animation: videoIconAnimation 2s linear infinite;
+  z-index: -1;
+  border-radius: 50%;
+}
+
+.videoIcon a::after {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 60%;
+  height: 60%;
+  content: "";
+  transform: scale(1.5);
+  border: 1px solid rgba(255, 255, 255, 0.472);
+  animation: videoIconAnimation2 2s linear infinite;
+  z-index: -1;
+  border-radius: 50%;
+}
+
+.videoKite {
+  right: -16%;
+}
+
+@keyframes videoIconAnimation {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
   }
 
-  @keyframes videoIconAnimation {
-    0% {
-        transform: translate(-50%, -50%) scale(1);
-    }
+  60% {
+    opacity: 1;
+  }
 
-    60% {
-        opacity: 1;
-    }
-
-    100% {
-        transform: translate(-50%, -50%) scale(2.2);
-        opacity: 0;
-    }
+  100% {
+    transform: translate(-50%, -50%) scale(2.2);
+    opacity: 0;
+  }
 }
 
 @keyframes videoIconAnimation2 {
-    0% {
-        transform: translate(-50%, -50%) scale(1);
-    }
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+  }
 
-    60% {
-        opacity: 1;
-    }
+  60% {
+    opacity: 1;
+  }
 
-    100% {
-        transform: translate(-50%, -50%) scale(2.2);
-        opacity: 0;
-    }
+  100% {
+    transform: translate(-50%, -50%) scale(2.2);
+    opacity: 0;
+  }
 }
 /*End video Block*/
 /*Start Footer and copyrights*/
@@ -444,9 +440,9 @@ img {
   position: relative;
 }
 
-.footerSocialIcons a::before{
+.footerSocialIcons a::before {
   position: absolute;
-  content: '';
+  content: "";
   background-color: var(--color-primary);
   top: 50%;
   left: 50%;
@@ -458,8 +454,7 @@ img {
   transition: 0.3s ease-in-out;
 }
 
-
-.footerSocialIcons a:hover::before{
+.footerSocialIcons a:hover::before {
   transform: translate(-50%, -50%) scale(1);
 }
 .footerSocialIcons a:hover {
@@ -539,7 +534,6 @@ img {
 }
 /*End Footer & copyrights*/
 
-
 ::selection {
   background: var(--color-primary);
   color: white;
@@ -550,65 +544,80 @@ img {
   background-color: var(--color-primary);
 }
 
-
 /*Media Queries*/
 
-
 @media screen and (max-width: 395px) {
-  .dropdownCompanyInfo > a{
-      display: none;
+  .dropdownCompanyInfo > a {
+    display: none;
   }
 }
-
 
 @media (max-width: 992px) {
   .navbar-collapse .navbar-nav {
-      gap: 1rem !important;
-      margin-top: 20px;
-      margin-bottom: 20px !important;
+    gap: 1rem !important;
+    margin-top: 20px;
+    margin-bottom: 20px !important;
   }
   .topBar .contactInfo {
     display: none;
+  }
 }
-}
-
 
 @media screen and (max-width: 576px) {
   .topBar .contactInfo span {
-      font-size: 14px;
+    font-size: 14px;
   }
 }
 
 @media (max-width: 767px) {
   .topBar .container {
-      flex-direction: column;
-      align-items: flex-start;
+    flex-direction: column;
+    align-items: flex-start;
   }
 
   .topBar .socialIcons {
-      margin-left: 0;
-      padding-left: 0;
-      justify-content: flex-start;
+    margin-left: 0;
+    padding-left: 0;
+    justify-content: flex-start;
   }
 
   .topBar .contactInfo span {
-      display: block;
-      margin-bottom: 10px;
+    display: block;
+    margin-bottom: 10px;
   }
-  
+
   .fotCol2 {
-      padding-left: 0px;
+    padding-left: 0px;
   }
 
   .aboutThumb1 img {
-      width: 100%
+    width: 100%;
   }
 
-  .topBar .container{
-      justify-content: space-between !important;
-      flex-direction: row !important;
+  .topBar .container {
+    justify-content: space-between !important;
+    flex-direction: row !important;
   }
-  .topBar .socialIcons{
-      border-left: none !important;
+  .topBar .socialIcons {
+    border-left: none !important;
   }
+}
+.parent:hover img {
+  transform: scale(1.2);
+}
+.parent img {
+  transition: 0.8s ease-in-out;
+}
+.greenColor {
+  color: #11bb67;
+}
+.orangBackground {
+  background-color: #ff6525;
+}
+
+body {
+  font-family: "DM Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
 }
