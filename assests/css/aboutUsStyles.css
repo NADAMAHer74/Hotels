@@ -521,6 +521,7 @@ img {
     border: 1px solid white;
     position: relative;
     transition: 0.3s ease-in-out;
+    overflow: hidden;
 }
 
 .footerSocialIcons a i {
@@ -546,10 +547,10 @@ img {
 
 
 .footerSocialIcons a:hover::before{
-    transform: translate(-50%, -50%) scale(1);
+    transform: translate(-50%, -50%) scale(1.2);
 }
 .footerSocialIcons a:hover {
-    border-color: var(--color-primary);
+    border-color: transparent;
 }
 
 .footerBlockTitle {
