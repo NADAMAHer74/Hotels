@@ -105,13 +105,6 @@ img {
 }
 
 
-/*
-.contactMenu{
-    
-}
-*/
-
-
 .topBar .contactInfo span {
     margin-right: 20px;
     font-weight: 400;
@@ -155,11 +148,21 @@ img {
 /* End header */
 /* start about us banner */
 .aboutUsBanner {
-    background-image: url(../images/breadcrumb.jpg);
+    position: relative;
     height: 400px;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    background: #000;
+}
+
+.aboutUsBannerImg{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+    opacity: 0.4;
 }
 
 .aboutUsBanner::before {
