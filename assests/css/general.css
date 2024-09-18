@@ -28,7 +28,6 @@ img {
   max-width: 100%;
 }
 
-
 .contactNavBtn {
   background-color: var(--color-primary) !important;
   color: white;
@@ -39,7 +38,7 @@ img {
   cursor: pointer;
   display: inline-block;
 }
-.contactNavBtn a{
+.contactNavBtn a {
   display: block;
   text-decoration: none;
   color: white;
@@ -57,37 +56,36 @@ img {
   transition: 0.3s ease-in-out;
 }
 /**/
-.topBar .container .dropdownCompanyInfo a i{
+.topBar .container .dropdownCompanyInfo a i {
   color: var(--color-primary);
   transition: 0.5s ease-in-out;
   cursor: pointer;
   margin-right: 1rem;
   font-size: 18px;
 }
-.topBar .container .dropdownCompanyInfo i{
+.topBar .container .dropdownCompanyInfo i {
   transition: 0.5s ease-in-out;
   cursor: pointer;
   margin-right: 1rem;
   font-size: 18px;
 }
-.topBar .container .dropdownCompanyInfo > i:hover{
+.topBar .container .dropdownCompanyInfo > i:hover {
   transform: rotate(90deg);
 }
 
-.navbar-toggler-icon{
+.navbar-toggler-icon {
   background-image: url(../images/menuCollapse.png) !important;
 }
-.navbar-toggler{
+.navbar-toggler {
   background-color: var(--color-primary);
   padding: 0.8rem 0.7rem;
 }
 
-
-.dropdownCompanyInfo{
+.dropdownCompanyInfo {
   position: relative;
 }
 
-.contactMenu{
+.contactMenu {
   width: fit-content;
   transition: 0.3s ease-in-out;
   list-style: none;
@@ -104,32 +102,31 @@ img {
   overflow: hidden;
 }
 
-.contactMenu li{
+.contactMenu li {
   transition: 0.3s ease-in-out;
 }
-.contactMenu li:hover{
+.contactMenu li:hover {
   background-color: var(--color-secondary);
 }
 
-.topBar .socialIcons{
+.topBar .socialIcons {
   font-size: x-large;
 }
 
 @keyframes openUpMenu {
-  0%{
-      opacity: 0;
-      transform: translateY(-30px);
+  0% {
+    opacity: 0;
+    transform: translateY(-30px);
   }
-  100%{
-      opacity: 1;
-      transform: translateY(0px);
+  100% {
+    opacity: 1;
+    transform: translateY(0px);
   }
 }
-.contactMenu a{
+.contactMenu a {
   color: black;
   font-weight: 600;
 }
-
 
 .topBar .contactInfo span {
   margin-right: 20px;
@@ -169,10 +166,9 @@ img {
   border-right: 1px solid white;
 }
 
-.contactInfo a i{
+.contactInfo a i {
   color: var(--color-primary);
 }
-
 
 .mainBanner {
   position: relative;
@@ -181,10 +177,9 @@ img {
   background-position: center;
   background-repeat: no-repeat;
   background-color: rgba(0, 0, 0, 0.7);
-
 }
 
-.mainBannerImg{
+.mainBannerImg {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -237,13 +232,9 @@ img {
 }
 /*----------------Video Block--------------AO*/
 .videoBlock {
-  /*     background-image: url(../images/video-bg-about.jpg);
-   */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  /*     padding: 150px 0;
-   */
 }
 
 .videoBlock .container {
@@ -315,6 +306,11 @@ img {
   color: var(--color-primary);
   border-radius: 50%;
   background-color: azure;
+}
+@media screen and (max-width: 540px) {
+  .videoIcon {
+    margin-top: 25px;
+  }
 }
 
 .videoIcon a::before {
@@ -537,9 +533,7 @@ img {
   background-color: var(--color-primary);
 }
 
-
-
-.scrollTop{
+.scrollTop {
   transition: 0.3s ease-in-out;
   display: none;
   position: fixed;
@@ -551,15 +545,14 @@ img {
   background-color: var(--color-primary);
   border: none;
 }
-.scrollTop i{
+.scrollTop i {
   padding: 5px 0;
   color: white;
 }
 
-.scrollTop:hover{
+.scrollTop:hover {
   background-color: var(--color-secondary);
 }
-
 
 /*Media Queries*/
 
