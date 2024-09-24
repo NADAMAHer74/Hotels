@@ -21,122 +21,123 @@
   <link
     href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
     rel="stylesheet">
-    <link rel="stylesheet" href="assests/css/general.css">
+  <link rel="stylesheet" href="assests/css/general.css">
 
   <link rel="stylesheet" href="assests/css/style.css">
 </head>
 
 <body>
-  <div class="topBar ">
-    <div class="container d-flex justify-content-between align-items-center flex-sm-row">
+
+  <header class="d-inline">
+    <div class="topBar ">
+      <div class="container d-flex justify-content-between align-items-center flex-sm-row">
         <div class="dropdownCompanyInfo d-xl-none d-lg-none  d-inline-block">
-            <i class="fa-solid fa-chevron-right toggleChevron"></i>
-            <a class="text-decoration-none text-light" href="#">
-                <i class="fa-solid fa-phone-volume" ></i>
+          <i class="fa-solid fa-chevron-right toggleChevron"></i>
+          <a class="text-decoration-none text-light" href="#">
+            <i class="fa-solid fa-phone-volume"></i>
+            (000) 967-237-96
+          </a>
+          <ul class="contactMenu collapseList">
+            <li class="p-3">
+              <a class="text-decoration-none d-flex align-items-center" href="#">
+                <i class="fa-solid fa-phone-volume"></i>
                 (000) 967-237-96
-            </a>
-            <ul class="contactMenu collapseList">
-                  <li class="p-3">
-                    <a class="text-decoration-none d-flex align-items-center" href="#">
-                        <i class="fa-solid fa-phone-volume"></i>
-                        (000) 967-237-96
-                    </a>
-                </li>
-                <li class="p-3">
-                    <a class="text-decoration-none d-flex align-items-center" href="#">
-                        <i class="fa-regular fa-envelope"></i>
-                        toursinfo@gmail.com
-                    </a>
-                </li>
-                <li class="p-3">
-                    <a class="text-decoration-none d-flex align-items-center" href="#">
-                        <i class="fa-solid fa-location-dot"></i>
-                        290 Grand Avenue Maitland, FL 32751
-                    </a>
-                </li>
-            </ul>
+              </a>
+            </li>
+            <li class="p-3">
+              <a class="text-decoration-none d-flex align-items-center" href="#">
+                <i class="fa-regular fa-envelope"></i>
+                toursinfo@gmail.com
+              </a>
+            </li>
+            <li class="p-3">
+              <a class="text-decoration-none d-flex align-items-center" href="#">
+                <i class="fa-solid fa-location-dot"></i>
+                290 Grand Avenue Maitland, FL 32751
+              </a>
+            </li>
+          </ul>
         </div>
-        
+
         <div class="contactInfo">
-            <a href="#"><i class="fa-solid fa-phone-volume"></i><span>(000)
-                    967-237-96</span></a>
-            <a href="#"><i class="fa-regular fa-envelope"
-                    ></i><span>toursinfo@gmail.com</span></a>
-            <a href="#"> <i class="fa-solid fa-location-dot"></i><span>290 Grand Avenue
-                    Maitland, FL 32751</span></a>
+          <a href="#"><i class="fa-solid fa-phone-volume"></i><span>(000)
+              967-237-96</span></a>
+          <a href="#"><i class="fa-regular fa-envelope"></i><span>toursinfo@gmail.com</span></a>
+          <a href="#"> <i class="fa-solid fa-location-dot"></i><span>290 Grand Avenue
+              Maitland, FL 32751</span></a>
         </div>
         <div class="socialIcons b-0">
-            <a href="#"><i class="fab fa-facebook-f"></i></a>
-            <a href="#"><i class="fa-brands fa-twitter"></i></a>
-            <a href="#"><i class="fa-brands fa-skype"></i></a>
-            <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fa-brands fa-twitter"></i></a>
+          <a href="#"><i class="fa-brands fa-skype"></i></a>
+          <a href="#"><i class="fa-brands fa-linkedin"></i></a>
 
         </div>
+      </div>
     </div>
-</div>
 
-<nav class="navbar sticky-top navbar-expand-lg bg-white " data-bs-theme="dark">
-    <div class="container text-dark justify-content-between">
+    <nav class="navbar sticky-top navbar-expand-lg bg-white " data-bs-theme="dark">
+      <div class="container text-dark justify-content-between">
         <a href="index.html">
-            <img src="./assests/images/logo.png" alt="Logo" width="108" height="29">
+          <img src="./assests/images/logo.png" alt="Logo" width="108" height="29">
         </a>
-        <button class="navbar-toggler"  type="button"
-            data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
-            aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto" >
-                <li class="nav-item me-4">
-                    <a href="index.html" class="nav-link active text-dark"
-                        aria-current="page">Home</a>
-                </li>
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item me-4">
+              <a href="index.html" class="nav-link active text-dark" aria-current="page">Home</a>
+            </li>
 
-                <li class="nav-item dropdown me-4">
-                    <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdownTours" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false">
-                        Tours
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownTours">
-                        <li><a class="dropdown-item" href="tour_grid.html">Tour</a></li>
-                        <li><a class="dropdown-item" href="tour-detail.html">Tour Detail</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item me-4">
-                    <a href="destination.html" class="nav-link text-dark">Destination</a>
-                </li>
-                <li class="nav-item me-4">
-                    <a href="about-us.html" class="nav-link text-dark">About</a>
-                </li>
+            <li class="nav-item dropdown me-4">
+              <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdownTours" role="button"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                Tours
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdownTours">
+                <li><a class="dropdown-item" href="tour_grid.html">Tour</a></li>
+                <li><a class="dropdown-item" href="tour-detail.html">Tour Detail</a></li>
+              </ul>
+            </li>
+            <li class="nav-item me-4">
+              <a href="destination.html" class="nav-link text-dark">Destination</a>
+            </li>
+            <li class="nav-item me-4">
+              <a href="about-us.html" class="nav-link text-dark">About</a>
+            </li>
 
-                <li class="nav-item dropdown me-4">
-                    <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdownBlog" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false">
-                        Blog
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownBlog">
-                        <li><a class="dropdown-item" href="blog.html">Blog</a></li>
-                        <li><a class="dropdown-item" href="blogDetails.html">Blog Detail</a></li>
-                    </ul>
-                </li>
-            </ul>
-            <div class="contactNavBtn ms-auto">
-                <a href="ContactUs.html">Contact Us</a>
-            </div>
+            <li class="nav-item dropdown me-4">
+              <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdownBlog" role="button"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                Blog
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdownBlog">
+                <li><a class="dropdown-item" href="blog.html">Blog</a></li>
+                <li><a class="dropdown-item" href="blogDetails.html">Blog Detail</a></li>
+              </ul>
+            </li>
+          </ul>
+          <div class="contactNavBtn ms-auto">
+            <a href="ContactUs.html">Contact Us</a>
+          </div>
         </div>
-    </div>
-</nav>
+      </div>
+    </nav>
+  </header>
 
 
-<section class="homeBanner">
-  <div class="bannerContent">
+
+  <section class="homeBanner">
+    <div class="bannerContent">
       <img src="./assests/images/slider-1-2.jpg" alt="background" class="bannerImage" id="dynamicBackground">
       <div class="bannerText">
-          <h3>Memories For Life</h3>
-          <h1>Let's Explore The World</h1>
+        <h3>Memories For Life</h3>
+        <h1>Let's Explore The World</h1>
       </div>
-  </div>
-</section>
+    </div>
+  </section>
 
   <div class="container text-center my-5 position-relative">
     <div class="row">
@@ -245,20 +246,20 @@
 
   <div class="featuredSection ">
     <div class="container-fluid">
-       <div class="row pt-5 ">
-      <div class="col-lg-auto col-md-4 col-12 text-center">
-        <img src="./assests/images/sunGlass.png" class="img-fluid d-none d-md-inline-block" alt="sunGlass">
-      </div>
-      <div class="col-lg-auto col-md-4 col-12 text-center spacing">
-        <p class="textStyle">Featured Tours</p>
-        <h1 class="fw-bold">Tour Packages</h1>
-      </div>
-      <div class="col-lg-auto col-md-4 col-12 text-center spacing">
-        <img src="./assests/images/bag.png" class="img-fluid d-none d-md-inline-block" alt="bag image">
+      <div class="row pt-5 ">
+        <div class="col-lg-auto col-md-4 col-12 text-center">
+          <img src="./assests/images/sunGlass.png" class="img-fluid d-none d-md-inline-block" alt="sunGlass">
+        </div>
+        <div class="col-lg-auto col-md-4 col-12 text-center spacing">
+          <p class="textStyle">Featured Tours</p>
+          <h1 class="fw-bold">Tour Packages</h1>
+        </div>
+        <div class="col-lg-auto col-md-4 col-12 text-center spacing">
+          <img src="./assests/images/bag.png" class="img-fluid d-none d-md-inline-block" alt="bag image">
+        </div>
       </div>
     </div>
-  </div>
-   
+
   </div>
 
 
@@ -269,25 +270,25 @@
           <img src="./assests/images/img-1 (3).jpg" class="card-img-top" alt="sea image">
           <div class="row position-absolute positionValues">
             <div class="col-auto ">
-              <p class="text-white p-2 greenBackground" >10% off</a>
+              <p class="text-white p-2 greenBackground">10% off</a>
             </div>
             <div class="col">
-              <p class="text-white p-2 orangBackground" >Features</a>
+              <p class="text-white p-2 orangBackground">Features</a>
 
             </div>
           </div>
           <div class="row position-absolute  translateValues g-3">
             <div class="col">
-              <p class="bg-dark rounded"><i class="fa-regular fa-heart fa-lg p-2 py-3 iconsWhite" ></i></p>
+              <p class="bg-dark rounded"><i class="fa-regular fa-heart fa-lg p-2 py-3 iconsWhite"></i></p>
             </div>
             <div class="col">
-              <p class="bg-dark rounded"><i class="fa-solid fa-camera fa-lg p-2 py-3 iconsWhite" ></i></p>
+              <p class="bg-dark rounded"><i class="fa-solid fa-camera fa-lg p-2 py-3 iconsWhite"></i></p>
             </div>
           </div>
           <div class="card-body">
             <div class="row g-1">
               <div class=" col-auto">
-                <i class="fa-solid fa-location-dot greenColor" ></i>
+                <i class="fa-solid fa-location-dot greenColor"></i>
               </div>
               <div class="col">
                 <p>traford Park Lexington,40507</p>
@@ -296,7 +297,7 @@
             <h5 class="card-title">Cuba Sailing Adventure</h5>
             <div class="row g-1">
               <div class="col-auto">
-                <i class="fa-solid fa-dollar-sign fa-lg greenColor" ></i>
+                <i class="fa-solid fa-dollar-sign fa-lg greenColor"></i>
               </div>
               <div class="col ">
                 <p>From<span class="orangColor">$116.10 </span></p>
@@ -314,13 +315,13 @@
             <div class="border-bottom border-dark w-sm-100 mb-4"></div>
             <div class="row g-lg-1 gx-sm-2">
               <div class="col-auto">
-                <i class="fa-regular fa-clock fa-lg greenColor" ></i>
+                <i class="fa-regular fa-clock fa-lg greenColor"></i>
               </div>
               <div class="col">
                 <p>6 days</p>
               </div>
               <div class="col col-lg-auto">
-                <a href="#" class="btn text-white greenBackground buttonHover" >Explore More</a>
+                <a href="#" class="btn text-white greenBackground buttonHover">Explore More</a>
 
               </div>
             </div>
@@ -331,19 +332,19 @@
       <div class="col-lg-4 col-md-6">
         <div class="card shadow-lg">
           <img src="./assests/images/img-2.jpg" class="card-img-top" alt="sea image">
-          <p class="text-white p-2 position-absolute positionValues greenBackground" >10% off</a>
+          <p class="text-white p-2 position-absolute positionValues greenBackground">10% off</a>
           <div class="row position-absolute  translateValues g-3">
             <div class="col">
-              <p class="bg-dark rounded"><i class="fa-regular fa-heart fa-lg p-2 py-3 iconsWhite" ></i></p>
+              <p class="bg-dark rounded"><i class="fa-regular fa-heart fa-lg p-2 py-3 iconsWhite"></i></p>
             </div>
             <div class="col">
-              <p class="bg-dark rounded"><i class="fa-solid fa-camera fa-lg p-2 py-3 iconsWhite" ></i></p>
+              <p class="bg-dark rounded"><i class="fa-solid fa-camera fa-lg p-2 py-3 iconsWhite"></i></p>
             </div>
           </div>
           <div class="card-body">
             <div class="row g-1">
               <div class="col-auto">
-                <i class="fa-solid fa-location-dot greenColor" ></i>
+                <i class="fa-solid fa-location-dot greenColor"></i>
               </div>
               <div class="col">
                 <p>traford Park Lexington,40507</p>
@@ -352,7 +353,7 @@
             <h5 class="card-title">Tour in New York</h5>
             <div class="row g-1">
               <div class="col-auto">
-                <i class="fa-solid fa-dollar-sign fa-lg greenColor" ></i>
+                <i class="fa-solid fa-dollar-sign fa-lg greenColor"></i>
               </div>
               <div class="col ">
                 <p>From<span class="orangColor">$116.10 </span></p>
@@ -370,13 +371,13 @@
             <div class="border-bottom border-dark w-sm-100 mb-4"></div>
             <div class="row g-1">
               <div class="col-auto">
-                <i class="fa-regular fa-clock fa-lg greenColor" ></i>
+                <i class="fa-regular fa-clock fa-lg greenColor"></i>
               </div>
               <div class="col">
                 <p>6 days</p>
               </div>
               <div class="col col-lg-auto">
-                <a href="#" class="btn text-white buttonHover greenBackground" >Explore More</a>
+                <a href="#" class="btn text-white buttonHover greenBackground">Explore More</a>
 
               </div>
             </div>
@@ -390,16 +391,16 @@
           <p class="text-white p-2 position-absolute positionValues greenBackground">10% off</a>
           <div class="row position-absolute  translateValues g-3">
             <div class="col">
-              <p class="bg-dark rounded"><i class="fa-regular fa-heart fa-lg p-2 py-3 iconsWhite" ></i></p>
+              <p class="bg-dark rounded"><i class="fa-regular fa-heart fa-lg p-2 py-3 iconsWhite"></i></p>
             </div>
             <div class="col">
-              <p class="bg-dark rounded"><i class="fa-solid fa-camera fa-lg p-2 py-3 iconsWhite" ></i></p>
+              <p class="bg-dark rounded"><i class="fa-solid fa-camera fa-lg p-2 py-3 iconsWhite"></i></p>
             </div>
           </div>
           <div class="card-body">
             <div class="row g-1">
               <div class="col-auto">
-                <i class="fa-solid fa-location-dot greenColor" ></i>
+                <i class="fa-solid fa-location-dot greenColor"></i>
               </div>
               <div class="col-auto">
                 <p>traford Park Lexington,40507</p>
@@ -443,40 +444,40 @@
     </div>
 
   </div>
-  
+
 
   <div class="videoBlock videoOverlay position-relative overflow-hidden">
     <img class="videoBackgroundImg" src="assests/images/video-bg.jpg" alt="Video Background">
     <div class="container">
-        <div class="row position-relative align-items-center position-relative z-1 ">
-            <div class="col">
-                <div class="videoContent">
-                    <h3 class="videoAboutSubtitle mb-4">
-                        Ready to travel with real adventure and enjoy natural
-                    </h3>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                        eiusmod tempor incididunt.
-                    </p>
-                    <div class="videoBtn">
-                        <a href="contact.html" class="btn d-inline-block text-capitalize">Start Booking</a>
-                    </div>
-                </div>
+      <div class="row position-relative align-items-center position-relative z-1 ">
+        <div class="col">
+          <div class="videoContent">
+            <h3 class="videoAboutSubtitle mb-4">
+              Ready to travel with real adventure and enjoy natural
+            </h3>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt.
+            </p>
+            <div class="videoBtn">
+              <a href="contact.html" class="btn d-inline-block text-capitalize">Start Booking</a>
             </div>
-            <div class="col-lg-6 col-sm-12 ">
-                <div class="videoBlockRight position-relative d-flex align-items-center justify-content-center">
-                    <div class="videoIcon">
-                        <a class="popupVideo position-relative d-inline-block text-center z-1"
-                            href="https://www.youtube.com/watch?v=8mSG40o-iJ0">
-                            <i class="fa-solid fa-play"></i>
-                        </a>
-                    </div>
-                   
-                </div>
-            </div>
+          </div>
         </div>
+        <div class="col-lg-6 col-sm-12 ">
+          <div class="videoBlockRight position-relative d-flex align-items-center justify-content-center">
+            <div class="videoIcon">
+              <a class="popupVideo position-relative d-inline-block text-center z-1"
+                href="https://www.youtube.com/watch?v=8mSG40o-iJ0">
+                <i class="fa-solid fa-play"></i>
+              </a>
+            </div>
+
+          </div>
+        </div>
+      </div>
     </div>
-</div>
+  </div>
 
   <div class="container-fluid background">
     <div class="container">
@@ -558,74 +559,74 @@
 
   <div class="footer overflow-hidden position-relative">
     <div class="footerLeftShape position-absolute">
-        <img src="assests/images/left-tree.png" alt="footerBackgroundL">
+      <img src="assests/images/left-tree.png" alt="footerBackgroundL">
     </div>
     <div class="footerRightShape position-absolute">
-        <img src="assests/images/left-tree.png" alt="footerBackgroundR">
+      <img src="assests/images/left-tree.png" alt="footerBackgroundR">
     </div>
     <div class="container">
-        <div class="row">
-            <div class="col-xl-3 col-lg-4 col-md-6">
-                <div class="footerBlock fotCol1">
-                    <div class="footerLogo">
-                        <a href="index.html"><img src="assests/images/logo.png" alt="Travello"></a>
-                    </div>
-                    <div class="footerContent">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed doeiusmod tempor incididunt
-                            ut labore et dolore magna aliqua. Ut</p>
-                        <div class="footerSocialIcons position-relative">
-                            <a href="#"><i class="flaticon-facebook-app-symbol text-light"></i></a>
-                            <a href="#"><i class="flaticon-twitter"></i></a>
-                            <a href="#"><i class="flaticon-skype"></i></a>
-                            <a href="#"><i class="flaticon-linkedin"></i></a>
-                        </div>
-                    </div>
-                </div>
+      <div class="row">
+        <div class="col-xl-3 col-lg-4 col-md-6">
+          <div class="footerBlock fotCol1">
+            <div class="footerLogo">
+              <a href="index.html"><img src="assests/images/logo.png" alt="Travello"></a>
             </div>
-            <div class="col-xl-3 col-lg-4 col-md-6">
-                <div class="footerBlock fotCol2">
-                    <h3 class="footerBlockTitle text-uppercase text-decoration-underline">Company:</h3>
-                    <div class="footerList">
-                        <ul>
-                            <li><a href="#">Home</a></li>
-                            <li><a href="about-us.html">About us</a></li>
-                             <li><a href="blog.html">Blog update</a></li>
-                            <li><a href="#">Our services</a></li>
-                            <li><a href="#">Testimonial</a></li>
-                        </ul>
-                    </div>
-                </div>
+            <div class="footerContent">
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed doeiusmod tempor incididunt
+                ut labore et dolore magna aliqua. Ut</p>
+              <div class="footerSocialIcons position-relative">
+                <a href="#"><i class="flaticon-facebook-app-symbol text-light"></i></a>
+                <a href="#"><i class="flaticon-twitter"></i></a>
+                <a href="#"><i class="flaticon-skype"></i></a>
+                <a href="#"><i class="flaticon-linkedin"></i></a>
+              </div>
             </div>
-            <div class="col-xl-3 col-lg-4 col-md-6">
-                <div class="footerBlock fotCol3">
-                    <h3 class="footerBlockTitle text-uppercase text-decoration-underline">Quick links:</h3>
-                    <div class="footerList">
-                        <ul>
-                            <li><a href="#">Privacy & policy</a></li>
-                            <li><a href="#">Terms & conditions</a></li>
-                            <li><a href="#">FAQ</a></li>
-                            <li><a href="#">Hydropowe Plants</a></li>
-                            <li><a href="#">Customer support</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3 col-lg-4 col-md-6 z-3">
-                <div class="footerBlock fotCol4">
-                    <h3 class="footerBlockTitle text-uppercase text-decoration-underline">Subscribe Newsletter:</h3>
-                    <div class="footerForm">
-                        <form action="#">
-                            <div class="footerInput">
-                                <input id="email" autocomplete="email" type="email" placeholder="Enter Your Email:">
-                            </div>
-                            <button type="submit" class="btn footerBtn">Subscribe Now</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
+          </div>
         </div>
+        <div class="col-xl-3 col-lg-4 col-md-6">
+          <div class="footerBlock fotCol2">
+            <h3 class="footerBlockTitle text-uppercase text-decoration-underline">Company:</h3>
+            <div class="footerList">
+              <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="about-us.html">About us</a></li>
+                <li><a href="blog.html">Blog update</a></li>
+                <li><a href="#">Our services</a></li>
+                <li><a href="#">Testimonial</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6">
+          <div class="footerBlock fotCol3">
+            <h3 class="footerBlockTitle text-uppercase text-decoration-underline">Quick links:</h3>
+            <div class="footerList">
+              <ul>
+                <li><a href="#">Privacy & policy</a></li>
+                <li><a href="#">Terms & conditions</a></li>
+                <li><a href="#">FAQ</a></li>
+                <li><a href="#">Hydropowe Plants</a></li>
+                <li><a href="#">Customer support</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6 z-3">
+          <div class="footerBlock fotCol4">
+            <h3 class="footerBlockTitle text-uppercase text-decoration-underline">Subscribe Newsletter:</h3>
+            <div class="footerForm">
+              <form action="#">
+                <div class="footerInput">
+                  <input id="email" autocomplete="email" type="email" placeholder="Enter Your Email:">
+                </div>
+                <button type="submit" class="btn footerBtn">Subscribe Now</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-</div>
+  </div>
   <div class="copyright z-3 position-relative">
     <div class="container">
       <div class="copyrightWrap z-2">
@@ -648,11 +649,10 @@
     </div>
   </div>
 
-  <button id="scrollTop" class="btn scrollTop" onclick="topFunction();"><i
-    class="fa-solid fa-chevron-up"></i></button>
+  <button id="scrollTop" class="btn scrollTop" onclick="topFunction();"><i class="fa-solid fa-chevron-up"></i></button>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-  integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-  crossorigin="anonymous"></script>
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
   <script src="./assests//js/script.js">
   </script>
 
