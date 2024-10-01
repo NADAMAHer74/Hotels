@@ -1,11 +1,12 @@
 import React from "react";
 import "./style.css";
-import blog1 from "../../../blog-1-1.jpg";
-import blog2 from "../../../blog-1-2.jpg";
-import blog3 from "../../../blog-1-3.jpg";
-import blog4 from "../../../blog-1-4.jpg";
-import blog5 from "../../../blog-1-5.jpg";
-import blog6 from "../../../blog-1-6.jpg";
+import blog1 from "../../../images/blog-1-1.jpg";
+import blog2 from "../../../images/blog-1-2.jpg";
+import blog3 from "../../../images/blog-1-3.jpg";
+import blog4 from "../../../images/blog-1-4.jpg";
+import blog5 from "../../../images/blog-1-5.jpg";
+import blog6 from "../../../images/blog-1-6.jpg";
+import MainBanner from "../MainBanner/MainBanner";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -15,6 +16,8 @@ import {
 export default function Blog() {
   return (
     <>
+      <MainBanner title="Blog" />
+
       <section className="blog">
         <div className="container ">
           <div className="row  gy-4 ">

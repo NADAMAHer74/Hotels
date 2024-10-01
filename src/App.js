@@ -1,12 +1,14 @@
 import logo from "./logo.svg";
 import "./App.css";
-import logo from "./logo.svg";
 import Header from "./Components/Shared/Header";
 import Footer from "./Components/Shared/Footer";
 import TourDetail from "./Components/Pages/TourDetails/TourDetail";
+import Home from "./Components/Pages/Home/Home";
+import Destination from "./Components/Pages/Destination/Destination";
+import Blog from "./Components/Pages/Blog/Blog";
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import MainBanner from "./Components/Pages/MainBanner/MainBanner";
+// import MainBanner from "./Components/Pages/MainBanner/MainBanner";
 
 function App() {
   return (
@@ -14,11 +16,13 @@ function App() {
       <Router>
         <Header />
         <Routes>
-          {/* <Route path='/' exact element={<Home/>}/>
-      <Route path='/blod' element={<Blog/>}/>
+          <Route path=" " element={<Home />} />
+          {/* <Route path='/blod' element={<Blog/>}/>
       <Route path='/about' element={<About/>}/>
       <Route path='/contact' element={<Contact/>}/> */}
           <Route path="/tourdetail" element={<TourDetail />} />
+          <Route path="/destination" element={<Destination />} />
+          <Route path="/blog" element={<Blog />} />
         </Routes>
         <Footer />
       </Router>

@@ -1,15 +1,17 @@
 import React from "react";
 import "./style.css";
-import person1 from "../../../person1.jpg";
-import person2 from "../../../person2.jpg";
-import person3 from "../../../person3.jpg";
-import person4 from "../../../person4.jpg";
-import person5 from "../../../person5.jpg";
-import person6 from "../../../person6.jpg";
-
+import person1 from "../../../images/person1.jpg";
+import person2 from "../../../images/person2.jpg";
+import person3 from "../../../images/person3.jpg";
+import person4 from "../../../images/person4.jpg";
+import person5 from "../../../images/person5.jpg";
+import person6 from "../../../images/person6.jpg";
+import MainBanner from "../MainBanner/MainBanner";
 export default function Destination() {
   return (
     <>
+      <MainBanner title="Destination" />
+
       <section className="destination">
         <div className="container ">
           <div className="row">

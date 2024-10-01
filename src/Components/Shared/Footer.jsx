@@ -1,122 +1,178 @@
-import React from 'react';
-import './general.css';
-import { Link } from 'react-router-dom';
-import { useEffect } from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.bundle.min.js';
-import '@fortawesome/fontawesome-free/css/all.min.css';
-import './script.js';
+import React from "react";
+import "./general.css";
+import { Link } from "react-router-dom";
+import { useEffect } from "react";
+// import 'bootstrap/dist/css/bootstrap.min.css';
+// import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+// import '@fortawesome/fontawesome-free/css/all.min.css';
+import "./script.js";
 
 function Footer() {
-    // useEffect(() => {
-        
-    //     const mybutton = document.getElementById("scrollTop");
-    //     return () => {
-    //       mybutton.removeEventListener("click", backToTop);
-    //     };
-    //   }, []);
-    //   const backToTop = () => {
-    //     document.body.scrollTop = 0; 
-    //     document.documentElement.scrollTop = 0;
-    //   };
+  // useEffect(() => {
+
+  //     const mybutton = document.getElementById("scrollTop");
+  //     return () => {
+  //       mybutton.removeEventListener("click", backToTop);
+  //     };
+  //   }, []);
+  //   const backToTop = () => {
+  //     document.body.scrollTop = 0;
+  //     document.documentElement.scrollTop = 0;
+  //   };
   return (
     <div>
-        <div className="footer overflow-hidden position-relative">
-            <div className="footerLeftShape position-absolute">
-                <img src="assests/images/left-tree.png" alt="footerBackgroundL"/>
-            </div>
-            <div className="footerRightShape position-absolute">
-                <img src="assests/images/left-tree.png" alt="footerBackgroundR"/>
-            </div>
-            <div className="container">
-                <div className="row">
-                    <div className="col-xl-3 col-lg-4 col-md-6">
-                        <div className="footerBlock fotCol1">
-                            <div className="footerLogo">
-                                <a href="index.html"><img src="assests/images/logo.png" alt="Travello"/></a>
-                            </div>
-                            <div className="footerContent">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed doeiusmod tempor incididunt
-                                    ut labore et dolore magna aliqua. Ut</p>
-                                <div className="footerSocialIcons position-relative">
-                                    <a href="#"><i className="flaticon-facebook-app-symbol text-light"></i></a>
-                                    <a href="#"><i className="flaticon-twitter"></i></a>
-                                    <a href="#"><i className="flaticon-skype"></i></a>
-                                    <a href="#"><i className="flaticon-linkedin"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-xl-3 col-lg-4 col-md-6">
-                        <div className="footerBlock fotCol2">
-                            <h3 className="footerBlockTitle text-uppercase text-decoration-underline">Company:</h3>
-                            <div className="footerList">
-                                <ul>
-                                    <li><a href="index.html">Home</a></li>
-                                    <li><a href="about-us.html">About us</a></li>                            
-                                    <li><a href="blog.html">Blog update</a></li>
-                                    <li><a href="#">Our services</a></li>
-                                    <li><a href="#">Testimonial</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-xl-3 col-lg-4 col-md-6">
-                        <div className="footerBlock fotCol3">
-                            <h3 className="footerBlockTitle text-uppercase text-decoration-underline">Quick links:</h3>
-                            <div className="footerList">
-                                <ul>
-                                    <li><a href="#">Privacy & policy</a></li>
-                                    <li><a href="#">Terms & conditions</a></li>
-                                    <li><a href="#">FAQ</a></li>
-                                    <li><a href="#">Hydropowe Plants</a></li>
-                                    <li><a href="#">Customer support</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-xl-3 col-lg-4 col-md-6 z-3">
-                        <div className="footerBlock fotCol4">
-                            <h3 className="footerBlockTitle text-uppercase text-decoration-underline">Subscribe Newsletter:</h3>
-                            <div className="footerForm">
-                                <form action="#">
-                                    <div className="footerInput">
-                                        <input id="email" autocomplete="email" type="email" placeholder="Enter Your Email:"/>
-                                    </div>
-                                    <button type="submit" className="btn footerBtn">Subscribe Now</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+      <div className="footer overflow-hidden position-relative">
+        <div className="footerLeftShape position-absolute">
+          <img src="assests/images/left-tree.png" alt="footerBackgroundL" />
         </div>
-        <div className="copyright z-3 position-relative">
-            <div className="container">
-            <div className="copyrightWrap z-2">
-                <div className="row align-items-center">
-                <div className="col-xl-6 col-lg-6">
-                    <div className="copyrightText text-center text-lg-start">
-                    <p className="mb-0">
-                        Copyright © 2024 <span><a href="#">Travello</a></span> All
-                        Right Reserved
-                    </p>
-                    </div>
-                </div>
-                <div className="col-xl-6 col-lg-6 d-none d-lg-block">
-                    <div className="copyrightPrivacy text-end">
-                    <a className="text-decoration-none" href="#">Privacy & Policy || Terms & Conditions</a>
-                    </div>
-                </div>
-                </div>
-            </div>
-            </div>
+        <div className="footerRightShape position-absolute">
+          <img src="assests/images/left-tree.png" alt="footerBackgroundR" />
         </div>
-        <button id="scrollTop" class="btn scrollTop" onclick="topFunction();" title="Go to top"><i
-            class="fa-solid fa-chevron-up"></i></button>
-
+        <div className="container">
+          <div className="row">
+            <div className="col-xl-3 col-lg-4 col-md-6">
+              <div className="footerBlock fotCol1">
+                <div className="footerLogo">
+                  <a href="index.html">
+                    <img src="assests/images/logo.png" alt="Travello" />
+                  </a>
+                </div>
+                <div className="footerContent">
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                    doeiusmod tempor incididunt ut labore et dolore magna
+                    aliqua. Ut
+                  </p>
+                  <div className="footerSocialIcons position-relative">
+                    <a href="#">
+                      <i className="flaticon-facebook-app-symbol text-light"></i>
+                    </a>
+                    <a href="#">
+                      <i className="flaticon-twitter"></i>
+                    </a>
+                    <a href="#">
+                      <i className="flaticon-skype"></i>
+                    </a>
+                    <a href="#">
+                      <i className="flaticon-linkedin"></i>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="col-xl-3 col-lg-4 col-md-6">
+              <div className="footerBlock fotCol2">
+                <h3 className="footerBlockTitle text-uppercase text-decoration-underline">
+                  Company:
+                </h3>
+                <div className="footerList">
+                  <ul>
+                    <li>
+                      <a href="index.html">Home</a>
+                    </li>
+                    <li>
+                      <a href="about-us.html">About us</a>
+                    </li>
+                    <li>
+                      <a href="blog.html">Blog update</a>
+                    </li>
+                    <li>
+                      <a href="#">Our services</a>
+                    </li>
+                    <li>
+                      <a href="#">Testimonial</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div className="col-xl-3 col-lg-4 col-md-6">
+              <div className="footerBlock fotCol3">
+                <h3 className="footerBlockTitle text-uppercase text-decoration-underline">
+                  Quick links:
+                </h3>
+                <div className="footerList">
+                  <ul>
+                    <li>
+                      <a href="#">Privacy & policy</a>
+                    </li>
+                    <li>
+                      <a href="#">Terms & conditions</a>
+                    </li>
+                    <li>
+                      <a href="#">FAQ</a>
+                    </li>
+                    <li>
+                      <a href="#">Hydropowe Plants</a>
+                    </li>
+                    <li>
+                      <a href="#">Customer support</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div className="col-xl-3 col-lg-4 col-md-6 z-3">
+              <div className="footerBlock fotCol4">
+                <h3 className="footerBlockTitle text-uppercase text-decoration-underline">
+                  Subscribe Newsletter:
+                </h3>
+                <div className="footerForm">
+                  <form action="#">
+                    <div className="footerInput">
+                      <input
+                        id="email"
+                        autocomplete="email"
+                        type="email"
+                        placeholder="Enter Your Email:"
+                      />
+                    </div>
+                    <button type="submit" className="btn footerBtn">
+                      Subscribe Now
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="copyright z-3 position-relative">
+        <div className="container">
+          <div className="copyrightWrap z-2">
+            <div className="row align-items-center">
+              <div className="col-xl-6 col-lg-6">
+                <div className="copyrightText text-center text-lg-start">
+                  <p className="mb-0">
+                    Copyright © 2024{" "}
+                    <span>
+                      <a href="#">Travello</a>
+                    </span>{" "}
+                    All Right Reserved
+                  </p>
+                </div>
+              </div>
+              <div className="col-xl-6 col-lg-6 d-none d-lg-block">
+                <div className="copyrightPrivacy text-end">
+                  <a className="text-decoration-none" href="#">
+                    Privacy & Policy || Terms & Conditions
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button
+        id="scrollTop"
+        class="btn scrollTop"
+        onclick="topFunction();"
+        title="Go to top"
+      >
+        <i class="fa-solid fa-chevron-up"></i>
+      </button>
     </div>
-  )
+  );
 }
 
-export default Footer
+export default Footer;
