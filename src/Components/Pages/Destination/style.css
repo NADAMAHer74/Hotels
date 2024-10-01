@@ -1,0 +1,13 @@
+.destination {
+  margin-top: 8%;
+  margin-bottom: 8%;
+}
+.parent:hover img {
+  transform: scale(1.2);
+}
+.parent img {
+  transition: 0.8s ease-in-out;
+}
+.greenColor {
+  color: #11bb67;
+}
