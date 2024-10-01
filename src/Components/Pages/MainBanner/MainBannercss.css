@@ -1,0 +1,30 @@
+.mainBanner h3 {
+    font-weight: 700;
+    font-size: 60px;
+    line-height: 1.4;
+    color: white;
+    letter-spacing: -2px;
+  }
+  
+  .bannerBreadcrumbListWrap {
+    left: 0;
+    right: 0;
+    bottom: -30px;
+  }
+  
+  .bannerBreadcrumbListWrap a {
+    color: white;
+  }
+  
+  .bannerBreadcrumbListContent {
+    color: white;
+    border-radius: 5px;
+    padding: 18px 30px;
+    background-color: var(--color-primary);
+  }
+  
+  .bannerBreadcrumbListContent span {
+    text-transform: capitalize;
+    font-size: 18px;
+    font-weight: 500;
+  }
