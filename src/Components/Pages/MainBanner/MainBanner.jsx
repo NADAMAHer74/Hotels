@@ -1,8 +1,7 @@
 import React from "react";
 import "./MainBannercss.css";
 import { Link } from "react-router-dom";
-// import "bootstrap/dist/css/bootstrap.min.css";
-// import "@fortawesome/fontawesome-free/css/all.min.css";
+
 import breadcrumb from "../../../images/breadcrumb.jpg";
 
 function MainBanner(props) {
