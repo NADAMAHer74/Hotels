@@ -1,112 +1,39 @@
 import React from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css";
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import { FaClock, FaPhone, FaMapMarkerAlt } from "react-icons/fa"; // Importing icons
+import "leaflet/dist/leaflet.css";
+import "./Contact.css";
 
-const ContactUs = () => {
+const Contact = () => {
   return (
-    <div className="container contactForm">
-      <div className="row">
-        {/* Form Section */}
-        <div className="col-md-6 col-sm-12">
-          <form>
-            <div className="form-row">
-              <div className="form-group col-md-6 col-sm-6">
-                <input
-                  type="text"
-                  className="form-control"
-                  id="firstName"
-                  placeholder="First Name:"
-                />
-              </div>
-              <div className="form-group col-md-6 col-sm-6">
-                <input
-                  type="text"
-                  className="form-control"
-                  id="lastName"
-                  placeholder="Last Name:"
-                />
-              </div>
-            </div>
-            <div className="form-row">
-              <div className="form-group col-md-6 col-sm-12">
-                <input
-                  type="email"
-                  className="form-control"
-                  id="email"
-                  placeholder="Email:"
-                />
-              </div>
-              <div className="form-group col-md-6 col-sm-12">
-                <input
-                  type="text"
-                  className="form-control"
-                  id="phone"
-                  placeholder="Phone:"
-                />
-              </div>
-            </div>
-            <div className="form-group">
-              <input
-                type="text"
-                className="form-control"
-                id="subject"
-                placeholder="Subject:"
-              />
-            </div>
-            <div className="form-group">
-              <textarea
-                className="form-control"
-                id="message"
-                rows="5"
-                placeholder="Write a Message..."
-              ></textarea>
-            </div>
-            <button type="submit" className="btn btn-success mb-2">
-              Send Message
-            </button>
-          </form>
-        </div>
+    <div className="contact-page">
+      {/* Form Section */}
+      <div className="form-section">
+        <form className="contact-form">
+          <div className="input-row">
+            <input type="text" placeholder="First Name" />
+            <input type="text" placeholder="Last Name" />
+          </div>
+          <div className="input-row">
+            <input type="email" placeholder="Email" />
+            <input type="tel" placeholder="Phone" />
+          </div>
+          <input type="text" placeholder="Subject" className="subject-input" />
+          <textarea placeholder="Write A Message..." className="message-input"></textarea>
+          <button type="submit" className="submit-btn">Send Message</button>
+        </form>
 
-        {/* Contact Info Section */}
-        <div className="col-md-6 col-sm-12">
-          <div className="contactInfoForm">
-            <div className="d-flex align-items-center">
-              <i className="fas fa-clock"></i>
-              <div>
-                <a href="#">
-                  <h4>Hours:</h4>
-                </a>
-                <p>
-                  Monday - Friday: 8 AM - 5:30 PM
-                  <br />
-                  Saturday - Sunday: Closed
-                </p>
-              </div>
-            </div>
-            <hr />
-            <div className="d-flex align-items-center">
-              <i className="fas fa-phone-alt"></i>
-              <div>
-                <a href="#">
-                  <h4>Call Us:</h4>
-                </a>
-                <p>
-                  (+000) 987-3267
-                  <br />
-                  +88 568 956 238
-                </p>
-              </div>
-            </div>
-            <hr />
-            <div className="d-flex align-items-center">
-              <i className="fas fa-map-marker-alt"></i>
-              <div>
-                <a href="#">
-                  <h4>Location:</h4>
-                </a>
-                <p>242 Carlyle Rd Zebulon, North Carolina (NC), 27597</p>
-              </div>
-            </div>
+        {/* Info Section */}
+        <div className="info-section">
+          <div className="info-box">
+            <h4><FaClock /> Hours:</h4>
+            <p>Monday - Friday: 8 AM - 5:30 PM</p>
+            <p>Saturday - Sunday: Closed</p>
+            <h4><FaPhone /> Call:</h4>
+            <p>+1-040-981-3287</p>
+            <p>+1-608-850-3300</p>
+            <h4><FaMapMarkerAlt /> Location:</h4>
+            <p>240 Carlotte Estbethville, North Carolina(NC), 25997</p>
           </div>
         </div>
       </div>
@@ -125,4 +52,4 @@ const ContactUs = () => {
   );
 };
 
-export default ContactUs;
+export default Contact;
