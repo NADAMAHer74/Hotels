@@ -120,7 +120,7 @@ function Footer() {
                     <div className="footerInput">
                       <input
                         id="email"
-                        autocomplete="email"
+                        autoComplete="email"
                         type="email"
                         placeholder="Enter Your Email:"
                       />
@@ -163,11 +163,11 @@ function Footer() {
       </div>
       <button
         id="scrollTop"
-        class="btn scrollTop"
-        onclick="topFunction();"
+        className="btn scrollTop"
+
         title="Go to top"
       >
-        <i class="fa-solid fa-chevron-up"></i>
+        <i className="fa-solid fa-chevron-up"></i>
       </button>
     </div>
   );

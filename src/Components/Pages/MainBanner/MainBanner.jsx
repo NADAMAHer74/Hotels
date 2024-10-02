@@ -7,24 +7,24 @@ import breadcrumb from "../../../images/breadcrumb.jpg";
 function MainBanner(props) {
   return (
     <div>
-      <div class="mainBanner position-relative d-flex align-items-center justify-content-center z-1">
+      <div className="mainBanner position-relative d-flex align-items-center justify-content-center z-1">
         <img
           src={breadcrumb}
           draggable="false"
-          class="mainBannerImg"
+          className="mainBannerImg"
           alt="mainBanner"
         />
-        <div class="container">
-          <div class="row">
-            <div class="col-md-12">
-              <div class="bannerContent">
-                <div class="bannerTitleBox">
-                  <h3 class="text-uppercase text-center">{props.title}</h3>
+        <div className="container">
+          <div className="row">
+            <div className="col-md-12">
+              <div className="bannerContent">
+                <div className="bannerTitleBox">
+                  <h3 className="text-uppercase text-center">{props.title}</h3>
                 </div>
-                <div class="bannerBreadcrumbListWrap position-absolute text-center">
-                  <div class="bannerBreadcrumbListContent d-inline-block">
+                <div className="bannerBreadcrumbListWrap position-absolute text-center">
+                  <div className="bannerBreadcrumbListContent d-inline-block">
                     <span>
-                      <Link class="text-decoration-none" to="/">
+                      <Link className="text-decoration-none" to="/">
                         home
                       </Link>
                     </span>

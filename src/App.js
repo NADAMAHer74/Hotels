@@ -8,7 +8,9 @@ import Destination from "./Components/Pages/Destination/Destination";
 import Blog from "./Components/Pages/Blog/Blog";
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import About from "./Components/Pages/About/About";
 // import MainBanner from "./Components/Pages/MainBanner/MainBanner";
+
 
 function App() {
   return (
@@ -20,6 +22,7 @@ function App() {
           {/* <Route path='/blod' element={<Blog/>}/>
       <Route path='/about' element={<About/>}/>
       <Route path='/contact' element={<Contact/>}/> */}
+          <Route path='/about' element={<About />} />
           <Route path="/tourdetail" element={<TourDetail />} />
           <Route path="/destination" element={<Destination />} />
           <Route path="/blog" element={<Blog />} />
