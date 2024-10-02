@@ -1,5 +1,5 @@
 import React from "react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import "./general.css";
 import { Link } from "react-router-dom";
 
@@ -22,18 +22,26 @@ function Header() {
     document.body.scrollTop = 0; // For Safari
     document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
   };
+
+  const [isContactMenuVisible, setContactMenuVisible] = useState(false);
+
+
+  const handleTopMenu = () => {
+    setContactMenuVisible(!isContactMenuVisible);
+  }
   return (
     <div>
       <header>
         <div className="topBar ">
           <div className="container d-flex justify-content-between align-items-center flex-sm-row">
             <div className="dropdownCompanyInfo d-xl-none d-lg-none  d-inline-block">
-              <i className="fa-solid fa-chevron-right toggleChevron"></i>
+              <i className="fa-solid fa-chevron-right toggleChevron" onClick={handleTopMenu}></i>
               <a className="text-decoration-none text-light" href="#">
                 <i className="fa-solid fa-phone-volume"></i>
                 (000) 967-237-96
               </a>
-              <ul className="contactMenu collapseList">
+              <ul className={`contactMenu collapseList ${isContactMenuVisible ? "d-flex" : "d-none"
+                }`} >
                 <li className="p-3">
                   <a
                     className="text-decoration-none d-flex align-items-center"
