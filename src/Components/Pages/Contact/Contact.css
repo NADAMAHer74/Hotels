@@ -1,11 +1,14 @@
+/* General Page Styling */
 .contact-page {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 40px;
-  padding: 40px 0; /* Margin for top and bottom */
+  padding: 40px 0;
+  font-family: 'Roboto', sans-serif; /* Use Roboto or similar font */
 }
 
+/* Form Section */
 .form-section {
   display: flex;
   justify-content: space-between;
@@ -17,7 +20,7 @@
   width: 60%;
   display: flex;
   flex-direction: column;
-  gap: 10px; /* Adds gap between input elements */
+  gap: 10px;
 }
 
 .input-row {
@@ -30,6 +33,12 @@ input, textarea {
   padding: 12px;
   border: 1px solid #ccc;
   border-radius: 4px;
+  font-size: 14px;
+}
+
+input:focus, textarea:focus {
+  outline: none;
+  border-color: #28a745; /* Add green border on focus */
 }
 
 .subject-input {
@@ -40,24 +49,31 @@ input, textarea {
   height: 120px;
 }
 
+/* Button Style */
 .submit-btn {
-  padding: 10px 20px;
+  padding: 10px 25px;
   background-color: #28a745;
   color: white;
   border: none;
   border-radius: 4px;
+  font-size: 16px;
   cursor: pointer;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  transition: background-color 0.3s ease;
 }
 
+.submit-btn:hover {
+  background-color: #218838; /* Darker green on hover */
+}
+
+/* Info Section */
 .info-section {
   width: 35%;
   background-color: #28a745;
   padding: 20px;
   border-radius: 8px;
   color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
 }
 
 .info-box {
@@ -66,8 +82,28 @@ input, textarea {
   gap: 15px;
 }
 
+.info-box h4 {
+  font-size: 18px;
+  font-weight: bold;
+  text-decoration: underline; /* Add underline if needed */
+}
+
+.info-box p {
+  font-size: 14px;
+  margin: 5px 0;
+}
+
+/* Icon Style */
+.icon {
+  margin-right: 10px;
+  font-size: 18px;
+  vertical-align: middle;
+}
+
+/* Map Section */
 .map-section {
   display: flex;
   justify-content: center;
   margin: 20px 0;
 }
+

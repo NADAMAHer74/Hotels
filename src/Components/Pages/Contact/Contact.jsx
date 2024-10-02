@@ -1,8 +1,8 @@
 import React from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
-import { FaClock, FaPhone, FaMapMarkerAlt } from "react-icons/fa"; // Importing icons
+import { FaClock, FaPhone, FaMapMarkerAlt } from "react-icons/fa"; // Importing correct icons
 import "leaflet/dist/leaflet.css";
-import "./Contact.css";
+import "./Contact.css"; // Import CSS for styles
 
 const Contact = () => {
   return (
@@ -26,27 +26,29 @@ const Contact = () => {
         {/* Info Section */}
         <div className="info-section">
           <div className="info-box">
-            <h4><FaClock /> Hours:</h4>
+            <h4><FaClock className="icon" /> Hours:</h4>
             <p>Monday - Friday: 8 AM - 5:30 PM</p>
             <p>Saturday - Sunday: Closed</p>
-            <h4><FaPhone /> Call:</h4>
+            <h4><FaPhone className="icon" /> Call:</h4>
             <p>+1-040-981-3287</p>
             <p>+1-608-850-3300</p>
-            <h4><FaMapMarkerAlt /> Location:</h4>
+            <h4><FaMapMarkerAlt className="icon" /> Location:</h4>
             <p>240 Carlotte Estbethville, North Carolina(NC), 25997</p>
           </div>
         </div>
       </div>
 
       {/* Map Section */}
-      <div className="map">
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3021.696922906035!2d-74.00797828459493!3d40.71277597933064!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25a3168ae2b73%3A0xf6b8fe3c0c4b3a5c!2sNew%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2sin!4v1603927603773!5m2!1sen!2sin"
-          allowFullScreen=""
-          aria-hidden="false"
-          tabIndex="0"
-          title="Google Map"
-        ></iframe>
+      <div className="map-section">
+        <MapContainer center={[40.7128, -74.0060]} zoom={12} style={{ height: "300px", width: "100%", margin: "20px auto" }}>
+          <TileLayer
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            attribution="&copy; OpenStreetMap contributors"
+          />
+          <Marker position={[40.7128, -74.0060]}>
+            <Popup>New York Office</Popup>
+          </Marker>
+        </MapContainer>
       </div>
     </div>
   );
