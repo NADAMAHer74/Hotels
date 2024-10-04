@@ -132,7 +132,7 @@ function Header() {
               <ul className="navbar-nav ms-auto">
                 <li className="nav-item me-4">
                   <Link
-                    to=" "
+                    to="/"
                     className="nav-link active text-dark"
                     aria-current="page"
                   >
