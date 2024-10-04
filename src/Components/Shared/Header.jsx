@@ -119,7 +119,7 @@ function Header() {
               <ul className="navbar-nav ms-auto">
                 <li className="nav-item me-4">
                   <Link
-                    to="/"
+                    to=" "
                     className="nav-link active text-dark"
                     aria-current="page"
                   >
@@ -143,7 +143,7 @@ function Header() {
                     aria-labelledby="navbarDropdownTours"
                   >
                     <li>
-                      <Link className="dropdown-item" to="/tourgrid">
+                      <Link className="dropdown-item" to="/tourgride">
                         Tour
                       </Link>
                     </li>

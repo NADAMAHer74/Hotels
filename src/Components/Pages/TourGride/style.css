@@ -1,0 +1,74 @@
+.card {
+  border: none;
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.card-img-top {
+  border-radius: 10px;
+  object-fit: cover;
+  height: 250px;
+}
+
+.card-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.badge {
+  margin: 3px;
+  font-size: 15px;
+}
+
+.discount-badge {
+  background-color: #28a745;
+}
+
+.featured-badge {
+  background-color: #ff6525;
+}
+
+.card-title,
+.card-text,
+.price,
+.new-price {
+  margin: 0;
+}
+
+.card-text {
+  font-size: 10px;
+}
+
+.price {
+  text-decoration: line-through;
+  color: #ff6525;
+}
+
+.address {
+  margin-top: 120px;
+}
+
+.new-price {
+  color: white;
+  font-weight: bold;
+}
+
+.pagination {
+  justify-content: flex-start;
+  gap: 10px;
+}
+
+.btn-next {
+  background-color: #28a745;
+  color: white;
+}
