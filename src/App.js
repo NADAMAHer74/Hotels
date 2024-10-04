@@ -11,7 +11,7 @@ import Contact from "./Components/Pages/Contact/Contact";
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import About from "./Components/Pages/About/About";
-import TourGride from "./Components/Pages/TourGride/TourGride";
+import TourGrid from "./Components/Pages/TourGrid/TourGrid";
 // import MainBanner from "./Components/Pages/MainBanner/MainBanner";
 
 function App() {
@@ -21,9 +21,8 @@ function App() {
         <Header />
         <Routes>
           <Route path=" " element={<Home />} />
-          {/* <Route path='/blod' element={<Blog/>}/>
-      <Route path='/about' element={<About/>}/>
-      <Route path='/contact' element={<Contact/>}/> */}
+
+          <Route path="/tourgrid" element={<TourGrid />} />
           <Route path="/about" element={<About />} />
           <Route path="/about" element={<About />} />
 
