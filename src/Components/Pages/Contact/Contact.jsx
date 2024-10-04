@@ -26,10 +26,10 @@ const Contact = () => {
         {/* Info Section */}
         <div className="info-section">
           <div className="info-box">
-            <h4 className="icon fas fa-clock"> Hours:</h4>
+            <h4><FaClock className="icon" /> Hours:</h4>
             <p>Monday - Friday: 8 AM - 5:30 PM</p>
             <p>Saturday - Sunday: Closed</p>
-            <h4><FaPhone className="icon" /> Call:</h4>
+            <h4><FaPhone className="icon" style={{ transform: 'rotate(90deg)'}} /> Call:</h4>
             <p>+1-040-981-3287</p>
             <p>+1-608-850-3300</p>
             <h4><FaMapMarkerAlt className="icon" /> Location:</h4>
@@ -55,3 +55,5 @@ const Contact = () => {
 };
 
 export default Contact;
+
+
