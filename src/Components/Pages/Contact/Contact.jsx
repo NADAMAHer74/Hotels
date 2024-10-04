@@ -26,7 +26,7 @@ const Contact = () => {
         {/* Info Section */}
         <div className="info-section">
           <div className="info-box">
-            <h4><FaClock className="icon" /> Hours:</h4>
+            <h4 className="icon fas fa-clock"> Hours:</h4>
             <p>Monday - Friday: 8 AM - 5:30 PM</p>
             <p>Saturday - Sunday: Closed</p>
             <h4><FaPhone className="icon" /> Call:</h4>
