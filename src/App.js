@@ -3,6 +3,7 @@ import "./App.css";
 import Header from "./Components/Shared/Header";
 import Footer from "./Components/Shared/Footer";
 import TourDetail from "./Components/Pages/TourDetails/TourDetail";
+import BlogDetail from "./Components/Pages/BlogDetails/BlogDetails";
 import Home from "./Components/Pages/Home/Home";
 import Destination from "./Components/Pages/Destination/Destination";
 import Blog from "./Components/Pages/Blog/Blog";
@@ -27,6 +28,7 @@ function App() {
           <Route path="/tourdetail" element={<TourDetail />} />
           <Route path="/destination" element={<Destination />} />
           <Route path="/blog" element={<Blog />} />
+          <Route path="/BlogDetail" element={<BlogDetail />} />
         </Routes>
         <Footer />
       </Router>
