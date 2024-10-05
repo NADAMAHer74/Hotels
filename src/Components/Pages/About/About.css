@@ -7,7 +7,7 @@
     --color-primary: #11BB67;
     --color-secondary: #FF6525;
     --main-font: "DM Sans", sans-serif;
-    --second-font: gloss;
+    --second-font: "Gloss and Bloom";
 }
 
 body {
@@ -18,157 +18,11 @@ img {
     max-width: 100%;
 }
 
-.contactNavBtn {
-    background-color: var(--color-primary) !important;
-    color: white;
-    font-family: var(--main-font);
-    font-weight: 500;
-    transition: 0.3s ease-in-out;
-    border-radius: 5px;
-    cursor: pointer;
-    display: inline-block;
-}
 
-.contactNavBtn a {
-    display: block;
-    text-decoration: none;
-    color: white;
-    width: 100%;
-    padding: 10px 20px;
-}
-
-.contactNavBtn:hover {
-    background-color: var(--color-secondary) !important;
-}
-
-.topBar {
-    background-color: #000;
-    color: #fff;
-    padding: 10px 0px;
-    transition: 0.3s ease-in-out;
-}
-
-/**/
-.topBar .container .dropdownCompanyInfo a i {
-    color: var(--color-primary);
-    transition: 0.5s ease-in-out;
-    cursor: pointer;
-    margin-right: 1rem;
-    font-size: 18px;
-}
-
-.topBar .container .dropdownCompanyInfo i {
-    transition: 0.5s ease-in-out;
-    cursor: pointer;
-    margin-right: 1rem;
-    font-size: 18px;
-}
-
-.topBar .container .dropdownCompanyInfo>i:hover {
-    transform: rotate(90deg);
-}
-
-/* .navbar-toggler-icon {}
- */
 .navbar-toggler {
     background-color: var(--color-primary);
     padding: 0.8rem 0.7rem;
 }
-
-
-.dropdownCompanyInfo {
-    position: relative;
-}
-
-.contactMenu {
-    width: fit-content;
-    transition: 0.3s ease-in-out;
-    list-style: none;
-    display: none;
-    position: absolute;
-    background: #ffffff;
-    border-radius: 4px;
-    z-index: 99999;
-    padding: 0;
-    flex-direction: column;
-    top: 2.5rem;
-    animation: openUpMenu 0.5s alternate;
-    box-shadow: 2px 2px 7px rgba(0, 0, 0, 0.5);
-    overflow: hidden;
-}
-
-.contactMenu li {
-    transition: 0.3s ease-in-out;
-}
-
-.contactMenu li:hover {
-    background-color: var(--color-secondary);
-}
-
-.topBar .socialIcons {
-    font-size: x-large;
-}
-
-@keyframes openUpMenu {
-    0% {
-        opacity: 0;
-        transform: translateY(-30px);
-    }
-
-    100% {
-        opacity: 1;
-        transform: translateY(0px);
-    }
-}
-
-.contactMenu a {
-    color: black;
-    font-weight: 600;
-}
-
-
-.topBar .contactInfo span {
-    margin-right: 20px;
-    font-weight: 400;
-}
-
-.topBar .contactInfo i {
-    margin-right: 10px;
-}
-
-.topBar .contactInfo a {
-    margin-right: 10px;
-    color: #fff;
-    text-decoration: none;
-}
-
-.topBar .socialIcons a {
-    margin-right: 10px;
-    color: #fff;
-}
-
-.topBar .socialIcons {
-    padding-left: 40px;
-    border-left: 1px solid white;
-}
-
-.navbar-nav .nav-link {
-    font-size: 18px;
-    color: #000;
-    font-family: sans-serif;
-}
-
-.contact-btn {
-    padding: 10px 20px;
-    border: 0;
-    color: white;
-    border-right: 1px solid white;
-}
-
-.contactInfo a i {
-    color: var(--color-primary);
-}
-
 
 
 
