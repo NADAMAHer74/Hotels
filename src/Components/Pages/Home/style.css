@@ -1,4 +1,13 @@
-.balloonImage {
+body {
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  max-width: 1140px;
+  margin: auto;
+}
+
+.balloon {
   position: absolute;
   top: 50px;
   left: 100px;
@@ -6,14 +15,14 @@
   width: 100px;
 }
 
-.starImage {
+.star {
   position: absolute;
   top: 50px;
   right: 100px;
   height: 50px;
 }
 
-.topDestinations {
+.top-destinations {
   font-family: "Gloss And Bloom", sans-serif;
   color: #ff6525;
   font-weight: bold;
@@ -25,7 +34,7 @@
   font-weight: bold;
 }
 
-.cardWrapper {
+.card-container {
   position: relative;
   margin-bottom: 20px;
   height: 300px;
@@ -43,13 +52,13 @@
   z-index: 1;
 }
 
-.cardWrapper img {
+.card-container img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.cardText {
+.card-text {
   position: absolute;
   bottom: 10px;
   left: 10px;
@@ -58,87 +67,94 @@
   z-index: 2;
 }
 
-.cardText h5 {
+.card-text h5 {
   font-size: 18px;
   font-weight: bold;
   margin: 0;
 }
 
-.cardText p {
+.card-text p {
   font-size: 14px;
   margin: 0;
 }
 
-.about {
+.about-section {
   position: relative;
   padding: 80px 0;
   background-color: #f4f8f9;
   overflow: hidden;
 }
 
-.backgroundOverlay {
+.background-overlay {
   position: absolute;
   bottom: 10px;
   left: 0;
-  opacity: 0.8; /* Adjust opacity as needed */
+  background-size: cover;
+  opacity: 0.8;
   z-index: 0;
 }
 
 .backgroundImage {
   width: 100%;
+  height: 200%;
 }
 
-/* Image stacking with proper positioning */
-.imageStack {
+.con {
   position: relative;
-  height: 500px; /* Ensure proper height for stacking */
+  z-index: 1;
 }
 
-.imageStack img {
+.image-stack {
+  position: relative;
+  height: 500px;
+}
+
+.image-stack img {
   border-radius: 10px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  object-fit: cover;
 }
 
-.topImage {
+.top-image {
   position: absolute;
-  bottom: 48px;
+  bottom: 120px;
   left: -19px;
   z-index: 3;
   width: 50%;
-  height: 240px;
-  border: 5px solid white; /* Add a white border with 20px width */
-  box-sizing: border-box; /* Ensure the border does not affect the image size */
-  border-radius: 10px; /* Keeps the rounded corners consistent with the other images */
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  height: 250px;
 }
 
-.middleImage {
+.middle-image {
   position: absolute;
-  bottom: 200px; /* Adjust as needed */
-  left: 0;
-  width: 75%; /* Adjust width as necessary */
-  border-radius: 10px;
+  bottom: 275px;
+  left: 203px;
+  z-index: 2;
+  width: 58%;
+  height: 200px;
 }
 
-.bottomImage {
-  width: 100%;
-  border-radius: 10px;
+.bottom-image {
+  position: absolute;
+  bottom: 87px;
+  left: 258px;
+  z-index: 1;
+  width: 40%;
+  height: 200px;
 }
 
-.sectionTitle {
-  font-size: 24px;
+.section-title {
   font-weight: bold;
+  font-size: 24px;
   color: #ff6525;
 }
 
-.mainTitle {
+.main-title {
   font-size: 36px;
   font-weight: bold;
 }
 
 .description {
-  font-size: 16px;
-  line-height: 1.5;
+  margin-bottom: 20px;
 }
 
 .feature {
@@ -146,10 +162,22 @@
 }
 
 .icon {
-  flex-shrink: 0;
+  /* color: #11bb67; */
+  /* border: 2px solid #11bb67; */
+  border-radius: 50%;
+  /* padding: 10px; */
+  font-size: 20px;
+  width: 70px;
+  margin-bottom: 30px;
+  margin-right: 10px;
 }
 
 .iconName {
-  font-size: 18px;
   font-weight: bold;
+  font-size: 18px;
+}
+
+.btn {
+  background-color: #ff6525;
+  border: none;
 }

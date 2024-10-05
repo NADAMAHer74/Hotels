@@ -6,6 +6,8 @@ import img3 from "../../../images/person1.jpg";
 import img4 from "../../../images/person1.jpg";
 import img5 from "../../../images/person1.jpg";
 import img6 from "../../../images/person1.jpg";
+import MainBanner from "../MainBanner/MainBanner";
+
 import "./style.css";
 
 const CardComponent = ({ imgSrc, location, title, price }) => (
@@ -82,6 +84,8 @@ const Tourgrid = () => {
 
   return (
     <>
+      <MainBanner title="Tour Grid" />
+
       <Container className="my-5">
         <Row>
           {cardData.map((card, index) => (
