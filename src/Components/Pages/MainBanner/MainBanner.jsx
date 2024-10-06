@@ -28,7 +28,7 @@ function MainBanner(props) {
                         home
                       </Link>
                     </span>
-                    <span>//</span>
+                    <span> // </span>
                     <span>{props.title}</span>
                   </div>
                 </div>
