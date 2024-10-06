@@ -2,10 +2,7 @@ body {
   font-family: Arial, sans-serif;
 }
 
-.container {
-  max-width: 1140px;
-  margin: auto;
-}
+
 
 .balloon {
   position: absolute;
