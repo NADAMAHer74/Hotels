@@ -1,26 +1,19 @@
 import React from "react";
 import "./general.css";
 import { Link } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import leftTreeImg from "../../../src/images/left-tree.png"
 import rightTreeImg from "../../../src/images/right-tree.png"
 import logo from "../../images/logo.png";
 
 
 import "./script.js";
+import ScrollToTop from "./ScrollToTop";
 
 function Footer() {
-  // useEffect(() => {
 
-  //     const mybutton = document.getElementById("scrollTop");
-  //     return () => {
-  //       mybutton.removeEventListener("click", backToTop);
-  //     };
-  //   }, []);
-  //   const backToTop = () => {
-  //     document.body.scrollTop = 0;
-  //     document.documentElement.scrollTop = 0;
-  //   };
+
+
   return (
     <div>
       <div className="footer overflow-hidden position-relative">
@@ -163,14 +156,9 @@ function Footer() {
           </div>
         </div>
       </div>
-      <button
-        id="scrollTop"
-        className="btn scrollTop"
 
-        title="Go to top"
-      >
-        <i className="fa-solid fa-chevron-up"></i>
-      </button>
+      <ScrollToTop />
+
     </div>
   );
 }

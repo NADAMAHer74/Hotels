@@ -554,25 +554,28 @@ img {
 
 
 
-.scrollTop {
+.scrollToTop button {
   transition: 0.3s ease-in-out;
-  display: none;
   position: fixed;
-  bottom: 20px;
-  pad: 15px;
-  right: 10px;
-  z-index: 99;
-  border-radius: 50%;
+  bottom: 15px;
+  right: 25px;
+  padding: 7px 12px;
+  font-Size: 18px;
   background-color: var(--color-primary);
+  color: white;
   border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  z-index: 999;
 }
 
-.scrollTop i {
+.scrollToTop i {
   padding: 5px 0;
   color: white;
 }
 
-.scrollTop:hover {
+.scrollToTop button:hover {
   background-color: var(--color-secondary);
 }
 

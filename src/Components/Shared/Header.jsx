@@ -4,10 +4,9 @@ import "./general.css";
 import { Link } from "react-router-dom";
 
 import logo from "../../images/logo.png";
-import "./script.js";
 
 function Header() {
-  useEffect(() => {
+  /* useEffect(() => {
     // The custom.js will be executed when this component mounts
     const mybutton = document.getElementById("scrollTop");
 
@@ -15,13 +14,13 @@ function Header() {
     return () => {
       mybutton.removeEventListener("click", backToTop);
     };
-  }, []);
+  }, []); */
 
   // Define backToTop function within the component for access to component context
-  const backToTop = () => {
+  /* const backToTop = () => {
     document.body.scrollTop = 0; // For Safari
     document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-  };
+  }; */
 
   const [isContactMenuVisible, setContactMenuVisible] = useState(false);
 
@@ -43,9 +42,8 @@ function Header() {
                 (000) 967-237-96
               </a>
               <ul
-                className={`contactMenu collapseList ${
-                  isContactMenuVisible ? "d-flex" : "d-none"
-                }`}
+                className={`contactMenu collapseList ${isContactMenuVisible ? "d-flex" : "d-none"
+                  }`}
               >
                 <li className="p-3">
                   <a
