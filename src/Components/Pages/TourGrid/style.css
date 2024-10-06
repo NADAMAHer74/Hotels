@@ -5,13 +5,13 @@
   border-radius: 10px;
 }
 
-.card-img-top {
+.cardImgTop {
   border-radius: 10px;
   object-fit: cover;
   height: 250px;
 }
 
-.card-overlay {
+.cardOverlay {
   position: absolute;
   top: 0;
   left: 0;
@@ -30,24 +30,23 @@
   font-size: 15px;
 }
 
-.discount-badge {
+.discountBadge {
   background-color: #28a745;
 }
 
-.featured-badge {
+.featuredBadge {
   background-color: #ff6525;
 }
 
-.card-title,
-.card-text,
+.cardTitle,
 .price,
-.new-price {
+.newPrice {
   margin: 0;
 }
 
-.card-text {
+/* .card-text {
   font-size: 10px;
-}
+} */
 
 .price {
   text-decoration: line-through;
@@ -58,9 +57,10 @@
   margin-top: 120px;
 }
 
-.new-price {
+.newPrice {
   color: white;
   font-weight: bold;
+  margin-right: 5px;
 }
 
 .pagination {
@@ -68,7 +68,7 @@
   gap: 10px;
 }
 
-.btn-next {
+/* .btn-next {
   background-color: #28a745;
   color: white;
-}
+} */

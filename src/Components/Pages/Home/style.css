@@ -22,7 +22,7 @@ body {
   height: 50px;
 }
 
-.top-destinations {
+.topDestinations {
   font-family: "Gloss And Bloom", sans-serif;
   color: #ff6525;
   font-weight: bold;
@@ -34,7 +34,7 @@ body {
   font-weight: bold;
 }
 
-.card-container {
+.cardContainer {
   position: relative;
   margin-bottom: 20px;
   height: 300px;
@@ -52,13 +52,13 @@ body {
   z-index: 1;
 }
 
-.card-container img {
+.cardContainer img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.card-text {
+.cardText {
   position: absolute;
   bottom: 10px;
   left: 10px;
@@ -67,25 +67,25 @@ body {
   z-index: 2;
 }
 
-.card-text h5 {
+.cardText h5 {
   font-size: 18px;
   font-weight: bold;
   margin: 0;
 }
 
-.card-text p {
+.cardText p {
   font-size: 14px;
   margin: 0;
 }
 
-.about-section {
+.aboutPart {
   position: relative;
   padding: 80px 0;
   background-color: #f4f8f9;
   overflow: hidden;
 }
 
-.background-overlay {
+.backgroundOverlay {
   position: absolute;
   bottom: 10px;
   left: 0;
@@ -104,51 +104,51 @@ body {
   z-index: 1;
 }
 
-.image-stack {
+.imageStack {
   position: relative;
   height: 500px;
 }
 
-.image-stack img {
+.imageStack img {
   border-radius: 10px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
   object-fit: cover;
 }
 
-.top-image {
+.topImage {
   position: absolute;
-  bottom: 120px;
-  left: -19px;
+  bottom: 130px;
+  left: 17px;
   z-index: 3;
   width: 50%;
   height: 250px;
 }
 
-.middle-image {
+.middleImage {
   position: absolute;
   bottom: 275px;
-  left: 203px;
+  left: 217px;
   z-index: 2;
   width: 58%;
   height: 200px;
 }
 
-.bottom-image {
+.bottomImage {
   position: absolute;
   bottom: 87px;
-  left: 258px;
+  left: 294px;
   z-index: 1;
   width: 40%;
   height: 200px;
 }
 
-.section-title {
+.sectionTitle {
   font-weight: bold;
   font-size: 24px;
   color: #ff6525;
 }
 
-.main-title {
+.mainTitle {
   font-size: 36px;
   font-weight: bold;
 }
@@ -161,11 +161,8 @@ body {
   margin-bottom: 20px;
 }
 
-.icon {
-  /* color: #11bb67; */
-  /* border: 2px solid #11bb67; */
+.icons {
   border-radius: 50%;
-  /* padding: 10px; */
   font-size: 20px;
   width: 70px;
   margin-bottom: 30px;

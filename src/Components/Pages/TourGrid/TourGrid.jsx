@@ -12,11 +12,11 @@ import "./style.css";
 
 const CardComponent = ({ imgSrc, location, title, price }) => (
   <Card className="mb-4">
-    <Card.Img variant="top" src={imgSrc} alt={title} />
-    <div className="card-overlay">
+    <Card.Img className="cardImgTop" variant="top" src={imgSrc} alt={title} />
+    <div className="cardOverlay">
       <div className="d-flex">
-        <span className="discount-badge badge">10% off</span>
-        <span className="featured-badge ml-2 badge">Featured</span>
+        <span className="discountBadge badge">10% off</span>
+        <span className="featuredBadge ml-2 badge">Featured</span>
       </div>
       <div className="address">
         <p className="textOfCard">
@@ -26,10 +26,10 @@ const CardComponent = ({ imgSrc, location, title, price }) => (
           ></i>{" "}
           {location}
         </p>
-        <h5 className="card-title">{title}</h5>
+        <h5 className="cardTitle">{title}</h5>
       </div>
       <div>
-        <span className="new-price">
+        <span className="newPrice">
           <i
             className="fa-solid fa-dollar-sign"
             style={{ color: "#0ced63" }}
