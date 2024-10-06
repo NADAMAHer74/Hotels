@@ -2,6 +2,10 @@ import React from "react";
 import "./general.css";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
+import leftTreeImg from "../../../src/images/left-tree.png"
+import rightTreeImg from "../../../src/images/right-tree.png"
+import logo from "../../images/logo.png";
+
 
 import "./script.js";
 
@@ -21,10 +25,10 @@ function Footer() {
     <div>
       <div className="footer overflow-hidden position-relative">
         <div className="footerLeftShape position-absolute">
-          <img src="assests/images/left-tree.png" alt="footerBackgroundL" />
+          <img src={leftTreeImg} alt="footerBackgroundL" />
         </div>
         <div className="footerRightShape position-absolute">
-          <img src="assests/images/left-tree.png" alt="footerBackgroundR" />
+          <img src={rightTreeImg} alt="footerBackgroundR" />
         </div>
         <div className="container">
           <div className="row">
@@ -32,7 +36,7 @@ function Footer() {
               <div className="footerBlock fotCol1">
                 <div className="footerLogo">
                   <a href="index.html">
-                    <img src="assests/images/logo.png" alt="Travello" />
+                    <img src={logo} alt="Travello" />
                   </a>
                 </div>
                 <div className="footerContent">
@@ -43,16 +47,14 @@ function Footer() {
                   </p>
                   <div className="footerSocialIcons position-relative">
                     <a href="#">
-                      <i className="flaticon-facebook-app-symbol text-light"></i>
+                      <i className="fa-brands fa-facebook-f"></i></a>
+                    <a href="#">
+                      <i className="fa-brands fa-twitter"></i></a>
+                    <a href="#">
+                      <i className="fa-brands fa-skype"></i>
                     </a>
                     <a href="#">
-                      <i className="flaticon-twitter"></i>
-                    </a>
-                    <a href="#">
-                      <i className="flaticon-skype"></i>
-                    </a>
-                    <a href="#">
-                      <i className="flaticon-linkedin"></i>
+                      <i className="fa-brands fa-linkedin"></i>
                     </a>
                   </div>
                 </div>
@@ -101,7 +103,7 @@ function Footer() {
                       <a href="#">FAQ</a>
                     </li>
                     <li>
-                      <a href="#">Hydropowe Plants</a>
+                      <a href="#">Hydropower Plants</a>
                     </li>
                     <li>
                       <a href="#">Customer support</a>

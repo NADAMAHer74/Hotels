@@ -414,7 +414,7 @@ img {
 .footerContent p {
   margin-bottom: 40px;
   font-weight: 500;
-  font-size: 17px;
+  font-size: 16px;
 }
 
 .footerSocialIcons a {
@@ -432,11 +432,12 @@ img {
   position: relative;
   transition: 0.3s ease-in-out;
   overflow: hidden;
+  box-sizing: unset;
 }
 
 .footerSocialIcons a i {
   color: white;
-  font-size: 1rem;
+  font-size: 1.2rem;
   z-index: 5;
   position: relative;
 }
@@ -498,6 +499,7 @@ img {
   background: white;
   margin-bottom: 25px;
   border-radius: 5px;
+  margin-left: 0;
 }
 
 .footerForm input::placeholder {
