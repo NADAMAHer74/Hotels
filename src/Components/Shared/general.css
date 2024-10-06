@@ -213,7 +213,8 @@ img {
   right: 0;
   content: "";
   z-index: -1;
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: #161b18;
+  opacity: 0.84;
 }
 
 .mainBanner h3 {
