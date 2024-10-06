@@ -25,21 +25,6 @@ img {
 }
 
 
-
-/* End header */
-/* start about us banner */
-
-
-
-.mainBanner::before {
-    background-color: #161b18;
-    opacity: 0.84;
-}
-
-
-
-
-/* end about us banner */
 /* main section */
 .aboutThumbWrap img {
     border-radius: 15px;
@@ -244,27 +229,9 @@ img {
 
 /*Media Queries*/
 
-
-@media screen and (max-width: 395px) {
-    .dropdownCompanyInfo>a {
-        display: none;
-    }
-}
-
-
 @media (max-width: 992px) {
-    .navbar-collapse .navbar-nav {
-        gap: 1rem !important;
-        margin-top: 20px;
-        margin-bottom: 20px !important;
-    }
-
     .aboutThumb2 img {
         width: 100%;
-    }
-
-    .topBar .contactInfo {
-        display: none;
     }
 }
 
@@ -278,47 +245,12 @@ img {
         text-align: inherit;
     }
 
-    .topBar .contactInfo span {
-        font-size: 14px;
-    }
 }
 
 @media (max-width: 767px) {
-    .topBar .container {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .topBar .socialIcons {
-        margin-left: 0;
-        padding-left: 0;
-        justify-content: flex-start;
-    }
-
-    .topBar .contactInfo span {
-        display: block;
-        margin-bottom: 10px;
-    }
-
-    .fotCol2 {
-        padding-left: 0px;
-    }
-
-    .aboutThumb1 img {
-        width: 100%
-    }
-
-    .topBar .container {
-        justify-content: space-between !important;
-        flex-direction: row !important;
-    }
 
     .aboutThumbBox {
         margin-right: 2rem;
-    }
-
-    .topBar .socialIcons {
-        border-left: none !important;
     }
 
     .aboutThumbSingle img {

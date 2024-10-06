@@ -20,7 +20,7 @@ const Home = () => {
         <div className="row">
           <div className="col-12">
             <img src={Balloon} alt="Balloon" className="balloon" />
-            <h2 className="top-destinations">Top Destinations</h2>
+            <h2 className="topDestinations">Top Destinations</h2>
             <h1 className="title">
               Explore the Beautiful Places <br />
               Around the World
@@ -33,14 +33,14 @@ const Home = () => {
       <div className="container con">
         <div className="row text-center">
           <div className="col-12 col-md-6 col-lg-3 mb-4">
-            <div className="card-container position-relative">
+            <div className="cardContainer position-relative">
               <img
                 src={NorthAmerica}
                 className="img-fluid"
                 alt="North America"
               />
               <div className="overlay"></div>
-              <div className="card-text position-absolute">
+              <div className="cardText position-absolute">
                 <h5>North America</h5>
                 <p className="cardParagraph">13 Tours</p>
               </div>
@@ -48,10 +48,10 @@ const Home = () => {
           </div>
 
           <div className="col-12 col-md-6 col-lg-3 mb-4">
-            <div className="card-container position-relative">
+            <div className="cardContainer position-relative">
               <img src={SouthAfrica} className="img-fluid" alt="South Africa" />
               <div className="overlay"></div>
-              <div className="card-text position-absolute">
+              <div className="cardText position-absolute">
                 <h5>South Africa</h5>
                 <p className="cardParagraph">12 Tours</p>
               </div>
@@ -59,10 +59,10 @@ const Home = () => {
           </div>
 
           <div className="col-12 col-md-6 col-lg-3 mb-4">
-            <div className="card-container position-relative">
+            <div className="cardContainer position-relative">
               <img src={CostaRica} className="img-fluid" alt="Costa Rica" />
               <div className="overlay"></div>
-              <div className="card-text position-absolute">
+              <div className="cardText position-absolute">
                 <h5>Costa Rica</h5>
                 <p className="cardParagraph">25 Tours</p>
               </div>
@@ -70,10 +70,10 @@ const Home = () => {
           </div>
 
           <div className="col-12 col-md-6 col-lg-3 mb-4">
-            <div className="card-container position-relative">
+            <div className="cardContainer position-relative">
               <img src={Europe} className="img-fluid" alt="Europe" />
               <div className="overlay"></div>
-              <div className="card-text position-absolute">
+              <div className="cardText position-absolute">
                 <h5>Europe</h5>
                 <p className="cardParagraph">15 Tours</p>
               </div>
@@ -82,24 +82,24 @@ const Home = () => {
         </div>
       </div>
 
-      <section className="about-section position-relative">
+      <section className="aboutPart position-relative">
         <div className="container con">
           <div className="row align-items-center">
             <div className="col-12 col-md-6 mb-4 mb-md-0">
-              <div className="d-none d-md-flex flex-column align-items-start image-stack">
+              <div className="d-none d-md-flex flex-column align-items-start imageStack">
                 <img
                   src={TopImage}
-                  className="top-image img-fluid mb-3"
+                  className="topImage img-fluid mb-3"
                   alt="Top Image"
                 />
                 <img
                   src={MiddleImage}
-                  className="middle-image img-fluid mb-3"
+                  className="middleImage img-fluid mb-3"
                   alt="Middle Image"
                 />
                 <img
                   src={BottomImage}
-                  className="bottom-image img-fluid"
+                  className="bottomImage img-fluid"
                   alt="Bottom Image"
                 />
               </div>
@@ -111,8 +111,8 @@ const Home = () => {
             </div>
 
             <div className="col-12 col-md-6">
-              <h3 className="section-title">About Company</h3>
-              <h2 className="main-title">
+              <h3 className="sectionTitle">About Company</h3>
+              <h2 className="mainTitle">
                 Sollicitudin Vestibulum <br />
                 Vulputate Ipsum.
               </h2>
@@ -122,10 +122,10 @@ const Home = () => {
                 minim veniam, quis nostrud exercitation ullamco.
               </p>
               <div className="feature d-flex align-items-center mb-3">
-                <div className="icon mr-3">
+                <div className="icons mr-3">
                   <img src={SafetyIcon} alt="Safety Icon" />
                 </div>
-                <div className="feature-text">
+                <div className="featureText">
                   <h5 className="iconName">Safety First Always</h5>
                   <p>
                     Duis aute irure dolor in reprehenderit in voluptate velit
@@ -134,10 +134,10 @@ const Home = () => {
                 </div>
               </div>
               <div className="feature d-flex align-items-center mb-3">
-                <div className="icon mr-3">
+                <div className="icons mr-3">
                   <img src={SafetyIcon} alt="Service Icon" />
                 </div>
-                <div className="feature-text">
+                <div className="featureText">
                   <h5 className="iconName">Nllamco laboris nisi</h5>
                   <p>
                     Duis aute irure dolor in reprehenderit in voluptate velit
@@ -145,13 +145,11 @@ const Home = () => {
                   </p>
                 </div>
               </div>
-              {/* Button */}
               <button className="btn btn-primary">Discover More</button>
             </div>
           </div>
         </div>
-        {/* Background Image Overlay */}
-        <div className="background-overlay">
+        <div className="backgroundOverlay">
           <img src={AboutBg} className="backgroundImage" alt="Background" />
         </div>
       </section>
