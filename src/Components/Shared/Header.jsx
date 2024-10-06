@@ -1,28 +1,16 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import "./general.css";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 import logo from "../../images/logo.png";
 
 function Header() {
-  /* useEffect(() => {
-    // The custom.js will be executed when this component mounts
-    const mybutton = document.getElementById("scrollTop");
-
-    // Cleanup the event listener when the component unmounts
-    return () => {
-      mybutton.removeEventListener("click", backToTop);
-    };
-  }, []); */
-
-  // Define backToTop function within the component for access to component context
-  /* const backToTop = () => {
-    document.body.scrollTop = 0; // For Safari
-    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-  }; */
-
   const [isContactMenuVisible, setContactMenuVisible] = useState(false);
+  const location = useLocation(); // Hook to get the current route
+  useEffect(() => {
+    setContactMenuVisible(false);
+  }, [location]);
 
   const handleTopMenu = () => {
     setContactMenuVisible(!isContactMenuVisible);
