@@ -1,5 +1,19 @@
 const express = require("express");
+const multer = require("multer");
+const path = require("path");
+
 const router = express.Router();
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "uploads/");
+  },
+  filename: (req, file, cb) => {
+    const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
+    cb(null, uniqueSuffix + path.extname(file.originalname));
+  },
+});
+const upload = multer({ storage });
 
 /**
  * @swagger
@@ -10,7 +24,7 @@ const router = express.Router();
  *     requestBody:
  *       required: true
  *       content:
- *         application/json:
+ *         multipart/form-data:
  *           schema:
  *             type: object
  *             properties:
@@ -34,6 +48,7 @@ const router = express.Router();
  *                 type: string
  *               tourImage:
  *                 type: string
+ *                 format: binary
  *               date:
  *                 type: string
  *                 format: date
@@ -49,10 +64,10 @@ const router = express.Router();
  *     responses:
  *       201:
  *         description: Tour created successfully
- *       500:
- *         description: Internal server error
+ *       400:
+ *         description: Error creating tour
  */
-router.post("/tours", async (req, res) => {
+router.post("/tours", upload.single("tourImage"), async (req, res) => {
   const {
     location,
     name,
@@ -63,13 +78,14 @@ router.post("/tours", async (req, res) => {
     type,
     reviewStars,
     overview,
-    tourImage,
     date,
     time,
     miniAge,
     maxGusts,
     languagesSupport,
   } = req.body;
+
+  const tourImage = req.file ? req.file.path : null;
 
   try {
     console.log("Received tour creation request:", req.body);
@@ -99,7 +115,9 @@ router.post("/tours", async (req, res) => {
       (error, results) => {
         if (error) {
           console.error("Error inserting tour:", error);
-          return res.status(500).json({ message: "Internal server error" });
+          return res
+            .status(400)
+            .json({ message: "Error creating tour", error });
         }
         res.status(201).json({
           message: "Tour created successfully",
@@ -378,6 +396,87 @@ router.put("/tours/:tour_id", (req, res) => {
     console.error("Error in request:", error);
     return res.status(400).json({ message: "Invalid request." });
   }
+});
+
+/**
+ * @swagger
+ * /paginationOfTours:
+ *   get:
+ *     summary: Get all tours with pagination
+ *     tags: [Tours]
+ *     parameters:
+ *       - in: query
+ *         name: page
+ *         schema:
+ *           type: integer
+ *         description: Page number for pagination
+ *       - in: query
+ *         name: limit
+ *         schema:
+ *           type: integer
+ *         description: Number of tours to retrieve per page (default is 6)
+ *     responses:
+ *       200:
+ *         description: A list of tours posts
+ *         content:
+ *           application/json:
+ *             schema:
+ *             type: array
+ *             items:
+ *               type: object
+ *               properties:
+ *                 tour_id:
+ *                   type: integer
+ *               location:
+ *                 type: string
+ *               name:
+ *                 type: string
+ *               adultPrice:
+ *                 type: number
+ *               kidsPrice:
+ *                 type: number
+ *               childrenPrice:
+ *                 type: number
+ *               durationInDays:
+ *                 type: integer
+ *               typeoftour:
+ *                 type: string
+ *               reviewStars:
+ *                 type: integer
+ *               overview:
+ *                 type: string
+ *               tourImage:
+ *                 type: string
+ *               date:
+ *                 type: string
+ *                 format: date
+ *               time:
+ *                 type: string
+ *                 format: time
+ *               miniAge:
+ *                 type: integer
+ *               maxGusts:
+ *                 type: integer
+ *               languagesSupport:
+ *                 type: string
+ *
+ */
+router.get("/paginationOfTours", (req, res) => {
+  const page = parseInt(req.query.page) || 1;
+  const limit = parseInt(req.query.limit) || 6;
+  const offset = (page - 1) * limit;
+
+  const query = "SELECT * FROM tours LIMIT ? OFFSET ?";
+  req.pool.query(query, [limit, offset], (error, results) => {
+    if (error) {
+      return res.status(500).json({ message: "Internal server error" });
+    }
+    res.json({
+      page,
+      limit,
+      tours: results,
+    });
+  });
 });
 
 module.exports = router;

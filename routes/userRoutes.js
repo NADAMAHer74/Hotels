@@ -28,8 +28,6 @@ const JWT_SECRET = "your_jwt_secret_key";
  *                 type: string
  *               password:
  *                 type: string
- *               role:
- *                 type: string
  *     responses:
  *       201:
  *         description: User created successfully
@@ -37,7 +35,14 @@ const JWT_SECRET = "your_jwt_secret_key";
  *         description: User already exists
  */
 router.post("/signup", async (req, res) => {
-  const { firstName, lastName, email, phone, password, role } = req.body;
+  const {
+    firstName,
+    lastName,
+    email,
+    phone,
+    password,
+    role = "User",
+  } = req.body;
 
   try {
     console.log("Received signup request:", req.body);
@@ -57,15 +62,131 @@ router.post("/signup", async (req, res) => {
         "INSERT INTO users (firstName, lastName, email, phone, password, role) VALUES (?, ?, ?, ?, ?, ?)";
       req.pool.query(
         insertUserQuery,
-        [firstName, lastName, email, phone, hashedPassword, role || "User"],
+        [firstName, lastName, email, phone, hashedPassword, role],
         (error, results) => {
           if (error) {
             console.error("Error inserting user:", error);
             return res.status(500).json({ message: "Internal server error" });
           }
-          res.status(201).json({ message: "User created successfully" });
+
+          const token = jwt.sign(
+            { userId: results.insertId, role },
+            JWT_SECRET,
+            {
+              expiresIn: "1h",
+            }
+          );
+
+          const userData = {
+            id: results.insertId,
+            firstName,
+            lastName,
+            email,
+            phone,
+            role,
+          };
+
+          res.status(201).json({
+            message: "User created successfully",
+            user: userData,
+            token,
+          });
         }
       );
+    });
+  } catch (error) {
+    console.error("Unexpected error:", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+});
+
+/**
+ * @swagger
+ * /signin:
+ *   post:
+ *     summary: Sign in with email and password
+ *     tags: [Users]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               email:
+ *                 type: string
+ *               password:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: User authenticated successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 user:
+ *                   type: object
+ *                   properties:
+ *                     id:
+ *                       type: integer
+ *                     firstName:
+ *                       type: string
+ *                     lastName:
+ *                       type: string
+ *                     email:
+ *                       type: string
+ *                     phone:
+ *                       type: string
+ *                     role:
+ *                       type: string
+ *                 token:
+ *                   type: string
+ *       400:
+ *         description: Invalid email or password
+ *       404:
+ *         description: User not found
+ */
+router.post("/signin", async (req, res) => {
+  const { email, password } = req.body;
+
+  try {
+    const query = "SELECT * FROM users WHERE email = ?";
+    req.pool.query(query, [email], async (error, results) => {
+      if (error) {
+        console.error("Error finding user:", error);
+        return res.status(500).json({ message: "Internal server error" });
+      }
+
+      if (results.length === 0) {
+        return res.status(404).json({ message: "User not found" });
+      }
+
+      const user = results[0];
+
+      const isPasswordValid = await bcrypt.compare(password, user.password);
+      if (!isPasswordValid) {
+        return res.status(400).json({ message: "Invalid email or password" });
+      }
+
+      const token = jwt.sign({ userId: user.id, role: user.role }, JWT_SECRET, {
+        expiresIn: "1h",
+      });
+
+      const userData = {
+        id: user.id,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: user.email,
+        phone: user.phone,
+        role: user.role || "User",
+      };
+
+      res.status(200).json({
+        message: "User authenticated successfully",
+        user: userData,
+        token,
+      });
     });
   } catch (error) {
     console.error("Unexpected error:", error);

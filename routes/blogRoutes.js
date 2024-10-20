@@ -255,4 +255,60 @@ router.delete("/blogs/:id", (req, res) => {
   });
 });
 
+/**
+ * @swagger
+ * /pagination:
+ *   get:
+ *     summary: Get all blog posts with pagination
+ *     tags: [Blogs]
+ *     parameters:
+ *       - in: query
+ *         name: page
+ *         schema:
+ *           type: integer
+ *         description: Page number for pagination
+ *       - in: query
+ *         name: limit
+ *         schema:
+ *           type: integer
+ *         description: Number of blog posts to retrieve per page (default is 6)
+ *     responses:
+ *       200:
+ *         description: A list of blog posts
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 type: object
+ *                 properties:
+ *                   id:
+ *                     type: integer
+ *                   title:
+ *                     type: string
+ *                   content:
+ *                     type: string
+ *                   author_id:
+ *                     type: integer
+ *                   imageUrl:
+ *                     type: string
+ */
+router.get("/pagination", (req, res) => {
+  const page = parseInt(req.query.page) || 1;
+  const limit = parseInt(req.query.limit) || 6;
+  const offset = (page - 1) * limit;
+
+  const query = "SELECT * FROM blogs LIMIT ? OFFSET ?";
+  req.pool.query(query, [limit, offset], (error, results) => {
+    if (error) {
+      return res.status(500).json({ message: "Internal server error" });
+    }
+    res.json({
+      page,
+      limit,
+      blogs: results,
+    });
+  });
+});
+
 module.exports = router;

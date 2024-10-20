@@ -11,15 +11,13 @@ const { createTables } = require("./migrations/migrate");
 const app = express();
 app.use(express.json());
 
-// Database connection
 const pool = mysql.createPool({
   connectionLimit: 10,
-  host: "localhost", // your database host
-  user: "root", // your database username
-  database: "Hotels", // your database name
+  host: "localhost",
+  user: "root",
+  database: "Hotels",
 });
 
-// Connect to the database and create tables
 pool.getConnection((error) => {
   if (error) {
     console.error("Error connecting to the database:", error);
@@ -27,11 +25,9 @@ pool.getConnection((error) => {
   }
   console.log("Connected to the database");
 
-  // Run the migration to create tables
-  createTables(pool); // Pass the pool to the createTables function
+  createTables(pool);
 });
 
-// Swagger configuration
 const swaggerOptions = {
   swaggerDefinition: {
     openapi: "3.0.0",
@@ -42,28 +38,25 @@ const swaggerOptions = {
     },
     servers: [
       {
-        url: "http://localhost:3000/api", // Base URL for your API
+        url: "http://localhost:3000/api",
       },
     ],
   },
-  apis: ["./routes/*.js"], // Path to your API files
+  apis: ["./routes/*.js"],
 };
 
 const swaggerDocs = swaggerJsdoc(swaggerOptions);
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
-// Middleware to attach pool to each request
 app.use((req, res, next) => {
-  req.pool = pool; // Attach the pool to the request
+  req.pool = pool;
   next();
 });
 
-// Use user routes
 app.use("/api", userRoutes);
 app.use("/api", blogRoutes);
 
 app.use("/api", tourRoutes);
-// Start the server
 app.listen(3000, () => {
   console.log("Server running on port 3000");
   console.log("Swagger running at http://localhost:3000/api-docs");
