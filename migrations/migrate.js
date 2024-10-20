@@ -1,10 +1,9 @@
 const mysql = require("mysql");
-const connection = require("../config/database"); // Import the database connection
+const connection = require("../config/database");
 
 
 // Function to create tables
 const createTables = () => {
-  // SQL queries to create tables
   const createUsersTable = `
      CREATE TABLE IF NOT EXISTS users (
         id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
@@ -78,16 +77,17 @@ const createTables = () => {
   `;
 
   const createBlogsTable = `
-    CREATE TABLE IF NOT EXISTS blogs (
-        blog_id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-        title VARCHAR(255) NOT NULL,
-        content TEXT NOT NULL,
-        author_id INT UNSIGNED NOT NULL,
-        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-        FOREIGN KEY (author_id) REFERENCES users(id) ON DELETE CASCADE
-    );
-  `;
+  CREATE TABLE IF NOT EXISTS blogs (
+      blog_id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+      title VARCHAR(255) NOT NULL,
+      content TEXT NOT NULL,
+      author_id INT UNSIGNED NOT NULL,
+      imageUrl VARCHAR(255), -- Add the imageUrl field here
+      created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+      updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+      FOREIGN KEY (author_id) REFERENCES users(id) ON DELETE CASCADE
+  );
+`;
 
   const createReviewsTable = `
     CREATE TABLE IF NOT EXISTS reviews (
@@ -211,7 +211,6 @@ const createTables = () => {
     createDestinationsTable,
   ];
 
-  // Execute each query
   queries.forEach((query, index) => {
     connection.query(query, (error) => {
       if (error) {
@@ -222,9 +221,7 @@ const createTables = () => {
     });
   });
 
-  // Close the connection after all queries
   connection.end();
 };
 
-// Call the function to create tables
 module.exports = { createTables };

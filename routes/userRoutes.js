@@ -3,7 +3,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
 const router = express.Router();
-const JWT_SECRET = "your_jwt_secret_key"; // Replace with your secret key
+const JWT_SECRET = "your_jwt_secret_key";
 
 /**
  * @swagger
@@ -212,7 +212,6 @@ router.put("/users/:id", (req, res) => {
   try {
     const { firstName, lastName, email, phone, password, role } = req.body;
 
-    // Create an array to hold the updates
     const updates = [];
     const updateFields = [];
 
@@ -233,7 +232,6 @@ router.put("/users/:id", (req, res) => {
       updateFields.push("phone = ?");
     }
     if (password) {
-      // Hash the password if provided
       bcrypt.hash(password, 10).then((hashedPassword) => {
         updates.push(hashedPassword);
         updateFields.push("password = ?");
@@ -244,13 +242,12 @@ router.put("/users/:id", (req, res) => {
     }
 
     function updateUser() {
-      // If no updates were provided, return a 400 error
       if (updates.length === 0) {
         return res.status(400).json({ message: "No fields to update" });
       }
 
       const query = `UPDATE users SET ${updateFields.join(", ")} WHERE id = ?`;
-      updates.push(req.params.id); // Add user ID to updates
+      updates.push(req.params.id);
 
       req.pool.query(query, updates, (error, results) => {
         if (error) {
