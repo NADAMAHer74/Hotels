@@ -288,11 +288,9 @@ router.put("/tours/:tour_id", (req, res) => {
       languagesSupport,
     } = req.body;
 
-    // Create arrays to hold the update fields and their values
     const updates = [];
     const updateFields = [];
 
-    // Check which fields are provided and build the update query dynamically
     if (location) {
       updates.push(location);
       updateFields.push("location = ?");
@@ -354,19 +352,16 @@ router.put("/tours/:tour_id", (req, res) => {
       updateFields.push("languagesSupport = ?");
     }
 
-    // If no fields are provided, return an error
     if (updates.length === 0) {
       return res.status(400).json({ message: "No fields to update." });
     }
 
-    // Build the final query string with placeholders
     const query = `
       UPDATE tours SET 
         ${updateFields.join(", ")} 
       WHERE tour_id = ?
     `;
 
-    // Add the tour_id to the end of the values array
     updates.push(req.params.tour_id);
 
     req.pool.query(query, updates, (error, results) => {

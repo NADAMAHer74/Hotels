@@ -2,6 +2,8 @@ const express = require("express");
 const mysql = require("mysql");
 const userRoutes = require("./routes/userRoutes");
 const tourRoutes = require("./routes/tourRoutes");
+const blogRoutes = require("./routes/blogRoutes");
+
 const swaggerUi = require("swagger-ui-express");
 const swaggerJsdoc = require("swagger-jsdoc");
 const { createTables } = require("./migrations/migrate");
@@ -58,6 +60,8 @@ app.use((req, res, next) => {
 
 // Use user routes
 app.use("/api", userRoutes);
+app.use("/api", blogRoutes);
+
 app.use("/api", tourRoutes);
 // Start the server
 app.listen(3000, () => {
