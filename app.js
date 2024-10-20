@@ -3,8 +3,11 @@ const mysql = require("mysql2");
 const userRoutes = require("./routes/userRoutes");
 const tourRoutes = require("./routes/tourRoutes");
 const blogRoutes = require("./routes/blogRoutes");
-contactUsRoutes=require("./routes/contactUsRoutes")
-phoneRoutes=require("./routes/phoneRoutes")
+const contactUsRoutes=require("./routes/contactUsRoutes")
+const phoneRoutes=require("./routes/phoneRoutes")
+const locationRoutes=require("./routes/locationRoutes")
+const destinationsRoutes=require("./routes/destinationsRoutes")
+const workingHoursRoutes=require("./routes/workingHoursRoutes")
 const swaggerUi = require("swagger-ui-express");
 const swaggerJsdoc = require("swagger-jsdoc");
 const { createTables } = require("./migrations/migrate");
@@ -69,7 +72,9 @@ app.use("/api", tourRoutes);
 app.use("/api", contactUsRoutes);
 
 app.use("/api", phoneRoutes);
-
+app.use("/api", locationRoutes);
+app.use("/api", workingHoursRoutes);
+app.use("/api", destinationsRoutes);
 // Start the server
 app.listen(3000, () => {
   console.log("Server running on port 3000");
