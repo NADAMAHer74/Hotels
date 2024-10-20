@@ -1,7 +1,9 @@
 const express = require("express");
-const mysql = require("mysql");
+const mysql = require("mysql2");
 const userRoutes = require("./routes/userRoutes");
 const tourRoutes = require("./routes/tourRoutes");
+const contactUsRoutes = require("./routes/contactUsRoutes"); // Import Contact Us routes
+const phoneRoutes=require("./routes/phoneRoutes")
 const swaggerUi = require("swagger-ui-express");
 const swaggerJsdoc = require("swagger-jsdoc");
 const { createTables } = require("./migrations/migrate");
@@ -14,6 +16,7 @@ const pool = mysql.createPool({
   connectionLimit: 10,
   host: "localhost", // your database host
   user: "root", // your database username
+  password: "Om@rEssam2003", // your database password
   database: "Hotels", // your database name
 });
 
@@ -29,6 +32,12 @@ pool.getConnection((error) => {
   createTables(pool); // Pass the pool to the createTables function
 });
 
+// Middleware to attach pool to each request
+app.use((req, res, next) => {
+  req.pool = pool; // Attach the pool to the request
+  next();
+});
+
 // Swagger configuration
 const swaggerOptions = {
   swaggerDefinition: {
@@ -36,7 +45,7 @@ const swaggerOptions = {
     info: {
       title: "Hotels API",
       version: "1.0.0",
-      description: "API for managing hotels",
+      description: "API for managing hotels, users, tours, and contact forms",
     },
     servers: [
       {
@@ -50,15 +59,17 @@ const swaggerOptions = {
 const swaggerDocs = swaggerJsdoc(swaggerOptions);
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
-// Middleware to attach pool to each request
-app.use((req, res, next) => {
-  req.pool = pool; // Attach the pool to the request
-  next();
-});
-
-// Use user routes
+// Use the user routes
 app.use("/api", userRoutes);
+
+// Use the tour routes
 app.use("/api", tourRoutes);
+
+// Use the contact us routes
+app.use("/api", contactUsRoutes);
+
+app.use("/api", phoneRoutes);
+
 // Start the server
 app.listen(3000, () => {
   console.log("Server running on port 3000");
