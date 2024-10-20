@@ -2,6 +2,9 @@ const express = require("express");
 const mysql = require("mysql2");
 const userRoutes = require("./routes/userRoutes");
 const tourRoutes = require("./routes/tourRoutes");
+const blogRoutes = require("./routes/blogRoutes");
+contactUsRoutes=require("./routes/contactUsRoutes")
+phoneRoutes=require("./routes/phoneRoutes")
 const swaggerUi = require("swagger-ui-express");
 const swaggerJsdoc = require("swagger-jsdoc");
 const { createTables } = require("./migrations/migrate");
@@ -59,6 +62,7 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 // Use the user routes
 app.use("/api", userRoutes);
+app.use("/api", blogRoutes);
 app.use("/api", tourRoutes);
 
 // Use the contact us routes
