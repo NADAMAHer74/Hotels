@@ -1,33 +1,66 @@
 const express = require("express");
-const connection = require("./config/database"); // Import your database connection
+const mysql = require("mysql");
+const userRoutes = require("./routes/userRoutes");
+const tourRoutes = require("./routes/tourRoutes");
+const swaggerUi = require("swagger-ui-express");
+const swaggerJsdoc = require("swagger-jsdoc");
+const { createTables } = require("./migrations/migrate");
 
 const app = express();
 app.use(express.json());
 
-// Check database connection once when the server starts
-connection.connect((err) => {
-  if (err) {
-    console.error("Error connecting to the database:", err);
+// Database connection
+const pool = mysql.createPool({
+  connectionLimit: 10,
+  host: "localhost", // your database host
+  user: "root", // your database username
+  database: "Hotels", // your database name
+});
+
+// Connect to the database and create tables
+pool.getConnection((error) => {
+  if (error) {
+    console.error("Error connecting to the database:", error);
     return;
   }
-  console.log("Connected to the database...");
+  console.log("Connected to the database");
 
-  // Start the server after a successful database connection
-  app.listen(3000, () => {
-    console.log("Server running on port 3000");
-  });
+  // Run the migration to create tables
+  createTables(pool); // Pass the pool to the createTables function
+});
 
-  // Route to get all users
-  app.get("/users", (req, res) => {
-    const query = "SELECT * FROM users"; // SQL query to fetch all users
+// Swagger configuration
+const swaggerOptions = {
+  swaggerDefinition: {
+    openapi: "3.0.0",
+    info: {
+      title: "Hotels API",
+      version: "1.0.0",
+      description: "API for managing hotels",
+    },
+    servers: [
+      {
+        url: "http://localhost:3000/api", // Base URL for your API
+      },
+    ],
+  },
+  apis: ["./routes/*.js"], // Path to your API files
+};
 
-    connection.query(query, (error, results) => {
-      if (error) {
-        console.error("Error fetching users:", error);
-        return res.status(500).json({ message: "Internal server error" });
-      }
+const swaggerDocs = swaggerJsdoc(swaggerOptions);
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
-      res.json(results); // Send the results as a JSON response
-    });
-  });
+// Middleware to attach pool to each request
+app.use((req, res, next) => {
+  req.pool = pool; // Attach the pool to the request
+  next();
+});
+
+// Use user routes
+app.use("/api", userRoutes);
+app.use("/api", tourRoutes);
+// Start the server
+app.listen(3000, () => {
+  console.log("Server running on port 3000");
+  console.log("Swagger running at http://localhost:3000/api-docs");
 });

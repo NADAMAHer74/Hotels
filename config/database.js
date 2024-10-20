@@ -6,4 +6,4 @@ const connection = mysql.createConnection({
   database: "Hotels", // your database name
 });
 
-module.exports = connection; // Export the connection
+module.exports = connection;
