@@ -1,4 +1,3 @@
-// migrations/migrate.js
 const mysql = require("mysql");
 const connection = require("../config/database"); // Import the database connection
 
@@ -7,11 +6,14 @@ const connection = require("../config/database"); // Import the database connect
 const createTables = () => {
   // SQL queries to create tables
   const createUsersTable = `
-    CREATE TABLE IF NOT EXISTS users (
+     CREATE TABLE IF NOT EXISTS users (
         id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-        name VARCHAR(255) NOT NULL,
+        firstName VARCHAR(255) NOT NULL,
+        lastName VARCHAR(255) NOT NULL,
         email VARCHAR(255) NOT NULL UNIQUE,
+        phone VARCHAR(255) NOT NULL,
         password VARCHAR(255) NOT NULL,
+        role ENUM('Admin', 'User') DEFAULT 'User',
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
     );
@@ -20,9 +22,21 @@ const createTables = () => {
   const createToursTable = `
     CREATE TABLE IF NOT EXISTS tours (
         tour_id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-        tour_name VARCHAR(255) NOT NULL,
-        description TEXT NOT NULL,
-        price DECIMAL(10, 2) NOT NULL,
+        name VARCHAR(255) NOT NULL,
+        location VARCHAR(255) NOT NULL,
+        adultPrice DECIMAL(10, 2) NOT NULL,
+        kidsPrice DECIMAL(10, 2) NOT NULL,
+        childrenPrice DECIMAL(10, 2) NOT NULL,
+        durationInDays INT NOT NULL,
+        type VARCHAR(255) NOT NULL,
+        reviewStars INT CHECK (reviewStars >= 1 AND reviewStars <= 5),
+        overview TEXT NOT NULL,
+        tourImage VARCHAR(255) NOT NULL,
+        date DATE NOT NULL,
+        time TIME NOT NULL,
+        miniAge INT NOT NULL,
+        maxGusts INT NOT NULL,
+        languagesSupport VARCHAR(255) NOT NULL,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
     );
@@ -213,4 +227,4 @@ const createTables = () => {
 };
 
 // Call the function to create tables
-createTables();
+module.exports = { createTables };
