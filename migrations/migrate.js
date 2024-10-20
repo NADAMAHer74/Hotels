@@ -2,6 +2,7 @@
 const mysql = require("mysql");
 const connection = require("../config/database"); // Import the database connection
 
+
 // Function to create tables
 const createTables = () => {
   // SQL queries to create tables
@@ -88,6 +89,94 @@ const createTables = () => {
     );
   `;
 
+  const createAmenitiesTable = `
+  CREATE TABLE IF NOT EXISTS amenities (
+        amenities_id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+        name VARCHAR(70) NOT NULL,
+        icon VARCHAR(100) NOT NULL,
+        rate INT
+    );
+  `;
+
+  const createToursAmenitiesTable = `
+  CREATE TABLE IF NOT EXISTS tours_has_amenities (
+      tours_tour_id INT UNSIGNED NOT NULL,
+      amenities_amenities_id INT UNSIGNED NOT NULL,
+      available TINYINT NOT NULL,
+      PRIMARY KEY (tours_tour_id, amenities_amenities_id),
+      FOREIGN KEY (tours_tour_id) REFERENCES tours(tour_id) ON DELETE CASCADE,
+      FOREIGN KEY (amenities_amenities_id) REFERENCES amenities(amenities_id) ON DELETE CASCADE
+    );
+  `;
+
+  const createPagesTable = `
+  CREATE TABLE IF NOT EXISTS pages (
+      page_id VARCHAR(20) NOT NULL PRIMARY KEY,
+      page_name VARCHAR(45) NOT NULL UNIQUE
+    );
+  `;
+
+  const createBannersTable = `
+  CREATE TABLE IF NOT EXISTS banners (
+      banner_id INT AUTO_INCREMENT PRIMARY KEY,
+      image MEDIUMTEXT NOT NULL,
+      head VARCHAR(200) NOT NULL,
+      pages_page_id VARCHAR(20) NOT NULL,
+      FOREIGN KEY (pages_page_id) REFERENCES pages(page_id) ON DELETE CASCADE
+    );
+  `;
+
+  const createPhonesTable = `
+  CREATE TABLE IF NOT EXISTS phones (
+      phone_id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+      phone_number VARCHAR(15) NOT NULL,
+      visible TINYINT NOT NULL
+    );
+  `;
+
+  const createLocationsTable = `
+  CREATE TABLE IF NOT EXISTS locations (
+      location_id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+      location VARCHAR(250) NOT NULL,
+      visible TINYINT NOT NULL
+    );
+  `;
+
+  const createWorkingHoursTable = `
+  CREATE TABLE IF NOT EXISTS working_hours (
+      working_hours_id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+      start_day VARCHAR(45) NOT NULL,
+      end_day VARCHAR(45),
+      start_hour TIME NOT NULL,
+      end_hour TIME NOT NULL,
+      visible TINYINT NOT NULL
+    );
+  `;
+
+  const createContactUsFormTable = `
+  CREATE TABLE IF NOT EXISTS contact_us_form (
+      form_id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+      first_name VARCHAR(100) NOT NULL,
+      last_name VARCHAR(100) NOT NULL,
+      email VARCHAR(250) NOT NULL,
+      phone VARCHAR(15) NOT NULL,
+      subject VARCHAR(100) NOT NULL,
+      message TEXT NOT NULL
+    );
+  `;
+
+  const createDestinationsTable = `
+  CREATE TABLE IF NOT EXISTS destinations (
+      destination_id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+      name VARCHAR(250) NOT NULL,
+      category VARCHAR(100) NOT NULL,
+      image MEDIUMTEXT NOT NULL,
+      visible TINYINT NOT NULL
+    );
+  `;
+
+
+
   // Array of queries to execute
   const queries = [
     createUsersTable,
@@ -97,6 +186,15 @@ const createTables = () => {
     createUserToursAdditionalServicesTable,
     createBlogsTable,
     createReviewsTable,
+    createAmenitiesTable,
+    createToursAmenitiesTable,
+    createPagesTable,
+    createBannersTable,
+    createPhonesTable,
+    createLocationsTable,
+    createWorkingHoursTable,
+    createContactUsFormTable,
+    createDestinationsTable,
   ];
 
   // Execute each query
