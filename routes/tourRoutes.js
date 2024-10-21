@@ -1,6 +1,8 @@
 const express = require("express");
 const multer = require("multer");
 const path = require("path");
+const jwt = require("jsonwebtoken");
+const { verifyToken, checkRole } = require("../middlewares/token");
 
 const router = express.Router();
 
@@ -17,10 +19,19 @@ const upload = multer({ storage });
 
 /**
  * @swagger
+ * components:
+ *   securitySchemes:
+ *     bearerAuth:
+ *       type: http
+ *       scheme: bearer
+ *       bearerFormat: JWT
+ *
  * /tours:
  *   post:
  *     summary: Create a new tour
  *     tags: [Tours]
+ *     security:
+ *       - bearerAuth: []
  *     requestBody:
  *       required: true
  *       content:
@@ -67,69 +78,75 @@ const upload = multer({ storage });
  *       400:
  *         description: Error creating tour
  */
-router.post("/tours", upload.single("tourImage"), async (req, res) => {
-  const {
-    location,
-    name,
-    adultPrice,
-    kidsPrice,
-    childrenPrice,
-    durationInDays,
-    type,
-    reviewStars,
-    overview,
-    date,
-    time,
-    miniAge,
-    maxGusts,
-    languagesSupport,
-  } = req.body;
+router.post(
+  "/tours",
+  verifyToken,
+  checkRole(["Admin"]),
+  upload.single("tourImage"),
+  async (req, res) => {
+    const {
+      location,
+      name,
+      adultPrice,
+      kidsPrice,
+      childrenPrice,
+      durationInDays,
+      type,
+      reviewStars,
+      overview,
+      date,
+      time,
+      miniAge,
+      maxGusts,
+      languagesSupport,
+    } = req.body;
 
-  const tourImage = req.file ? req.file.path : null;
+    const tourImage = req.file ? req.file.path : null;
 
-  try {
-    console.log("Received tour creation request:", req.body);
+    try {
+      console.log("Received tour creation request:", req.body);
 
-    const insertTourQuery =
-      "INSERT INTO tours (location, name, adultPrice, kidsPrice, childrenPrice, durationInDays, type, reviewStars, overview, tourImage, date, time, miniAge, maxGusts, languagesSupport) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+      const insertTourQuery =
+        "INSERT INTO tours (location, name, adultPrice, kidsPrice, childrenPrice, durationInDays, type, reviewStars, overview, tourImage, date, time, miniAge, maxGusts, languagesSupport) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-    req.pool.query(
-      insertTourQuery,
-      [
-        location,
-        name,
-        adultPrice,
-        kidsPrice,
-        childrenPrice,
-        durationInDays,
-        type,
-        reviewStars,
-        overview,
-        tourImage,
-        date,
-        time,
-        miniAge,
-        maxGusts,
-        languagesSupport,
-      ],
-      (error, results) => {
-        if (error) {
-          console.error("Error inserting tour:", error);
-          return res
-            .status(400)
-            .json({ message: "Error creating tour", error });
+      req.pool.query(
+        insertTourQuery,
+        [
+          location,
+          name,
+          adultPrice,
+          kidsPrice,
+          childrenPrice,
+          durationInDays,
+          type,
+          reviewStars,
+          overview,
+          tourImage,
+          date,
+          time,
+          miniAge,
+          maxGusts,
+          languagesSupport,
+        ],
+        (error, results) => {
+          if (error) {
+            console.error("Error inserting tour:", error);
+            return res
+              .status(400)
+              .json({ message: "Error creating tour", error });
+          }
+          res.status(201).json({
+            message: "Tour created successfully",
+            tourId: results.insertId,
+          });
         }
-        res.status(201).json({
-          message: "Tour created successfully",
-          tourId: results.insertId,
-        });
-      }
-    );
-  } catch (error) {
-    console.error("Unexpected error:", error);
-    res.status(500).json({ message: "Internal server error" });
+      );
+    } catch (error) {
+      console.error("Unexpected error:", error);
+      res.status(500).json({ message: "Internal server error" });
+    }
   }
-});
+);
 
 /**
  * @swagger
@@ -197,10 +214,19 @@ router.get("/tours/:tour_id", (req, res) => {
 
 /**
  * @swagger
+ * components:
+ *   securitySchemes:
+ *     bearerAuth:
+ *       type: http
+ *       scheme: bearer
+ *       bearerFormat: JWT
+ *
  * /tours/{tour_id}:
  *   delete:
  *     summary: Delete tour by ID
  *     tags: [Tours]
+ *     security:
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: tour_id
@@ -214,26 +240,40 @@ router.get("/tours/:tour_id", (req, res) => {
  *       404:
  *         description: Tour not found
  */
-router.delete("/tours/:tour_id", (req, res) => {
-  const query = "DELETE FROM tours WHERE tour_id = ?";
-  req.pool.query(query, [req.params.tour_id], (error, results) => {
-    if (error) {
-      console.error("Error deleting tour:", error);
-      return res.status(500).json({ message: "Internal server error" });
-    }
-    if (results.affectedRows === 0) {
-      return res.status(404).json({ message: "Tour not found" });
-    }
-    res.json({ message: "Tour deleted successfully" });
-  });
-});
+router.delete(
+  "/tours/:tour_id",
+  verifyToken,
+  checkRole(["Admin"]),
+  (req, res) => {
+    const query = "DELETE FROM tours WHERE tour_id = ?";
+    req.pool.query(query, [req.params.tour_id], (error, results) => {
+      if (error) {
+        console.error("Error deleting tour:", error);
+        return res.status(500).json({ message: "Internal server error" });
+      }
+      if (results.affectedRows === 0) {
+        return res.status(404).json({ message: "Tour not found" });
+      }
+      res.json({ message: "Tour deleted successfully" });
+    });
+  }
+);
 
 /**
  * @swagger
+ * components:
+ *   securitySchemes:
+ *     bearerAuth:
+ *       type: http
+ *       scheme: bearer
+ *       bearerFormat: JWT
+ *
  * /tours/{tour_id}:
  *   put:
  *     summary: Update tour by ID
  *     tags: [Tours]
+ *     security:
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: tour_id
@@ -286,7 +326,7 @@ router.delete("/tours/:tour_id", (req, res) => {
  *       404:
  *         description: Tour not found
  */
-router.put("/tours/:tour_id", (req, res) => {
+router.put("/tours/:tour_id", verifyToken, checkRole(["Admin"]), (req, res) => {
   try {
     const {
       location,
@@ -370,22 +410,17 @@ router.put("/tours/:tour_id", (req, res) => {
       updateFields.push("languagesSupport = ?");
     }
 
-    if (updates.length === 0) {
-      return res.status(400).json({ message: "No fields to update." });
-    }
-
-    const query = `
-      UPDATE tours SET 
-        ${updateFields.join(", ")} 
+    const sqlQuery = `
+      UPDATE tours
+      SET ${updateFields.join(", ")}
       WHERE tour_id = ?
     `;
-
     updates.push(req.params.tour_id);
 
-    req.pool.query(query, updates, (error, results) => {
+    req.pool.query(sqlQuery, updates, (error, results) => {
       if (error) {
         console.error("Error updating tour:", error);
-        return res.status(500).json({ message: "Internal server error" });
+        return res.status(400).json({ message: "Error updating tour", error });
       }
       if (results.affectedRows === 0) {
         return res.status(404).json({ message: "Tour not found" });
@@ -393,90 +428,9 @@ router.put("/tours/:tour_id", (req, res) => {
       res.json({ message: "Tour updated successfully" });
     });
   } catch (error) {
-    console.error("Error in request:", error);
-    return res.status(400).json({ message: "Invalid request." });
+    console.error("Unexpected error:", error);
+    res.status(500).json({ message: "Internal server error" });
   }
-});
-
-/**
- * @swagger
- * /paginationOfTours:
- *   get:
- *     summary: Get all tours with pagination
- *     tags: [Tours]
- *     parameters:
- *       - in: query
- *         name: page
- *         schema:
- *           type: integer
- *         description: Page number for pagination
- *       - in: query
- *         name: limit
- *         schema:
- *           type: integer
- *         description: Number of tours to retrieve per page (default is 6)
- *     responses:
- *       200:
- *         description: A list of tours posts
- *         content:
- *           application/json:
- *             schema:
- *             type: array
- *             items:
- *               type: object
- *               properties:
- *                 tour_id:
- *                   type: integer
- *               location:
- *                 type: string
- *               name:
- *                 type: string
- *               adultPrice:
- *                 type: number
- *               kidsPrice:
- *                 type: number
- *               childrenPrice:
- *                 type: number
- *               durationInDays:
- *                 type: integer
- *               typeoftour:
- *                 type: string
- *               reviewStars:
- *                 type: integer
- *               overview:
- *                 type: string
- *               tourImage:
- *                 type: string
- *               date:
- *                 type: string
- *                 format: date
- *               time:
- *                 type: string
- *                 format: time
- *               miniAge:
- *                 type: integer
- *               maxGusts:
- *                 type: integer
- *               languagesSupport:
- *                 type: string
- *
- */
-router.get("/paginationOfTours", (req, res) => {
-  const page = parseInt(req.query.page) || 1;
-  const limit = parseInt(req.query.limit) || 6;
-  const offset = (page - 1) * limit;
-
-  const query = "SELECT * FROM tours LIMIT ? OFFSET ?";
-  req.pool.query(query, [limit, offset], (error, results) => {
-    if (error) {
-      return res.status(500).json({ message: "Internal server error" });
-    }
-    res.json({
-      page,
-      limit,
-      tours: results,
-    });
-  });
 });
 
 module.exports = router;
