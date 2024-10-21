@@ -1,5 +1,7 @@
 const express = require("express");
 const router = express.Router();
+const jwt = require("jsonwebtoken");
+const { verifyToken, checkRole } = require("../middlewares/token");
 
 /**
  * @swagger
@@ -10,10 +12,18 @@ const router = express.Router();
 
 /**
  * @swagger
+ *   components:
+ *   securitySchemes:
+ *     bearerAuth:
+ *       type: http
+ *       scheme: bearer
+ *       bearerFormat: JWT
  * /workinghours:
  *   post:
  *     summary: Create a new working hours entry
  *     tags: [WorkingHours]
+ *     security:
+ *       - bearerAuth: []
  *     requestBody:
  *       required: true
  *       content:
@@ -37,7 +47,7 @@ const router = express.Router();
  *       500:
  *         description: Internal server error
  */
-router.post("/workinghours", (req, res) => {
+router.post("/workinghours",verifyToken, checkRole(["Admin"]), (req, res) => {
   const { start_day, end_day, start_hour, end_hour, visible } = req.body;
   const insertQuery = `INSERT INTO working_hours (start_day, end_day, start_hour, end_hour, visible) VALUES (?, ?, ?, ?, ?)`;
   
@@ -144,10 +154,18 @@ router.get("/workinghours/:id", (req, res) => {
 
 /**
  * @swagger
+ *   components:
+ *   securitySchemes:
+ *     bearerAuth:
+ *       type: http
+ *       scheme: bearer
+ *       bearerFormat: JWT
  * /workinghours/{id}:
  *   put:
  *     summary: Update a working hours entry by ID
  *     tags: [WorkingHours]
+ *     security:
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -178,7 +196,7 @@ router.get("/workinghours/:id", (req, res) => {
  *       404:
  *         description: Working hours entry not found
  */
-router.put("/workinghours/:id", (req, res) => {
+router.put("/workinghours/:id",verifyToken, checkRole(["Admin"]), (req, res) => {
   const { start_day, end_day, start_hour, end_hour, visible } = req.body;
   const updateQuery = `UPDATE working_hours SET start_day = ?, end_day = ?, start_hour = ?, end_hour = ?, visible = ? WHERE working_hours_id = ?`;
   
@@ -196,10 +214,18 @@ router.put("/workinghours/:id", (req, res) => {
 
 /**
  * @swagger
+ *   components:
+ *   securitySchemes:
+ *     bearerAuth:
+ *       type: http
+ *       scheme: bearer
+ *       bearerFormat: JWT
  * /workinghours/{id}:
  *   delete:
  *     summary: Delete a working hours entry by ID
  *     tags: [WorkingHours]
+ *     security:
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -213,7 +239,7 @@ router.put("/workinghours/:id", (req, res) => {
  *       404:
  *         description: Working hours entry not found
  */
-router.delete("/workinghours/:id", (req, res) => {
+router.delete("/workinghours/:id",verifyToken, checkRole(["Admin"]), (req, res) => {
   const deleteQuery = "DELETE FROM working_hours WHERE working_hours_id = ?";
   
   req.pool.query(deleteQuery, [req.params.id], (error, results) => {

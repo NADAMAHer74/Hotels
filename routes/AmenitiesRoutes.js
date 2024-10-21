@@ -1,4 +1,4 @@
-const express = require("express");
+express = require("express");
 const router = express.Router();
 const jwt = require("jsonwebtoken");
 const { verifyToken, checkRole } = require("../middlewares/token");
@@ -11,10 +11,10 @@ const { verifyToken, checkRole } = require("../middlewares/token");
  *       type: http
  *       scheme: bearer
  *       bearerFormat: JWT
- * /phones:
+ * /amenities:
  *   post:
- *     summary: Add a new phone entry
- *     tags: [Phones]
+ *     summary: Add a new amenity
+ *     tags: [Amenities]
  *     security:
  *       - bearerAuth: []
  *     requestBody:
@@ -24,39 +24,40 @@ const { verifyToken, checkRole } = require("../middlewares/token");
  *           schema:
  *             type: object
  *             properties:
- *               phone_number:
+ *               name:
  *                 type: string
- *               visible:
- *                 type: boolean
+ *               icon:
+ *                 type: string
+ *               rate:
+ *                 type: integer
  *     responses:
  *       201:
- *         description: Phone entry created successfully
+ *         description: Amenity created successfully
  *       500:
  *         description: Internal server error
  */
-router.post("/phones",verifyToken, checkRole(["Admin"]), (req, res) => {
-  const { phone_number, visible } = req.body;
-  console.log(phone_number, visible);
-  const insertQuery = `INSERT INTO phones (phone_number, visible) VALUES (?, ?)`;
+router.post("/amenities", verifyToken, checkRole(["Admin"]), (req, res) => {
+  const { name, icon, rate } = req.body;
+  const insertQuery = `INSERT INTO amenities (name, icon, rate) VALUES (?, ?, ?)`;
 
-  req.pool.query(insertQuery, [phone_number, visible ? 1 : 0], (error, results) => {
+  req.pool.query(insertQuery, [name, icon, rate], (error, results) => {
     if (error) {
-      console.error("Error inserting phone entry:", error);
+      console.error("Error inserting amenity:", error);
       return res.status(500).json({ message: "Internal server error" });
     }
-    res.status(201).json({ message: "Phone entry created successfully" });
+    res.status(201).json({ message: "Amenity created successfully" });
   });
 });
 
 /**
  * @swagger
- * /phones:
+ * /amenities:
  *   get:
- *     summary: Get all phone entries
- *     tags: [Phones]
+ *     summary: Get all amenities
+ *     tags: [Amenities]
  *     responses:
  *       200:
- *         description: A list of phone entries
+ *         description: A list of amenities
  *         content:
  *           application/json:
  *             schema:
@@ -64,12 +65,12 @@ router.post("/phones",verifyToken, checkRole(["Admin"]), (req, res) => {
  *               items:
  *                 type: object
  */
-router.get("/phones", (req, res) => {
-  const query = "SELECT * FROM phones";
+router.get("/amenities", (req, res) => {
+  const query = "SELECT * FROM amenities";
 
   req.pool.query(query, (error, results) => {
     if (error) {
-      console.error("Error fetching phone entries:", error);
+      console.error("Error fetching amenities:", error);
       return res.status(500).json({ message: "Internal server error" });
     }
     res.json(results);
@@ -78,94 +79,39 @@ router.get("/phones", (req, res) => {
 
 /**
  * @swagger
- * /phones/{id}:
+ * /amenities/{id}:
  *   get:
- *     summary: Get a phone entry by ID
- *     tags: [Phones]
+ *     summary: Get an amenity by ID
+ *     tags: [Amenities]
  *     parameters:
  *       - in: path
  *         name: id
  *         schema:
  *           type: integer
  *         required: true
- *         description: The phone entry ID
+ *         description: The amenity ID
  *     responses:
  *       200:
- *         description: Phone entry details
+ *         description: Amenity details
  *         content:
  *           application/json:
  *             schema:
  *               type: object
  *       404:
- *         description: Phone entry not found
+ *         description: Amenity not found
  */
-router.get("/phones/:id", (req, res) => {
-  const query = "SELECT * FROM phones WHERE phone_id = ?";
+router.get("/amenities/:id", (req, res) => {
+  const query = "SELECT * FROM amenities WHERE amenities_id = ?";
 
   req.pool.query(query, [req.params.id], (error, results) => {
     if (error) {
-      console.error("Error fetching phone entry:", error);
+      console.error("Error fetching amenity:", error);
       return res.status(500).json({ message: "Internal server error" });
     }
     if (results.length === 0) {
-      return res.status(404).json({ message: "Phone entry not found" });
+      return res.status(404).json({ message: "Amenity not found" });
     }
     res.json(results[0]);
-  });
-});
-
-/**
- * @swagger
- *   components:
- *   securitySchemes:
- *     bearerAuth:
- *       type: http
- *       scheme: bearer
- *       bearerFormat: JWT
- * /phones/{id}:
- *   put:
- *     summary: Update a phone entry by ID
- *     tags: [Phones]
- *     security:
- *       - bearerAuth: []
- *     parameters:
- *       - in: path
- *         name: id
- *         schema:
- *           type: integer
- *         required: true
- *         description: The phone entry ID
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             type: object
- *             properties:
- *               phone_number:
- *                 type: string
- *               visible:
- *                 type: boolean
- *     responses:
- *       200:
- *         description: Phone entry updated successfully
- *       404:
- *         description: Phone entry not found
- */
-router.put("/phones/:id",verifyToken, checkRole(["Admin"]), (req, res) => {
-  const { phone_number, visible } = req.body;
-
-  const updateQuery = `UPDATE phones SET phone_number = ?, visible = ? WHERE phone_id = ?`;
-
-  req.pool.query(updateQuery, [phone_number, visible ? 1 : 0, req.params.id], (error, results) => {
-    if (error) {
-      console.error("Error updating phone entry:", error);
-      return res.status(500).json({ message: "Internal server error" });
-    }
-    if (results.affectedRows === 0) {
-      return res.status(404).json({ message: "Phone entry not found" });
-    }
-    res.json({ message: "Phone entry updated successfully" });
   });
 });
 
@@ -177,10 +123,10 @@ router.put("/phones/:id",verifyToken, checkRole(["Admin"]), (req, res) => {
  *       type: http
  *       scheme: bearer
  *       bearerFormat: JWT
- * /phones/{id}:
- *   delete:
- *     summary: Delete a phone entry by ID
- *     tags: [Phones]
+ * /amenities/{id}:
+ *   put:
+ *     summary: Update an amenity by ID
+ *     tags: [Amenities]
  *     security:
  *       - bearerAuth: []
  *     parameters:
@@ -189,25 +135,81 @@ router.put("/phones/:id",verifyToken, checkRole(["Admin"]), (req, res) => {
  *         schema:
  *           type: integer
  *         required: true
- *         description: The phone entry ID
+ *         description: The amenity ID
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               name:
+ *                 type: string
+ *               icon:
+ *                 type: string
+ *               rate:
+ *                 type: integer
  *     responses:
  *       200:
- *         description: Phone entry deleted successfully
+ *         description: Amenity updated successfully
  *       404:
- *         description: Phone entry not found
+ *         description: Amenity not found
  */
-router.delete("/phones/:id",verifyToken, checkRole(["Admin"]), (req, res) => {
-  const deleteQuery = "DELETE FROM phones WHERE phone_id = ?";
+router.put("/amenities/:id", verifyToken, checkRole(["Admin"]), (req, res) => {
+  const { name, icon, rate } = req.body;
+  const updateQuery = `UPDATE amenities SET name = ?, icon = ?, rate = ? WHERE amenities_id = ?`;
 
-  req.pool.query(deleteQuery, [req.params.id], (error, results) => {
+  req.pool.query(updateQuery, [name, icon, rate, req.params.id], (error, results) => {
     if (error) {
-      console.error("Error deleting phone entry:", error);
+      console.error("Error updating amenity:", error);
       return res.status(500).json({ message: "Internal server error" });
     }
     if (results.affectedRows === 0) {
-      return res.status(404).json({ message: "Phone entry not found" });
+      return res.status(404).json({ message: "Amenity not found" });
     }
-    res.json({ message: "Phone entry deleted successfully" });
+    res.json({ message: "Amenity updated successfully" });
+  });
+});
+
+/**
+ * @swagger
+ * components:
+ *   securitySchemes:
+ *     bearerAuth:
+ *       type: http
+ *       scheme: bearer
+ *       bearerFormat: JWT
+ * /amenities/{id}:
+ *   delete:
+ *     summary: Delete an amenity by ID
+ *     tags: [Amenities]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: integer
+ *         required: true
+ *         description: The amenity ID
+ *     responses:
+ *       200:
+ *         description: Amenity deleted successfully
+ *       404:
+ *         description: Amenity not found
+ */
+router.delete("/amenities/:id", verifyToken, checkRole(["Admin"]), (req, res) => {
+  const deleteQuery = "DELETE FROM amenities WHERE amenities_id = ?";
+
+  req.pool.query(deleteQuery, [req.params.id], (error, results) => {
+    if (error) {
+      console.error("Error deleting amenity:", error);
+      return res.status(500).json({ message: "Internal server error" });
+    }
+    if (results.affectedRows === 0) {
+      return res.status(404).json({ message: "Amenity not found" });
+    }
+    res.json({ message: "Amenity deleted successfully" });
   });
 });
 

@@ -23,6 +23,7 @@ const verifyToken = (req, res, next) => {
 
 const checkRole = (roles) => {
   return (req, res, next) => {
+    console.log(req.user.role);
     if (req.user && roles.includes(req.user.role)) {
       next();
     } else {

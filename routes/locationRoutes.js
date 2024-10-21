@@ -1,5 +1,7 @@
 const express = require("express");
 const router = express.Router();
+const jwt = require("jsonwebtoken");
+const { verifyToken, checkRole } = require("../middlewares/token");
 
 /**
  * @swagger
@@ -10,10 +12,18 @@ const router = express.Router();
 
 /**
  * @swagger
+ * components:
+ *   securitySchemes:
+ *     bearerAuth:
+ *       type: http
+ *       scheme: bearer
+ *       bearerFormat: JWT
  * /locations:
  *   post:
  *     summary: Create a new location entry
  *     tags: [Locations]
+ *     security:
+ *       - bearerAuth: []
  *     requestBody:
  *       required: true
  *       content:
@@ -31,7 +41,7 @@ const router = express.Router();
  *       500:
  *         description: Internal server error
  */
-router.post("/locations", (req, res) => {
+router.post("/locations",verifyToken, checkRole(["Admin"]), (req, res) => {
   const { location, visible } = req.body;
   const insertQuery = `INSERT INTO locations (location, visible) VALUES (?, ?)`;
   
@@ -126,10 +136,18 @@ router.get("/locations/:id", (req, res) => {
 
 /**
  * @swagger
+ * components:
+ *   securitySchemes:
+ *     bearerAuth:
+ *       type: http
+ *       scheme: bearer
+ *       bearerFormat: JWT
  * /locations/{id}:
  *   put:
  *     summary: Update a location entry by ID
  *     tags: [Locations]
+ *     security:
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -154,7 +172,7 @@ router.get("/locations/:id", (req, res) => {
  *       404:
  *         description: Location entry not found
  */
-router.put("/locations/:id", (req, res) => {
+router.put("/locations/:id",verifyToken, checkRole(["Admin"]), (req, res) => {
   const { location, visible } = req.body;
   const updateQuery = `UPDATE locations SET location = ?, visible = ? WHERE location_id = ?`;
   
@@ -172,10 +190,18 @@ router.put("/locations/:id", (req, res) => {
 
 /**
  * @swagger
+ * components:
+ *   securitySchemes:
+ *     bearerAuth:
+ *       type: http
+ *       scheme: bearer
+ *       bearerFormat: JWT
  * /locations/{id}:
  *   delete:
  *     summary: Delete a location entry by ID
  *     tags: [Locations]
+ *     security:
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -189,7 +215,7 @@ router.put("/locations/:id", (req, res) => {
  *       404:
  *         description: Location entry not found
  */
-router.delete("/locations/:id", (req, res) => {
+router.delete("/locations/:id",verifyToken, checkRole(["Admin"]), (req, res) => {
   const deleteQuery = "DELETE FROM locations WHERE location_id = ?";
   
   req.pool.query(deleteQuery, [req.params.id], (error, results) => {

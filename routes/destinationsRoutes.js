@@ -1,6 +1,21 @@
 const express = require("express");
 const router = express.Router();
+const multer = require("multer");
 const path = require("path");
+const jwt = require("jsonwebtoken");
+const { verifyToken, checkRole } = require("../middlewares/token");
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "uploads/");
+  },
+  filename: (req, file, cb) => {
+    const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
+    cb(null, uniqueSuffix + path.extname(file.originalname));
+  },
+});
+const upload = multer({ storage });
+
 
 /**
  * @swagger
@@ -11,10 +26,18 @@ const path = require("path");
 
 /**
  * @swagger
+ *   components:
+ *   securitySchemes:
+ *     bearerAuth:
+ *       type: http
+ *       scheme: bearer
+ *       bearerFormat: JWT
  * /destinations:
  *   post:
  *     summary: Create a new destination entry
  *     tags: [Destinations]
+ *     security:
+ *       - bearerAuth: []
  *     requestBody:
  *       required: true
  *       content:
@@ -28,6 +51,7 @@ const path = require("path");
  *                 type: string
  *               image:
  *                 type: string
+ *                 format: binary
  *                 description: Local URL of the image
  *               visible:
  *                 type: integer
@@ -37,9 +61,9 @@ const path = require("path");
  *       500:
  *         description: Internal server error
  */
-router.post("/destinations", (req, res) => {
-  const { name, category, image, visible } = req.body;
-
+router.post("/destinations",verifyToken, checkRole(["Admin"]), upload.single("image"), (req, res) => {
+  const { name, category, visible } = req.body;
+  const image = req.file ? req.file.path : null;
   const insertQuery = `INSERT INTO destinations (name, category, image, visible) VALUES (?, ?, ?, ?)`;
   
   req.pool.query(insertQuery, [name, category, image, visible], (error, results) => {
@@ -143,10 +167,18 @@ router.get("/destinations/:id", (req, res) => {
 
 /**
  * @swagger
+ *   components:
+ *   securitySchemes:
+ *     bearerAuth:
+ *       type: http
+ *       scheme: bearer
+ *       bearerFormat: JWT
  * /destinations/{id}:
  *   put:
  *     summary: Update a destination entry by ID
  *     tags: [Destinations]
+ *     security:
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -176,7 +208,7 @@ router.get("/destinations/:id", (req, res) => {
  *       404:
  *         description: Destination entry not found
  */
-router.put("/destinations/:id", (req, res) => {
+router.put("/destinations/:id",verifyToken, checkRole(["Admin"]), (req, res) => {
   const { name, category, image, visible } = req.body;
   const updateQuery = `UPDATE destinations SET name = ?, category = ?, image = ?, visible = ? WHERE destination_id = ?`;
   
@@ -194,10 +226,18 @@ router.put("/destinations/:id", (req, res) => {
 
 /**
  * @swagger
+ *   components:
+ *   securitySchemes:
+ *     bearerAuth:
+ *       type: http
+ *       scheme: bearer
+ *       bearerFormat: JWT
  * /destinations/{id}:
  *   delete:
  *     summary: Delete a destination entry by ID
  *     tags: [Destinations]
+ *     security:
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -211,7 +251,7 @@ router.put("/destinations/:id", (req, res) => {
  *       404:
  *         description: Destination entry not found
  */
-router.delete("/destinations/:id", (req, res) => {
+router.delete("/destinations/:id",verifyToken, checkRole(["Admin"]), (req, res) => {
   const deleteQuery = "DELETE FROM destinations WHERE destination_id = ?";
   
   req.pool.query(deleteQuery, [req.params.id], (error, results) => {

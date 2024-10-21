@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
-
+const jwt = require("jsonwebtoken");
+const { verifyToken, checkRole } = require("../middlewares/token");
 /**
  * @swagger
  * /contactus:
@@ -53,10 +54,18 @@ router.post("/contactus", async (req, res) => {
 
 /**
  * @swagger
+ *   components:
+ *   securitySchemes:
+ *     bearerAuth:
+ *       type: http
+ *       scheme: bearer
+ *       bearerFormat: JWT
  * /contactus:
  *   get:
  *     summary: Get all contact form entries
  *     tags: [ContactUs]
+ *     security:
+ *       - bearerAuth: []
  *     responses:
  *       200:
  *         description: A list of contact form entries
@@ -67,7 +76,7 @@ router.post("/contactus", async (req, res) => {
  *               items:
  *                 type: object
  */
-router.get("/contactus", (req, res) => {
+router.get("/contactus",verifyToken, checkRole(["Admin"]), (req, res) => {
   const query = "SELECT * FROM contact_us_form";
   req.pool.query(query, (error, results) => {
     if (error) {
@@ -80,10 +89,18 @@ router.get("/contactus", (req, res) => {
 
 /**
  * @swagger
+ *   components:
+ *   securitySchemes:
+ *     bearerAuth:
+ *       type: http
+ *       scheme: bearer
+ *       bearerFormat: JWT
  * /contactus/{id}:
  *   get:
  *     summary: Get a contact form entry by ID
  *     tags: [ContactUs]
+ *     security:
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -101,7 +118,7 @@ router.get("/contactus", (req, res) => {
  *       404:
  *         description: Contact form entry not found
  */
-router.get("/contactus/:id", (req, res) => {
+router.get("/contactus/:id",verifyToken, checkRole(["Admin"]), (req, res) => {
   const query = "SELECT * FROM contact_us_form WHERE form_id = ?";
   req.pool.query(query, [req.params.id], (error, results) => {
     if (error) {
@@ -117,10 +134,18 @@ router.get("/contactus/:id", (req, res) => {
 
 /**
  * @swagger
+ *   components:
+ *   securitySchemes:
+ *     bearerAuth:
+ *       type: http
+ *       scheme: bearer
+ *       bearerFormat: JWT
  * /contactus/{id}:
  *   put:
  *     summary: Update a contact form entry by ID
  *     tags: [ContactUs]
+ *     security:
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -153,7 +178,7 @@ router.get("/contactus/:id", (req, res) => {
  *       404:
  *         description: Contact form entry not found
  */
-router.put("/contactus/:id", (req, res) => {
+router.put("/contactus/:id",verifyToken, checkRole(["Admin"]), (req, res) => {
   const { first_name, last_name, email, phone, subject, message } = req.body;
 
   const updateQuery = `
@@ -174,10 +199,18 @@ router.put("/contactus/:id", (req, res) => {
 
 /**
  * @swagger
+ *   components:
+ *   securitySchemes:
+ *     bearerAuth:
+ *       type: http
+ *       scheme: bearer
+ *       bearerFormat: JWT
  * /contactus/{id}:
  *   delete:
  *     summary: Delete a contact form entry by ID
  *     tags: [ContactUs]
+ *     security:
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -191,7 +224,7 @@ router.put("/contactus/:id", (req, res) => {
  *       404:
  *         description: Contact form entry not found
  */
-router.delete("/contactus/:id", (req, res) => {
+router.delete("/contactus/:id",verifyToken, checkRole(["Admin"]), (req, res) => {
   const deleteQuery = "DELETE FROM contact_us_form WHERE form_id = ?";
 
   req.pool.query(deleteQuery, [req.params.id], (error, results) => {
