@@ -9,11 +9,6 @@ body {
   font-style: normal;
 }
 
-/* @font-face {
-    font-family: gloss;
-    src: url(../fonts/fonts/Gloss\ And\ Bloom\ Font.ttf);
-  } */
-
 :root {
   --color-primary: #11bb67;
   --color-secondary: #ff6525;
@@ -28,7 +23,6 @@ body {
 img {
   max-width: 100%;
 }
-
 
 .contactNavBtn {
   background-color: var(--color-primary) !important;
@@ -76,7 +70,7 @@ img {
   font-size: 18px;
 }
 
-.topBar .container .dropdownCompanyInfo>i:hover {
+.topBar .container .dropdownCompanyInfo > i:hover {
   transform: rotate(90deg);
 }
 
@@ -87,7 +81,6 @@ img {
   background-color: var(--color-primary);
   padding: 0.8rem 0.7rem;
 }
-
 
 .dropdownCompanyInfo {
   position: relative;
@@ -139,7 +132,6 @@ img {
   font-weight: 600;
 }
 
-
 .topBar .contactInfo span {
   margin-right: 20px;
   font-weight: 400;
@@ -165,8 +157,6 @@ img {
   border-left: 1px solid white;
 }
 
-
-
 .navbar-nav .nav-link {
   font-size: 18px;
   color: #000;
@@ -184,7 +174,6 @@ img {
   color: var(--color-primary);
 }
 
-
 .mainBanner {
   position: relative;
   height: 450px;
@@ -192,7 +181,6 @@ img {
   background-position: center;
   background-repeat: no-repeat;
   background-color: rgba(0, 0, 0, 0.7);
-
 }
 
 .mainBannerImg {
@@ -252,7 +240,6 @@ img {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-
 }
 
 .videoBlock .container {
@@ -445,7 +432,7 @@ img {
 
 .footerSocialIcons a::before {
   position: absolute;
-  content: '';
+  content: "";
   background-color: var(--color-primary);
   top: 50%;
   left: 50%;
@@ -456,7 +443,6 @@ img {
   z-index: 0;
   transition: 0.3s ease-in-out;
 }
-
 
 .footerSocialIcons a:hover::before {
   transform: translate(-50%, -50%) scale(1);
@@ -552,15 +538,13 @@ img {
   background-color: var(--color-primary);
 }
 
-
-
 .scrollToTop button {
   transition: 0.3s ease-in-out;
   position: fixed;
   bottom: 15px;
   right: 25px;
   padding: 7px 12px;
-  font-Size: 18px;
+  font-size: 18px;
   background-color: var(--color-primary);
   color: white;
   border: none;
@@ -579,11 +563,10 @@ img {
   background-color: var(--color-secondary);
 }
 
-
 /*Media Queries*/
 
 @media screen and (max-width: 395px) {
-  .dropdownCompanyInfo>a {
+  .dropdownCompanyInfo > a {
     display: none;
   }
 }

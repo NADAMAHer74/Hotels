@@ -2,8 +2,6 @@ body {
   font-family: Arial, sans-serif;
 }
 
-
-
 .balloon {
   position: absolute;
   top: 50px;
@@ -19,7 +17,7 @@ body {
   height: 50px;
 }
 
-.topDestinations {
+.textStyle {
   font-family: "Gloss And Bloom", sans-serif;
   color: #ff6525;
   font-weight: bold;
@@ -174,4 +172,57 @@ body {
 .btn {
   background-color: #ff6525;
   border: none;
+}
+
+.spacing {
+  margin-left: 28%;
+}
+
+@media screen and (max-width: 750px) {
+  .spacing {
+    margin-left: 0;
+  }
+
+  .d-none {
+    display: none !important;
+  }
+}
+
+@media screen and (min-width: 751px) and (max-width: 992px) {
+  .spacing {
+    margin-left: 0;
+  }
+
+  .col-md-4 {
+    flex: 0 0 30%;
+    max-width: 100%;
+  }
+}
+.greenBackground {
+  background-color: #11bb67;
+}
+.iconsWhite {
+  color: white;
+}
+.buttonHover {
+  cursor: pointer;
+  opacity: 0.5;
+  transition: opacity 0.3s;
+}
+
+.buttonHover:hover {
+  background-color: #11bb67;
+  opacity: 1;
+}
+.translateValues {
+  right: 10%;
+  bottom: 38%;
+}
+@media screen and (max-width: 750px) {
+  .translateValues {
+    bottom: 40%;
+  }
+}
+.orangColor {
+  color: #ff6525;
 }
