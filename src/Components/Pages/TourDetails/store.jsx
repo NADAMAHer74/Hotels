@@ -1,8 +1,8 @@
-import { configureStore } from '@reduxjs/toolkit';
-import packageReducer from './packageSlice.jsx';
+// import { configureStore } from '@reduxjs/toolkit';
+// import packageReducer from './packageSlice.jsx';
 
-export const store = configureStore({
-  reducer: {
-    package: packageReducer,
-  },
-});
+// export const store = configureStore({
+//   reducer: {
+//     package: packageReducer,
+//   },
+// });

@@ -1,12 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-
-const API_URL = 'https://api.example.com/package-details'; 
-
-export const fetchPackageDetails = createAsyncThunk('package/fetchPackageDetails', async () => {
-  const response = await fetch(API_URL);
-  const data = await response.json();
-  return data;
-});
+import { fetchPackageDetails } from '../../../APIs/TourDetailApi.js';
 
 const packageSlice = createSlice({
   name: 'package',
@@ -80,5 +73,7 @@ export const {
   toggleService,
   updateTotalCost,
 } = packageSlice.actions;
+export { fetchPackageDetails } from '../../../APIs/TourDetailApi.js';
+
 
 export default packageSlice.reducer;
