@@ -1,7 +1,9 @@
 const express = require("express");
-const mysql = require("mysql2/promise");
+const mysql = require("mysql");
 const userRoutes = require("./routes/userRoutes");
 const tourRoutes = require("./routes/tourRoutes");
+const userTourRoutes = require("./routes/userTourRoutes");
+const availableServicesRoutes = require("./routes/availableServicesRoutes");
 const blogRoutes = require("./routes/blogRoutes");
 const contactUsRoutes = require("./routes/contactUsRoutes");
 const phoneRoutes = require("./routes/phoneRoutes");
@@ -12,7 +14,6 @@ const AmenitiesRoutes = require("./routes/AmenitiesRoutes");
 const toursHasAmenitiesRoutes = require("./routes/toursHasAmenitiesRoutes");
 const PagesRoutes = require("./routes/PagesRoutes");
 const BannersRoutes = require("./routes/BannersRoutes");
-const AvailableAdditionalServicesRoutes = require("./routes/AvailableAdditionalServicesRoutes");
 const swaggerUi = require("swagger-ui-express");
 const swaggerJsdoc = require("swagger-jsdoc");
 const { createTables } = require("./migrations/migrate");
@@ -68,6 +69,8 @@ app.use((req, res, next) => {
 app.use("/api", userRoutes);
 app.use("/api", blogRoutes);
 app.use("/api", tourRoutes);
+app.use("/api", userTourRoutes);
+app.use("/api", availableServicesRoutes);
 
 app.use("/api", contactUsRoutes);
 
@@ -79,7 +82,6 @@ app.use("/api", AmenitiesRoutes);
 app.use("/api", toursHasAmenitiesRoutes);
 app.use("/api", PagesRoutes);
 app.use("/api", BannersRoutes);
-app.use("/api", AvailableAdditionalServicesRoutes);
 app.listen(3000, () => {
   console.log("Server running on port 3000");
   console.log("Swagger running at http://localhost:3000/api-docs");

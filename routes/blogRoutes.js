@@ -381,11 +381,14 @@ router.get("/pagination", (req, res) => {
  *                     type: string
  
  */
-router.get("/latest", async (req, res) => {
-  try {
-    const [blogs] = await req.pool.query(
-      "SELECT * FROM blogs ORDER BY created_at DESC LIMIT 3"
-    );
+router.get("/latest", (req, res) => {
+  const query = "SELECT * FROM blogs ORDER BY created_at DESC LIMIT 3";
+
+  req.pool.query(query, (error, blogs) => {
+    if (error) {
+      console.error("Database query error:", error);
+      return res.status(500).json({ message: "Internal server error" });
+    }
 
     console.log("Blogs result:", blogs);
 
@@ -394,10 +397,7 @@ router.get("/latest", async (req, res) => {
     }
 
     res.json(blogs);
-  } catch (error) {
-    console.error("Database query error:", error);
-    res.status(500).json({ message: "Internal server error" });
-  }
+  });
 });
 
 module.exports = router;
