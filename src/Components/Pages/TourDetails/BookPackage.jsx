@@ -163,24 +163,24 @@ import {
   toggleService,
   updateTotalCost,
   fetchPackageDetails, // Action to fetch data from API
-} from './packageSlice'; // Import your Redux slice
+} from './packageSlice.jsx'; // Import your Redux slice
 
 import "./TourDetailcss.css";
 
 function BookPackage() {
   const dispatch = useDispatch();
 
-  // Access state from Redux
+  
   const { date, time, times, adults, kids, children, additionalServices, totalCost, serviceCosts } = useSelector(
     (state) => state.package
   );
 
-  // Fetch data from API when component mounts
+ 
   useEffect(() => {
     dispatch(fetchPackageDetails());
   }, [dispatch]);
 
-  // Handle toggling of additional services and updating total cost
+
   const handleServiceChange = (service) => {
     dispatch(toggleService(service));
     dispatch(updateTotalCost());

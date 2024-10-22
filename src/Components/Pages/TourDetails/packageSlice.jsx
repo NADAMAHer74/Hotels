@@ -46,7 +46,7 @@ const packageSlice = createSlice({
       state.additionalServices[service] = !state.additionalServices[service];
     },
     updateTotalCost: (state) => {
-      let baseCost = 800; // Assume $800 base
+      let baseCost = 800; 
       const services = state.additionalServices;
       const serviceCosts = state.serviceCosts;
 
@@ -61,12 +61,12 @@ const packageSlice = createSlice({
     builder
       .addCase(fetchPackageDetails.fulfilled, (state, action) => {
         const { times, adults, kids, children, additionalServices, serviceCosts } = action.payload;
-        state.times = times; // Populate times from API
-        state.adults = adults; // Set default adults value from API
-        state.kids = kids; // Set default kids value from API
-        state.children = children; // Set default children value from API
-        state.additionalServices = additionalServices; // Set initial service states
-        state.serviceCosts = serviceCosts; // Set costs for services (guide, internet, photography)
+        state.times = times; 
+        state.adults = adults; 
+        state.kids = kids; 
+        state.children = children; 
+        state.additionalServices = additionalServices; 
+        state.serviceCosts = serviceCosts; 
       });
   },
 });
