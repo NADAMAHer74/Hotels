@@ -2,6 +2,7 @@ const express = require("express");
 const multer = require("multer");
 const path = require("path");
 const { verifyToken, checkRole } = require("../middlewares/token");
+const pool = require("../config/database");
 
 const router = express.Router();
 
@@ -351,6 +352,52 @@ router.get("/pagination", (req, res) => {
       blogs: results,
     });
   });
+});
+/**
+ * @swagger
+ * /latest:
+ *   get:
+ *     summary: Get the latest blog posts
+ *     tags: [Blogs]
+ *     responses:
+ *       200:
+ *         description: A list of the latest blog posts
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 type: object
+ *                 properties:
+ *                   id:
+ *                     type: integer
+ *                   title:
+ *                     type: string
+ *                   content:
+ *                     type: string
+ *                   author_id:
+ *                     type: integer
+ *                   imageUrl:
+ *                     type: string
+ 
+ */
+router.get("/latest", async (req, res) => {
+  try {
+    const [blogs] = await req.pool.query(
+      "SELECT * FROM blogs ORDER BY created_at DESC LIMIT 3"
+    );
+
+    console.log("Blogs result:", blogs);
+
+    if (!blogs || blogs.length === 0) {
+      return res.status(404).json({ message: "Blog post not found" });
+    }
+
+    res.json(blogs);
+  } catch (error) {
+    console.error("Database query error:", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
 });
 
 module.exports = router;

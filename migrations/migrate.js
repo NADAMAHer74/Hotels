@@ -1,9 +1,8 @@
-const mysql = require("mysql");
-const connection = require("../config/database");
-
+const mysql = require("mysql2/promise");
+const pool = require("../config/database");
 
 // Function to create tables
-const createTables = () => {
+const createTables = async () => {
   const createUsersTable = `
      CREATE TABLE IF NOT EXISTS users (
         id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
@@ -189,8 +188,6 @@ const createTables = () => {
     );
   `;
 
-
-
   // Array of queries to execute
   const queries = [
     createUsersTable,
@@ -211,17 +208,14 @@ const createTables = () => {
     createDestinationsTable,
   ];
 
-  queries.forEach((query, index) => {
-    connection.query(query, (error) => {
-      if (error) {
-        console.error(`Error creating table ${index + 1}:`, error);
-      } else {
-        console.log(`Table ${index + 1} created or already exists`);
-      }
-    });
-  });
-
-  connection.end();
+  try {
+    for (const query of queries) {
+      await pool.query(query);
+      console.log("Table created or already exists");
+    }
+  } catch (error) {
+    console.error("Error creating tables:", error);
+  }
 };
 
 module.exports = { createTables };
