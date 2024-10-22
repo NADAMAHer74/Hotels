@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./style.css";
+import { useDispatch, useSelector } from "react-redux";
+
 import blog1 from "../../../images/blog-1-1.jpg";
 import blog2 from "../../../images/blog-1-2.jpg";
 import blog3 from "../../../images/blog-1-3.jpg";
@@ -7,13 +9,34 @@ import blog4 from "../../../images/blog-1-4.jpg";
 import blog5 from "../../../images/blog-1-5.jpg";
 import blog6 from "../../../images/blog-1-6.jpg";
 import MainBanner from "../MainBanner/MainBanner";
-
+import { fetchBlogs } from "../../../APIs/BlogsApi";
+import setPage from "../../../Reducers/BlogsSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCalendarDays,
   faArrowRight,
 } from "@fortawesome/free-solid-svg-icons";
 export default function Blog() {
+  const dispatch = useDispatch();
+  const { currentPage, totalPages, blogs } = useSelector(
+    (state) => state.Blogs
+  );
+  console.log("totalPages:", totalPages);
+
+  useEffect(() => {
+    dispatch(fetchBlogs(currentPage));
+  }, [currentPage, dispatch]);
+
+  const handlePageChange = (page) => {
+    if (page >= 1 && page <= totalPages) {
+      dispatch(setPage(page));
+    }
+  };
+  const pages = [];
+  for (let i = 1; i <= totalPages; i++) {
+    pages.push(i);
+  }
+
   return (
     <>
       <MainBanner title="Blog" />
@@ -236,7 +259,31 @@ export default function Blog() {
             </div>
           </div>
           <div className="pagination">
-            <ul>
+            <button
+              disabled={currentPage === 1}
+              onClick={() => handlePageChange(currentPage - 1)}
+            >
+              Prev
+            </button>
+
+            {pages.map((page) => (
+              <button
+                key={page}
+                style={{ padding: "10px", margin: "5px" }}
+                className={currentPage === page ? "active" : ""}
+                onClick={() => handlePageChange(page)}
+              >
+                {page}
+              </button>
+            ))}
+
+            <button
+              disabled={currentPage === totalPages}
+              onClick={() => handlePageChange(currentPage + 1)}
+            >
+              Next
+            </button>
+            {/* <ul>
               <li>
                 <a href="#">1</a>
               </li>
@@ -251,7 +298,7 @@ export default function Blog() {
                   →
                 </a>
               </li>
-            </ul>
+            </ul> */}
           </div>
         </div>
       </section>

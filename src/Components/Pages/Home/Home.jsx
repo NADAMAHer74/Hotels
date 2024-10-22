@@ -1,5 +1,14 @@
 import React from "react";
 import "./style.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faBurst,
+  faCamera,
+  faHeart,
+  faLocationDot,
+  faDollar,
+  faClock,
+} from "@fortawesome/free-solid-svg-icons";
 import Balloon from "../../../images/ballon-1.jpeg";
 import Star from "../../../images/star.jpeg";
 import NorthAmerica from "../../../images/blog-1-1.jpg";
@@ -9,28 +18,41 @@ import Europe from "../../../images/blog-1-4.jpg";
 import TopImage from "../../../images/blog-1-2.jpg";
 import MiddleImage from "../../../images/person5.jpg";
 import BottomImage from "../../../images/person3.jpg";
-
 import SafetyIcon from "../../../images/safety.jpeg";
 import AboutBg from "../../../images/about-bg.jpeg";
+import sunglass from "../../../images/sunGlass.png";
+import bag from "../../../images/bag.png";
+import featurImage1 from "../../../images/feature-1.jpg";
+import featurImage2 from "../../../images/feature-1.jpg";
+import featurImage3 from "../../../images/feature-1.jpg";
+import rocket from "../../../images/inn-rocket.png";
 
 const Home = () => {
   return (
     <div>
-      <div className="container con  text-center my-5 position-relative">
+      <div className="container-fluid   text-center my-5 position-relative">
         <div className="row">
           <div className="col-12">
-            <img src={Balloon} alt="Balloon" className="balloon" />
-            <h2 className="topDestinations">Top Destinations</h2>
+            <img
+              src={Balloon}
+              alt="Balloon"
+              className="balloon d-none d-md-inline-block"
+            />
+            <h2 className="textStyle">Top Destinations</h2>
             <h1 className="title">
               Explore the Beautiful Places <br />
               Around the World
             </h1>
-            <img src={Star} alt="Star" className="star" />
+            <img
+              src={Star}
+              alt="Star"
+              className="star d-none d-md-inline-block"
+            />
           </div>
         </div>
       </div>
 
-      <div className="container con">
+      <div className="container">
         <div className="row text-center">
           <div className="col-12 col-md-6 col-lg-3 mb-4">
             <div className="cardContainer position-relative">
@@ -49,7 +71,11 @@ const Home = () => {
 
           <div className="col-12 col-md-6 col-lg-3 mb-4">
             <div className="cardContainer position-relative">
-              <img src={SouthAfrica} className="img-fluid" alt="South Africa" />
+              <img
+                src={SouthAfrica}
+                classeName="img-fluid"
+                alt="South Africa"
+              />
               <div className="overlay"></div>
               <div className="cardText position-absolute">
                 <h5>South Africa</h5>
@@ -82,8 +108,8 @@ const Home = () => {
         </div>
       </div>
 
-      <section className="aboutPart position-relative">
-        <div className="container con">
+      <div className="aboutPart position-relative">
+        <div className="container ">
           <div className="row align-items-center">
             <div className="col-12 col-md-6 mb-4 mb-md-0">
               <div className="d-none d-md-flex flex-column align-items-start imageStack">
@@ -152,7 +178,341 @@ const Home = () => {
         <div className="backgroundOverlay">
           <img src={AboutBg} className="backgroundImage" alt="Background" />
         </div>
-      </section>
+      </div>
+
+      <div className="featuredSection ">
+        <div className="container-fluid">
+          <div className="row pt-5 ">
+            <div className="col-lg-auto col-md-4 col-12 text-center">
+              <img
+                src={sunglass}
+                className="img-fluid d-none d-md-inline-block"
+                alt="sunGlass"
+              />
+            </div>
+            <div className="col-lg-auto col-md-4 col-12 text-center spacing">
+              <h2 className="textStyle">Featured Tours</h2>
+              <h1 className="fw-bold">Tour Packages</h1>
+            </div>
+            <div className="col-lg-auto col-md-4 col-12 text-center spacing">
+              <img
+                src={bag}
+                className="img-fluid d-none d-md-inline-block"
+                alt="bag image"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div className="container pb-5">
+          <div className="row gy-4">
+            <div className="col-lg-4 col-md-6">
+              <div className="card shadow-lg">
+                <img
+                  src={featurImage1}
+                  className="card-img-top"
+                  alt="sea image"
+                />
+                <div className="row position-absolute positionValues">
+                  <div className="col-auto ">
+                    <p className="text-white p-2 greenBackground">10% off</p>
+                  </div>
+                  <div className="col">
+                    <p className="text-white p-2 orangBackground">Features</p>
+                  </div>
+                </div>
+                <div className="row position-absolute  translateValues g-3">
+                  <div className="col">
+                    <p className="bg-dark rounded">
+                      <FontAwesomeIcon
+                        icon={faHeart}
+                        className="iconsWhite fa-lg p-2  fa-regular "
+                      />
+                    </p>
+                  </div>
+                  <div className="col">
+                    <p className="bg-dark rounded">
+                      <FontAwesomeIcon
+                        icon={faCamera}
+                        className="iconsWhite fa-lg p-2 "
+                      />
+                    </p>
+                  </div>
+                </div>
+                <div className="card-body">
+                  <div className="row g-1">
+                    <div className=" col-auto">
+                      <FontAwesomeIcon
+                        icon={faLocationDot}
+                        className="greenColor "
+                      />
+                    </div>
+                    <div className="col">
+                      <p>traford Park Lexington,40507</p>
+                    </div>
+                  </div>
+                  <h5 className="card-title">Cuba Sailing Adventure</h5>
+                  <div className="row g-1">
+                    <div className="col-auto">
+                      <FontAwesomeIcon
+                        icon={faDollar}
+                        className="greenColor fa-lg "
+                      />
+                    </div>
+                    <div className="col ">
+                      <p>
+                        From<span className="orangColor">$116.10 </span>
+                      </p>
+                    </div>
+                    <div className="col-auto">
+                      <p className="orangColor">4.5</p>
+                    </div>
+                    <div className="col">
+                      <p>(1.5k review)</p>
+                    </div>
+                  </div>
+                  <div className="card-text"></div>
+                  <div className="border-bottom border-dark w-sm-100 mb-4"></div>
+                  <div className="row g-lg-1 gx-sm-2">
+                    <div className="col-auto">
+                      <FontAwesomeIcon
+                        icon={faClock}
+                        className="greenColor fa-lg "
+                      />
+                    </div>
+                    <div className="col">
+                      <p>6 days</p>
+                    </div>
+                    <div className="col col-lg-auto">
+                      <a
+                        href="#"
+                        className="btn text-white greenBackground buttonHover"
+                      >
+                        Explore More
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="col-lg-4 col-md-6">
+              <div className="card shadow-lg">
+                <img
+                  src="./assests/images/img-2.jpg"
+                  className="card-img-top"
+                  alt="sea image"
+                />
+                <p className="text-white p-2 position-absolute positionValues greenBackground">
+                  10% off
+                </p>
+                <div className="row position-absolute  translateValues g-3">
+                  <div className="col">
+                    <p className="bg-dark rounded">
+                      <i className="fa-regular fa-heart fa-lg p-2 py-3 iconsWhite"></i>
+                    </p>
+                  </div>
+                  <div className="col">
+                    <p className="bg-dark rounded">
+                      <i className="fa-solid fa-camera fa-lg p-2 py-3 iconsWhite"></i>
+                    </p>
+                  </div>
+                </div>
+                <div className="card-body">
+                  <div className="row g-1">
+                    <div className="col-auto">
+                      <i className="fa-solid fa-location-dot greenColor"></i>
+                    </div>
+                    <div className="col">
+                      <p>traford Park Lexington,40507</p>
+                    </div>
+                  </div>
+                  <h5 className="card-title">Tour in New York</h5>
+                  <div className="row g-1">
+                    <div className="col-auto">
+                      <i className="fa-solid fa-dollar-sign fa-lg greenColor"></i>
+                    </div>
+                    <div className="col ">
+                      <p>
+                        From<span className="orangColor">$116.10 </span>
+                      </p>
+                    </div>
+                    <div className="col-auto">
+                      <p className="orangColor">4.5</p>
+                    </div>
+                    <div className="col">
+                      <p>(1.5k review)</p>
+                    </div>
+                  </div>
+                  <div className="card-text"></div>
+                  <div className="border-bottom border-dark w-sm-100 mb-4"></div>
+                  <div className="row g-1">
+                    <div className="col-auto">
+                      <i className="fa-regular fa-clock fa-lg greenColor"></i>
+                    </div>
+                    <div className="col">
+                      <p>6 days</p>
+                    </div>
+                    <div className="col col-lg-auto">
+                      <a
+                        href="#"
+                        className="btn text-white buttonHover greenBackground"
+                      >
+                        Explore More
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="col-lg-4 col-md-6">
+              <div className="card shadow-lg">
+                <img
+                  src="./assests/images/img-3.jpg"
+                  className="card-img-top "
+                  alt="sea image"
+                />
+                <p className="text-white p-2 position-absolute positionValues greenBackground">
+                  10% off
+                </p>
+                <div className="row position-absolute  translateValues g-3">
+                  <div className="col">
+                    <p className="bg-dark rounded">
+                      <i className="fa-regular fa-heart fa-lg p-2 py-3 iconsWhite"></i>
+                    </p>
+                  </div>
+                  <div className="col">
+                    <p className="bg-dark rounded">
+                      <i className="fa-solid fa-camera fa-lg p-2 py-3 iconsWhite"></i>
+                    </p>
+                  </div>
+                </div>
+                <div className="card-body">
+                  <div className="row g-1">
+                    <div className="col-auto">
+                      <i className="fa-solid fa-location-dot greenColor"></i>
+                    </div>
+                    <div className="col-auto">
+                      <p>traford Park Lexington,40507</p>
+                    </div>
+                  </div>
+                  <h5 className="card-title">Museum of Modern Art</h5>
+                  <div className="row g-1">
+                    <div className="col-auto">
+                      <i className="fa-solid fa-dollar-sign fa-lg greenColor"></i>
+                    </div>
+                    <div className="col ">
+                      <p>
+                        From<span className="orangColor">$116.10 </span>
+                      </p>
+                    </div>
+                    <div className="col-auto">
+                      <p className="orangColor">4.5</p>
+                    </div>
+                    <div className="col">
+                      <p>(1.5k review)</p>
+                    </div>
+                  </div>
+                  <div className="card-text"></div>
+                  <div className="border-bottom border-dark w-sm-100 mb-4"></div>
+                  <div className="row g-1">
+                    <div className="col-auto">
+                      <i className="fa-regular fa-clock fa-lg greenColor"></i>
+                    </div>
+                    <div className="col">
+                      <p>6 days</p>
+                    </div>
+                    <div className="col col-lg-auto">
+                      <a
+                        href="#"
+                        className="btn text-white buttonHover greenBackground"
+                      >
+                        Explore More
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="videoBlock videoOverlay position-relative overflow-hidden">
+        <img
+          className="videoBackgroundImg"
+          src="assests/images/video-bg.jpg"
+          alt="Video Background"
+        />
+        <div className="container">
+          <div className="row position-relative align-items-center position-relative z-1 ">
+            <div className="col">
+              <div className="videoContent">
+                <h3 className="videoAboutSubtitle mb-4">
+                  Ready to travel with real adventure and enjoy natural
+                </h3>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                  do eiusmod tempor incididunt.
+                </p>
+                <div className="videoBtn">
+                  <a
+                    href="contact.html"
+                    className="btn d-inline-block text-capitalize"
+                  >
+                    Start Booking
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div className="col-lg-6 col-sm-12 ">
+              <div className="videoBlockRight position-relative d-flex align-items-center justify-content-center">
+                <div className="videoIcon">
+                  <a
+                    className="popupVideo position-relative d-inline-block text-center z-1"
+                    href="https://www.youtube.com/watch?v=8mSG40o-iJ0"
+                  >
+                    <i className="fa-solid fa-play"></i>
+                  </a>
+                </div>
+                <div className="videoKite position-absolute d-none d-xxl-block">
+                  <img src={rocket} alt="rocket image" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="container-fluid orangBackground">
+        <div className="container">
+          <div className="row text-white py-3  iconsWhite">
+            <div className="col">
+              <h4 className="fw-bold">835 +</h4>
+              <p>Total Donations</p>
+            </div>
+            <div className="col my-auto">
+              <FontAwesomeIcon icon={faBurst} className="fa-2xl" />
+            </div>
+            <div className="col">
+              <h4 className="fw-bold">6246 +</h4>
+              <p>Campaigns closed</p>
+            </div>
+            <div className="col my-auto">
+              <FontAwesomeIcon icon={faBurst} className="fa-2xl" />
+            </div>
+            <div className="col">
+              <h4 className="fw-bold">2000 +</h4>
+              <p>Happy people</p>
+            </div>
+            <div className="col my-auto">
+              <FontAwesomeIcon icon={faBurst} className="fa-2xl" />
+            </div>
+            <div className="col">
+              <h4 className="fw-bold">600 +</h4>
+              <p>Our Vlounteers</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
