@@ -150,7 +150,9 @@ function TourDetail() {
               </div>
             </section>
           </div>
-          <BookPackage/>
+          <div className="col-lg-4 col-md-10 col-sm-12">
+              <BookPackage/>
+            </div>
         </div>
       </div>
     </div>
