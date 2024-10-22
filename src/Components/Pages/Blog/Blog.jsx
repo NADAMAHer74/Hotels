@@ -269,7 +269,7 @@ export default function Blog() {
             {pages.map((page) => (
               <button
                 key={page}
-                style={{ padding: "10px", margin: "5px" }} // Temporary inline styles for testing
+                style={{ padding: "10px", margin: "5px" }}
                 className={currentPage === page ? "active" : ""}
                 onClick={() => handlePageChange(page)}
               >

@@ -10,7 +10,6 @@ import Home from "./Components/Pages/Home/Home";
 import Destination from "./Components/Pages/Destination/Destination";
 import Blog from "./Components/Pages/Blog/Blog";
 import Contact from "./Components/Pages/Contact/Contact";
-// import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import About from "./Components/Pages/About/About";
 import TourGrid from "./Components/Pages/TourGrid/TourGrid";

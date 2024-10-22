@@ -1,5 +1,14 @@
 import React from "react";
 import "./style.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faBurst,
+  faCamera,
+  faHeart,
+  faLocationDot,
+  faDollar,
+  faClock,
+} from "@fortawesome/free-solid-svg-icons";
 import Balloon from "../../../images/ballon-1.jpeg";
 import Star from "../../../images/star.jpeg";
 import NorthAmerica from "../../../images/blog-1-1.jpg";
@@ -16,6 +25,7 @@ import bag from "../../../images/bag.png";
 import featurImage1 from "../../../images/feature-1.jpg";
 import featurImage2 from "../../../images/feature-1.jpg";
 import featurImage3 from "../../../images/feature-1.jpg";
+import rocket from "../../../images/inn-rocket.png";
 
 const Home = () => {
   return (
@@ -214,19 +224,28 @@ const Home = () => {
                 <div className="row position-absolute  translateValues g-3">
                   <div className="col">
                     <p className="bg-dark rounded">
-                      <i className="fa-regular fa-heart fa-lg p-2 py-3 iconsWhite"></i>
+                      <FontAwesomeIcon
+                        icon={faHeart}
+                        className="iconsWhite fa-lg p-2  fa-regular "
+                      />
                     </p>
                   </div>
                   <div className="col">
                     <p className="bg-dark rounded">
-                      <i className="fa-solid fa-camera fa-lg p-2 py-3 iconsWhite"></i>
+                      <FontAwesomeIcon
+                        icon={faCamera}
+                        className="iconsWhite fa-lg p-2 "
+                      />
                     </p>
                   </div>
                 </div>
                 <div className="card-body">
                   <div className="row g-1">
                     <div className=" col-auto">
-                      <i className="fa-solid fa-location-dot greenColor"></i>
+                      <FontAwesomeIcon
+                        icon={faLocationDot}
+                        className="greenColor "
+                      />
                     </div>
                     <div className="col">
                       <p>traford Park Lexington,40507</p>
@@ -235,7 +254,10 @@ const Home = () => {
                   <h5 className="card-title">Cuba Sailing Adventure</h5>
                   <div className="row g-1">
                     <div className="col-auto">
-                      <i className="fa-solid fa-dollar-sign fa-lg greenColor"></i>
+                      <FontAwesomeIcon
+                        icon={faDollar}
+                        className="greenColor fa-lg "
+                      />
                     </div>
                     <div className="col ">
                       <p>
@@ -253,7 +275,10 @@ const Home = () => {
                   <div className="border-bottom border-dark w-sm-100 mb-4"></div>
                   <div className="row g-lg-1 gx-sm-2">
                     <div className="col-auto">
-                      <i className="fa-regular fa-clock fa-lg greenColor"></i>
+                      <FontAwesomeIcon
+                        icon={faClock}
+                        className="greenColor fa-lg "
+                      />
                     </div>
                     <div className="col">
                       <p>6 days</p>
@@ -407,6 +432,83 @@ const Home = () => {
                   </div>
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="videoBlock videoOverlay position-relative overflow-hidden">
+        <img
+          className="videoBackgroundImg"
+          src="assests/images/video-bg.jpg"
+          alt="Video Background"
+        />
+        <div className="container">
+          <div className="row position-relative align-items-center position-relative z-1 ">
+            <div className="col">
+              <div className="videoContent">
+                <h3 className="videoAboutSubtitle mb-4">
+                  Ready to travel with real adventure and enjoy natural
+                </h3>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                  do eiusmod tempor incididunt.
+                </p>
+                <div className="videoBtn">
+                  <a
+                    href="contact.html"
+                    className="btn d-inline-block text-capitalize"
+                  >
+                    Start Booking
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div className="col-lg-6 col-sm-12 ">
+              <div className="videoBlockRight position-relative d-flex align-items-center justify-content-center">
+                <div className="videoIcon">
+                  <a
+                    className="popupVideo position-relative d-inline-block text-center z-1"
+                    href="https://www.youtube.com/watch?v=8mSG40o-iJ0"
+                  >
+                    <i className="fa-solid fa-play"></i>
+                  </a>
+                </div>
+                <div className="videoKite position-absolute d-none d-xxl-block">
+                  <img src={rocket} alt="rocket image" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="container-fluid orangBackground">
+        <div className="container">
+          <div className="row text-white py-3  iconsWhite">
+            <div className="col">
+              <h4 className="fw-bold">835 +</h4>
+              <p>Total Donations</p>
+            </div>
+            <div className="col my-auto">
+              <FontAwesomeIcon icon={faBurst} className="fa-2xl" />
+            </div>
+            <div className="col">
+              <h4 className="fw-bold">6246 +</h4>
+              <p>Campaigns closed</p>
+            </div>
+            <div className="col my-auto">
+              <FontAwesomeIcon icon={faBurst} className="fa-2xl" />
+            </div>
+            <div className="col">
+              <h4 className="fw-bold">2000 +</h4>
+              <p>Happy people</p>
+            </div>
+            <div className="col my-auto">
+              <FontAwesomeIcon icon={faBurst} className="fa-2xl" />
+            </div>
+            <div className="col">
+              <h4 className="fw-bold">600 +</h4>
+              <p>Our Vlounteers</p>
             </div>
           </div>
         </div>
