@@ -162,8 +162,8 @@ import {
   setChildren,
   toggleService,
   updateTotalCost,
-  fetchPackageDetails, // Action to fetch data from API
-} from './packageSlice.jsx'; // Import your Redux slice
+  fetchPackageDetails, 
+} from './packageSlice.jsx'; 
 
 import "./TourDetailcss.css";
 
