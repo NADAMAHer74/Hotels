@@ -1,7 +1,9 @@
 const express = require("express");
-const mysql = require("mysql2");
+const mysql = require("mysql");
 const userRoutes = require("./routes/userRoutes");
 const tourRoutes = require("./routes/tourRoutes");
+const userTourRoutes = require("./routes/userTourRoutes");
+const availableServicesRoutes = require("./routes/availableServicesRoutes");
 const blogRoutes = require("./routes/blogRoutes");
 const contactUsRoutes = require("./routes/contactUsRoutes");
 const phoneRoutes = require("./routes/phoneRoutes");
@@ -12,7 +14,6 @@ const AmenitiesRoutes = require("./routes/AmenitiesRoutes");
 const toursHasAmenitiesRoutes = require("./routes/toursHasAmenitiesRoutes");
 const PagesRoutes = require("./routes/PagesRoutes");
 const BannersRoutes = require("./routes/BannersRoutes");
-const AvailableAdditionalServicesRoutes = require("./routes/AvailableAdditionalServicesRoutes");
 const swaggerUi = require("swagger-ui-express");
 const swaggerJsdoc = require("swagger-jsdoc");
 const { createTables } = require("./migrations/migrate");
@@ -21,11 +22,10 @@ const app = express();
 app.use(express.json());
 
 const pool = mysql.createPool({
-  connectionLimit: 10,
+  connectionLimit: 20,
   host: "localhost",
   user: "root",
   database: "Hotels",
-  password: "Om@rEssam2003",
 });
 
 pool.getConnection((error) => {
@@ -34,13 +34,10 @@ pool.getConnection((error) => {
     return;
   }
   console.log("Connected to the database");
-
   createTables(pool);
 });
-
-// Middleware to attach pool to each request
 app.use((req, res, next) => {
-  req.pool = pool; // Attach the pool to the request
+  req.pool = pool;
   next();
 });
 
@@ -69,12 +66,12 @@ app.use((req, res, next) => {
   next();
 });
 
-// Use the user routes
 app.use("/api", userRoutes);
 app.use("/api", blogRoutes);
 app.use("/api", tourRoutes);
+app.use("/api", userTourRoutes);
+app.use("/api", availableServicesRoutes);
 
-// Use the contact us routes
 app.use("/api", contactUsRoutes);
 
 app.use("/api", phoneRoutes);
@@ -85,8 +82,6 @@ app.use("/api", AmenitiesRoutes);
 app.use("/api", toursHasAmenitiesRoutes);
 app.use("/api", PagesRoutes);
 app.use("/api", BannersRoutes);
-app.use("/api", AvailableAdditionalServicesRoutes);
-// Start the server
 app.listen(3000, () => {
   console.log("Server running on port 3000");
   console.log("Swagger running at http://localhost:3000/api-docs");
