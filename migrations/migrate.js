@@ -125,21 +125,29 @@ const createTables = () => {
 
   const createPagesTable = `
   CREATE TABLE IF NOT EXISTS pages (
-      page_id VARCHAR(20) NOT NULL PRIMARY KEY,
-      page_name VARCHAR(45) NOT NULL UNIQUE
-    );
-  `;
+      page_id VARCHAR(20) NOT NULL PRIMARY KEY
+  );
+`;
 
-  const createBannersTable = `
+const createBannersTable = `
   CREATE TABLE IF NOT EXISTS banners (
       banner_id INT AUTO_INCREMENT PRIMARY KEY,
-      image MEDIUMTEXT NOT NULL,
       head VARCHAR(200) NOT NULL,
       pages_page_id VARCHAR(20) NOT NULL,
       FOREIGN KEY (pages_page_id) REFERENCES pages(page_id) ON DELETE CASCADE
-    );
-  `;
+  );
+`;
 
+const createImageBannersTable = `
+  CREATE TABLE IF NOT EXISTS imageBanners (
+      banner_image_id INT AUTO_INCREMENT PRIMARY KEY,
+      image MEDIUMTEXT NOT NULL,
+      banner_page_id VARCHAR(20) NOT NULL,
+      FOREIGN KEY (banner_page_id) REFERENCES pages(page_id) ON DELETE CASCADE
+  );
+`;
+
+  
   const createPhonesTable = `
   CREATE TABLE IF NOT EXISTS phones (
       phone_id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
@@ -189,6 +197,70 @@ const createTables = () => {
     );
   `;
 
+  const createAboutUsTable = `
+  CREATE TABLE IF NOT EXISTS AboutUs (
+      AboutUs_ID INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+      head VARCHAR(300) NOT NULL,
+      Body TEXT NOT NULL,
+      visible TINYINT NOT NULL
+  );
+`;
+
+const createAboutUsImagesTable = `
+  CREATE TABLE IF NOT EXISTS AboutUsImages (
+      AboutUsImages_ID INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+      Image MEDIUMTEXT NOT NULL,
+      visible TINYINT NOT NULL,
+      AboutUs_AboutUs_ID INT UNSIGNED,
+      FOREIGN KEY (AboutUs_AboutUs_ID) REFERENCES AboutUs(AboutUs_ID) ON DELETE CASCADE
+  );
+`;
+
+const createStatisticsTable = `
+  CREATE TABLE IF NOT EXISTS Statistics (
+      Statistics_ID INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+      Name VARCHAR(100) NOT NULL,
+      Quantity INT NOT NULL,
+      visible TINYINT NOT NULL,
+      AboutUs_AboutUs_ID INT UNSIGNED,
+      FOREIGN KEY (AboutUs_AboutUs_ID) REFERENCES AboutUs(AboutUs_ID) ON DELETE CASCADE
+  );
+`;
+
+const createWhatToDoTable = `
+  CREATE TABLE IF NOT EXISTS WhatToDo (
+      WhatToDo_ID INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+      Head VARCHAR(300) NOT NULL,
+      Body TEXT NOT NULL,
+      TINYINT VARCHAR(45),
+      Image MEDIUMTEXT NOT NULL
+  );
+`;
+
+const createServicesTable = `
+  CREATE TABLE IF NOT EXISTS Services (
+      Services_ID INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+      Head VARCHAR(100) NOT NULL,
+      Body TEXT NOT NULL,
+      Icon MEDIUMTEXT NOT NULL,
+      Image MEDIUMTEXT NOT NULL,
+      visible TINYINT NOT NULL,
+      WhatToDo_WhatToDo_ID INT UNSIGNED,
+      FOREIGN KEY (WhatToDo_WhatToDo_ID) REFERENCES WhatToDo(WhatToDo_ID) ON DELETE CASCADE
+  );
+`;
+
+const createEmailsTable = `
+  CREATE TABLE IF NOT EXISTS emails (
+      email_id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+      email VARCHAR(250) NOT NULL,
+      visible TINYINT NOT NULL
+  );
+`;
+
+
+
+
 
 
   // Array of queries to execute
@@ -209,6 +281,14 @@ const createTables = () => {
     createWorkingHoursTable,
     createContactUsFormTable,
     createDestinationsTable,
+    createImageBannersTable,
+    createEmailsTable,
+    createAboutUsTable,
+    createAboutUsImagesTable,
+    createStatisticsTable,
+    createWhatToDoTable,
+    createServicesTable,
+    createEmailsTable
   ];
 
   queries.forEach((query, index) => {
