@@ -13,7 +13,24 @@ import VideoBlock from '../../Shared/VideoBlock/VideoBlock';
 import videoBackgroundImg from '../../../images/video-bg-about.jpg'
 import AuthModal from '../../Shared/AuthModal/AuthModal';
 import '../../Shared/AuthModal/AuthModal.css';
+import { fetchAboutData } from '../../../APIs/AboutApi';
+import { useDispatch, UseDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+
 const About = () => {
+
+  const aboutUsData = useSelector(
+    (state) => state.about.about
+  )
+
+  const dispatch = useDispatch();
+
+
+  useEffect(() => {
+    dispatch(fetchAboutData()).then(() => { });
+  })
+
+
   return (
     <>
       <MainBanner title="About Us" />
