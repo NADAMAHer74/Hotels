@@ -11,6 +11,8 @@ import aboutImgRight from '../../../images/inner-ab-1-3.jpg'
 import chooseUsImg from '../../../images/inn-chooseus1.jpg'
 import VideoBlock from '../../Shared/VideoBlock/VideoBlock';
 import videoBackgroundImg from '../../../images/video-bg-about.jpg'
+import AuthModal from '../../Shared/AuthModal/AuthModal';
+import '../../Shared/AuthModal/AuthModal.css';
 const About = () => {
     return (
         <>
@@ -85,6 +87,7 @@ const About = () => {
                                     </svg>
                                     </span>
                                 </a>
+                                <AuthModal />
                             </div>
                         </Col>
                     </Row>
