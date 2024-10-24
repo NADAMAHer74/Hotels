@@ -1,0 +1,187 @@
+:root {
+    --color-primary: #11bb67;
+    --color-secondary: #ff6525;
+    --form-text: 'Didact Gothic';
+    --bs-focus-ring-color: #11bb67;
+}
+
+.btn-primary:active {
+    --bs-btn-active-bg: white;
+    --bs-btn-color: #11BB67;
+    --bs-btn-border-color: #11bb67;
+    background-color: whitesmoke;
+    border-color: #11BB67 !important;
+    color: #11BB67 !important;
+}
+
+img {
+    object-fit: cover;
+}
+
+/* .logo {
+    width: auto;
+    align-self: center;
+} */
+
+.registrationForm {
+    position: relative;
+    display: flex;
+    transition: 0.3s ease-in-out;
+}
+
+
+.Form {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.Form form {
+    width: 80%;
+    align-self: center;
+}
+
+.Form h2 {
+    margin-top: 1.3rem;
+    font-family: 'Dm Sans', sans-serif;
+    text-align: center;
+    color: var(--color-secondary);
+}
+
+
+label {
+    font-family: 'Didact Gothic', sans-serif;
+    padding-left: 0 !important;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+input {
+    border-radius: 2px !important;
+    border-color: #cbc9c981 !important;
+}
+
+
+.form-control:focus {
+    box-shadow: 0 0 0 0.04rem #11bb678a;
+    font-family: 'Dm Sans';
+}
+
+.formSubmitBtn {
+    background-color: #11bb67;
+    border-color: #11bb67;
+    width: 157px;
+    height: 44px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+}
+
+.formSubmitBtn:hover {
+    background-color: #10a865;
+    border-color: #10a865;
+}
+
+.formSubmitBtn:active {
+    border-color: #10a865;
+
+}
+
+.termsPolicy {
+    font-family: 'DM Sans', sans-serif;
+}
+
+.termsPolicy span {
+    color: #0088FF;
+}
+
+.redirectSignIn {
+    cursor: default;
+    text-align: center;
+    font-size: 19px;
+}
+
+.redirectSignIn span {
+    color: #11BB67;
+    cursor: pointer;
+}
+
+.form-control {
+    margin-left: 0;
+}
+
+
+@media (max-width: 992px) {
+    .Form form {
+        width: 80%;
+    }
+
+    .Form {
+        gap: 2rem;
+    }
+
+    .registrationForm {
+        flex-direction: column;
+        padding: 2rem;
+        height: 100%;
+        width: 100%;
+    }
+
+    .formSubmitBtn {
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .Form form {
+        width: 85%;
+    }
+
+    h2 {
+        font-size: 1.8rem;
+    }
+
+    .Form h2 {
+        margin-top: 1.5rem;
+    }
+
+    .registrationForm {
+        padding: 1.5rem;
+    }
+
+    .termsPolicy {
+        font-size: 0.9rem;
+    }
+
+    .redirectSignIn {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .Form form {
+        width: 100%;
+    }
+
+    .container,
+    .container-sm {
+        max-width: none;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    .formSubmitBtn {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    .termsPolicy {
+        font-size: 0.8rem;
+    }
+
+    .redirectSignIn {
+        font-size: 0.9rem;
+    }
+}
