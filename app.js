@@ -1,5 +1,5 @@
 const express = require("express");
-const mysql = require("mysql");
+const mysql = require("mysql2");
 const userRoutes = require("./routes/userRoutes");
 const tourRoutes = require("./routes/tourRoutes");
 const userTourRoutes = require("./routes/userTourRoutes");
@@ -14,6 +14,10 @@ const AmenitiesRoutes = require("./routes/AmenitiesRoutes");
 const toursHasAmenitiesRoutes = require("./routes/toursHasAmenitiesRoutes");
 const PagesRoutes = require("./routes/PagesRoutes");
 const BannersRoutes = require("./routes/BannersRoutes");
+const topnavbar = require("./routes/topnavbar");
+const statistics = require("./routes/statistics");
+const emails = require("./routes/emails");
+const destinationsHomeRoutes = require("./routes/destinationsHomeRoutes");
 const swaggerUi = require("swagger-ui-express");
 const swaggerJsdoc = require("swagger-jsdoc");
 const { createTables } = require("./migrations/migrate");
@@ -25,7 +29,8 @@ const pool = mysql.createPool({
   connectionLimit: 20,
   host: "localhost",
   user: "root",
-  database: "Hotels",
+  database: "hotels",
+  password: "Om@rEssam2003",
 });
 
 pool.getConnection((error) => {
@@ -82,6 +87,12 @@ app.use("/api", AmenitiesRoutes);
 app.use("/api", toursHasAmenitiesRoutes);
 app.use("/api", PagesRoutes);
 app.use("/api", BannersRoutes);
+app.use("/api", topnavbar);
+app.use("/api", statistics);
+app.use("/api", emails);
+app.use("/api", destinationsHomeRoutes);
+
+
 app.listen(3000, () => {
   console.log("Server running on port 3000");
   console.log("Swagger running at http://localhost:3000/api-docs");

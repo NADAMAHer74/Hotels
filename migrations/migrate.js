@@ -1,6 +1,7 @@
-const mysql = require("mysql2/promise");
-const pool = require("../config/database");
+const mysql = require("mysql");
+const connection = require("../config/database");
 
+console.log("Connected to the database");
 // Function to create tables
 const createTables = async () => {
   const createUsersTable = `
@@ -190,6 +191,7 @@ const createImageBannersTable = `
   CREATE TABLE IF NOT EXISTS destinations (
       destination_id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
       name VARCHAR(250) NOT NULL,
+      location VARCHAR(250) NOT NULL,
       category VARCHAR(100) NOT NULL,
       image MEDIUMTEXT NOT NULL,
       visible TINYINT NOT NULL
@@ -231,7 +233,7 @@ const createWhatToDoTable = `
       WhatToDo_ID INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
       Head VARCHAR(300) NOT NULL,
       Body TEXT NOT NULL,
-      TINYINT VARCHAR(45),
+      visible TINYINT NOT NULL,
       Image MEDIUMTEXT NOT NULL
   );
 `;
@@ -287,17 +289,20 @@ const createEmailsTable = `
     createStatisticsTable,
     createWhatToDoTable,
     createServicesTable,
-    createEmailsTable
   ];
 
-  try {
-    for (const query of queries) {
-      await pool.query(query);
-      console.log("Table created or already exists");
-    }
-  } catch (error) {
-    console.error("Error creating tables:", error);
-  }
+  queries.forEach((query, index) => {
+    console.log(`Creating table ${index + 1}`);
+    connection.query(query, (error) => {
+      if (error) {
+        console.error(`Error creating table ${index + 1}:`, error);
+      } else {
+        console.log(`Table ${index + 1} created or already exists`);
+      }
+    });
+  });
+
+  connection.end();
 };
 
 module.exports = { createTables };
