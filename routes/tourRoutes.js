@@ -433,4 +433,85 @@ router.put("/tours/:tour_id", verifyToken, checkRole(["Admin"]), (req, res) => {
   }
 });
 
+/**
+ * @swagger
+ * /paginationOfTours:
+ *   get:
+ *     summary: Get all tours with pagination
+ *     tags: [Tours]
+ *     parameters:
+ *       - in: query
+ *         name: page
+ *         schema:
+ *           type: integer
+ *         description: Page number for pagination
+ *       - in: query
+ *         name: limit
+ *         schema:
+ *           type: integer
+ *         description: Number of tours to retrieve per page (default is 6)
+ *     responses:
+ *       200:
+ *         description: A list of tours posts
+ *         content:
+ *           application/json:
+ *             schema:
+ *             type: array
+ *             items:
+ *               type: object
+ *               properties:
+ *                 tour_id:
+ *                   type: integer
+ *               location:
+ *                 type: string
+ *               name:
+ *                 type: string
+ *               adultPrice:
+ *                 type: number
+ *               kidsPrice:
+ *                 type: number
+ *               childrenPrice:
+ *                 type: number
+ *               durationInDays:
+ *                 type: integer
+ *               typeoftour:
+ *                 type: string
+ *               reviewStars:
+ *                 type: integer
+ *               overview:
+ *                 type: string
+ *               tourImage:
+ *                 type: string
+ *               date:
+ *                 type: string
+ *                 format: date
+ *               time:
+ *                 type: string
+ *                 format: time
+ *               miniAge:
+ *                 type: integer
+ *               maxGusts:
+ *                 type: integer
+ *               languagesSupport:
+ *                 type: string
+ *
+ */
+router.get("/paginationOfTours", (req, res) => {
+  const page = parseInt(req.query.page) || 1;
+  const limit = parseInt(req.query.limit) || 6;
+  const offset = (page - 1) * limit;
+
+  const query = "SELECT * FROM tours LIMIT ? OFFSET ?";
+  req.pool.query(query, [limit, offset], (error, results) => {
+    if (error) {
+      return res.status(500).json({ message: "Internal server error" });
+    }
+    res.json({
+      page,
+      limit,
+      tours: results,
+    });
+  });
+});
+
 module.exports = router;
