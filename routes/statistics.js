@@ -1,12 +1,13 @@
 const express = require("express");
 const router = express.Router();
+const jwt = require("jsonwebtoken");
 const { verifyToken, checkRole } = require("../middlewares/token");
 
 /**
  * @swagger
  * tags:
  *   name: Statistics
- *   description: API to manage statistics
+ *   description: API to manage Statistics
  */
 
 /**
@@ -30,13 +31,11 @@ const { verifyToken, checkRole } = require("../middlewares/token");
  *           schema:
  *             type: object
  *             properties:
- *               name:
+ *               Name:
  *                 type: string
- *               quantity:
+ *               Quantity:
  *                 type: integer
  *               visible:
- *                 type: integer
- *               aboutUsId:
  *                 type: integer
  *     responses:
  *       201:
@@ -45,13 +44,10 @@ const { verifyToken, checkRole } = require("../middlewares/token");
  *         description: Internal server error
  */
 router.post("/statistics", verifyToken, checkRole(["Admin"]), (req, res) => {
-  const { name, quantity, visible, aboutUsId } = req.body;
-  const insertQuery = `
-    INSERT INTO Statistics (Name, Quantity, visible, AboutUs_AboutUs_ID)
-    VALUES (?, ?, ?, ?)
-  `;
-  
-  req.pool.query(insertQuery, [name, quantity, visible, aboutUsId], (error, results) => {
+  const { Name, Quantity, visible } = req.body;
+  const insertQuery = `INSERT INTO Statistics (Name, Quantity, visible) VALUES (?, ?, ?)`;
+
+  req.pool.query(insertQuery, [Name, Quantity, visible], (error, results) => {
     if (error) {
       console.error("Error inserting statistics entry:", error);
       return res.status(500).json({ message: "Internal server error" });
@@ -76,23 +72,18 @@ router.post("/statistics", verifyToken, checkRole(["Admin"]), (req, res) => {
  *               items:
  *                 type: object
  *                 properties:
- *                   statistics_id:
+ *                   Statistics_ID:
  *                     type: integer
- *                   name:
+ *                   Name:
  *                     type: string
- *                   quantity:
+ *                   Quantity:
  *                     type: integer
  *                   visible:
  *                     type: integer
- *                   aboutUsId:
- *                     type: integer
  */
 router.get("/statistics", (req, res) => {
-  const query = `
-    SELECT Statistics_ID as statistics_id, Name as name, Quantity as quantity, visible, AboutUs_AboutUs_ID as aboutUsId 
-    FROM Statistics
-  `;
-  
+  const query = "SELECT * FROM Statistics";
+
   req.pool.query(query, (error, results) => {
     if (error) {
       console.error("Error fetching statistics entries:", error);
@@ -123,26 +114,20 @@ router.get("/statistics", (req, res) => {
  *             schema:
  *               type: object
  *               properties:
- *                 statistics_id:
+ *                 Statistics_ID:
  *                   type: integer
- *                 name:
+ *                 Name:
  *                   type: string
- *                 quantity:
+ *                 Quantity:
  *                   type: integer
  *                 visible:
- *                   type: integer
- *                 aboutUsId:
  *                   type: integer
  *       404:
  *         description: Statistics entry not found
  */
 router.get("/statistics/:id", (req, res) => {
-  const query = `
-    SELECT Statistics_ID as statistics_id, Name as name, Quantity as quantity, visible, AboutUs_AboutUs_ID as aboutUsId
-    FROM Statistics
-    WHERE Statistics_ID = ?
-  `;
-  
+  const query = "SELECT * FROM Statistics WHERE Statistics_ID = ?";
+
   req.pool.query(query, [req.params.id], (error, results) => {
     if (error) {
       console.error("Error fetching statistics entry:", error);
@@ -177,13 +162,11 @@ router.get("/statistics/:id", (req, res) => {
  *           schema:
  *             type: object
  *             properties:
- *               name:
+ *               Name:
  *                 type: string
- *               quantity:
+ *               Quantity:
  *                 type: integer
  *               visible:
- *                 type: integer
- *               aboutUsId:
  *                 type: integer
  *     responses:
  *       200:
@@ -192,14 +175,10 @@ router.get("/statistics/:id", (req, res) => {
  *         description: Statistics entry not found
  */
 router.put("/statistics/:id", verifyToken, checkRole(["Admin"]), (req, res) => {
-  const { name, quantity, visible, aboutUsId } = req.body;
-  const updateQuery = `
-    UPDATE Statistics 
-    SET Name = ?, Quantity = ?, visible = ?, AboutUs_AboutUs_ID = ? 
-    WHERE Statistics_ID = ?
-  `;
-  
-  req.pool.query(updateQuery, [name, quantity, visible, aboutUsId, req.params.id], (error, results) => {
+  const { Name, Quantity, visible } = req.body;
+  const updateQuery = `UPDATE Statistics SET Name = ?, Quantity = ?, visible = ? WHERE Statistics_ID = ?`;
+
+  req.pool.query(updateQuery, [Name, Quantity, visible, req.params.id], (error, results) => {
     if (error) {
       console.error("Error updating statistics entry:", error);
       return res.status(500).json({ message: "Internal server error" });
@@ -234,7 +213,7 @@ router.put("/statistics/:id", verifyToken, checkRole(["Admin"]), (req, res) => {
  */
 router.delete("/statistics/:id", verifyToken, checkRole(["Admin"]), (req, res) => {
   const deleteQuery = "DELETE FROM Statistics WHERE Statistics_ID = ?";
-  
+
   req.pool.query(deleteQuery, [req.params.id], (error, results) => {
     if (error) {
       console.error("Error deleting statistics entry:", error);

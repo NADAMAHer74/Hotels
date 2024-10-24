@@ -202,8 +202,7 @@ const createImageBannersTable = `
   CREATE TABLE IF NOT EXISTS AboutUs (
       AboutUs_ID INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
       head VARCHAR(300) NOT NULL,
-      Body TEXT NOT NULL,
-      visible TINYINT NOT NULL
+      Body TEXT NOT NULL
   );
 `;
 
@@ -211,9 +210,7 @@ const createAboutUsImagesTable = `
   CREATE TABLE IF NOT EXISTS AboutUsImages (
       AboutUsImages_ID INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
       Image MEDIUMTEXT NOT NULL,
-      visible TINYINT NOT NULL,
-      AboutUs_AboutUs_ID INT UNSIGNED,
-      FOREIGN KEY (AboutUs_AboutUs_ID) REFERENCES AboutUs(AboutUs_ID) ON DELETE CASCADE
+      visible TINYINT NOT NULL
   );
 `;
 
@@ -222,9 +219,7 @@ const createStatisticsTable = `
       Statistics_ID INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
       Name VARCHAR(100) NOT NULL,
       Quantity INT NOT NULL,
-      visible TINYINT NOT NULL,
-      AboutUs_AboutUs_ID INT UNSIGNED,
-      FOREIGN KEY (AboutUs_AboutUs_ID) REFERENCES AboutUs(AboutUs_ID) ON DELETE CASCADE
+      visible TINYINT NOT NULL
   );
 `;
 
@@ -232,9 +227,15 @@ const createWhatToDoTable = `
   CREATE TABLE IF NOT EXISTS WhatToDo (
       WhatToDo_ID INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
       Head VARCHAR(300) NOT NULL,
-      Body TEXT NOT NULL,
-      visible TINYINT NOT NULL,
-      Image MEDIUMTEXT NOT NULL
+      Body TEXT NOT NULL
+  );
+`;
+
+const createWhatToDoImagesTable = `
+  CREATE TABLE IF NOT EXISTS WhatToDoImages (
+      WhatToDoImage_ID INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+      Image MEDIUMTEXT NOT NULL,
+      visible TINYINT NOT NULL
   );
 `;
 
@@ -244,10 +245,7 @@ const createServicesTable = `
       Head VARCHAR(100) NOT NULL,
       Body TEXT NOT NULL,
       Icon MEDIUMTEXT NOT NULL,
-      Image MEDIUMTEXT NOT NULL,
-      visible TINYINT NOT NULL,
-      WhatToDo_WhatToDo_ID INT UNSIGNED,
-      FOREIGN KEY (WhatToDo_WhatToDo_ID) REFERENCES WhatToDo(WhatToDo_ID) ON DELETE CASCADE
+      visible TINYINT NOT NULL
   );
 `;
 
@@ -258,6 +256,7 @@ const createEmailsTable = `
       visible TINYINT NOT NULL
   );
 `;
+
 
 
 
@@ -289,6 +288,7 @@ const createEmailsTable = `
     createStatisticsTable,
     createWhatToDoTable,
     createServicesTable,
+    createWhatToDoImagesTable,
   ];
 
   queries.forEach((query, index) => {
