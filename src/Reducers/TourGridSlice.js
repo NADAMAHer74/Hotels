@@ -18,3 +18,5 @@ export const ToursSlice = createSlice({
         })
     }
 });
+
+export default ToursSlice.Reducers; 
