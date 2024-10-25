@@ -14,7 +14,7 @@ import videoBackgroundImg from '../../../images/video-bg-about.jpg'
 import AuthModal from '../../Shared/AuthModal/AuthModal';
 import '../../Shared/AuthModal/AuthModal.css';
 import { fetchAboutData } from '../../../APIs/AboutApi';
-import { useDispatch, UseDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 
 const About = () => {

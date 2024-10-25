@@ -19,4 +19,4 @@ export const ToursSlice = createSlice({
     }
 });
 
-export default ToursSlice.Reducers; 
+export default ToursSlice.reducer; 
