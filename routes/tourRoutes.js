@@ -514,4 +514,74 @@ router.get("/paginationOfTours", (req, res) => {
   });
 });
 
+/**
+ * @swagger
+ * /latestTours:
+ *   get:
+ *     summary: Get the latest tours
+ *     tags: [Tours]
+ *     responses:
+ *       200:
+ *         description: A list of the latest tours
+ *         content:
+ *           application/json:
+ *             schema:
+ *             type: array
+ *             items:
+ *               type: object
+ *               properties:
+ *                 tour_id:
+ *                   type: integer
+ *               location:
+ *                 type: string
+ *               name:
+ *                 type: string
+ *               adultPrice:
+ *                 type: number
+ *               kidsPrice:
+ *                 type: number
+ *               childrenPrice:
+ *                 type: number
+ *               durationInDays:
+ *                 type: integer
+ *               typeoftour:
+ *                 type: string
+ *               reviewStars:
+ *                 type: integer
+ *               overview:
+ *                 type: string
+ *               tourImage:
+ *                 type: string
+ *               date:
+ *                 type: string
+ *                 format: date
+ *               time:
+ *                 type: string
+ *                 format: time
+ *               miniAge:
+ *                 type: integer
+ *               maxGusts:
+ *                 type: integer
+ *               languagesSupport:
+ *                 type: string
+ *
+ */
+router.get("/latestTours", (req, res) => {
+  const query = "SELECT * FROM tours ORDER BY created_at DESC LIMIT 3";
+
+  req.pool.query(query, (error, tours) => {
+    if (error) {
+      console.error("Database query error:", error);
+      return res.status(500).json({ message: "Internal server error" });
+    }
+
+    console.log("Tours result:", tours);
+
+    if (!tours || tours.length === 0) {
+      return res.status(404).json({ message: "tours not found" });
+    }
+
+    res.json(tours);
+  });
+});
 module.exports = router;

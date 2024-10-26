@@ -1,4 +1,5 @@
 const express = require("express");
+
 const router = express.Router();
 
 /**
@@ -11,7 +12,7 @@ const router = express.Router();
  *       200:
  *         description: Retrieved successfully
  *         content:
- *           application/json:
+ *           multipart/form-data:
  *             schema:
  *               type: array
  *               items:
@@ -31,7 +32,7 @@ const router = express.Router();
  */
 
 router.get("/top-destinations", (req, res) => {
-    const query = `
+  const query = `
       SELECT 
         location,
         COUNT(destination_id) AS destinationCount,
@@ -42,15 +43,14 @@ router.get("/top-destinations", (req, res) => {
       ORDER BY destinationCount DESC
       LIMIT 4
     `;
-    
-    req.pool.query(query, (error, results) => {
-      if (error) {
-        console.error("Error fetching top Destinations entries:", error);
-        return res.status(500).json({ message: "Internal server error" });
-      }
-      res.json(results);
-    });
+
+  req.pool.query(query, (error, results) => {
+    if (error) {
+      console.error("Error fetching top Destinations entries:", error);
+      return res.status(500).json({ message: "Internal server error" });
+    }
+    res.json(results);
   });
-  
+});
 
 module.exports = router;
