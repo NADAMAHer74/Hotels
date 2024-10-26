@@ -61,7 +61,7 @@ const swaggerOptions = {
     },
     servers: [
       {
-        url: "http://localhost:2000/api",
+        url: "http://localhost:3000/api",
       },
     ],
   },
@@ -101,7 +101,7 @@ app.use("/api", aboutUSRoutes);
 app.use("/api", WhatToDoImagesRoutes);
 app.use("/api", WhatToDoRoutes);
 app.use("/api", servicesRoutes);
-app.listen(2000, () => {
-  console.log("Server running on port 2000");
-  console.log("Swagger running at http://localhost:2000/api-docs");
+app.listen(3000, () => {
+  console.log("Server running on port 3000");
+  console.log("Swagger running at http://localhost:3000/api-docs");
 });
