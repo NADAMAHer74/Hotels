@@ -40,13 +40,11 @@ const upload = multer({ storage });
  *     requestBody:
  *       required: true
  *       content:
- *         application/json:
+ *         multipart/form-data:
  *           schema:
  *             type: object
  *             properties:
  *               name:
- *                 type: string
- *               location:
  *                 type: string
  *               category:
  *                 type: string
@@ -62,18 +60,31 @@ const upload = multer({ storage });
  *       500:
  *         description: Internal server error
  */
-router.post("/destinations", verifyToken, checkRole(["Admin"]), (req, res) => {
-  const { name, location, category, visible, image } = req.body;
-  const insertQuery = `INSERT INTO destinations (name, location, category, image, visible) VALUES (?, ?, ?, ?, ?)`;
+router.post(
+  "/destinations",
+  verifyToken,
+  checkRole(["Admin"]),
+  upload.single("image"),
+  (req, res) => {
+    const { name, category, visible } = req.body;
+    const image = req.file ? req.file.path : null;
+    const insertQuery = `INSERT INTO destinations (name, category, image, visible) VALUES (?, ?, ?, ?)`;
 
-  req.pool.query(insertQuery, [name, location, category, image, visible], (error, results) => {
-    if (error) {
-      console.error("Error inserting destination entry:", error);
-      return res.status(500).json({ message: "Internal server error" });
-    }
-    res.status(201).json({ message: "Destination entry created successfully" });
-  });
-});
+    req.pool.query(
+      insertQuery,
+      [name, category, image, visible],
+      (error, results) => {
+        if (error) {
+          console.error("Error inserting destination entry:", error);
+          return res.status(500).json({ message: "Internal server error" });
+        }
+        res
+          .status(201)
+          .json({ message: "Destination entry created successfully" });
+      }
+    );
+  }
+);
 
 /**
  * @swagger
@@ -187,18 +198,17 @@ router.get("/destinations/:id", (req, res) => {
  *     requestBody:
  *       required: true
  *       content:
- *         application/json:
+ *         multipart/form-data:
  *           schema:
  *             type: object
  *             properties:
  *               name:
  *                 type: string
- *               location:
- *                 type: string
  *               category:
  *                 type: string
  *               image:
  *                 type: string
+ *                 format: binary
  *                 description: Local URL of the image
  *               visible:
  *                 type: integer
@@ -208,21 +218,34 @@ router.get("/destinations/:id", (req, res) => {
  *       404:
  *         description: Destination entry not found
  */
-router.put("/destinations/:id", verifyToken, checkRole(["Admin"]), (req, res) => {
-  const { name, location, category, image, visible } = req.body;
-  const updateQuery = `UPDATE destinations SET name = ?, location = ?, category = ?, image = ?, visible = ? WHERE destination_id = ?`;
+router.put(
+  "/destinations/:id",
+  verifyToken,
+  checkRole(["Admin"]),
+  upload.single("image"),
+  (req, res) => {
+    const { name, category, visible } = req.body;
+    const image = req.file ? req.file.path : null;
+    const updateQuery = `UPDATE destinations SET name = ?, category = ?, image = ?, visible = ? WHERE destination_id = ?`;
 
-  req.pool.query(updateQuery, [name, location, category, image, visible, req.params.id], (error, results) => {
-    if (error) {
-      console.error("Error updating destination entry:", error);
-      return res.status(500).json({ message: "Internal server error" });
-    }
-    if (results.affectedRows === 0) {
-      return res.status(404).json({ message: "Destination entry not found" });
-    }
-    res.json({ message: "Destination entry updated successfully" });
-  });
-});
+    req.pool.query(
+      updateQuery,
+      [name, category, image, visible, req.params.id],
+      (error, results) => {
+        if (error) {
+          console.error("Error updating destination entry:", error);
+          return res.status(500).json({ message: "Internal server error" });
+        }
+        if (results.affectedRows === 0) {
+          return res
+            .status(404)
+            .json({ message: "Destination entry not found" });
+        }
+        res.json({ message: "Destination entry updated successfully" });
+      }
+    );
+  }
+);
 
 /**
  * @swagger
@@ -245,19 +268,24 @@ router.put("/destinations/:id", verifyToken, checkRole(["Admin"]), (req, res) =>
  *       404:
  *         description: Destination entry not found
  */
-router.delete("/destinations/:id", verifyToken, checkRole(["Admin"]), (req, res) => {
-  const deleteQuery = "DELETE FROM destinations WHERE destination_id = ?";
+router.delete(
+  "/destinations/:id",
+  verifyToken,
+  checkRole(["Admin"]),
+  (req, res) => {
+    const deleteQuery = "DELETE FROM destinations WHERE destination_id = ?";
 
-  req.pool.query(deleteQuery, [req.params.id], (error, results) => {
-    if (error) {
-      console.error("Error deleting destination entry:", error);
-      return res.status(500).json({ message: "Internal server error" });
-    }
-    if (results.affectedRows === 0) {
-      return res.status(404).json({ message: "Destination entry not found" });
-    }
-    res.json({ message: "Destination entry deleted successfully" });
-  });
-});
+    req.pool.query(deleteQuery, [req.params.id], (error, results) => {
+      if (error) {
+        console.error("Error deleting destination entry:", error);
+        return res.status(500).json({ message: "Internal server error" });
+      }
+      if (results.affectedRows === 0) {
+        return res.status(404).json({ message: "Destination entry not found" });
+      }
+      res.json({ message: "Destination entry deleted successfully" });
+    });
+  }
+);
 
 module.exports = router;

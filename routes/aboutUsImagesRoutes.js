@@ -1,7 +1,20 @@
 const express = require("express");
 const router = express.Router();
+const multer = require("multer");
 const jwt = require("jsonwebtoken");
 const { verifyToken, checkRole } = require("../middlewares/token");
+const path = require("path");
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "uploads/");
+  },
+  filename: (req, file, cb) => {
+    const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
+    cb(null, uniqueSuffix + path.extname(file.originalname));
+  },
+});
+const upload = multer({ storage });
 
 /**
  * @swagger
@@ -27,31 +40,38 @@ const { verifyToken, checkRole } = require("../middlewares/token");
  *     requestBody:
  *       required: true
  *       content:
- *         application/json:
+ *         multipart/form-data:
  *           schema:
  *             type: object
  *             properties:
  *               Image:
  *                 type: string
+ *                 format: binary
  *     responses:
  *       201:
  *         description: About Us Image created successfully
  *       500:
  *         description: Internal server error
  */
-router.post("/aboutusimages", verifyToken, checkRole(["Admin"]), (req, res) => {
-  const { Image } = req.body;
-  const visible = 0; // Default value for visibility
-  const insertQuery = `INSERT INTO AboutUsImages (Image, visible) VALUES (?, ?)`;
+router.post(
+  "/aboutusimages",
+  verifyToken,
+  checkRole(["Admin"]),
+  upload.single("Image"),
+  (req, res) => {
+    const Image = req.file ? req.file.path : null;
+    const visible = 0;
+    const insertQuery = `INSERT INTO AboutUsImages (Image, visible) VALUES (?, ?)`;
 
-  req.pool.query(insertQuery, [Image, visible], (error, results) => {
-    if (error) {
-      console.error("Error inserting About Us Image entry:", error);
-      return res.status(500).json({ message: "Internal server error" });
-    }
-    res.status(201).json({ message: "About Us Image created successfully" });
-  });
-});
+    req.pool.query(insertQuery, [Image, visible], (error, results) => {
+      if (error) {
+        console.error("Error inserting About Us Image entry:", error);
+        return res.status(500).json({ message: "Internal server error" });
+      }
+      res.status(201).json({ message: "About Us Image created successfully" });
+    });
+  }
+);
 
 /**
  * @swagger
@@ -127,7 +147,9 @@ router.get("/aboutusimages/:id", (req, res) => {
       return res.status(500).json({ message: "Internal server error" });
     }
     if (results.length === 0) {
-      return res.status(404).json({ message: "About Us Image entry not found" });
+      return res
+        .status(404)
+        .json({ message: "About Us Image entry not found" });
     }
     res.json(results[0]);
   });
@@ -151,12 +173,13 @@ router.get("/aboutusimages/:id", (req, res) => {
  *     requestBody:
  *       required: true
  *       content:
- *         application/json:
+ *         multipart/form-data:
  *           schema:
  *             type: object
  *             properties:
  *               Image:
  *                 type: string
+ *                 format: binary
  *               visible:
  *                 type: integer
  *     responses:
@@ -168,60 +191,63 @@ router.get("/aboutusimages/:id", (req, res) => {
  *         description: About Us Image entry not found
  */
 
-router.put("/aboutusimages/:id", verifyToken, checkRole(["Admin"]), (req, res) => {
-    const { Image, visible } = req.body;
-  
-    // Check how many images are currently visible
+router.put(
+  "/aboutusimages/:id",
+  verifyToken,
+  checkRole(["Admin"]),
+  upload.single("Image"),
+  (req, res) => {
+    const { visible } = req.body;
+    const Image = req.file ? req.file.path : null;
+
     const countVisibleQuery = `SELECT COUNT(*) AS count FROM AboutUsImages WHERE visible = 1`;
-    
+
     req.pool.query(countVisibleQuery, (error, countResults) => {
       if (error) {
         console.error("Error counting visible images:", error);
         return res.status(500).json({ message: "Internal server error" });
       }
-  
+
       const currentVisibleCount = countResults[0].count;
-  
-      // If the image visibility is being set to 1
-      if (visible === 1) {
-        // Check if the current count is already 3
-        if (currentVisibleCount >= 3) {
-          return res.status(400).json({ message: "Cannot set visibility to 1. Maximum of 3 images can be visible." });
-        }
+
+      if (visible === 1 && currentVisibleCount >= 3) {
+        return res.status(400).json({
+          message:
+            "Cannot set visibility to 1. Maximum of 3 images can be visible.",
+        });
       }
-  
-      // If the image visibility is being set to 0
-      if (visible === 0) {
-        // Check if the current count is 3 (i.e., trying to set one of them to 0)
-        if (currentVisibleCount <= 3) {
-          return res.status(400).json({ message: "Cannot set visibility to 0. At least 3 images must be visible." });
-        }
+
+      if (visible === 0 && currentVisibleCount <= 3) {
+        return res.status(400).json({
+          message:
+            "Cannot set visibility to 0. At least 3 images must be visible.",
+        });
       }
-  
+
       const updateQuery = `UPDATE AboutUsImages SET Image = ?, visible = ? WHERE AboutUsImages_ID = ?`;
-      
-      req.pool.query(updateQuery, [Image, visible, req.params.id], (error, results) => {
-        if (error) {
-          console.error("Error updating About Us Image entry:", error);
-          return res.status(500).json({ message: "Internal server error" });
+
+      req.pool.query(
+        updateQuery,
+        [Image, visible, req.params.id],
+        (error, results) => {
+          if (error) {
+            console.error("Error updating About Us Image entry:", error);
+            return res.status(500).json({ message: "Internal server error" });
+          }
+          if (results.affectedRows === 0) {
+            return res
+              .status(404)
+              .json({ message: "About Us Image entry not found" });
+          }
+          res.json({ message: "About Us Image entry updated successfully" });
         }
-        if (results.affectedRows === 0) {
-          return res.status(404).json({ message: "About Us Image entry not found" });
-        }
-        res.json({ message: "About Us Image entry updated successfully" });
-      });
+      );
     });
-  });
-  
+  }
+);
 
 /**
  * @swagger
- * components:
- *   securitySchemes:
- *     bearerAuth:
- *       type: http
- *       scheme: bearer
- *       bearerFormat: JWT
  * /switch-visibility:
  *   put:
  *     summary: Switch visibility of two About Us Image entries by ID
@@ -237,122 +263,96 @@ router.put("/aboutusimages/:id", verifyToken, checkRole(["Admin"]), (req, res) =
  *             properties:
  *               visibleOffId:
  *                 type: integer
- *                 description: The ID of the image to turn its visibility off
  *               visibleOnId:
  *                 type: integer
- *                 description: The ID of the image to turn its visibility on
  *     responses:
  *       200:
  *         description: Visibility switched successfully
  *       404:
  *         description: One or both About Us Image entries not found
  */
-router.put("/switch-visibility", verifyToken, checkRole(["Admin"]), (req, res) => {
-  console.log("Switching visibility of two images");  
-  console.log(req.body);
-  const { visibleOffId, visibleOnId } = req.body;
+router.put(
+  "/switch-visibility",
+  verifyToken,
+  checkRole(["Admin"]),
+  (req, res) => {
+    const { visibleOffId, visibleOnId } = req.body;
 
-  // Check if the IDs are valid numbers
-  if (!Number.isInteger(visibleOffId) || !Number.isInteger(visibleOnId)) {
-    return res.status(400).json({ message: "Both IDs must be valid integers." });
-  }
-
-  console.log(`Turning off visibility for ID: ${visibleOffId}, Turning on visibility for ID: ${visibleOnId}`);
-
-  // Query to get current visibility status of both images
-  const getVisibilityQuery = `SELECT AboutUsImages_ID, visible FROM AboutUsImages WHERE AboutUsImages_ID IN (?, ?)`;
-
-  req.pool.query(getVisibilityQuery, [visibleOffId, visibleOnId], (error, results) => {
-    if (error) {
-      console.error("Error fetching visibility statuses:", error);
-      return res.status(500).json({ message: "Internal server error" });
+    if (!Number.isInteger(visibleOffId) || !Number.isInteger(visibleOnId)) {
+      return res
+        .status(400)
+        .json({ message: "Both IDs must be valid integers." });
     }
 
-    // Ensure both images are found
-    if (results.length < 2) {
-      return res.status(404).json({ message: "One or both images not found" });
-    }
+    const getVisibilityQuery = `SELECT AboutUsImages_ID, visible FROM AboutUsImages WHERE AboutUsImages_ID IN (?, ?)`;
 
-    // Map results to easily find the visibility statuses
-    const visibilityMap = results.reduce((map, row) => {
-      map[row.AboutUsImages_ID] = row.visible;
-      return map;
-    }, {});
-
-    // Check if the image to turn off is already off
-    if (visibilityMap[visibleOffId] === 0) {
-      return res.status(400).json({ message: `Image with ID ${visibleOffId} is already turned off` });
-    }
-
-    // Check if the image to turn on is already on
-    if (visibilityMap[visibleOnId] === 1) {
-      return res.status(400).json({ message: `Image with ID ${visibleOnId} is already turned on` });
-    }
-
-    // Proceed to update visibility
-    const updateOffQuery = `UPDATE AboutUsImages SET visible = 0 WHERE AboutUsImages_ID = ?`;
-    const updateOnQuery = `UPDATE AboutUsImages SET visible = 1 WHERE AboutUsImages_ID = ?`;
-
-    req.pool.query(updateOffQuery, [visibleOffId], (error, offResult) => {
-      if (error) {
-        console.error("Error updating visibility off:", error);
-        return res.status(500).json({ message: "Internal server error while turning off visibility." });
-      }
-      if (offResult.affectedRows === 0) {
-        return res.status(404).json({ message: `Image with ID ${visibleOffId} not found for visibility update` });
-      }
-
-      req.pool.query(updateOnQuery, [visibleOnId], (error, onResult) => {
+    req.pool.query(
+      getVisibilityQuery,
+      [visibleOffId, visibleOnId],
+      (error, results) => {
         if (error) {
-          console.error("Error updating visibility on:", error);
-          return res.status(500).json({ message: "Internal server error while turning on visibility." });
-        }
-        if (onResult.affectedRows === 0) {
-          return res.status(404).json({ message: `Image with ID ${visibleOnId} not found for visibility update` });
+          console.error("Error fetching visibility statuses:", error);
+          return res.status(500).json({ message: "Internal server error" });
         }
 
-        res.json({ message: "Visibility switched successfully" });
-      });
-    });
-  });
-});
+        if (results.length < 2) {
+          return res
+            .status(404)
+            .json({ message: "One or both images not found" });
+        }
 
-  
+        const visibilityMap = results.reduce((map, row) => {
+          map[row.AboutUsImages_ID] = row.visible;
+          return map;
+        }, {});
 
-/**
- * @swagger
- * /aboutusimages/{id}:
- *   delete:
- *     summary: Delete an About Us Image entry by ID
- *     tags: [AboutUsImages]
- *     security:
- *       - bearerAuth: []
- *     parameters:
- *       - in: path
- *         name: id
- *         schema:
- *           type: integer
- *         required: true
- *         description: The About Us Image ID
- *     responses:
- *       200:
- *         description: About Us Image entry deleted successfully
- *       404:
- *         description: About Us Image entry not found
- */
-router.delete("/aboutusimages/:id", verifyToken, checkRole(["Admin"]), (req, res) => {
-  const deleteQuery = "DELETE FROM AboutUsImages WHERE AboutUsImages_ID = ?";
+        if (visibilityMap[visibleOffId] === 0) {
+          return res.status(400).json({
+            message: `Image with ID ${visibleOffId} is already turned off`,
+          });
+        }
 
-  req.pool.query(deleteQuery, [req.params.id], (error, results) => {
-    if (error) {
-      console.error("Error deleting About Us Image entry:", error);
-      return res.status(500).json({ message: "Internal server error" });
-    }
-    if (results.affectedRows === 0) {
-      return res.status(404).json({ message: "About Us Image entry not found" });
-    }
-    res.json({ message: "About Us Image entry deleted successfully" });
-  });
-});
+        if (visibilityMap[visibleOnId] === 1) {
+          return res.status(400).json({
+            message: `Image with ID ${visibleOnId} is already turned on`,
+          });
+        }
+
+        const updateOffQuery = `UPDATE AboutUsImages SET visible = 0 WHERE AboutUsImages_ID = ?`;
+        const updateOnQuery = `UPDATE AboutUsImages SET visible = 1 WHERE AboutUsImages_ID = ?`;
+
+        req.pool.query(updateOffQuery, [visibleOffId], (error, offResult) => {
+          if (error) {
+            console.error("Error updating visibility off:", error);
+            return res.status(500).json({
+              message: "Internal server error while turning off visibility.",
+            });
+          }
+          if (offResult.affectedRows === 0) {
+            return res.status(404).json({
+              message: `Image with ID ${visibleOffId} not found for visibility update`,
+            });
+          }
+
+          req.pool.query(updateOnQuery, [visibleOnId], (error, onResult) => {
+            if (error) {
+              console.error("Error updating visibility on:", error);
+              return res.status(500).json({
+                message: "Internal server error while turning on visibility.",
+              });
+            }
+            if (onResult.affectedRows === 0) {
+              return res.status(404).json({
+                message: `Image with ID ${visibleOnId} not found for visibility update`,
+              });
+            }
+
+            res.json({ message: "Visibility switched successfully" });
+          });
+        });
+      }
+    );
+  }
+);
 
 module.exports = router;

@@ -1,5 +1,5 @@
 const express = require("express");
-const mysql = require("mysql2");
+const mysql = require("mysql");
 const userRoutes = require("./routes/userRoutes");
 const tourRoutes = require("./routes/tourRoutes");
 const userTourRoutes = require("./routes/userTourRoutes");
@@ -34,8 +34,7 @@ const pool = mysql.createPool({
   connectionLimit: 20,
   host: "localhost",
   user: "root",
-  database: "hotels",
-  password: "Om@rEssam2003",
+  database: "Hotels",
 });
 
 pool.getConnection((error) => {
