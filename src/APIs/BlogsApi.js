@@ -1,9 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-const BASE_URL = "https://hotels-api.onrender.com/api/blogs";
+const BASE_URL = "http://localhost:2000/api/pagination";
 export const fetchBlogs = createAsyncThunk("blogs/fetchBlogs", async (page) => {
-  const limit = 6;
-
-  const response = await axios.get(`${BASE_URL}?page=${page}&limit=${limit}`);
-  return { blogs: response.data, totalPages: response.data.totalPages };
+  const response = await axios.get(`${BASE_URL}?page=${page}&limit=6`);
+  return response.data.blogs;
 });
