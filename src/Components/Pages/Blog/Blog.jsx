@@ -1,41 +1,22 @@
 import React, { useEffect } from "react";
 import "./style.css";
 import { useDispatch, useSelector } from "react-redux";
-
-import blog1 from "../../../images/blog-1-1.jpg";
-import blog2 from "../../../images/blog-1-2.jpg";
-import blog3 from "../../../images/blog-1-3.jpg";
-import blog4 from "../../../images/blog-1-4.jpg";
-import blog5 from "../../../images/blog-1-5.jpg";
-import blog6 from "../../../images/blog-1-6.jpg";
 import MainBanner from "../MainBanner/MainBanner";
 import { fetchBlogs } from "../../../APIs/BlogsApi";
-import setPage from "../../../Reducers/BlogsSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCalendarDays,
   faArrowRight,
 } from "@fortawesome/free-solid-svg-icons";
+import Pagination from "../../Shared/Pagination/Pagination";
 export default function Blog() {
   const dispatch = useDispatch();
-  const { currentPage, totalPages, blogs } = useSelector(
-    (state) => state.Blogs
-  );
-  console.log("totalPages:", totalPages);
+  const { blogs } = useSelector((state) => state.Blogs);
+  const { currentPage } = useSelector((state) => state.pagination);
 
   useEffect(() => {
     dispatch(fetchBlogs(currentPage));
   }, [currentPage, dispatch]);
-
-  const handlePageChange = (page) => {
-    if (page >= 1 && page <= totalPages) {
-      dispatch(setPage(page));
-    }
-  };
-  const pages = [];
-  for (let i = 1; i <= totalPages; i++) {
-    pages.push(i);
-  }
 
   return (
     <>
@@ -44,261 +25,51 @@ export default function Blog() {
       <section className="blog">
         <div className="container ">
           <div className="row  gy-4 ">
-            <div className="col-lg-4 col-md-6 parent">
-              <div className="card shadow-lg">
-                <div className="overflow-hidden">
-                  <img src={blog1} className="card-img-top" alt="blogImage" />
-                </div>
-
-                <p className="text-white p-2 position-absolute positionValues orangBackground">
-                  Adventure
-                </p>
-
-                <div className="card-body">
-                  <div className="row g-2">
-                    <div className=" col-auto greenColor">
-                      <FontAwesomeIcon icon={faCalendarDays} />
+            {blogs ? (
+              blogs.map((blog) => (
+                <div className="col-lg-4 col-md-6 parent" key={blog.blog_id}>
+                  <div className="card shadow-lg">
+                    <div className="overflow-hidden">
+                      <img
+                        src={`http://localhost:2000/${blog.imageUrl}`}
+                        className="card-img-top"
+                        alt="blogImage"
+                      />
                     </div>
-                    <div className="col">
-                      <p className="text-secondary">March 28, 2023</p>
+
+                    <p className="text-white p-2 position-absolute positionValues orangBackground">
+                      {blog.title}
+                    </p>
+
+                    <div className="card-body">
+                      <div className="row g-2">
+                        <div className=" col-auto greenColor">
+                          <FontAwesomeIcon icon={faCalendarDays} />
+                        </div>
+                        <div className="col">
+                          <p className="text-secondary">March 28, 2023</p>
+                        </div>
+                      </div>
+                      <h4 className="card-title">{blog.content}</h4>
+
+                      <div className="row g-lg-1 gx-sm-2 mt-3">
+                        <div className="col-auto">
+                          <p className="greenColor">Read more</p>
+                        </div>
+                        <div className="col greenColor">
+                          <FontAwesomeIcon icon={faArrowRight} />
+                        </div>
+                      </div>
                     </div>
                   </div>
-                  <h4 className="card-title">
-                    You Should See things
-                    <br /> when visiting Japan
-                  </h4>
-
-                  <div className="row g-lg-1 gx-sm-2 mt-3">
-                    <div className="col-auto">
-                      <p className="greenColor">Read more</p>
-                    </div>
-                    <div className="col greenColor">
-                      <FontAwesomeIcon icon={faArrowRight} />
-                    </div>
-                  </div>
                 </div>
+              ))
+            ) : (
+              <div>
+                <h1>no blogs found</h1>
               </div>
-            </div>
-            <div className="col-lg-4 col-md-6 parent ">
-              <div className="card shadow-lg">
-                <div className="overflow-hidden">
-                  <img src={blog2} className="card-img-top" alt="blogImage" />
-                </div>
-
-                <p className="text-white p-2 position-absolute positionValues orangBackground">
-                  City Tours
-                </p>
-
-                <div className="card-body">
-                  <div className="row g-2">
-                    <div className=" col-auto greenColor">
-                      <FontAwesomeIcon icon={faCalendarDays} />
-                    </div>
-                    <div className="col">
-                      <p className="text-secondary">March 28, 2023</p>
-                    </div>
-                  </div>
-                  <h4 className="card-title">
-                    A Place where start new
-                    <br /> life with adventure travel
-                  </h4>
-
-                  <div className="row g-lg-1 gx-sm-2 mt-3">
-                    <div className="col-auto">
-                      <p className="greenColor">Read more</p>
-                    </div>
-                    <div className="col greenColor">
-                      <FontAwesomeIcon icon={faArrowRight} />{" "}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className=" col-lg-4 col-md-6 parent">
-              <div className="card shadow-lg">
-                <div className="overflow-hidden">
-                  <img src={blog3} className="card-img-top" alt="blogImage" />
-                </div>
-
-                <p className="text-white p-2 position-absolute positionValues orangBackground">
-                  Adventure
-                </p>
-
-                <div className="card-body">
-                  <div className="row g-2">
-                    <div className=" col-auto greenColor">
-                      <FontAwesomeIcon icon={faCalendarDays} />
-                    </div>
-                    <div className="col">
-                      <p className="text-secondary">March 28, 2023</p>
-                    </div>
-                  </div>
-                  <h4 className="card-title">
-                    A Place where start new
-                    <br /> life with adventure Dhaka
-                  </h4>
-
-                  <div className="row g-lg-1 gx-sm-2 mt-3">
-                    <div className="col-auto">
-                      <p className="greenColor">Read more</p>
-                    </div>
-                    <div className="col greenColor">
-                      <FontAwesomeIcon icon={faArrowRight} />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="row mt-5 gy-4">
-            <div className="col-lg-4 col-md-6 parent">
-              <div className="card shadow-lg">
-                <div className="overflow-hidden">
-                  <img src={blog4} className="card-img-top" alt="blogImage" />
-                </div>
-
-                <p className="text-white p-2 position-absolute positionValues orangBackground">
-                  Adventure
-                </p>
-
-                <div className="card-body">
-                  <div className="row g-2">
-                    <div className=" col-auto greenColor">
-                      <FontAwesomeIcon icon={faCalendarDays} />
-                    </div>
-                    <div className="col">
-                      <p className="text-secondary">March 28, 2023</p>
-                    </div>
-                  </div>
-                  <h4 className="card-title">
-                    You Should See things
-                    <br /> when visiting Japan
-                  </h4>
-
-                  <div className="row g-lg-1 gx-sm-2 mt-3">
-                    <div className="col-auto">
-                      <p className="greenColor">Read more</p>
-                    </div>
-                    <div className="col greenColor">
-                      <FontAwesomeIcon icon={faArrowRight} />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="col-lg-4 col-md-6 parent">
-              <div className="card shadow-lg">
-                <div className="overflow-hidden">
-                  <img src={blog5} className="card-img-top" alt="blogImage" />
-                </div>
-
-                <p className="text-white p-2 position-absolute positionValues orangBackground">
-                  City Tours
-                </p>
-
-                <div className="card-body">
-                  <div className="row g-2">
-                    <div className=" col-auto greenColor">
-                      <FontAwesomeIcon icon={faCalendarDays} />
-                    </div>
-                    <div className="col">
-                      <p className="text-secondary">March 28, 2023</p>
-                    </div>
-                  </div>
-                  <h4 className="card-title">
-                    A Place where start new
-                    <br /> life with adventure travel
-                  </h4>
-
-                  <div className="row g-lg-1 gx-sm-2 mt-3">
-                    <div className="col-auto">
-                      <p classNameName="greenColor">Read more</p>
-                    </div>
-                    <div className="col greenColor">
-                      <FontAwesomeIcon icon={faArrowRight} />{" "}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="col-lg-4 col-md-6 parent ">
-              <div className="card shadow-lg">
-                <div className="overflow-hidden">
-                  <img src={blog6} className="card-img-top" alt="blogImage" />
-                </div>
-
-                <p className="text-white p-2 position-absolute positionValues orangBackground">
-                  Adventure
-                </p>
-
-                <div className="card-body">
-                  <div className="row g-2">
-                    <div className=" col-auto greenColor">
-                      <FontAwesomeIcon icon={faCalendarDays} />
-                    </div>
-                    <div className="col">
-                      <p className="text-secondary">March 28, 2023</p>
-                    </div>
-                  </div>
-                  <h4 className="card-title">
-                    A Place where start new
-                    <br /> life with adventure Dhaka
-                  </h4>
-
-                  <div className="row g-lg-1 gx-sm-2 mt-3">
-                    <div className="col-auto">
-                      <p className="greenColor">Read more</p>
-                    </div>
-                    <div className="col greenColor">
-                      <FontAwesomeIcon icon={faArrowRight} />{" "}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="pagination">
-            <button
-              disabled={currentPage === 1}
-              onClick={() => handlePageChange(currentPage - 1)}
-            >
-              Prev
-            </button>
-
-            {pages.map((page) => (
-              <button
-                key={page}
-                style={{ padding: "10px", margin: "5px" }}
-                className={currentPage === page ? "active" : ""}
-                onClick={() => handlePageChange(page)}
-              >
-                {page}
-              </button>
-            ))}
-
-            <button
-              disabled={currentPage === totalPages}
-              onClick={() => handlePageChange(currentPage + 1)}
-            >
-              Next
-            </button>
-            {/* <ul>
-              <li>
-                <a href="#">1</a>
-              </li>
-              <li>
-                <a href="#">2</a>
-              </li>
-              <li>
-                <a href="#">3</a>
-              </li>
-              <li>
-                <a href="#" className="next">
-                  →
-                </a>
-              </li>
-            </ul> */}
+            )}
+            <Pagination />
           </div>
         </div>
       </section>

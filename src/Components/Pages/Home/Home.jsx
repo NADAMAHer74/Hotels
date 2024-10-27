@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./style.css";
+import { useSelector, useDispatch } from "react-redux";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBurst,
@@ -9,15 +11,16 @@ import {
   faDollar,
   faClock,
 } from "@fortawesome/free-solid-svg-icons";
+
 import Balloon from "../../../images/ballon-1.jpeg";
 import Star from "../../../images/star.jpeg";
 import NorthAmerica from "../../../images/blog-1-1.jpg";
 import SouthAfrica from "../../../images/blog-1-2.jpg";
 import CostaRica from "../../../images/blog-1-3.jpg";
 import Europe from "../../../images/blog-1-4.jpg";
-import TopImage from "../../../images/blog-1-2.jpg";
-import MiddleImage from "../../../images/person5.jpg";
-import BottomImage from "../../../images/person3.jpg";
+import TopImage from "../../../images/about1.jpg";
+import MiddleImage from "../../../images/about3.jpg";
+import BottomImage from "../../../images/about2.jpg";
 import SafetyIcon from "../../../images/safety.jpeg";
 import AboutBg from "../../../images/about-bg.jpeg";
 import sunglass from "../../../images/sunGlass.png";
@@ -26,93 +29,83 @@ import featurImage1 from "../../../images/feature-1.jpg";
 import featurImage2 from "../../../images/feature-1.jpg";
 import featurImage3 from "../../../images/feature-1.jpg";
 import rocket from "../../../images/inn-rocket.png";
+import {
+  fetchDestination,
+  fetchAbout,
+  fetchTour,
+  fetchVideo,
+  fetchBlog,
+} from "../../../APIs/HomeApi";
 
 const Home = () => {
+  const distination = useSelector((state) => state.home.distinationData);
+  const about = useSelector((state) => state.home.aboutData);
+  const tour = useSelector((state) => state.home.tourData);
+  const video = useSelector((state) => state.home.videoData);
+  const blog = useSelector((state) => state.home.blogData);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchDestination());
+    dispatch(fetchAbout());
+    dispatch(fetchTour());
+    dispatch(fetchVideo());
+    dispatch(fetchBlog());
+  });
   return (
     <div>
-      <div className="container-fluid   text-center my-5 position-relative">
-        <div className="row">
-          <div className="col-12">
-            <img
-              src={Balloon}
-              alt="Balloon"
-              className="balloon d-none d-md-inline-block"
-            />
-            <h2 className="textStyle">Top Destinations</h2>
-            <h1 className="title">
-              Explore the Beautiful Places <br />
-              Around the World
-            </h1>
-            <img
-              src={Star}
-              alt="Star"
-              className="star d-none d-md-inline-block"
-            />
+      <div className="topDestinationSection">
+        <div className="container-fluid   text-center my-5 position-relative">
+          <div className="row">
+            <div className="col-12">
+              <img
+                src={Balloon}
+                alt="Balloon"
+                className="balloon d-none d-md-inline-block"
+              />
+              <h2 className="textStyle">Top Destinations</h2>
+              <h1 className="title">
+                Explore the Beautiful Places <br />
+                Around the World
+              </h1>
+              <img
+                src={Star}
+                alt="Star"
+                className="star d-none d-md-inline-block"
+              />
+            </div>
+          </div>
+        </div>
+        <div className="container">
+          <div className="row text-center">
+            {distination ? (
+              distination.map((item) => (
+                <div className="col-12 col-md-6 col-lg-3 mb-4">
+                  <div className="cardContainer position-relative">
+                    <img
+                      src={`http://localhost:2000/${item.image}`}
+                      className="img-fluid"
+                      alt="North America"
+                    />
+                    <div className="overlay"></div>
+                    <div className="cardText position-absolute">
+                      <h5>{item.location}</h5>
+                      <p className="cardParagraph">13 Tours</p>
+                    </div>
+                  </div>
+                </div>
+              ))
+            ) : (
+              <p>Loading...</p>
+            )}
           </div>
         </div>
       </div>
 
-      <div className="container">
-        <div className="row text-center">
-          <div className="col-12 col-md-6 col-lg-3 mb-4">
-            <div className="cardContainer position-relative">
-              <img
-                src={NorthAmerica}
-                className="img-fluid"
-                alt="North America"
-              />
-              <div className="overlay"></div>
-              <div className="cardText position-absolute">
-                <h5>North America</h5>
-                <p className="cardParagraph">13 Tours</p>
-              </div>
-            </div>
-          </div>
-
-          <div className="col-12 col-md-6 col-lg-3 mb-4">
-            <div className="cardContainer position-relative">
-              <img
-                src={SouthAfrica}
-                classeName="img-fluid"
-                alt="South Africa"
-              />
-              <div className="overlay"></div>
-              <div className="cardText position-absolute">
-                <h5>South Africa</h5>
-                <p className="cardParagraph">12 Tours</p>
-              </div>
-            </div>
-          </div>
-
-          <div className="col-12 col-md-6 col-lg-3 mb-4">
-            <div className="cardContainer position-relative">
-              <img src={CostaRica} className="img-fluid" alt="Costa Rica" />
-              <div className="overlay"></div>
-              <div className="cardText position-absolute">
-                <h5>Costa Rica</h5>
-                <p className="cardParagraph">25 Tours</p>
-              </div>
-            </div>
-          </div>
-
-          <div className="col-12 col-md-6 col-lg-3 mb-4">
-            <div className="cardContainer position-relative">
-              <img src={Europe} className="img-fluid" alt="Europe" />
-              <div className="overlay"></div>
-              <div className="cardText position-absolute">
-                <h5>Europe</h5>
-                <p className="cardParagraph">15 Tours</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="aboutPart position-relative">
+      <div className="aboutPart ">
         <div className="container ">
           <div className="row align-items-center">
-            <div className="col-12 col-md-6 mb-4 mb-md-0">
-              <div className="d-none d-md-flex flex-column align-items-start imageStack">
+            <div className="col-12 col-md-6 mb-4 mb-md-0 align-items-start ">
+              <div className=" align-items-start imageStack">
                 <img
                   src={TopImage}
                   className="topImage img-fluid mb-3"
@@ -129,14 +122,9 @@ const Home = () => {
                   alt="Bottom Image"
                 />
               </div>
-              <img
-                src={MiddleImage}
-                className="img-fluid d-block d-md-none"
-                alt="Responsive Image"
-              />
             </div>
 
-            <div className="col-12 col-md-6">
+            <div className="col-12 col-md-6 aboutContent">
               <h3 className="sectionTitle">About Company</h3>
               <h2 className="mainTitle">
                 Sollicitudin Vestibulum <br />
@@ -510,6 +498,61 @@ const Home = () => {
               <h4 className="fw-bold">600 +</h4>
               <p>Our Vlounteers</p>
             </div>
+          </div>
+        </div>
+      </div>
+      <div class="blogSection">
+        <img
+          class="sticker img-fluid d-none d-md-inline-block"
+          src="./assests/images/ticket.png"
+        />
+        <div class="container">
+          <h3>Our Recent Blog</h3>
+          <h2 class="headBold">Amazing news & blog for every update</h2>
+          <div class="row">
+            {blog ? (
+              blog.map((blog) => (
+                <div class=" col-12 col-md-6 col-lg-3 ">
+                  <div class=" travelCard ">
+                    <div className="position-relative">
+                      <img
+                        src={`http://localhost:2000/${blog.imageUrl}`}
+                        alt="Travel Image"
+                      />
+                      <div class="categoryBadge">{blog.title}</div>
+                    </div>
+                  </div>
+                  <div class="cardBody">
+                    <p class="card-date">
+                      <i class="fas fa-calendar-alt calenderSticker"></i>{" "}
+                      {blog.date}
+                    </p>
+                    <h5 class="cardTitle">{blog.content}</h5>
+                    <button class="cardBtn">Explore More</button>
+                  </div>
+                </div>
+              ))
+            ) : (
+              <p>No blogs found</p>
+            )}
+            {/* <div class=" col-12 col-md-6 col-lg-3 ">
+              <div class=" travelCard ">
+                <div className="position-relative">
+                  <img src="./assests/images/blog-1.jpg" alt="Travel Image" />
+                  <div class="categoryBadge">City Tours</div>
+                </div>
+              </div>
+              <div class="cardBody">
+                <p class="card-date">
+                  <i class="fas fa-calendar-alt calenderSticker"></i> March 28,
+                  2023
+                </p>
+                <h5 class="cardTitle">
+                  A place where start new life with adventure Dhaka
+                </h5>
+                <button class="cardBtn">Explore More</button>
+              </div>
+            </div> */}
           </div>
         </div>
       </div>
