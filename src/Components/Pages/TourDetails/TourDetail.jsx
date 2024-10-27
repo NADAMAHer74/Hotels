@@ -160,4 +160,3 @@ function TourDetail() {
 }
 
 export default TourDetail;
-
