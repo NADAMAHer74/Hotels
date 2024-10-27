@@ -133,6 +133,7 @@ const createBannersTable = `
   CREATE TABLE IF NOT EXISTS banners (
       banner_id INT AUTO_INCREMENT PRIMARY KEY,
       head VARCHAR(200) NOT NULL,
+      visible TINYINT NOT NULL,
       pages_page_id VARCHAR(20) NOT NULL,
       FOREIGN KEY (pages_page_id) REFERENCES pages(page_id) ON DELETE CASCADE
   );
@@ -142,8 +143,9 @@ const createImageBannersTable = `
   CREATE TABLE IF NOT EXISTS imageBanners (
       banner_image_id INT AUTO_INCREMENT PRIMARY KEY,
       image MEDIUMTEXT NOT NULL,
-      banner_page_id VARCHAR(20) NOT NULL,
-      FOREIGN KEY (banner_page_id) REFERENCES pages(page_id) ON DELETE CASCADE
+      visible TINYINT NOT NULL,
+      banner_page_id INT NOT NULL,
+      FOREIGN KEY (banner_page_id) REFERENCES banners(banner_id) ON DELETE CASCADE
   );
 `;
 

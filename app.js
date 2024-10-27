@@ -1,5 +1,5 @@
 const express = require("express");
-const mysql = require("mysql");
+const mysql = require("mysql2");
 const userRoutes = require("./routes/userRoutes");
 const tourRoutes = require("./routes/tourRoutes");
 const userTourRoutes = require("./routes/userTourRoutes");
@@ -23,18 +23,24 @@ const destinationsHomeRoutes = require("./routes/destinationsHomeRoutes");
 const aboutUsImagesRoutes = require("./routes/aboutUsImagesRoutes");
 const WhatToDoImagesRoutes = require("./routes/WhatToDoImagesRoutes");
 const servicesRoutes = require("./routes/WhatToDoImagesRoutes");
+const imageBannersRoutes = require("./routes/imageBannersRoutes");
 const swaggerUi = require("swagger-ui-express");
 const swaggerJsdoc = require("swagger-jsdoc");
 const { createTables } = require("./migrations/migrate");
-
+const cors = require("cors");
+const path = require("path");                        
 const app = express();
+
+app.use(cors());
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 app.use(express.json());
 
 const pool = mysql.createPool({
   connectionLimit: 20,
-  host: "localhost",
-  user: "root",
-  database: "Hotels",
+  host: "sql7.freesqldatabase.com",
+  user: "sql7741161",
+  database: "sql7741161",
+  password: "ykxiIkPIIt",
 });
 
 pool.getConnection((error) => {
@@ -60,7 +66,7 @@ const swaggerOptions = {
     },
     servers: [
       {
-        url: "http://localhost:3000/api",
+        url: "http://localhost:1000/api",
       },
     ],
   },
@@ -80,9 +86,7 @@ app.use("/api", blogRoutes);
 app.use("/api", tourRoutes);
 app.use("/api", userTourRoutes);
 app.use("/api", availableServicesRoutes);
-
 app.use("/api", contactUsRoutes);
-
 app.use("/api", phoneRoutes);
 app.use("/api", locationRoutes);
 app.use("/api", workingHoursRoutes);
@@ -100,7 +104,8 @@ app.use("/api", aboutUSRoutes);
 app.use("/api", WhatToDoImagesRoutes);
 app.use("/api", WhatToDoRoutes);
 app.use("/api", servicesRoutes);
-app.listen(3000, () => {
-  console.log("Server running on port 3000");
-  console.log("Swagger running at http://localhost:3000/api-docs");
+app.use("/api", imageBannersRoutes);
+app.listen(1000, () => {
+  console.log("Server running on port 1000");
+  console.log("Swagger running at http://localhost:1000/api-docs");
 });

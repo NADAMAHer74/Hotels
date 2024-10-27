@@ -248,6 +248,49 @@ router.put(
 
 /**
  * @swagger
+ * /aboutusimages/{id}:
+ *   delete:
+ *     summary: Delete a What To Do Image entry by ID
+ *     tags: [AboutUsImages]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: integer
+ *         required: true
+ *         description: The What To Do Image ID
+ *     responses:
+ *       200:
+ *         description: about us image entry deleted successfully
+ *       404:
+ *         description: about us image entry not found
+ */
+router.delete(
+  "/aboutusimages/:id",
+  verifyToken,
+  checkRole(["Admin"]),
+  (req, res) => {
+    const deleteQuery = "DELETE FROM ImageBanners WHERE ImageBanner_ID = ?";
+
+    req.pool.query(deleteQuery, [req.params.id], (error, results) => {
+      if (error) {
+        console.error("Error deleting What To Do Image entry:", error);
+        return res.status(500).json({ message: "Internal server error" });
+      }
+      if (results.affectedRows === 0) {
+        return res
+          .status(404)
+          .json({ message: "about us image entry not found" });
+      }
+      res.json({ message: "about us image entry deleted successfully" });
+    });
+  }
+);
+
+/**
+ * @swagger
  * /switch-visibility:
  *   put:
  *     summary: Switch visibility of two About Us Image entries by ID

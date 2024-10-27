@@ -46,6 +46,8 @@ const upload = multer({ storage });
  *             properties:
  *               name:
  *                 type: string
+ *               location:
+ *                 type: string
  *               category:
  *                 type: string
  *               image:
@@ -66,13 +68,13 @@ router.post(
   checkRole(["Admin"]),
   upload.single("image"),
   (req, res) => {
-    const { name, category, visible } = req.body;
+    const { name, location, category, visible } = req.body;
     const image = req.file ? req.file.path : null;
-    const insertQuery = `INSERT INTO destinations (name, category, image, visible) VALUES (?, ?, ?, ?)`;
+    const insertQuery = `INSERT INTO destinations (name, location, category, image, visible) VALUES (?, ?, ?, ?, ?)`;
 
     req.pool.query(
       insertQuery,
-      [name, category, image, visible],
+      [name,location, category, image, visible],
       (error, results) => {
         if (error) {
           console.error("Error inserting destination entry:", error);
@@ -287,5 +289,65 @@ router.delete(
     });
   }
 );
+
+
+/**
+ * @swagger
+ * /paginationOfDestinations:
+ *   get:
+ *     summary: Get pagination destination entries
+ *     tags: [Destinations]
+ *     parameters:
+ *       - in: query
+ *         name: page
+ *         schema:
+ *           type: integer
+ *         description: Page number for pagination
+ *       - in: query
+ *         name: limit
+ *         schema:
+ *           type: integer
+ *         description: Number of tours to retrieve per page (default is 6)
+ *     responses:
+ *       200:
+ *         description: A list of destination entries
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 type: object
+ *                 properties:
+ *                   destination_id:
+ *                     type: integer
+ *                   name:
+ *                     type: string
+ *                   location:
+ *                     type: string
+ *                   category:
+ *                     type: string
+ *                   image:
+ *                     type: string
+ *                     description: Local URL of the image
+ *                   visible:
+ *                     type: integer
+ */
+router.get("/paginationOfDestinations", (req, res) => {
+  const page = parseInt(req.query.page) || 1;
+  const limit = parseInt(req.query.limit) || 6;
+  const offset = (page - 1) * limit;
+
+  const query = "SELECT * FROM destinations LIMIT ? OFFSET ?";
+  req.pool.query(query, [limit, offset], (error, results) => {
+    if (error) {
+      return res.status(500).json({ message: "Internal server error" });
+    }
+    res.json({
+      page,
+      limit,
+      tours: results,
+    });
+  });
+});
 
 module.exports = router;

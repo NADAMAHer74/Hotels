@@ -25,8 +25,6 @@ const { verifyToken, checkRole } = require("../middlewares/token");
  *             properties:
  *               page_id:
  *                 type: string
- *               page_name:
- *                 type: string
  *     responses:
  *       201:
  *         description: Page entry created successfully
@@ -34,7 +32,7 @@ const { verifyToken, checkRole } = require("../middlewares/token");
  *         description: Internal server error
  */
 router.post("/pages", verifyToken, checkRole(["Admin"]), (req, res) => {
-  const { page_id, page_name } = req.body;
+  const { page_id } = req.body;
 
   // Check if the page_id already exists
   const checkQuery = "SELECT COUNT(*) AS count FROM pages WHERE page_id = ?";
@@ -48,8 +46,8 @@ router.post("/pages", verifyToken, checkRole(["Admin"]), (req, res) => {
     }
 
     // Insert the new page entry
-    const insertQuery = `INSERT INTO pages (page_id, page_name) VALUES (?, ?)`;
-    req.pool.query(insertQuery, [page_id, page_name], (error, results) => {
+    const insertQuery = `INSERT INTO pages (page_id) VALUES (?)`;
+    req.pool.query(insertQuery, [page_id], (error, results) => {
       if (error) {
         console.error("Error inserting page entry:", error);
         return res.status(500).json({ message: "Internal server error" });
