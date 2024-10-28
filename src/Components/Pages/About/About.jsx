@@ -13,22 +13,39 @@ import VideoBlock from '../../Shared/VideoBlock/VideoBlock';
 import videoBackgroundImg from '../../../images/video-bg-about.jpg'
 import AuthModal from '../../Shared/AuthModal/AuthModal';
 import '../../Shared/AuthModal/AuthModal.css';
-import { fetchAboutData } from '../../../APIs/AboutApi';
+import { fetchAboutImgs, fetchAboutContent, fetchAboutStats, fetchWhatWeDoImg, fetchWhatWeDo } from '../../../APIs/AboutApi';
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { map } from 'leaflet';
 
 const About = () => {
-
-  const aboutUsData = useSelector(
-    (state) => state.about.about
-  )
 
   const dispatch = useDispatch();
 
 
+
+  const aboutImgs = useSelector(
+    (state) => state.about.aboutUsImgs
+  )
+  const aboutContent = useSelector(
+    (state) => state.about.aboutUsContent
+  )
+  const aboutStats = useSelector(
+    (state) => state.about.aboutUsStats
+  )
+  const whatWeDoImg = useSelector(
+    (state) => state.about.whatWeDoImg
+  )
+  const whatWeDo = useSelector(
+    (state) => state.about.whatWeDo
+  )
   useEffect(() => {
-    dispatch(fetchAboutData()).then(() => { });
-  })
+    dispatch(fetchAboutImgs());
+    dispatch(fetchAboutContent());
+    dispatch(fetchAboutStats());
+    dispatch(fetchWhatWeDoImg());
+    dispatch(fetchWhatWeDo());
+  }, [dispatch]);
 
 
   return (
@@ -39,58 +56,49 @@ const About = () => {
           <Row className='align-items-center'>
             <Col xl={6} lg={6}>
               <div
-                className="aboutThumbWrap d-sm-flex align-items-center justify-content-center justify-content-lg-end">
+                className="aboutThumbWrap d-sm-flex align-items-center justify-content-center justify-content-lg-end"
+                key={aboutImgs.AboutUsImages_ID}
+              >
                 <div className="aboutThumbBox d-flex flex-column">
-                  <div className="aboutThumb1 text-center text-sm-end">
-                    <img src={aboutImgLeftTop} alt="About1" />
-                  </div>
-                  <div className="aboutThumb2">
-                    <img src={aboutImgLeftBot} alt="About2" />
-                  </div>
+                  {aboutImgs.map((aboutImgData, index) => (
+                    aboutImgData.visible === 1 && (index <= 1) && ( // Only render if visible is 1
+                      <div className={`aboutThumb${index + 1} text-center text-sm-end`} key={aboutImgData.AboutUsImages_ID}>
+                        <img src={`http://localhost:2000/${aboutImgData.Image}`} alt={`About`} />
+                      </div>
+                    )))}
                 </div>
                 <div className="aboutThumbSingle text-center text-sm-start">
-                  <img src={aboutImgRight} alt="About3" />
+                  {aboutImgs.map((aboutImgData, idx) => (
+                    aboutImgData.visible === 1 && (idx === 2) && ( // Only render if visible is 1 and index is 2
+                      <img key={aboutImgData.AboutUsImages_ID} src={`http://localhost:2000/${aboutImgData.Image}`} alt={`About`} />
+                    )))}
                 </div>
               </div>
             </Col>
             <Col xl={6} lg={6}>
               <div className="aboutTitleBox">
                 <span className="aboutTitle text-capitalize d-inline-block">About Us</span>
-                <h2 className="aboutsubtitle">Sollicitudin Vestibulum Vulputate Ipsum.</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                  eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  Ut enim ad minim veniam, quis nostrud.</p>
+                <h2 className="aboutsubtitle">{aboutContent.head}</h2>
+                <p>{aboutContent.Body}</p>
               </div>
-              <div className="aboutCounterBox">
-                <Row>
-                  <Col xl={4} lg={4} md={4} sm={4} >
-                    <div className="aboutCounterText">
-                      <h3 className="aboutCounterNumber">
-                        <b>25</b>
-                        +
-                      </h3>
-                      <p>Our Explorers</p>
-                    </div>
-                  </Col>
-                  <Col xl={4} lg={4} md={4} sm={4} >
-                    <div className="aboutCounterText">
-                      <h3 className="aboutCounterNumber">
-                        <b>300</b>
-                        +
-                      </h3>
-                      <p>Destinations</p>
-                    </div>
-                  </Col><Col xl={4} lg={4} md={4} sm={4} >
-                    <div className="aboutCounterText">
-                      <h3 className="aboutCounterNumber">
-                        <b>25</b>
-                        +
-                      </h3>
-                      <p>Years experience</p>
-                    </div>
-                  </Col>
-                </Row>
-              </div>
+
+
+              {aboutStats.map((stat) => (
+                <div className="aboutCounterBox" key={stat.Statistics_ID}>
+                  <Row>
+                    <Col xl={4} lg={4} md={4} sm={4} >
+                      <div className="aboutCounterText" >
+                        <h3 className="aboutCounterNumber">
+                          <b>{stat.Quantity}</b>
+                          +
+                        </h3>
+                        <p>{stat.Name}</p>
+                      </div>
+                    </Col>
+                  </Row>
+                </div>
+              ))}
+
               <div className="discoverBtn d-inline-block text-capitalize">
                 <a href="" className="btn">
                   <span>Discover More <svg width="17" height="14" viewBox="0 0 17 14" fill="none"
@@ -119,12 +127,12 @@ const About = () => {
                 <div className="chooseUsTitleBox">
                   <span className="d-inline-block text-capitalize">What we do</span>
                   <h3 className="chooseUsTitle">
-                    We Arrange the Best Tour
+                    {/* We Arrange the Best Tour
                     <br />
-                    Ever Possible
+                    Ever Possible */}
+                    {whatWeDo.Head}
                   </h3>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                    incididunt ut labore et dolore magna aliqua.</p>
+                  <p>{whatWeDo.Body}</p>
                 </div>
               </div>
               <Row>
@@ -555,13 +563,17 @@ const About = () => {
                 </Col>
               </Row>
             </Col>
-            <Col xl={5} lg={5}>
-              <div className="chooseUsThumbImg position-relative ">
-                <div className="chooseUsThumb text-center text-lg-end">
-                  <img src={chooseUsImg} alt="Woman in the coast" />
+
+            {whatWeDoImg.map((img) => (
+              <Col xl={5} lg={5} key={img.WhatToDoImage_ID}>
+                <div className="chooseUsThumbImg position-relative ">
+                  <div className="chooseUsThumb text-center text-lg-end">
+                    <img src={`http://localhost:2000/${img.Image}`} alt="Woman in the coast" />
+                  </div>
                 </div>
-              </div>
-            </Col>
+              </Col>
+            ))}
+
           </Row>
 
         </Container>
