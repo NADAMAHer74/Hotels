@@ -1,14 +1,16 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
+const BASE_URL = "http://localhost:5000/api/tours";
 
-const API_ENDPOINT = "https://eecf8975-6c57-4990-969b-6a32dc2c0aff.mock.pstmn.io/hotels";
+export const fetchTours = createAsyncThunk("tours/fetchTours", async (page) => {
+  try {
+    const response = await axios.get(`${BASE_URL}?page=${page}&limit=6`);
+    return response.data.tours;  
+  } catch (error) {
+    throw error;
+  }
+});
 
-export const fetchTours = createAsyncThunk(
-    "tourGrid/fetchTours", async (pageNumber) => {
-        const response = await axios.get(`${API_ENDPOINT}?page=${pageNumber}`);
-        return {
-            tours: response.data,
-            totalPages: response.data.totalPages
-        };
-    });
+
+

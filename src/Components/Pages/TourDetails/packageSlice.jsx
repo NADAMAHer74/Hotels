@@ -1,12 +1,12 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { fetchPackageDetails } from '../../../APIs/TourDetailApi.js';
+import { createSlice } from "@reduxjs/toolkit";
+import { fetchPackageDetails } from "../../../APIs/TourDetailApi.js";
 
 const packageSlice = createSlice({
-  name: 'package',
+  name: "package",
   initialState: {
-    date: '',
-    time: '',
-    times: [], 
+    date: "",
+    time: "",
+    times: [],
     adults: 1,
     kids: 0,
     children: 0,
@@ -15,7 +15,7 @@ const packageSlice = createSlice({
       internet: false,
       photography: false,
     },
-    serviceCosts: {}, 
+    serviceCosts: {},
     totalCost: 800,
   },
   reducers: {
@@ -39,7 +39,7 @@ const packageSlice = createSlice({
       state.additionalServices[service] = !state.additionalServices[service];
     },
     updateTotalCost: (state) => {
-      let baseCost = 800; 
+      let baseCost = 800;
       const services = state.additionalServices;
       const serviceCosts = state.serviceCosts;
 
@@ -51,16 +51,22 @@ const packageSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder
-      .addCase(fetchPackageDetails.fulfilled, (state, action) => {
-        const { times, adults, kids, children, additionalServices, serviceCosts } = action.payload;
-        state.times = times; 
-        state.adults = adults; 
-        state.kids = kids; 
-        state.children = children; 
-        state.additionalServices = additionalServices; 
-        state.serviceCosts = serviceCosts; 
-      });
+    builder.addCase(fetchPackageDetails.fulfilled, (state, action) => {
+      const {
+        times,
+        adults,
+        kids,
+        children,
+        additionalServices,
+        serviceCosts,
+      } = action.payload;
+      state.times = times;
+      state.adults = adults;
+      state.kids = kids;
+      state.children = children;
+      state.additionalServices = additionalServices;
+      state.serviceCosts = serviceCosts;
+    });
   },
 });
 
@@ -73,7 +79,6 @@ export const {
   toggleService,
   updateTotalCost,
 } = packageSlice.actions;
-export { fetchPackageDetails } from '../../../APIs/TourDetailApi.js';
-
+export { fetchPackageDetails } from "../../../APIs/TourDetailApi.js";
 
 export default packageSlice.reducer;

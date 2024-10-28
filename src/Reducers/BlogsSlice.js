@@ -3,25 +3,18 @@ import { fetchBlogs } from "../APIs/BlogsApi";
 
 const initialState = {
   blogs: [],
-  totalPages: 0,
-  currentPage: 1,
+  limit: 6,
 };
 
 export const BlogSlice = createSlice({
   name: "Blogs",
   initialState,
-  reducers: {
-    setPage: (state, action) => {
-      state.currentPage = action.payload;
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder.addCase(fetchBlogs.fulfilled, (state, action) => {
-      state.blogs = action.payload.blogs;
-      state.totalPages = action.payload.totalPages;
+      state.blogs = action.payload;
     });
   },
 });
-export const { setPage } = BlogSlice.actions;
 
 export default BlogSlice.reducer;

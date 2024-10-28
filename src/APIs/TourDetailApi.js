@@ -1,17 +1,23 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
 
-const API_URL = 'https://api.example.com/package-details'; 
+const API_URL = 'http://localhost:5000/api/user_tours'; // Replace with your actual API URL
 
-// export const fetchPackageDetails = createAsyncThunk('package/fetchPackageDetails', async () => {
-//   const response = await fetch(API_URL);
-//   const data = await response.json();
-//   return data;
-// });
-export const fetchPackageDetails = createAsyncThunk(
-    "package/fetchPackageDetails",
-    async () => {
-      const response = await axios.get(API_URL);
-      return response.data;
-    }
-  );
+// Thunk for booking the package
+export const TourDetailApi = createAsyncThunk(
+  'package/bookPackage',
+  async (packageData, { rejectWithValue }) => {
+    try {
+      const response = await axios.post(API_URL, packageData);
+      if (response.status === 204) {
+        return 'Package booked successfully'; // Return a simple success message or handle it in the component
+      }
+
+      return response.data; // For non-204 responses
+    } catch (error) {
+      return rejectWithValue(error.response?.data || 'Something went wrong');
+    }
+
+  }
+);
+
