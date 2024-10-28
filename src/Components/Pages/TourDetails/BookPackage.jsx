@@ -1,351 +1,123 @@
-// import React from 'react'
-// import "./TourDetailcss.css";
-
-// function BookPackage() {
-//   return (
-//     <div>
-//             <div className="package-section">
-//               <h3 className="section-title">Package Details</h3>
-//               <form className="package-form">
-//                 <label className="date" for="date">
-//                   Date
-//                 </label>
-//                 <div className="input-group">
-//                   <input type="date" id="date" name="date" />
-//                   <span className="icon-calendar"></span>
-//                 </div>
-
-//                 <label className="time" for="time">
-//                   Time
-//                 </label>
-//                 <select id="time" name="time">
-//                   <option value="default">Default sorting</option>
-//                 </select>
-
-//                 <div className="tickets">
-//                   <div className="ticket-type">
-//                     <label for="adults">Adults (18+ years)</label>
-//                     <div className="counter">
-//                       <button type="button" className="minus">
-//                         -
-//                       </button>
-//                       <input
-//                         type="number"
-//                         id="adults"
-//                         name="adults"
-//                         min="1"
-//                         value="1"
-//                       />
-//                       <button type="button" className="plus">
-//                         +
-//                       </button>
-//                     </div>
-//                   </div>
-
-//                   <div className="ticket-type">
-//                     <label for="kids">Kids (13 years)</label>
-//                     <div className="counter">
-//                       <button type="button" className="minus">
-//                         -
-//                       </button>
-//                       <input
-//                         type="number"
-//                         id="kids"
-//                         name="kids"
-//                         min="0"
-//                         value="1"
-//                       />
-//                       <button type="button" className="plus">
-//                         +
-//                       </button>
-//                     </div>
-//                   </div>
-
-//                   <div className="ticket-type">
-//                     <label for="children">Children (5+ years)</label>
-//                     <div className="counter">
-//                       <button type="button" className="minus">
-//                         -
-//                       </button>
-//                       <input
-//                         type="number"
-//                         id="children"
-//                         name="children"
-//                         min="0"
-//                         value="1"
-//                       />
-//                       <button type="button" className="plus">
-//                         +
-//                       </button>
-//                     </div>
-//                   </div>
-//                 </div>
-
-//                 <div className="additional-services">
-//                   <label>Additional Service</label>
-//                   <div className="service-item">
-//                     <input type="checkbox" id="guide" name="guide" />
-//                     <label for="guide">Additional Guide</label>
-//                     <span>$420</span>
-//                   </div>
-//                   <div className="service-item">
-//                     <input type="checkbox" id="internet" name="internet" />
-//                     <label for="internet">Internet</label>
-//                     <span>$420</span>
-//                   </div>
-//                   <div className="service-item">
-//                     <input
-//                       type="checkbox"
-//                       id="photography"
-//                       name="photography"
-//                     />
-//                     <label for="photography">Photography</label>
-//                     <span>$420</span>
-//                   </div>
-//                 </div>
-
-//                 <p className="total-cost">
-//                   Total Cost: <span className="price">$800.00</span> / per
-//                   person
-//                 </p>
-//                 <button type="submit" className="book-btn">
-//                   Proceed To Book
-//                 </button>
-//               </form>
-//             </div>
-//             <div className="tour-info mt-5">
-//               <h3>Tour Information</h3>
-//               <ul>
-//                 <li>
-//                   <span className="icon">
-//                     <i className="fa-solid fa-user-group"></i>
-//                   </span>{" "}
-//                   Max Guests: Date
-//                 </li>
-//                 <li>
-//                   <span className="icon">
-//                     <i className="fa-solid fa-user-group"></i>
-//                   </span>{" "}
-//                   Min Age: 12+
-//                 </li>
-//                 <li>
-//                   <span className="icon">
-//                     <i className="fa-solid fa-plane"></i>
-//                   </span>{" "}
-//                   Tour Location: America
-//                 </li>
-//                 <li>
-//                   <span className="icon">
-//                     <i className="fa-solid fa-earth-americas"></i>
-//                   </span>{" "}
-//                   Languages Support: Global
-//                 </li>
-//               </ul>
-//           </div>
-//     </div>
-//   )
-// }
-
-// export default BookPackage
-
-
-
-
 
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import {
-  setDate,
-  setTime,
-  setAdults,
-  setKids,
-  setChildren,
-  toggleService,
-  updateTotalCost,
-  fetchPackageDetails, 
-} from './packageSlice.jsx'; 
+  incrementadult_quantity,
+  decrementadult_quantity,
+  incrementkids_quantity,
+  decrementkids_quantity,
+  incrementchild_quantity,
+  decrementchild_quantity,
+  toggleAdditionalService,
+  calculateTotalCost,
+} from '../../../Reducers/packageSlice';
+import { TourDetailApi } from '../../../APIs/TourDetailApi'; // Import the thunk from API file
 
-import "./TourDetailcss.css";
-
-function BookPackage() {
-  const dispatch = useDispatch();
-
+const BookPackage = () => {
+    const dispatch = useDispatch();
+    const { adult_quantity, kids_quantity, child_quantity, additional_service_ids, totalCost, status, error } = useSelector(
+      (state) => state.package
+    );
   
-  const { date, time, times, adults, kids, children, additionalServices, totalCost, serviceCosts } = useSelector(
-    (state) => state.package
-  );
-
- 
-  useEffect(() => {
-    dispatch(fetchPackageDetails());
-  }, [dispatch]);
-
-
-  const handleServiceChange = (service) => {
-    dispatch(toggleService(service));
-    dispatch(updateTotalCost());
-  };
-
-  return (
-    <div>
-      <div className="package-section">
-        <h3 className="section-title">Package Details</h3>
-        <form className="package-form">
-          <label className="date" htmlFor="date">Date</label>
-          <div className="input-group">
+    useEffect(() => {
+      dispatch(calculateTotalCost());
+    }, [adult_quantity, kids_quantity, child_quantity, additional_service_ids, dispatch]);
+  
+    const handleBookPackage = () => {
+      const packageData = {
+        adult_quantity,
+        kids_quantity,
+        child_quantity,
+        additional_service_ids,
+      };
+      dispatch(TourDetailApi(packageData));
+    };
+  
+    return (
+      <div>
+        <h2>Package Details</h2>
+  
+        {/* Date Selection */}
+        <label>Date</label>
+        <input type="date" />
+  
+        {/* Time Selection */}
+        <label>Time</label>
+        <select>
+          <option>Default sorting</option>
+          {/* Add more time options as necessary */}
+        </select>
+  
+        {/* Number of adult_quantity */}
+        <div>
+          <h4>adult_quantity (18+ years)</h4>
+          <button onClick={() => dispatch(decrementadult_quantity())}>-</button>
+          <span>{adult_quantity}</span>
+          <button onClick={() => dispatch(incrementadult_quantity())}>+</button>
+        </div>
+  
+        {/* Number of kids_quantity */}
+        <div>
+          <h4>kids_quantity (13 years)</h4>
+          <button onClick={() => dispatch(decrementkids_quantity())}>-</button>
+          <span>{kids_quantity}</span>
+          <button onClick={() => dispatch(incrementkids_quantity())}>+</button>
+        </div>
+  
+        {/* Number of child_quantity */}
+        <div>
+          <h4>child_quantity (5+ years)</h4>
+          <button onClick={() => dispatch(decrementchild_quantity())}>-</button>
+          <span>{child_quantity}</span>
+          <button onClick={() => dispatch(incrementchild_quantity())}>+</button>
+        </div>
+  
+        {/* Additional Services */}
+        <div>
+          <h4>Additional Service</h4>
+          <label>
             <input
-              type="date"
-              id="date"
-              name="date"
-              value={date}
-              onChange={(e) => dispatch(setDate(e.target.value))}
+              type="checkbox"
+              checked={additional_service_ids.includes('Additional Guide')}
+              onChange={() => dispatch(toggleAdditionalService('Additional Guide'))}
             />
-            <span className="icon-calendar"></span>
-          </div>
-
-          <label className="time" htmlFor="time">Time</label>
-          <select
-            id="time"
-            name="time"
-            value={time}
-            onChange={(e) => dispatch(setTime(e.target.value))}
-          >
-            {times.map((timeOption, index) => (
-              <option key={index} value={timeOption}>
-                {timeOption}
-              </option>
-            ))}
-          </select>
-
-          <div className="tickets">
-            <div className="ticket-type">
-              <label htmlFor="adults">Adults (18+ years)</label>
-              <div className="counter">
-                <button type="button" className="minus">-</button>
-                <input
-                  type="number"
-                  id="adults"
-                  name="adults"
-                  min="1"
-                  value={adults}
-                  onChange={(e) => dispatch(setAdults(e.target.value))}
-                />
-                <button type="button" className="plus">+</button>
-              </div>
-            </div>
-
-            <div className="ticket-type">
-              <label htmlFor="kids">Kids (13 years)</label>
-              <div className="counter">
-                <button type="button" className="minus">-</button>
-                <input
-                  type="number"
-                  id="kids"
-                  name="kids"
-                  min="0"
-                  value={kids}
-                  onChange={(e) => dispatch(setKids(e.target.value))}
-                />
-                <button type="button" className="plus">+</button>
-              </div>
-            </div>
-
-            <div className="ticket-type">
-              <label htmlFor="children">Children (5+ years)</label>
-              <div className="counter">
-                <button type="button" className="minus">-</button>
-                <input
-                  type="number"
-                  id="children"
-                  name="children"
-                  min="0"
-                  value={children}
-                  onChange={(e) => dispatch(setChildren(e.target.value))}
-                />
-                <button type="button" className="plus">+</button>
-              </div>
-            </div>
-          </div>
-
-          <div className="additional-services">
-            <label>Additional Service</label>
-            <div className="service-item">
-              <input
-                type="checkbox"
-                id="guide"
-                name="guide"
-                checked={additionalServices.guide}
-                onChange={() => handleServiceChange('guide')}
-              />
-              <label htmlFor="guide">Additional Guide</label>
-              <span>${serviceCosts.guide}</span>
-            </div>
-
-            <div className="service-item">
-              <input
-                type="checkbox"
-                id="internet"
-                name="internet"
-                checked={additionalServices.internet}
-                onChange={() => handleServiceChange('internet')}
-              />
-              <label htmlFor="internet">Internet</label>
-              <span>${serviceCosts.internet}</span>
-            </div>
-
-            <div className="service-item">
-              <input
-                type="checkbox"
-                id="photography"
-                name="photography"
-                checked={additionalServices.photography}
-                onChange={() => handleServiceChange('photography')}
-              />
-              <label htmlFor="photography">Photography</label>
-              <span>${serviceCosts.photography}</span>
-            </div>
-          </div>
-
-          <p className="total-cost">
-            Total Cost: <span className="price">${totalCost}</span> / per person
-          </p>
-          <button type="submit" className="book-btn">
-            Proceed To Book
-          </button>
-        </form>
+            Additional Guide $420
+          </label>
+          <label>
+            <input
+              type="checkbox"
+              checked={additional_service_ids.includes('Internet')}
+              onChange={() => dispatch(toggleAdditionalService('Internet'))}
+            />
+            Internet $420
+          </label>
+          <label>
+            <input
+              type="checkbox"
+              checked={additional_service_ids.includes('Photography')}
+              onChange={() => dispatch(toggleAdditionalService('Photography'))}
+            />
+            Photography $420
+          </label>
+        </div>
+  
+        {/* Total Cost */}
+        <h4>
+          Total Cost: <span>{totalCost.toFixed(2)}</span> / per person
+        </h4>
+  
+        {/* Display any errors */}
+        {status === 'failed' && <p style={{ color: 'red' }}>{error}</p>}
+  
+        {/* Success Message */}
+        {status === 'succeeded' && <p style={{ color: 'green' }}>Package booked successfully!</p>}
+  
+        {/* Book Button */}
+        <button onClick={handleBookPackage} disabled={status === 'loading'}>
+          {status === 'loading' ? 'Booking...' : 'Proceed To Book'}
+        </button>
       </div>
-
-      <div className="tour-info mt-5">
-        <h3>Tour Information</h3>
-        <ul>
-          <li>
-            <span className="icon">
-              <i className="fa-solid fa-user-group"></i>
-            </span>{" "}
-            Max Guests: Date
-          </li>
-          <li>
-            <span className="icon">
-              <i className="fa-solid fa-user-group"></i>
-            </span>{" "}
-            Min Age: 12+
-          </li>
-          <li>
-            <span className="icon">
-              <i className="fa-solid fa-plane"></i>
-            </span>{" "}
-            Tour Location: America
-          </li>
-          <li>
-            <span className="icon">
-              <i className="fa-solid fa-earth-americas"></i>
-            </span>{" "}
-            Languages Support: Global
-          </li>
-        </ul>
-      </div>
-    </div>
-  );
-}
-
-export default BookPackage;
+    );
+  };
+  
+  export default BookPackage;
