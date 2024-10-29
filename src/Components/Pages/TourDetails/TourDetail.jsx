@@ -1,10 +1,25 @@
 import React from "react";
 import "./TourDetailcss.css";
-import discovery from "../../../images/discover-1.jpg";
 import MainBanner from "../../../Components/Pages/MainBanner/MainBanner";
 import BookPackage from "./BookPackage";
+import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { fetchTour } from "../../../APIs/TourGridApi";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
 
-function TourDetail() {
+const TourDetail = () => {
+  const { id } = useParams();
+  const dispatch = useDispatch();
+  const tour = useSelector((state) => state.toursData.spcificTour);
+  useEffect(() => {
+    dispatch(fetchTour({ id }));
+  }, [dispatch, id]);
+  useEffect(() => {
+    dispatch(fetchTour({ id })).then(() => {
+    });
+  }, []);
+console.log(tour);
   return (
     <div>
       <MainBanner title="Discovery Island Kayak Tour" />
@@ -17,13 +32,13 @@ function TourDetail() {
                   <span className="icon-location">
                     <i className="fa-solid fa-location-dot"></i>
                   </span>{" "}
-                  Traford Park Lexington, 40507
+                  {tour.location}
                 </p>
                 <p className="review">
                   <span className="icon-star">
                     <i className="fa-solid fa-star"></i>
                   </span>{" "}
-                  4.5 (1.5k review)
+                  {tour.reviewStars} (1.5k review)
                 </p>
               </div>
 
@@ -34,38 +49,29 @@ function TourDetail() {
                   <span className="icon-price">
                     <i className="fa-solid fa-dollar-sign"></i>
                   </span>{" "}
-                  From <strong>$116.10</strong>
+                  From <strong>${tour.adultPrice}</strong>
                 </p>
                 <p className="detail-item">
                   <span className="icon-duration">
                     <i className="fa-solid fa-clock-rotate-left"></i>
                   </span>{" "}
-                  Duration <strong>3 days</strong>
+                  Duration <strong>{tour.durationInDays} days</strong>
                 </p>
                 <p className="detail-item">
                   <span className="icon-type">
                     <i className="fa-solid fa-tower-broadcast"></i>
                   </span>{" "}
-                  Tour Type <strong>3 days</strong>
+                  Tour Type <strong>{tour.type}</strong>
                 </p>
               </div>
             </div>
 
             <div className="second-section">
-              <img src={discovery} alt="" className="discover-image" />
+              <img src={`http://localhost:5000/${tour.tourImage}`} alt="Tour" className="discover-image" />
               <div className="text-image mt-5">
                 <h3>Tour Overview</h3>
                 <p className="mt-3">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  At volutpat diam ut venenatis tellus in metus. Sem et tortor
-                  consequat id porta. Et malesuada fames ac turpis egestas sed.
-                  Condimentum vitae sapien pellentesque habitant morbi tristique
-                  senectus et. Cras semper auctor neque vitae. Turpis in eu mi
-                  bibendum neque. Pellentesque habitant morbi tristique senectus
-                  et netus. Ut morbi tincidunt augue interdum velit euismod. At
-                  in tellus integer feugiat scelerisque varius morbi. Ultrices
-                  neque ornare aenean euismod. Imperdiet proin fermentum leo
+                  {tour.overview}
                 </p>
               </div>
             </div>
@@ -151,7 +157,17 @@ function TourDetail() {
             </section>
           </div>
           <div className="col-lg-4 col-md-10 col-sm-12">
-              <BookPackage/>
+              <BookPackage
+               adultPrice={tour.adultPrice}
+               kidsPrice={tour.kidsPrice}
+               childrenPrice={tour.childrenPrice}
+               location= {tour.location}
+               name= {tour.name}
+               languagesSupport= {tour.languagesSupport}
+               maxGusts= {tour.maxGusts}
+               miniAge= {tour.miniAge}
+               
+               />
             </div>
         </div>
       </div>

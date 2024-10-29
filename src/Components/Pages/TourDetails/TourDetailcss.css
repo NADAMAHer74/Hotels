@@ -3,12 +3,11 @@
     padding: 0;
     box-sizing: border-box;
     text-decoration: none;
-    /* overflow-x: hidden; */
+
 }
 
 
 .hero {
-    /* background-image: url('../images/breadcrumb.jpg'); */
     background-size:auto;
     background-repeat: no-repeat;
     background-size: cover;
@@ -110,6 +109,7 @@
 .discover-image{
     width: 100%;
     border-radius: 10px;
+    height: 460px;
 }
 .text-image h3{
     font-size: 28px;
@@ -170,11 +170,13 @@ label {
 }
 
 .input-group input {
-    width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
     background-color: #F3F8F6;
+}
+.inputCheck{
+    width: auto !important;
 }
 
 .input-group .icon-calendar {
@@ -251,6 +253,7 @@ select {
 
 .total-cost .price {
     color: #4CAF50;
+    text-decoration: none;
 }
 
 
@@ -272,7 +275,6 @@ select {
 .tour-info {
     background-color: #F3F8F6;
     border: 1px solid #ddd;
-    /* padding: 15px; */
     border-radius: 5px;
     margin-top: 20px;
     width: 100%;
@@ -309,7 +311,6 @@ select {
 
 .tour-header {
     text-align: left;
-    /* padding: 20px; */
     border-bottom: 1px solid #eee;
 }
 
@@ -385,7 +386,6 @@ select {
 .tour-section {
     max-width: 800px;
     margin: 60px auto;
-    /* padding: 20px; */
   }
   
   .tour-amenities h2,
@@ -465,3 +465,12 @@ select {
   .pagination ul li a:hover {
     background-color: #ddd;
   }
+
+
+
+
+
+
+
+
+  
