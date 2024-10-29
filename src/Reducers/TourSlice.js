@@ -1,12 +1,13 @@
 // src/store/tourSlice.js
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { fetchTours } from "../APIs/TourGridApi";
-
+import { fetchTour } from "../APIs/TourGridApi";
 
 const tourSlice = createSlice({
-  name: "tours",
+  name: "toursData",
   initialState: {
     tours: [],
+    spcificTour: {},
     loading: false,
     error: null,
   },
@@ -21,6 +22,10 @@ const tourSlice = createSlice({
         state.loading = false;
         state.tours = action.payload;
       })
+     .addCase(fetchTour.fulfilled, (state, action) => {
+        state.loading = false;
+        state.spcificTour = action.payload;
+      })
       .addCase(fetchTours.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
@@ -29,3 +34,4 @@ const tourSlice = createSlice({
 });
 
 export default tourSlice.reducer;
+
