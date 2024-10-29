@@ -14,18 +14,23 @@ import BlogSlice from "../Reducers/BlogSlice";
 // import ToursSlice from "../Reducers/TourGridSlice";
 // import packages from '../Reducers/packageSlice';
 import tourReducer from "../Reducers/TourSlice";
-import contactReducer from '../Reducers/contactSlice';
-
+import HomeSlice from "../Reducers/HomeSlice";
+import AuthSlice from "../Reducers/AuthSlice";
+import contactSlice from "../Reducers/contactSlice"
 const store = configureStore({
   reducer: {
     distination: DistinationSlice,
     pagination: pagination,
     Blogs: Blogs,
+    home: HomeSlice,
     package: packageReducer,
-    toursData : tourReducer,
-    home : home,
-    contact: contactReducer,
+    toursData: tourReducer,
+    home: home,
+    contact: contactSlice,
     about: AboutSlice,
+    blog: BlogSlice,
+    tours: tourReducer,
+    auth: AuthSlice,
 
   },
 });
