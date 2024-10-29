@@ -2,17 +2,21 @@ import { configureStore } from "@reduxjs/toolkit";
 import DistinationSlice from "../Reducers/DistinationSlice";
 import pagination from "../Reducers/PaginationSlice";
 import Blogs from "../Reducers/BlogsSlice";
-import packageReducer from "../Components/Pages/TourDetails/packageSlice.jsx";
-
+import home from "../Reducers/HomeSlice";
+// import packageReducer from "../Components/Pages/TourDetails/packageSlice.jsx";
 // import packageReducer from '../Components/Pages/TourDetails/packageSlice.jsx';
+// import AboutSlice from "../Reducers/AboutSlice";
+// import BlogSlice from "../Reducers/BlogSlice";
+// import ToursSlice from "../Reducers/TourGridSlice";
+import packageReducer from '../Reducers/packageSlice';
 import AboutSlice from "../Reducers/AboutSlice";
 import BlogSlice from "../Reducers/BlogSlice";
-import ToursSlice from "../Reducers/TourGridSlice";
-import packages from '../Reducers/packageSlice';
+// import ToursSlice from "../Reducers/TourGridSlice";
+// import packages from '../Reducers/packageSlice';
 import tourReducer from "../Reducers/TourSlice";
 import HomeSlice from "../Reducers/HomeSlice";
 import AuthSlice from "../Reducers/AuthSlice";
-
+import contactSlice from "../Reducers/contactSlice"
 const store = configureStore({
   reducer: {
     distination: DistinationSlice,
@@ -20,10 +24,13 @@ const store = configureStore({
     Blogs: Blogs,
     home: HomeSlice,
     package: packageReducer,
+    toursData: tourReducer,
+    home: home,
+    contact: contactSlice,
     about: AboutSlice,
     blog: BlogSlice,
     tours: tourReducer,
-    auth: AboutSlice,
+    auth: AuthSlice,
 
   },
 });
