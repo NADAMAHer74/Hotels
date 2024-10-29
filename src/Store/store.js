@@ -9,7 +9,6 @@ import home from "../Reducers/HomeSlice";
 // import BlogSlice from "../Reducers/BlogSlice";
 // import ToursSlice from "../Reducers/TourGridSlice";
 import packageReducer from '../Reducers/packageSlice';
-import home from "../Reducers/HomeSlice";
 import AboutSlice from "../Reducers/AboutSlice";
 import BlogSlice from "../Reducers/BlogSlice";
 // import ToursSlice from "../Reducers/TourGridSlice";
