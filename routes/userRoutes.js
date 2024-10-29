@@ -4,9 +4,6 @@ const jwt = require("jsonwebtoken");
 
 const router = express.Router();
 const JWT_SECRET = "your_jwt_secret_key";
-const getCurrentTimestamp = require("../migrations/time");
-
-console.log(getCurrentTimestamp());
 
 /**
  * @swagger
@@ -62,10 +59,10 @@ router.post("/signup", async (req, res) => {
 
       const hashedPassword = await bcrypt.hash(password, 10);
       const insertUserQuery =
-        "INSERT INTO users (firstName, lastName, email, phone, password, role, created_at ) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        "INSERT INTO users (firstName, lastName, email, phone, password, role) VALUES (?, ?, ?, ?, ?, ?)";
       req.pool.query(
         insertUserQuery,
-        [firstName, lastName, email, phone, hashedPassword, role, getCurrentTimestamp(), getCurrentTimestamp()],
+        [firstName, lastName, email, phone, hashedPassword, role],
         (error, results) => {
           if (error) {
             console.error("Error inserting user:", error);
@@ -152,6 +149,7 @@ router.post("/signup", async (req, res) => {
  */
 router.post("/signin", async (req, res) => {
   const { email, password } = req.body;
+  console.log("Received signin request:", req.body);
 
   try {
     const query = "SELECT * FROM users WHERE email = ?";
@@ -185,11 +183,23 @@ router.post("/signin", async (req, res) => {
         role: user.role || "User",
       };
 
-      res.status(200).json({
-        message: "User authenticated successfully",
-        user: userData,
-        token,
+      // res.status(200).json({
+      //   message: "User authenticated successfully",
+      //   user: userData,
+      //   token,
+      // });
+      res.cookie("token", token, {
+        httpOnly: true, // JavaScript cannot access this cookie on the client side
+        secure: process.env.NODE_ENV === "production", // Cookie is sent only over HTTPS in production
+        sameSite: "Strict", // CSRF protection
+        maxAge: 3600000, // Expiration time in milliseconds (1 hour)
       });
+
+      // res.status(200).json({
+      //   message: "User authenticated successfully",
+      //   user: userData,
+      // });
+      res.header("token", token).redirect("/api/tours");
     });
   } catch (error) {
     console.error("Unexpected error:", error);

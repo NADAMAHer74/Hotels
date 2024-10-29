@@ -1,5 +1,9 @@
 const express = require("express");
 const mysql = require("mysql2");
+const cors = require("cors");
+const path = require("path");                        
+const app = express();
+const cookieParser = require("cookie-parser"); // Import cookie-parser
 const userRoutes = require("./routes/userRoutes");
 const tourRoutes = require("./routes/tourRoutes");
 const userTourRoutes = require("./routes/userTourRoutes");
@@ -29,13 +33,9 @@ const toursAdditionalServices = require("./routes/toursAdditionalServices");
 const swaggerUi = require("swagger-ui-express");
 const swaggerJsdoc = require("swagger-jsdoc");
 const { createTables } = require("./migrations/migrate");
-const cors = require("cors");
-const path = require("path");                        
-const app = express();
-
-app.use(cors());
-app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 
 const pool = mysql.createPool({
   connectionLimit: 20,
