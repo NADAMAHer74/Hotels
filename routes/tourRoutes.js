@@ -3,6 +3,7 @@ const multer = require("multer");
 const path = require("path");
 const jwt = require("jsonwebtoken");
 const { verifyToken, checkRole } = require("../middlewares/token");
+const getCurrentTimestamp = require("../migrations/time");
 
 const router = express.Router();
 
@@ -102,12 +103,12 @@ router.post(
     } = req.body;
 
     const tourImage = req.file ? req.file.path : null;
-
+    const created_at = getCurrentTimestamp();
     try {
       console.log("Received tour creation request:", req.body);
 
       const insertTourQuery =
-        "INSERT INTO tours (location, name, adultPrice, kidsPrice, childrenPrice, durationInDays, type, reviewStars, overview, tourImage, date, time, miniAge, maxGusts, languagesSupport) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        "INSERT INTO tours (location, name, adultPrice, kidsPrice, childrenPrice, durationInDays, type, reviewStars, overview, tourImage, date, time, miniAge, maxGusts, languagesSupport, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
       req.pool.query(
         insertTourQuery,
@@ -127,6 +128,7 @@ router.post(
           miniAge,
           maxGusts,
           languagesSupport,
+          created_at,
         ],
         (error, results) => {
           if (error) {
@@ -147,6 +149,7 @@ router.post(
     }
   }
 );
+
 
 /**
  * @swagger
@@ -326,7 +329,7 @@ router.delete(
  *       404:
  *         description: Tour not found
  */
-router.put("/tours/:tour_id", verifyToken, checkRole(["Admin"]), (req, res) => {
+router.put("/tours/:tour_id", verifyToken, checkRole(["Admin"]), upload.single("tourImage"), (req, res) => {
   try {
     const {
       location,
@@ -345,7 +348,8 @@ router.put("/tours/:tour_id", verifyToken, checkRole(["Admin"]), (req, res) => {
       maxGusts,
       languagesSupport,
     } = req.body;
-
+    const image = req.file ? req.file.path : null;
+    console.log(req.body);
     const updates = [];
     const updateFields = [];
 
@@ -412,10 +416,11 @@ router.put("/tours/:tour_id", verifyToken, checkRole(["Admin"]), (req, res) => {
 
     const sqlQuery = `
       UPDATE tours
-      SET ${updateFields.join(", ")}
+      SET  ${updateFields.join(", ")}
       WHERE tour_id = ?
     `;
     updates.push(req.params.tour_id);
+    console.log(req.body);
 
     req.pool.query(sqlQuery, updates, (error, results) => {
       if (error) {

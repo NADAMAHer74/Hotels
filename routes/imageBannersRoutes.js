@@ -60,7 +60,7 @@ router.post(
     const Image = req.file ? req.file.path : null;
     const visible = 0;
     console.log(banner_page_id, Image, visible);
-    const insertQuery = `INSERT INTO ImageBanners (Image, visible, banner_page_id) VALUES (?, ?, ?)`;
+    const insertQuery = `INSERT INTO imageBanners (Image, visible, banner_page_id) VALUES (?, ?, ?)`;
 
     req.pool.query(insertQuery, [Image, visible, banner_page_id], (error, results) => {
       if (error) {
@@ -96,7 +96,7 @@ router.post(
  *                     type: integer
  */
 router.get("/imagebanners", (req, res) => {
-  const query = "SELECT * FROM ImageBanners";
+  const query = "SELECT * FROM imageBanners";
 
   req.pool.query(query, (error, results) => {
     if (error) {
@@ -138,7 +138,7 @@ router.get("/imagebanners", (req, res) => {
  *         description: Image Banner entry not found
  */
 router.get("/imagebanners/:id", (req, res) => {
-  const query = "SELECT * FROM ImageBanners WHERE banner_image_id = ?";
+  const query = "SELECT * FROM imageBanners WHERE banner_image_id = ?";
     console.log(req.params.id);
   req.pool.query(query, [req.params.id], (error, results) => {
     if (error) {
@@ -215,7 +215,7 @@ router.put(
         const maxVisible = (pageId === 'home') ? 3 : 1;
         console.log(maxVisible)
         // Count current visible images
-        const countVisibleQuery = `SELECT COUNT(*) AS count FROM imageBanners WHERE visible = 1 AND banner_page_id = ?`;
+        const countVisibleQuery = `SELECT COUNT(*) AS count FROM imageBanners, banners  WHERE visible = 1 AND banner_page_id = ?`;
   
         req.pool.query(countVisibleQuery, [pageId], (error, countResults) => {
           if (error) {
@@ -292,7 +292,7 @@ router.put(
       return res.status(400).json({ message: "Both IDs must be valid integers." });
     }
 
-    const getVisibilityQuery = `SELECT ImageBanner_ID, visible FROM ImageBanners WHERE ImageBanner_ID IN (?, ?)`;
+    const getVisibilityQuery = `SELECT ImageBanner_ID, visible FROM imageBanners WHERE ImageBanner_ID IN (?, ?)`;
 
     req.pool.query(getVisibilityQuery, [visibleOffId, visibleOnId], (error, results) => {
       if (error) {
@@ -317,7 +317,7 @@ router.put(
         return res.status(400).json({ message: `Image with ID ${visibleOnId} is already turned on` });
       }
 
-      const updateQuery = `UPDATE ImageBanners SET visible = CASE WHEN ImageBanner_ID = ? THEN 0 WHEN ImageBanner_ID = ? THEN 1 END WHERE ImageBanner_ID IN (?, ?)`;
+      const updateQuery = `UPDATE imageBanners SET visible = CASE WHEN ImageBanner_ID = ? THEN 0 WHEN ImageBanner_ID = ? THEN 1 END WHERE ImageBanner_ID IN (?, ?)`;
 
       req.pool.query(updateQuery, [visibleOffId, visibleOnId, visibleOffId, visibleOnId], (error) => {
         if (error) {
@@ -358,7 +358,7 @@ router.delete(
     verifyToken,
     checkRole(["Admin"]),
     (req, res) => {
-      const deleteQuery = "DELETE FROM ImageBanners WHERE ImageBanner_ID = ?";
+      const deleteQuery = "DELETE FROM imageBanners WHERE ImageBanner_ID = ?";
   
       req.pool.query(deleteQuery, [req.params.id], (error, results) => {
         if (error) {

@@ -1,8 +1,9 @@
 const express = require("express");
 const jwt = require("jsonwebtoken");
 const { verifyToken, checkRole } = require("../middlewares/token");
-
+const getCurrentTimestamp = require("../migrations/time");
 const router = express.Router();
+
 
 /**
  * @swagger
@@ -34,26 +35,19 @@ const router = express.Router();
  *       201:
  *         description: Service created successfully
  */
-router.post(
-  "/available_additional_services",
-  verifyToken,
-  checkRole(["Admin"]),
-  async (req, res) => {
-    const { service_name, price } = req.body;
-
-    try {
-      const insertServiceQuery = `
-        INSERT INTO available_additional_services (service_name, price)
-        VALUES (?, ?)`;
-      await req.pool.query(insertServiceQuery, [service_name, price]);
-
-      res.status(201).json({ message: "Service created successfully" });
-    } catch (error) {
+router.post("/available_additional_services", verifyToken, checkRole(["Admin"]), (req, res) => {
+  const { service_name, price } = req.body;
+  const insertQuery = `INSERT INTO available_additional_services (service_name, price, created_at) VALUES (?, ?, ?)`;
+  const created_at = getCurrentTimestamp();
+  
+  req.pool.query(insertQuery, [service_name, price, created_at], (error, results) => {
+    if (error) {
       console.error("Error creating service:", error);
-      res.status(500).json({ message: "Internal server error" });
+      return res.status(500).json({ message: "Internal server error" });
     }
-  }
-);
+    res.status(201).json({ message: "Service created successfully" });
+  });
+});
 
 /**
  * @swagger
@@ -172,7 +166,7 @@ router.put(
  *
  * /available_additional_services/{id}:
  *   delete:
- *     summary: Delete available additional service
+ *     summary: Update available additional service
  *     tags: [Available Additional Services]
  *     security:
  *       - bearerAuth: []
@@ -182,6 +176,17 @@ router.put(
  *         schema:
  *           type: integer
  *         required: true
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               service_name:
+ *                 type: string
+ *               price:
+ *                 type: number
  *     responses:
  *       200:
  *         description: Service deleted successfully

@@ -13,8 +13,7 @@ const createTables = async () => {
         phone VARCHAR(255) NOT NULL,
         password VARCHAR(255) NOT NULL,
         role ENUM('Admin', 'User') DEFAULT 'User',
-        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+        created_at TIMESTAMP 
     );
   `;
 
@@ -36,8 +35,7 @@ const createTables = async () => {
         miniAge INT NOT NULL,
         maxGusts INT NOT NULL,
         languagesSupport VARCHAR(255) NOT NULL,
-        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+        created_at TIMESTAMP
     );
   `;
 
@@ -49,32 +47,44 @@ const createTables = async () => {
         adult_quantity INT DEFAULT NULL,
         kids_quantity INT DEFAULT NULL,
         child_quantity INT DEFAULT NULL,
-        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+        created_at TIMESTAMP ,
         FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
         FOREIGN KEY (tour_id) REFERENCES tours(tour_id) ON DELETE CASCADE
     );
   `;
+
+
+  const createToursAdditionalServicesTable = `
+  CREATE TABLE IF NOT EXISTS tours_additional_services (
+      UserToursAdditionalServices_id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+      tour_additional_services INT UNSIGNED NOT NULL,
+      additional_service_id INT UNSIGNED NOT NULL,
+      FOREIGN KEY (tour_additional_services) REFERENCES tours(tour_id) ON DELETE CASCADE,
+      FOREIGN KEY (additional_service_id) REFERENCES available_additional_services(available_additional_service_id) ON DELETE CASCADE
+  );
+`;
 
   const createAvailableAdditionalServicesTable = `
     CREATE TABLE IF NOT EXISTS available_additional_services (
         available_additional_service_id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
         service_name VARCHAR(255) NOT NULL,
         price DECIMAL(10, 2) NOT NULL,
-        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+        created_at TIMESTAMP 
     );
   `;
 
-  const createUserToursAdditionalServicesTable = `
-    CREATE TABLE IF NOT EXISTS user_tours_additional_services (
-        user_tour_id INT UNSIGNED NOT NULL,
-        additional_service_id INT UNSIGNED NOT NULL,
-        PRIMARY KEY (user_tour_id, additional_service_id),
-        FOREIGN KEY (user_tour_id) REFERENCES user_tours(user_tour_id) ON DELETE CASCADE,
-        FOREIGN KEY (additional_service_id) REFERENCES available_additional_services(available_additional_service_id) ON DELETE CASCADE
-    );
-  `;
+
+
+const createUserToursAdditionalServicesTable = `
+CREATE TABLE IF NOT EXISTS user_tours_additional_services (
+    UserToursAdditionalServices_id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    user_tour_id INT UNSIGNED NOT NULL,
+    additional_service_id INT UNSIGNED NOT NULL,
+    FOREIGN KEY (user_tour_id) REFERENCES user_tours(user_tour_id) ON DELETE CASCADE,
+    FOREIGN KEY (additional_service_id) REFERENCES available_additional_services(available_additional_service_id) ON DELETE CASCADE
+);
+`;
+
 
   const createBlogsTable = `
   CREATE TABLE IF NOT EXISTS blogs (
@@ -84,7 +94,6 @@ const createTables = async () => {
       author_id INT UNSIGNED NOT NULL,
       imageUrl VARCHAR(255), -- Add the imageUrl field here
       created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-      updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
       FOREIGN KEY (author_id) REFERENCES users(id) ON DELETE CASCADE
   );
 `;
@@ -97,7 +106,6 @@ const createTables = async () => {
         rating INT CHECK (rating >= 1 AND rating <= 5),
         comment TEXT,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
         FOREIGN KEY (tour_id) REFERENCES tours(tour_id) ON DELETE CASCADE,
         FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
     );
@@ -116,7 +124,6 @@ const createTables = async () => {
   CREATE TABLE IF NOT EXISTS tours_has_amenities (
       tours_tour_id INT UNSIGNED NOT NULL,
       amenities_amenities_id INT UNSIGNED NOT NULL,
-      available TINYINT NOT NULL,
       PRIMARY KEY (tours_tour_id, amenities_amenities_id),
       FOREIGN KEY (tours_tour_id) REFERENCES tours(tour_id) ON DELETE CASCADE,
       FOREIGN KEY (amenities_amenities_id) REFERENCES amenities(amenities_id) ON DELETE CASCADE
@@ -271,6 +278,7 @@ const createEmailsTable = `
     createToursTable,
     createUserToursTable,
     createAvailableAdditionalServicesTable,
+    createToursAdditionalServicesTable,
     createUserToursAdditionalServicesTable,
     createBlogsTable,
     createReviewsTable,

@@ -3,6 +3,7 @@ const jwt = require("jsonwebtoken");
 const { verifyToken } = require("../middlewares/token");
 const userRoutes = require("./userRoutes");
 const router = express.Router();
+const getCurrentTimestamp = require("../migrations/time");
 
 /**
  * @swagger
@@ -48,14 +49,14 @@ router.post("/user_tours", verifyToken, (req, res) => {
   if (!tour_id || !adult_quantity || !kids_quantity || !child_quantity) {
     return res.status(400).json({ message: "Missing required fields." });
   }
-
+  const created_at = getCurrentTimestamp();
   const insertTourQuery = `
-        INSERT INTO user_tours (user_id, tour_id, adult_quantity, kids_quantity, child_quantity)
-        VALUES (?, ?, ?, ?, ?)`;
+        INSERT INTO user_tours (user_id, tour_id, adult_quantity, kids_quantity, child_quantity, created_at)
+        VALUES (?, ?, ?, ?, ?, ?)`;
 
   req.pool.query(
     insertTourQuery,
-    [req.user.userId, tour_id, adult_quantity, kids_quantity, child_quantity],
+    [req.user.userId, tour_id, adult_quantity, kids_quantity, child_quantity, created_at],
     (error, tourResult) => {
       if (error) {
         console.error("Error inserting tour:", error);
@@ -63,6 +64,8 @@ router.post("/user_tours", verifyToken, (req, res) => {
       }
 
       const userTourId = tourResult.insertId;
+      console.log("User tour ID:", userTourId);
+      console.log("Additional services:", additional_service_ids);
 
       if (additional_service_ids && additional_service_ids.length > 0) {
         const insertServicesQuery = `

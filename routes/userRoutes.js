@@ -4,6 +4,9 @@ const jwt = require("jsonwebtoken");
 
 const router = express.Router();
 const JWT_SECRET = "your_jwt_secret_key";
+const getCurrentTimestamp = require("../migrations/time");
+
+console.log(getCurrentTimestamp());
 
 /**
  * @swagger
@@ -59,10 +62,10 @@ router.post("/signup", async (req, res) => {
 
       const hashedPassword = await bcrypt.hash(password, 10);
       const insertUserQuery =
-        "INSERT INTO users (firstName, lastName, email, phone, password, role) VALUES (?, ?, ?, ?, ?, ?)";
+        "INSERT INTO users (firstName, lastName, email, phone, password, role, created_at ) VALUES (?, ?, ?, ?, ?, ?, ?)";
       req.pool.query(
         insertUserQuery,
-        [firstName, lastName, email, phone, hashedPassword, role],
+        [firstName, lastName, email, phone, hashedPassword, role, getCurrentTimestamp(), getCurrentTimestamp()],
         (error, results) => {
           if (error) {
             console.error("Error inserting user:", error);

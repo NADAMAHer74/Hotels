@@ -22,8 +22,10 @@ const WhatToDoRoutes = require("./routes/WhatToDoRoutes");
 const destinationsHomeRoutes = require("./routes/destinationsHomeRoutes");
 const aboutUsImagesRoutes = require("./routes/aboutUsImagesRoutes");
 const WhatToDoImagesRoutes = require("./routes/WhatToDoImagesRoutes");
-const servicesRoutes = require("./routes/WhatToDoImagesRoutes");
-const imageBannersRoutes = require("./routes/imageBannersRoutes");
+const servicesRoutes = require("./routes/servicesRoutes");
+const imageBannersRoutes = require("./routes/imageBannersRoutes");0
+const userToursAdditionalServicesRoutes = require("./routes/userToursAdditionalServicesRoutes");
+const toursAdditionalServices = require("./routes/toursAdditionalServices");
 const swaggerUi = require("swagger-ui-express");
 const swaggerJsdoc = require("swagger-jsdoc");
 const { createTables } = require("./migrations/migrate");
@@ -40,7 +42,11 @@ const pool = mysql.createPool({
   host: "sql7.freesqldatabase.com",
   user: "sql7741161",
   database: "sql7741161",
-  password: "ykxiIkPIIt",
+  password: "ykxiIkPIIt", 
+/*   host: "localhost",
+  user: "root",
+  database: "hotels",
+  password: "Om@rEssam2003", */
 });
 
 pool.getConnection((error) => {
@@ -81,6 +87,21 @@ app.use((req, res, next) => {
   next();
 });
 
+app.use(cors());
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+app.use(
+  "/adminLte",
+  express.static(path.join(__dirname, "node_modules", "admin-lte"))
+);
+app.use(
+  "/fontAwesome",
+  express.static(
+    path.join(__dirname, "node_modules", "@fortawesome", "fontawesome-free")
+  )
+);
+
+app.set("view engine", "ejs");
+
 app.use("/api", userRoutes);
 app.use("/api", blogRoutes);
 app.use("/api", tourRoutes);
@@ -105,6 +126,11 @@ app.use("/api", WhatToDoImagesRoutes);
 app.use("/api", WhatToDoRoutes);
 app.use("/api", servicesRoutes);
 app.use("/api", imageBannersRoutes);
+app.use("/api", userToursAdditionalServicesRoutes);
+app.use("/api", toursAdditionalServices);
+app.get("/signin", (req, res) => {
+  res.render("signin");
+});
 app.listen(1000, () => {
   console.log("Server running on port 1000");
   console.log("Swagger running at http://localhost:1000/api-docs");
