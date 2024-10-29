@@ -1,5 +1,9 @@
 const express = require("express");
 const mysql = require("mysql");
+const cors = require("cors");
+const path = require("path");
+const cookieParser = require("cookie-parser"); // Import cookie-parser
+
 const userRoutes = require("./routes/userRoutes");
 const tourRoutes = require("./routes/tourRoutes");
 const userTourRoutes = require("./routes/userTourRoutes");
@@ -29,6 +33,8 @@ const { createTables } = require("./migrations/migrate");
 
 const app = express();
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 
 const pool = mysql.createPool({
   connectionLimit: 20,
@@ -74,6 +80,20 @@ app.use((req, res, next) => {
   req.pool = pool;
   next();
 });
+app.use(cors());
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+app.use(
+  "/adminLte",
+  express.static(path.join(__dirname, "node_modules", "admin-lte"))
+);
+app.use(
+  "/fontAwesome",
+  express.static(
+    path.join(__dirname, "node_modules", "@fortawesome", "fontawesome-free")
+  )
+);
+
+app.set("view engine", "ejs");
 
 app.use("/api", userRoutes);
 app.use("/api", blogRoutes);
@@ -100,6 +120,16 @@ app.use("/api", aboutUSRoutes);
 app.use("/api", WhatToDoImagesRoutes);
 app.use("/api", WhatToDoRoutes);
 app.use("/api", servicesRoutes);
+app.get("/signin", (req, res) => {
+  res.render("signin");
+});
+// app.get("/api/tours/new", (req, res) => {
+//   res.render("addTour");
+// });
+// app.get("/tours", (req, res) => {
+//   res.render("tours");
+// });
+
 app.listen(2000, () => {
   console.log("Server running on port 2000");
   console.log("Swagger running at http://localhost:2000/api-docs");
