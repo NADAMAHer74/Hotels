@@ -5,18 +5,13 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 import MainBanner from '../MainBanner/MainBanner'
 import { Container, Row, Col } from 'react-bootstrap/'
 import '../About/About.css'
-import aboutImgLeftTop from '../../../images/inner-ab-1-1.jpg'
-import aboutImgLeftBot from '../../../images/inner-ab-1-2.jpg'
-import aboutImgRight from '../../../images/inner-ab-1-3.jpg'
-import chooseUsImg from '../../../images/inn-chooseus1.jpg'
 import VideoBlock from '../../Shared/VideoBlock/VideoBlock';
 import videoBackgroundImg from '../../../images/video-bg-about.jpg'
 import AuthModal from '../../Shared/AuthModal/AuthModal';
 import '../../Shared/AuthModal/AuthModal.css';
 import { fetchAboutImgs, fetchAboutContent, fetchAboutStats, fetchWhatWeDoImg, fetchWhatWeDo } from '../../../APIs/AboutApi';
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect, useState } from 'react';
-import { map } from 'leaflet';
+import { useEffect } from 'react';
 
 const About = () => {
 
@@ -82,11 +77,11 @@ const About = () => {
                 <p>{aboutContent.Body}</p>
               </div>
 
+              <div className="aboutCounterBox" >
+                <Row >
 
-              {aboutStats.map((stat) => (
-                <div className="aboutCounterBox" key={stat.Statistics_ID}>
-                  <Row>
-                    <Col xl={4} lg={4} md={4} sm={4} >
+                  {aboutStats.map((stat) => (
+                    <Col xl={4} lg={4} md={4} sm={4} key={stat.Statistics_ID} >
                       <div className="aboutCounterText" >
                         <h3 className="aboutCounterNumber">
                           <b>{stat.Quantity}</b>
@@ -95,9 +90,10 @@ const About = () => {
                         <p>{stat.Name}</p>
                       </div>
                     </Col>
-                  </Row>
-                </div>
-              ))}
+                  ))}
+                </Row>
+
+              </div>
 
               <div className="discoverBtn d-inline-block text-capitalize">
                 <a href="" className="btn">
@@ -112,7 +108,6 @@ const About = () => {
                   </svg>
                   </span>
                 </a>
-                <AuthModal />
               </div>
             </Col>
           </Row>

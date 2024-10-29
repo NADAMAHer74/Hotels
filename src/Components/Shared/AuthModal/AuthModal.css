@@ -1,4 +1,4 @@
-.btn-primary:hover {
+/* .btn-primary:hover {
     border: 1px solid;
     --bs-btn-active-bg: white;
     --bs-btn-color: #11BB67;
@@ -7,7 +7,7 @@
     border-color: #11BB67 !important;
     color: #11BB67 !important;
 }
-
+ */
 .modal-text {
     margin-bottom: 1rem;
     text-align: center;

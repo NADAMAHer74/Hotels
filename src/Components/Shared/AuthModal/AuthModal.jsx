@@ -1,55 +1,60 @@
 import React from 'react'
 import Login from '../Login/Login';
 import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useLocation } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleUser } from "@fortawesome/free-solid-svg-icons";
+
 import { Modal, Button, ModalTitle } from 'react-bootstrap';
 import logo from '../../../images/logo.png'
 import Signup from '../Signup/Signup';
 
 const AuthModal = () => {
-    const [showLogin, setShowLogin] = useState(false);
-    const [showSignup, setShowSignup] = useState(false);
+    const [showModal, setShowModal] = useState(false);
+    const [isLogin, setIsLogin] = useState(true);
 
-    const handleCloseLogin = () => setShowLogin(false);
-    const handleShowLogin = () => setShowLogin(true);
 
-    const handleCloseSignup = () => setShowSignup(false);
-    const handleShowSignup = () => setShowSignup(true);
+
+
+    const handleClose = () => setShowModal(false);
+    const handleShow = () => {
+        setIsLogin(true);
+        setShowModal(true);
+    }
+
+    const switchForm = () => setIsLogin(!isLogin);
 
     return (
         <>
-            <Button variant="primary" onClick={handleShowLogin}>
+            <Link className="registrationBtn" onClick={() => { setIsLogin(true); handleShow(); }}>
+                <FontAwesomeIcon icon={faCircleUser} />
+                <span>Sign In</span>
+            </Link>
+            {/* <Button variant="primary" onClick={() => { setIsLogin(true); handleShow(); }}>
                 Login
-            </Button>
-            <Button variant="secondary" onClick={handleShowSignup}>
-                Sign Up
-            </Button>
+            </Button> */}
+
             {/* Login Modal */}
-            <Modal show={showLogin} onHide={handleCloseLogin}>
+            <Modal show={showModal} onHide={handleClose}>
                 <Modal.Header closeButton>
                     <img src={logo} alt="" />
                 </Modal.Header>
                 <Modal.Body>
-                    <Login />
+                    {isLogin ? <Login /> : <Signup />}
                 </Modal.Body>
-                {/*                 <Modal.Footer>
-                    <Button variant="secondary" onClick={handleCloseLogin}>
-                        Close
-                    </Button>
-                </Modal.Footer> */}
+                <Modal.Footer>
+                    <p className="switch-text m-auto">
+
+                        {isLogin ? "Don't have an account?" : "Already have an account?"}
+                        <span onClick={switchForm} style={{ color: '#11bb67', cursor: 'pointer' }}>
+                            {!isLogin ? ' Log in' : ' Sign up'}
+                        </span>
+                    </p>
+                </Modal.Footer>
             </Modal>
             {/* Signup Modal */}
-            <Modal show={showSignup} onHide={handleCloseSignup}>
-                <Modal.Header closeButton>
-                    <img src={logo} alt="" />
-                </Modal.Header>
-                <div className="modal-text">
-                    <h4>Welcome back!</h4>
-                    <span>Please enter your details to sign in</span>
-                </div>
-                <Modal.Body>
-                    <Signup />
-                </Modal.Body>
-            </Modal>
+
         </>
     )
 }
