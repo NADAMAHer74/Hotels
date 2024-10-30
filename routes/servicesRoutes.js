@@ -1,6 +1,18 @@
 const express = require("express");
+const multer = require("multer");
 const router = express.Router();
 const { verifyToken, checkRole } = require("../middlewares/token");
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "uploads/");
+  },
+  filename: (req, file, cb) => {
+    const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
+    cb(null, uniqueSuffix + path.extname(file.originalname));
+  },
+});
+const upload = multer({ storage });
+
 
 /**
  * @swagger
@@ -26,7 +38,7 @@ const { verifyToken, checkRole } = require("../middlewares/token");
  *     requestBody:
  *       required: true
  *       content:
- *         application/json:
+*         multipart/form-data:
  *           schema:
  *             type: object
  *             properties:
@@ -36,6 +48,7 @@ const { verifyToken, checkRole } = require("../middlewares/token");
  *                 type: string
  *               Icon:
  *                 type: string
+ *                 format: binary
  *               visible:
  *                 type: integer
  *     responses:
@@ -44,8 +57,9 @@ const { verifyToken, checkRole } = require("../middlewares/token");
  *       500:
  *         description: Internal server error
  */
-router.post("/services", verifyToken, checkRole(["Admin"]), (req, res) => {
-  const { Head, Body, Icon, visible } = req.body;
+router.post("/services", verifyToken, checkRole(["Admin"]),upload.single("Icon"), (req, res) => {
+  const { Head, Body, visible } = req.body;
+  const Icon = req.file ? req.file.path : null;
   const insertQuery = `INSERT INTO Services (Head, Body, Icon, visible) VALUES (?, ?, ?, ?)`;
   
   req.pool.query(insertQuery, [Head, Body, Icon, visible], (error, results) => {
@@ -163,7 +177,7 @@ router.get("/services/:id", (req, res) => {
  *     requestBody:
  *       required: true
  *       content:
- *         application/json:
+ *          multipart/form-data:
  *           schema:
  *             type: object
  *             properties:
@@ -173,6 +187,7 @@ router.get("/services/:id", (req, res) => {
  *                 type: string
  *               Icon:
  *                 type: string
+ *                 format: binary
  *               visible:
  *                 type: integer
  *     responses:
@@ -181,8 +196,9 @@ router.get("/services/:id", (req, res) => {
  *       404:
  *         description: Service entry not found
  */
-router.put("/services/:id", verifyToken, checkRole(["Admin"]), (req, res) => {
-  const { Head, Body, Icon, visible } = req.body;
+router.put("/services/:id", verifyToken, checkRole(["Admin"]), upload.single("Icon"), (req, res) => {
+  const { Head, Body, visible } = req.body;
+  const Icon = req.file ? req.file.path : null;
   const updateQuery = `UPDATE Services SET Head = ?, Body = ?, Icon = ?, visible = ? WHERE Services_ID = ?`;
   
   req.pool.query(updateQuery, [Head, Body, Icon, visible, req.params.id], (error, results) => {

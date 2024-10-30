@@ -117,11 +117,11 @@
                 <!--begin::Quick Example-->
                 <div class="card card-primary card-outline mb-4">
                   <div class="card-header">
-                    <h3 class="card-title">All Destinations</h3>
+                    <h3 class="card-title">All Pages</h3>
                     <a
-                      href="/api/destinations/new"
+                      href="/api/pages/new"
                       class="btn btn-primary float-right"
-                      >Add New Destination</a
+                      >Add New Pagge</a
                     >
                   </div>
                   <!--end::Header-->
@@ -129,25 +129,12 @@
                   <div class="card-body">
                     <div class="mb-3">
                       <p>
-                        <strong>Name:</strong>
-                        <%= tour.name %>
-                      </p>
-                      <p>
-                        <strong>Description:</strong>
-                        <%= tour.overview %>
+                        <strong>Page:</strong>
+                        <%= page.page_id %>
                       </p>
 
-                      <p><strong>adultPrice:</strong> <%= tour.adultPrice %></p>
-                      <p>
-                        <strong>childPrice:</strong> <%= tour.childrenPrice %>
-                      </p>
-                      <p><strong>kidsPrice:</strong> <%= tour.kidsPrice %></p>
-
-                      <p><strong>Type:</strong> <%= tour.type %></p>
-                      <p><strong>Tour Cover:</strong> <%= tour.tourImage %></p>
-
-                      <a href="/api/tours" class="btn btn-primary"
-                        >Back to tours</a
+                      <a href="/api/pages" class="btn btn-primary"
+                        >Back to pages</a
                       >
                     </div>
                   </div>

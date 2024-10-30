@@ -90,8 +90,7 @@ router.get("/pages", verifyToken, checkRole(["Admin"]), (req, res) => {
       console.error("Error fetching page entries:", error);
       return res.status(500).json({ message: "Internal server error" });
     }
-    res.json(results);
-  });
+      res.render("Pages", { pages: results });  });
 });
 
 /**
@@ -136,7 +135,9 @@ router.get("/pages/:id", verifyToken, checkRole(["Admin"]), (req, res) => {
     if (results.length === 0) {
       return res.status(404).json({ message: "Page entry not found" });
     }
-    res.json(results[0]);
+    //res.json(results[0]);
+    console.log(results.page_id);
+    res.render("viewPage", { page: results[0] });  ;
   });
 });
 
@@ -232,6 +233,21 @@ router.delete("/pages/:id", verifyToken, checkRole(["Admin"]), (req, res) => {
       return res.status(404).json({ message: "Page entry not found" });
     }
     res.json({ message: "Page entry deleted successfully" });
+  });
+});
+
+router.get("/pages/:tour_id/edit", async (req, res) => {
+  const query = "SELECT * FROM tours WHERE page_id = ?";
+  req.pool.query(query, [req.params.tour_id], (error, results) => {
+    if (error) {
+      console.error("Error fetching tour:", error);
+      return res.status(500).json({ message: "Internal server error" });
+    }
+    if (results.length === 0) {
+      return res.status(404).json({ message: "Tour not found" });
+    }
+    // res.json(results[0]);
+    res.render("editPage", { tour: results[0] });
   });
 });
 
