@@ -82,9 +82,9 @@ const Home = () => {
                 <div className="col-12 col-md-6 col-lg-3 mb-4">
                   <div className="cardContainer position-relative">
                     <img
-                      src={`http://localhost:2000/${item.image}`}
+                      src={`http://localhost:1000/${item.image}`}
                       className="img-fluid"
-                      alt="North America"
+                      alt="distination"
                     />
                     <div className="overlay"></div>
                     <div className="cardText position-absolute">
@@ -488,7 +488,7 @@ const Home = () => {
               <FontAwesomeIcon icon={faBurst} className="fa-2xl" />
             </div>
             <div className="col">
-              <h4 className="fw-bold">2000 +</h4>
+              <h4 className="fw-bold">1000 +</h4>
               <p>Happy people</p>
             </div>
             <div className="col my-auto">
@@ -516,7 +516,7 @@ const Home = () => {
                   <div class=" travelCard ">
                     <div className="position-relative">
                       <img
-                        src={`http://localhost:2000/${blog.imageUrl}`}
+                        src={`http://localhost:1000/${blog.imageUrl}`}
                         alt="Travel Image"
                       />
                       <div class="categoryBadge">{blog.title}</div>

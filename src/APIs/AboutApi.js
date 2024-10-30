@@ -3,11 +3,12 @@ import axios from "axios";
 
 // Define the API endpoint
 
-const aboutImgs = "http://localhost:2000/api/aboutusimages";
-const aboutContent = "http://localhost:2000/api/aboutus";
-const aboutStats = "http://localhost:2000/api/statistics";
-const whatWeDoImg = "http://localhost:2000/api/whattodoimages"
-const WhatWeDo = "http://localhost:2000/api/whattodo"
+const aboutImgs = "http://localhost:1000/api/aboutusimages";
+const aboutContent = "http://localhost:1000/api/aboutus";
+const aboutStats = "http://localhost:1000/api/statistics";
+const whatWeDoImg = "http://localhost:1000/api/whattodoimages"
+const WhatWeDo = "http://localhost:1000/api/whattodo"
+const aboutServices = "http://localhost:1000/api/services"
 export const fetchAboutImgs = createAsyncThunk(
     "about/fetchAboutImg", async () => {
         const response = await axios.get(aboutImgs);
@@ -36,3 +37,7 @@ export const fetchWhatWeDo = createAsyncThunk("about/fetchWhatWeDo", async () =>
     return response.data;
 })
 
+export const fetchAboutServices = createAsyncThunk("about/fetchAboutServices", async () => {
+    const response = await axios.get(aboutServices);
+    return response.data;
+})
