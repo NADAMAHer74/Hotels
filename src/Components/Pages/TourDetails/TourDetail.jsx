@@ -67,7 +67,7 @@ console.log(tour);
             </div>
 
             <div className="second-section">
-              <img src={`http://localhost:4000/${tour.tourImage}`} alt="Tour" className="discover-image" />
+              <img src={`http://localhost:5000/${tour.tourImage}`} alt="Tour" className="discover-image" />
               <div className="text-image mt-5">
                 <h3>Tour Overview</h3>
                 <p className="mt-3">
