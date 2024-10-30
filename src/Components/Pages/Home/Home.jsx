@@ -512,7 +512,7 @@ const Home = () => {
           <div class="row">
             {blog ? (
               blog.map((blog) => (
-                <div class=" col-12 col-md-6 col-lg-3 ">
+                <div class=" col-12 col-md-6 col-lg-4 ">
                   <div class=" travelCard ">
                     <div className="position-relative">
                       <img
@@ -535,24 +535,6 @@ const Home = () => {
             ) : (
               <p>No blogs found</p>
             )}
-            {/* <div class=" col-12 col-md-6 col-lg-3 ">
-              <div class=" travelCard ">
-                <div className="position-relative">
-                  <img src="./assests/images/blog-1.jpg" alt="Travel Image" />
-                  <div class="categoryBadge">City Tours</div>
-                </div>
-              </div>
-              <div class="cardBody">
-                <p class="card-date">
-                  <i class="fas fa-calendar-alt calenderSticker"></i> March 28,
-                  2023
-                </p>
-                <h5 class="cardTitle">
-                  A place where start new life with adventure Dhaka
-                </h5>
-                <button class="cardBtn">Explore More</button>
-              </div>
-            </div> */}
           </div>
         </div>
       </div>
