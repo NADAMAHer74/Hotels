@@ -14,38 +14,43 @@ function MainBanner(props) {
     }
   }, [status, dispatch]);
 
+  // Find the first visible image
+  const visibleImage = bannerData.find((banner) => banner.visible === 1);
+
   return (
     <div>
-      <div className="mainBanner position-relative d-flex align-items-center justify-content-center z-1">
-        <img
-          src={`http://localhost:1000/${bannerData.image}`} // Assuming Image is the URL or use `URL.createObjectURL()`
-          draggable="false"
-          className="mainBannerImg"
-          alt="mainBanner"
-        />
-        <div className="container">
-          <div className="row">
-            <div className="col-md-12">
-              <div className="bannerContent">
-                <div className="bannerTitleBox">
-                  <h3 className="text-uppercase text-center">{props.title}</h3>
-                </div>
-                <div className="bannerBreadcrumbListWrap position-absolute text-center">
-                  <div className="bannerBreadcrumbListContent d-inline-block">
-                    <span>
-                      <Link className="text-decoration-none" to="/">
-                        home
-                      </Link>
-                    </span>
-                    <span> // </span>
-                    <span>{props.title}</span>
+      {visibleImage ? (
+        <div className="mainBanner position-relative d-flex align-items-center justify-content-center z-1">
+          <img
+            src={`http://localhost:1000/${visibleImage.image}`}
+            draggable="false"
+            className="mainBannerImg"
+            alt="mainBanner"
+          />
+          <div className="container">
+            <div className="row">
+              <div className="col-md-12">
+                <div className="bannerContent">
+                  <div className="bannerTitleBox">
+                    <h3 className="text-uppercase text-center">{props.title}</h3>
+                  </div>
+                  <div className="bannerBreadcrumbListWrap position-absolute text-center">
+                    <div className="bannerBreadcrumbListContent d-inline-block">
+                      <span>
+                        <Link className="text-decoration-none" to="/">
+                          home
+                        </Link>
+                      </span>
+                      <span> // </span>
+                      <span>{props.title}</span>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      ) : null} {/* Only render if there's a visible image */}
     </div>
   );
 }
