@@ -27,7 +27,7 @@ const Login = () => {
         e.preventDefault();
 
         setError({ email: '', password: '' });
-
+        setFormSubmitted(false);
 
 
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -46,12 +46,12 @@ const Login = () => {
             await dispatch(signInUser({ email, password }));
             toast.success("Login Successful!");
             setFormSubmitted(true);
-
             setEmail('');
             setPassword('');
         } catch (error) {
             const errorMessage = error.message || "An error occurred during login.";
             toast.error(errorMessage);
+            setFormSubmitted(false);
         }
 
 
@@ -71,7 +71,7 @@ const Login = () => {
             <Form onSubmit={handleLogin}>
                 {auth.loading && <p>Loading...</p>}
                 {authErrorMessage && <Alert variant='danger'>{authErrorMessage}</Alert>}
-                {formSubmitted && <Alert variant='success'>Login Successful!</Alert>}
+                {formSubmitted && !authErrorMessage && <Alert variant='success'>Login Successful!</Alert>}
                 <Row>
                     <Form.Label htmlFor="loginEmail">Email</Form.Label>
                     <Form.Control
