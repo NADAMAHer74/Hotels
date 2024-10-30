@@ -12,7 +12,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 
 const Login = () => {
- 
+
     const dispatch = useDispatch();
     const auth = useSelector(state => state.auth);
     const [email, setEmail] = useState('');
@@ -27,7 +27,7 @@ const Login = () => {
         e.preventDefault();
 
         setError({ email: '', password: '' });
-
+        setFormSubmitted(false);
 
 
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -35,7 +35,7 @@ const Login = () => {
             setError((prevError) => ({ ...prevError, email: 'Please enter a valid email address.' }));
             return;
         }
- 
+
         if (password.length < 8) {
             setError((prevError) => ({ ...prevError, password: 'Password must be at least 6 characters long.' }));
             return;
@@ -51,6 +51,7 @@ const Login = () => {
         } catch (error) {
             const errorMessage = error.message || "An error occurred during login.";
             toast.error(errorMessage);
+            setFormSubmitted(false);
         }
 
 
@@ -70,7 +71,7 @@ const Login = () => {
             <Form onSubmit={handleLogin}>
                 {auth.loading && <p>Loading...</p>}
                 {authErrorMessage && <Alert variant='danger'>{authErrorMessage}</Alert>}
-                {formSubmitted && <Alert variant='success'>Login Successful!</Alert>}
+                {formSubmitted && !authErrorMessage && <Alert variant='success'>Login Successful!</Alert>}
                 <Row>
                     <Form.Label htmlFor="loginEmail">Email</Form.Label>
                     <Form.Control
@@ -108,5 +109,5 @@ const Login = () => {
         </div>
     )
 }
- 
+
 export default Login

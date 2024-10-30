@@ -23,6 +23,7 @@ import { TourDetailApi } from "../../../APIs/TourDetailApi"; // Import the thunk
 import "./TourDetailcss.css";
 
 const BookPackage = ({
+  tourId,
   adultPrice,
   kidsPrice,
   childrenPrice,
@@ -45,6 +46,7 @@ const BookPackage = ({
   const handleBookPackage = (e) => {
     e.preventDefault();
     const packageData = {
+      tourId,
       adult_quantity,
       kids_quantity,
       child_quantity,
