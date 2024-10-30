@@ -46,26 +46,45 @@ const BlogDetails = () => {
           <div className="col-md-4 recent-posts">
             <h4>Recent posts:</h4>
             {/* Recent Post Item */}
-            {blogData ? (
+            <div className="recent-post d-flex">
+              <img
+                src={`http://localhost:1000/${blogData.imageUrl}`}
+                alt="Recent Post 1"
+              />
               <div>
-                <div className="recent-post d-flex">
-                  <img
-                    src={`http://localhost:1000/${blogData.imageUrl}`}
-                    alt="Recent Post 1"
-                  />
-                  <div>
-                    <p>
-                      <FontAwesomeIcon icon={faCalendarAlt} /> 02 Jan, 2024
-                    </p>
-                    {blogData.title}
-                  </div>
-                  <hr />
-                </div>
-                <hr />
+                <p>
+                  <FontAwesomeIcon icon={faCalendarAlt} /> 02 Jan, 2024
+                </p>
+                {blogData.title}
               </div>
-            ) : (
-              <div>loading</div>
-            )}
+              <hr />
+            </div>
+            <div className="recent-post d-flex">
+              <img
+                src={`http://localhost:1000/${blogData.imageUrl}`}
+                alt="Recent Post 1"
+              />
+              <div>
+                <p>
+                  <FontAwesomeIcon icon={faCalendarAlt} /> 02 Jan, 2024
+                </p>
+                {blogData.title}
+              </div>
+              <hr />
+            </div>
+            <div className="recent-post d-flex">
+              <img
+                src={`http://localhost:1000/${blogData.imageUrl}`}
+                alt="Recent Post 1"
+              />
+              <div>
+                <p>
+                  <FontAwesomeIcon icon={faCalendarAlt} /> 02 Jan, 2024
+                </p>
+                {blogData.title}
+              </div>
+              <hr />
+            </div>
           </div>
         </div>
       </div>
