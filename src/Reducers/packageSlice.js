@@ -3,10 +3,10 @@ import { TourDetailApi } from "../APIs/TourDetailApi";
 
 const initialState = {
   adult_quantity: 1,
-  kids_quantity: 1,
-  child_quantity: 1,
+  kids_quantity: 0,
+  child_quantity: 0,
   additional_service_ids: [],
-  totalCost: 0,
+  totalCost: 0.00,
   adultPrice: 0,
   kidsPrice: 0,
   childrenPrice: 0,
@@ -15,8 +15,8 @@ const initialState = {
   languagesSupport: "",
   maxGusts:1,
   miniAge: 1,
-  status: "idle",
-  error: null,
+  // status: "idle",
+  // error: null,
 };
 
 // const packageSlice = createSlice({
@@ -35,32 +35,32 @@ const initialState = {
       },
     incrementadult_quantity: (state) => {
       state.adult_quantity += 1;
-      // packageSlice.caseReducers.calculateTotalCost(state);
+      packageSlice.caseReducers.calculateTotalCost(state);
     },
     decrementadult_quantity: (state) => {
-      if (state.adult_quantity > 0) {
+      if (state.adult_quantity > 1) {
         state.adult_quantity -= 1;
-        // packageSlice.caseReducers.calculateTotalCost(state);
+        packageSlice.caseReducers.calculateTotalCost(state);
       }
     },
     incrementkids_quantity: (state) => {
       state.kids_quantity += 1;
-      // packageSlice.caseReducers.calculateTotalCost(state);
+      packageSlice.caseReducers.calculateTotalCost(state);
     },
     decrementkids_quantity: (state) => {
       if (state.kids_quantity > 0) {
         state.kids_quantity -= 1;
-        // packageSlice.caseReducers.calculateTotalCost(state);
+        packageSlice.caseReducers.calculateTotalCost(state);
       }
     },
     incrementchild_quantity: (state) => {
       state.child_quantity += 1;
-      // packageSlice.caseReducers.calculateTotalCost(state);
+      packageSlice.caseReducers.calculateTotalCost(state);
     },
     decrementchild_quantity: (state) => {
       if (state.child_quantity > 0) {
         state.child_quantity -= 1;
-        // packageSlice.caseReducers.calculateTotalCost(state);
+        packageSlice.caseReducers.calculateTotalCost(state);
       }
     },
     toggleAdditionalService: (state, action) => {
@@ -72,7 +72,7 @@ const initialState = {
       } else {
         state.additional_service_ids.push(service);
       }
-      // packageSlice.caseReducers.calculateTotalCost(state);
+      packageSlice.caseReducers.calculateTotalCost(state);
     },
     calculateTotalCost: (state) => {
       const { adult_quantity, kids_quantity, child_quantity, adultPrice, kidsPrice, childrenPrice } = state;
@@ -85,7 +85,16 @@ const initialState = {
         state.additional_service_ids.length * serviceCost;
       // console.log(`Total Cost Calculated: ${state.totalCost}`); // Log for debugging
     },
+    resetBookingState: (state) => {
+      state.adult_quantity = 1;
+      state.kids_quantity = 0;
+      state.child_quantity = 0;
+      state.additional_service_ids = [];
+      state.totalCost = 0;
+    },
   },
+    
+  
   extraReducers: (builder) => {
     builder
       .addCase(TourDetailApi.pending, (state) => {
@@ -121,6 +130,7 @@ export const {
   maxGusts,
   miniAge,
   location,
+  resetBookingState,
 } = packageSlice.actions;
 
 export default packageSlice.reducer;

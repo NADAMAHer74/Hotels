@@ -67,7 +67,7 @@ console.log(tour);
             </div>
 
             <div className="second-section">
-              <img src={`http://localhost:5000/${tour.tourImage}`} alt="Tour" className="discover-image" />
+              <img src={`http://localhost:4000/${tour.tourImage}`} alt="Tour" className="discover-image" />
               <div className="text-image mt-5">
                 <h3>Tour Overview</h3>
                 <p className="mt-3">
@@ -157,7 +157,7 @@ console.log(tour);
             </section>
           </div>
           <div className="col-lg-4 col-md-10 col-sm-12">
-              <BookPackage
+              <BookPackage key={tour.tour_id} tourId={tour.tour_id}
                adultPrice={tour.adultPrice}
                kidsPrice={tour.kidsPrice}
                childrenPrice={tour.childrenPrice}

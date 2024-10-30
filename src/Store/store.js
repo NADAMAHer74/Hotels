@@ -15,6 +15,8 @@ import BlogSlice from "../Reducers/BlogSlice";
 // import packages from '../Reducers/packageSlice';
 import tourReducer from "../Reducers/TourSlice";
 import contactReducer from '../Reducers/contactSlice';
+import contactInfoSlice from '../Reducers/contactSlice';
+import bannerReducer from '../Reducers/MainBannerSlice';
 
 const store = configureStore({
   reducer: {
@@ -26,6 +28,9 @@ const store = configureStore({
     home : home,
     contact: contactReducer,
     about: AboutSlice,
+    contactInfo: contactInfoSlice,
+    banner: bannerReducer,
+
 
   },
 });

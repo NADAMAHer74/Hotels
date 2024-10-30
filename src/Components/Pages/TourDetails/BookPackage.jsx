@@ -280,6 +280,7 @@ import {
   maxGusts,
   miniAge,
   location,
+  resetBookingState,
 } from '../../../Reducers/packageSlice';
 import { TourDetailApi } from '../../../APIs/TourDetailApi'; // Import the thunk from API file
 import './TourDetailcss.css';
@@ -301,6 +302,7 @@ const BookPackage = ({ adultPrice, kidsPrice, childrenPrice, name, languagesSupp
       .then((action) => {
         if (action.meta.requestStatus === 'fulfilled') {
           toast.success('Booked successfully');
+          dispatch(resetBookingState()); 
         } else if (action.meta.requestStatus === 'rejected') {
           toast.error('Booking failed. Please try again.');
         }

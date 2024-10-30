@@ -245,7 +245,7 @@ const TourGrid = () => {
               <div key={tour.tour_id} className="card tourCard col-lg-4 col-md-6 col-sm-12 mb-4">
                 <img
                   className="cardImgTop"
-                  src={`http://localhost:5000/${tour.tourImage}`}
+                  src={`http://localhost:4000/${tour.tourImage}`}
                   alt={tour.name}
                 />
                 <div className="cardOverlay">
