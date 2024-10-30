@@ -243,7 +243,7 @@ const TourGrid = () => {
                   >
                     <img
                       className="cardImgTop"
-                      src={`http://localhost:1000/${tour.tourImage}`}
+                      src={`http://localhost:5000/${tour.tourImage}`}
                       alt={tour.name}
                     />
                     <div className="cardOverlay">

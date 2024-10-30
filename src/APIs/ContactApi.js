@@ -20,12 +20,12 @@ export const sendContactData = async (contactData) => {
 };
 
   export const fetchWorkingHours = async () => {
-    const response = await axios.get("http://localhost:5000/api/workingHours");
+    const response = await axios.get("http://localhost:5000/api/workinghours");
     return response.data;
   };
 
   export const fetchLocation = async () => {
-    const response = await axios.get("http://localhost:5000/api/location");
+    const response = await axios.get("http://localhost:5000/api/locations");
     return response.data;
   };
 
