@@ -114,12 +114,6 @@
 
 // export default BookPackage;
 
-
-
-
-
-
-
 // import React, { useEffect } from 'react';
 // import { useSelector, useDispatch } from 'react-redux';
 // import {
@@ -140,7 +134,7 @@
 //     // const { adult_quantity, kids_quantity, child_quantity, additional_service_ids, totalCost, status, error } = useSelector(
 //     //   (state) => state.package
 //     // );
-  
+
 //     // useEffect(() => {
 //     //   dispatch(calculateTotalCost());
 //     // }, [adult_quantity, kids_quantity, child_quantity, additional_service_ids, dispatch]);
@@ -149,15 +143,15 @@
 //     const { adult_quantity, kids_quantity, child_quantity, additional_service_ids, totalCost, status, error } = useSelector(
 //       (state) => state.package
 //     );
-  
+
 //     useEffect(() => {
 //       dispatch(setPrices({ adultPrice, kidsPrice, childrenPrice })); // Set prices in the slice
 //     }, [adultPrice, kidsPrice, childrenPrice, dispatch]);
-  
+
 //     useEffect(() => {
 //       dispatch(calculateTotalCost()); // Calculate total cost
 //     }, [adult_quantity, kids_quantity, child_quantity, additional_service_ids, dispatch]);
-  
+
 //     const handleBookPackage = () => {
 //       const packageData = {
 //         adult_quantity,
@@ -167,22 +161,22 @@
 //       };
 //       dispatch(TourDetailApi(packageData));
 //     };
-  
+
 //     return (
 //       <div>
 //         <h2>Package Details</h2>
-  
+
 //         {/* Date Selection */}
 //         <label>Date</label>
 //         <input type="date" />
-  
+
 //         {/* Time Selection */}
 //         <label>Time</label>
 //         <select>
 //           <option>Default sorting</option>
 //           {/* Add more time options as necessary */}
 //         </select>
-  
+
 //         {/* Number of adult_quantity */}
 //         <div>
 //           <h4>adult_quantity (18+ years)</h4>
@@ -190,7 +184,7 @@
 //           <span>{adult_quantity}</span>
 //           <button onClick={() => dispatch(incrementadult_quantity())}>+</button>
 //         </div>
-  
+
 //         {/* Number of kids_quantity */}
 //         <div>
 //           <h4>kids_quantity (13 years)</h4>
@@ -198,7 +192,7 @@
 //           <span>{kids_quantity}</span>
 //           <button onClick={() => dispatch(incrementkids_quantity())}>+</button>
 //         </div>
-  
+
 //         {/* Number of child_quantity */}
 //         <div>
 //           <h4>child_quantity (5+ years)</h4>
@@ -206,7 +200,7 @@
 //           <span>{child_quantity}</span>
 //           <button onClick={() => dispatch(incrementchild_quantity())}>+</button>
 //         </div>
-  
+
 //         {/* Additional Services */}
 //         <div>
 //           <h4>Additional Service</h4>
@@ -235,18 +229,18 @@
 //             Photography $420
 //           </label>
 //         </div>
-  
+
 //         {/* Total Cost */}
 //         <h4>
 //           Total Cost: <span>{totalCost.toFixed(2)}</span> / per person
 //         </h4>
-  
+
 //         {/* Display any errors */}
 //         {status === 'failed' && <p style={{ color: 'red' }}>{error}</p>}
-  
+
 //         {/* Success Message */}
 //         {status === 'succeeded' && <p style={{ color: 'green' }}>Package booked successfully!</p>}
-  
+
 //         {/* Book Button */}
 //         <button onClick={handleBookPackage} disabled={status === 'loading'}>
 //           {status === 'loading' ? 'Booking...' : 'Proceed To Book'}
@@ -254,17 +248,13 @@
 //       </div>
 //     );
 //   };
-  
+
 //   export default BookPackage;
 
-
-
-
-
-import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import {
   incrementadult_quantity,
   decrementadult_quantity,
@@ -280,15 +270,31 @@ import {
   maxGusts,
   miniAge,
   location,
-} from '../../../Reducers/packageSlice';
-import { TourDetailApi } from '../../../APIs/TourDetailApi'; // Import the thunk from API file
-import './TourDetailcss.css';
+  resetBookingState,
+} from "../../../Reducers/packageSlice";
+import { TourDetailApi } from "../../../APIs/TourDetailApi"; // Import the thunk from API file
+import "./TourDetailcss.css";
 
-const BookPackage = ({ adultPrice, kidsPrice, childrenPrice, name, languagesSupport, maxGusts, miniAge, location }) => {
+const BookPackage = ({
+  adultPrice,
+  kidsPrice,
+  childrenPrice,
+  name,
+  languagesSupport,
+  maxGusts,
+  miniAge,
+  location,
+}) => {
   const dispatch = useDispatch();
-  const { adult_quantity, kids_quantity, child_quantity, additional_service_ids, totalCost, status, error } = useSelector(
-    (state) => state.package
-  );
+  const {
+    adult_quantity,
+    kids_quantity,
+    child_quantity,
+    additional_service_ids,
+    totalCost,
+    status,
+    error,
+  } = useSelector((state) => state.package);
   const handleBookPackage = (e) => {
     e.preventDefault();
     const packageData = {
@@ -299,28 +305,29 @@ const BookPackage = ({ adultPrice, kidsPrice, childrenPrice, name, languagesSupp
     };
     dispatch(TourDetailApi(packageData))
       .then((action) => {
-        if (action.meta.requestStatus === 'fulfilled') {
-          toast.success('Booked successfully');
-        } else if (action.meta.requestStatus === 'rejected') {
-          toast.error('Booking failed. Please try again.');
+        if (action.meta.requestStatus === "fulfilled") {
+          toast.success("Booked successfully");
+          dispatch(resetBookingState());
+        } else if (action.meta.requestStatus === "rejected") {
+          toast.error("Booking failed. Please try again.");
         }
       })
       .catch(() => {
-        toast.error('An error occurred. Please try again later.');
+        toast.error("An error occurred. Please try again later.");
       });
   };
 
   useEffect(() => {
     dispatch(setPrices({ adultPrice, kidsPrice, childrenPrice }));
-  }, [dispatch, adultPrice, kidsPrice, childrenPrice]);
+  }, []);
 
   useEffect(() => {
     dispatch(setPrices({ adultPrice, kidsPrice, childrenPrice })); // Set prices in the slice
-  }, [adultPrice, kidsPrice, childrenPrice,name, languagesSupport, maxGusts, miniAge, dispatch]);
+  }, []);
 
   useEffect(() => {
     dispatch(calculateTotalCost()); // Calculate total cost
-  }, [adult_quantity, kids_quantity, child_quantity, additional_service_ids, dispatch]);
+  }, []);
 
   return (
     <div>
@@ -328,14 +335,17 @@ const BookPackage = ({ adultPrice, kidsPrice, childrenPrice, name, languagesSupp
       <div className="package-section">
         <h3 className="section-title">Package Details</h3>
         <form className="package-form" onSubmit={handleBookPackage}>
-          
-          <label htmlFor="date" style={{ fontWeight: 'bold' }}>Date</label>
+          <label htmlFor="date" style={{ fontWeight: "bold" }}>
+            Date
+          </label>
           <div className="input-group">
             <input type="date" id="date" name="date" />
             <span className="icon-calendar"></span>
           </div>
 
-          <label htmlFor="time" style={{ fontWeight: 'bold' }}>Time</label>
+          <label htmlFor="time" style={{ fontWeight: "bold" }}>
+            Time
+          </label>
           <select id="time" name="time">
             <option value="default">Default sorting</option>
             {/* Add more time options as necessary */}
@@ -343,29 +353,66 @@ const BookPackage = ({ adultPrice, kidsPrice, childrenPrice, name, languagesSupp
 
           <div className="tickets">
             <div className="ticket-type">
-              <label>Adults (18+ years) <span className="me-2">${adultPrice}</span></label>
+              <label>
+                Adults (18+ years) <span className="me-2">${adultPrice}</span>
+              </label>
               <div className="counter">
-                <button type="button" onClick={() => dispatch(decrementadult_quantity())}>-</button>
+                <button
+                  type="button"
+                  onClick={() => dispatch(decrementadult_quantity())}
+                >
+                  -
+                </button>
                 <span>{adult_quantity}</span>
-                <button type="button" onClick={() => dispatch(incrementadult_quantity())}>+</button>
+                <button
+                  type="button"
+                  onClick={() => dispatch(incrementadult_quantity())}
+                >
+                  +
+                </button>
               </div>
             </div>
 
             <div className="ticket-type">
-              <label>Kids (13 years) <span className="me-2">${kidsPrice}</span></label>
+              <label>
+                Kids (13 years) <span className="me-2">${kidsPrice}</span>
+              </label>
               <div className="counter">
-                <button type="button" onClick={() => dispatch(decrementkids_quantity())}>-</button>
+                <button
+                  type="button"
+                  onClick={() => dispatch(decrementkids_quantity())}
+                >
+                  -
+                </button>
                 <span>{kids_quantity}</span>
-                <button type="button" onClick={() => dispatch(incrementkids_quantity())}>+</button>
+                <button
+                  type="button"
+                  onClick={() => dispatch(incrementkids_quantity())}
+                >
+                  +
+                </button>
               </div>
             </div>
 
             <div className="ticket-type">
-              <label>Children (5+ years) <span className="me-2">${childrenPrice}</span></label>
+              <label>
+                Children (5+ years){" "}
+                <span className="me-2">${childrenPrice}</span>
+              </label>
               <div className="counter">
-                <button type="button" onClick={() => dispatch(decrementchild_quantity())}>-</button>
+                <button
+                  type="button"
+                  onClick={() => dispatch(decrementchild_quantity())}
+                >
+                  -
+                </button>
                 <span>{child_quantity}</span>
-                <button type="button" onClick={() => dispatch(incrementchild_quantity())}>+</button>
+                <button
+                  type="button"
+                  onClick={() => dispatch(incrementchild_quantity())}
+                >
+                  +
+                </button>
               </div>
             </div>
           </div>
@@ -373,37 +420,51 @@ const BookPackage = ({ adultPrice, kidsPrice, childrenPrice, name, languagesSupp
           <div className="additional-services">
             <label>Additional Service</label>
             <div className="service-item">
-              <input className='inputCheck'
+              <input
+                className="inputCheck"
                 type="checkbox"
-                checked={additional_service_ids.includes('Additional Guide')}
-                onChange={() => dispatch(toggleAdditionalService('Additional Guide'))}
+                checked={additional_service_ids.includes("Additional Guide")}
+                onChange={() =>
+                  dispatch(toggleAdditionalService("Additional Guide"))
+                }
               />
               <label>Additional Guide</label>
               <span>$420</span>
             </div>
             <div className="service-item">
-              <input className='inputCheck'
+              <input
+                className="inputCheck"
                 type="checkbox"
-                checked={additional_service_ids.includes('Internet')}
-                onChange={() => dispatch(toggleAdditionalService('Internet'))}
+                checked={additional_service_ids.includes("Internet")}
+                onChange={() => dispatch(toggleAdditionalService("Internet"))}
               />
               <label>Internet</label>
               <span>$420</span>
             </div>
             <div className="service-item">
-              <input className='inputCheck'
+              <input
+                className="inputCheck"
                 type="checkbox"
-                checked={additional_service_ids.includes('Photography')}
-                onChange={() => dispatch(toggleAdditionalService('Photography'))}
+                checked={additional_service_ids.includes("Photography")}
+                onChange={() =>
+                  dispatch(toggleAdditionalService("Photography"))
+                }
               />
               <label>Photography</label>
               <span>$420</span>
             </div>
           </div>
 
-          <p className="total-cost">Total Cost: <span className="price">${totalCost.toFixed(2)}</span> / per person</p>
-          <button type="submit" className="book-btn" disabled={status === 'loading'}>
-            {status === 'loading' ? 'Booking...' : 'Proceed To Book'}
+          <p className="total-cost">
+            Total Cost: <span className="price">${totalCost.toFixed(2)}</span> /
+            per person
+          </p>
+          <button
+            type="submit"
+            className="book-btn"
+            disabled={status === "loading"}
+          >
+            {status === "loading" ? "Booking..." : "Proceed To Book"}
           </button>
         </form>
       </div>
@@ -412,15 +473,42 @@ const BookPackage = ({ adultPrice, kidsPrice, childrenPrice, name, languagesSupp
       <div className="tour-info mt-5">
         <h3>Tour Information</h3>
         <ul>
-          <li><span className="icon"><i className="fa-solid fa-user-group" style={{ color: '#11BB67' }}></i></span> Max Guests: {maxGusts}</li>
-          <li><span className="icon"><i className="fa-solid fa-user-group" style={{ color: '#11BB67' }}></i></span> Min Age: {miniAge}</li>
-          <li><span className="icon"><i className="fa-solid fa-plane" style={{ color: '#11BB67' }}></i></span> Tour Location: {location}</li>
-          <li><span className="icon"><i className="fa-solid fa-earth-americas" style={{ color: '#11BB67' }}></i></span> Languages Support: {languagesSupport}</li>
+          <li>
+            <span className="icon">
+              <i
+                className="fa-solid fa-user-group"
+                style={{ color: "#11BB67" }}
+              ></i>
+            </span>{" "}
+            Max Guests: {maxGusts}
+          </li>
+          <li>
+            <span className="icon">
+              <i
+                className="fa-solid fa-user-group"
+                style={{ color: "#11BB67" }}
+              ></i>
+            </span>{" "}
+            Min Age: {miniAge}
+          </li>
+          <li>
+            <span className="icon">
+              <i className="fa-solid fa-plane" style={{ color: "#11BB67" }}></i>
+            </span>{" "}
+            Tour Location: {location}
+          </li>
+          <li>
+            <span className="icon">
+              <i
+                className="fa-solid fa-earth-americas"
+                style={{ color: "#11BB67" }}
+              ></i>
+            </span>{" "}
+            Languages Support: {languagesSupport}
+          </li>
         </ul>
       </div>
-
     </div>
-
   );
 };
 

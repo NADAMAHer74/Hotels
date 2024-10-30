@@ -50,7 +50,7 @@ const Home = () => {
     dispatch(fetchTour());
     dispatch(fetchVideo());
     dispatch(fetchBlog());
-  }, [dispatch]);
+  }, [dispatch], []);
   return (
     <div>
       <div className="topDestinationSection">
@@ -501,34 +501,34 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <div className="blogSection">
+      <div class="blogSection">
         <img
-          className="sticker img-fluid d-none d-md-inline-block"
+          class="sticker img-fluid d-none d-md-inline-block"
           src="./assests/images/ticket.png"
         />
-        <div className="container">
+        <div class="container">
           <h3>Our Recent Blog</h3>
-          <h2 className="headBold">Amazing news & blog for every update</h2>
-          <div className="row">
+          <h2 class="headBold">Amazing news & blog for every update</h2>
+          <div class="row">
             {blog ? (
               blog.map((blog) => (
-                <div className=" col-12 col-md-6 col-lg-3 ">
-                  <div className=" travelCard ">
+                <div class=" col-12 col-md-6 col-lg-3 ">
+                  <div class=" travelCard ">
                     <div className="position-relative">
                       <img
                         src={`http://localhost:1000/${blog.imageUrl}`}
                         alt="Travel Image"
                       />
-                      <div className="categoryBadge">{blog.title}</div>
+                      <div class="categoryBadge">{blog.title}</div>
                     </div>
                   </div>
-                  <div className="cardBody">
-                    <p className="card-date">
-                      <i className="fas fa-calendar-alt calenderSticker"></i>{" "}
+                  <div class="cardBody">
+                    <p class="card-date">
+                      <i class="fas fa-calendar-alt calenderSticker"></i>{" "}
                       {blog.date}
                     </p>
-                    <h5 className="cardTitle">{blog.content}</h5>
-                    <button className="cardBtn">Explore More</button>
+                    <h5 class="cardTitle">{blog.content}</h5>
+                    <button class="cardBtn">Explore More</button>
                   </div>
                 </div>
               ))
