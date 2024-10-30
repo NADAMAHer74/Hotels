@@ -50,7 +50,7 @@ const Home = () => {
     dispatch(fetchTour());
     dispatch(fetchVideo());
     dispatch(fetchBlog());
-  }, [dispatch], []);
+  }, [dispatch]);
   return (
     <div>
       <div className="topDestinationSection">
