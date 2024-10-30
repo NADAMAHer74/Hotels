@@ -6,24 +6,33 @@ import { Link, useLocation } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleUser } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from 'react-router-dom';
-import { Modal, Button, ModalTitle } from 'react-bootstrap';
+import { Modal, Button, ModalTitle, Dropdown, DropdownMenu } from 'react-bootstrap';
 import logo from '../../../images/logo.png'
 import Signup from '../Signup/Signup';
 import { useEffect } from 'react';
+import { logout } from '../../../Reducers/AuthSlice';
+import '../AuthModal/AuthModal.css'
 
 const AuthModal = () => {
     const [showModal, setShowModal] = useState(false);
     const [isLogin, setIsLogin] = useState(true);
+    const [showMenu, setShowMenu] = useState(false);
 
+    const dispatch = useDispatch();
 
-    const { token } = useSelector((state) => state.auth);
+    const { token, user } = useSelector((state) => state.auth);
     const navigate = useNavigate();
+
+
+    const handleLogout = () => {
+        dispatch(logout());
+    }
 
     useEffect(() => {
         if (token) {
-            navigate('/protected-route')
+            handleClose();
         }
-    }, [token, navigate]);
+    }, [token]);
 
     const handleClose = () => setShowModal(false);
     const handleShow = () => {
@@ -31,14 +40,31 @@ const AuthModal = () => {
         setShowModal(true);
     }
 
+    const toggleMenu = () => {
+        setShowMenu(!showMenu)
+    }
     const switchForm = () => setIsLogin(!isLogin);
 
-    return (
+/*     <span className="registrationBtn username">{`${user.firstName} ${user.lastName}`}</span>
+ */    return (
         <>
-            <Link className="registrationBtn" onClick={() => { setIsLogin(true); handleShow(); }}>
-                <FontAwesomeIcon icon={faCircleUser} />
-                <span>Sign In</span>
-            </Link>
+            {token && user ? (
+                <Dropdown className='profileBtn p-0'>
+                    <Dropdown.Toggle variant="success" id="dropdown-basic">
+                        {`${user.firstName} ${user.lastName}`}
+                    </Dropdown.Toggle>
+                    <DropdownMenu>
+                        <Dropdown.Item onClick={handleLogout}>Sign Out</Dropdown.Item>
+                    </DropdownMenu>
+                </Dropdown>
+
+            ) : (
+                <Link className="registrationBtn" onClick={() => { setIsLogin(true); handleShow(); }}>
+                    <FontAwesomeIcon icon={faCircleUser} />
+                    <span>Sign In</span>
+                </Link>
+            )}
+
             {/* <Button variant="primary" onClick={() => { setIsLogin(true); handleShow(); }}>
                 Login
             </Button> */}
