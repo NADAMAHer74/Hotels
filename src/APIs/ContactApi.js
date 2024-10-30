@@ -3,7 +3,7 @@ import axios from "axios";
 export const sendContactData = async (contactData) => {
   try {
     const response = await axios.post(
-      "http://localhost:5000/api/contactus",
+      "http://localhost:1000/api/contactus",
       contactData,
       {
         headers: {
@@ -19,17 +19,17 @@ export const sendContactData = async (contactData) => {
   }
 };
 
-  export const fetchWorkingHours = async () => {
-    const response = await axios.get("http://localhost:5000/api/workinghours");
-    return response.data;
-  };
+export const fetchWorkingHours = async () => {
+  const response = await axios.get("http://localhost:1000/api/workinghours");
+  return response.data;
+};
 
-  export const fetchLocation = async () => {
-    const response = await axios.get("http://localhost:5000/api/locations");
-    return response.data;
-  };
+export const fetchLocation = async () => {
+  const response = await axios.get("http://localhost:1000/api/locations");
+  return response.data;
+};
 
-  export const fetchPhones = async () => {
-    const response = await axios.get("http://localhost:5000/api/phones");
-    return response.data;
-  };
+export const fetchPhones = async () => {
+  const response = await axios.get("http://localhost:1000/api/phones");
+  return response.data;
+};

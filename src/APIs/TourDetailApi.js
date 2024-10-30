@@ -1,7 +1,7 @@
 // import { createAsyncThunk } from '@reduxjs/toolkit';
 // import axios from 'axios';
 
-// const API_URL = 'http://localhost:5000/api/user_tours';
+// const API_URL = 'http://localhost:1000/api/user_tours';
 
 // // Thunk for booking the package
 // export const TourDetailApi = createAsyncThunk(

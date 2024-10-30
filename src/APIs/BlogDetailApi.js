@@ -3,7 +3,7 @@ import axios from "axios";
 
 // Define the API endpoint
 
-const BASE_URL = "http://localhost:5000/api/blogs";
+const BASE_URL = "http://localhost:1000/api/blogs";
 
 export const fetchBlogData = createAsyncThunk(
   "BlogData/fetchBlogData",

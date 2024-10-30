@@ -14,7 +14,7 @@ const TourDetail = () => {
   const tour = useSelector((state) => state.toursData.spcificTour);
   useEffect(() => {
     dispatch(fetchTour({ id }));
-  }, [dispatch, id]);
+  }, []);
   // useEffect(() => {
   //   dispatch(fetchTour({ id })).then(() => {});
   // }, []);
@@ -158,18 +158,19 @@ const TourDetail = () => {
             </section>
           </div>
           <div className="col-lg-4 col-md-10 col-sm-12">
-              <BookPackage key={tour.tour_id} tourId={tour.tour_id}
-               adultPrice={tour.adultPrice}
-               kidsPrice={tour.kidsPrice}
-               childrenPrice={tour.childrenPrice}
-               location= {tour.location}
-               name= {tour.name}
-               languagesSupport= {tour.languagesSupport}
-               maxGusts= {tour.maxGusts}
-               miniAge= {tour.miniAge}
-               
-               />
-            </div>
+            <BookPackage
+              key={tour.tour_id}
+              tourId={tour.tour_id}
+              adultPrice={tour.adultPrice}
+              kidsPrice={tour.kidsPrice}
+              childrenPrice={tour.childrenPrice}
+              location={tour.location}
+              name={tour.name}
+              languagesSupport={tour.languagesSupport}
+              maxGusts={tour.maxGusts}
+              miniAge={tour.miniAge}
+            />
+          </div>
         </div>
       </div>
     </div>
