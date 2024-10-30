@@ -81,9 +81,9 @@
 
 
 // src/components/Contact.js
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { submitContactForm } from "../../../Reducers/contactSlice";
+import { submitContactForm, getWorkingHours, getLocation, getPhones } from "../../../Reducers/contactSlice";
 import MainBanner from "../MainBanner/MainBanner";
 import "leaflet/dist/leaflet.css";
 import "./Contact.css";
@@ -93,7 +93,11 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const Contact = () => {
   const dispatch = useDispatch();
-  const status = useSelector((state) => state.contact.status);
+  // const { workingHours, location, phones, status} = useSelector((state) => state.contact.status);
+  const { status: contactStatus } = useSelector((state) => state.contact);
+  const { workingHours, location, phones, status: contactInfoStatus } = useSelector((state) => state.contactInfo);
+  
+
 
   const [formData, setFormData] = useState({
     firstName: '',
@@ -125,6 +129,13 @@ const Contact = () => {
         toast.error("An error occurred. Please try again later.");
       });
   };
+
+  useEffect(() => {
+    dispatch(getWorkingHours());
+    dispatch(getLocation());
+    dispatch(getPhones());
+  }, [dispatch]);
+
 
   return (
     <>
@@ -181,7 +192,7 @@ const Contact = () => {
               onChange={handleChange}
             ></textarea>
             <button type="submit" className="submit-btn">
-              {status === 'loading' ? 'Sending...' : 'Send Message'}
+              {contactStatus === 'loading' ? 'Sending...' : 'Send Message'}
             </button>
           </form>
 
@@ -195,7 +206,11 @@ const Contact = () => {
                      <h4>Hours:</h4>
                    </a>
                    <p>
-                     Monday - Friday: 8 AM - 5:30 PM<br />Saturday - Sunday: Closed
+                   {workingHours && workingHours.visible ? (
+                  <p>{workingHours.start_day} -{workingHours.end_day}: {workingHours.start_hour} - {workingHours.end_hour}</p>
+                ) : (
+                  <p>Working hours not available</p>
+                )}
                    </p>
                  </div>
                </div>
@@ -206,7 +221,13 @@ const Contact = () => {
                    <a>
                      <h4>Call Us:</h4>
                    </a>
-                   <p>(+000) 987-3267<br />+88 568 956 238</p>
+                   {/* {phones && phones.length > 0 &&
+                    phones.filter(phone => phone.visible).map((phone, index) => (
+                  <p key={index}>{phone.phone_number}</p>
+                  ))} */}
+                  {phones?.filter(phone => phone.visible).map((phone, index) => (
+                  <p key={index}>{phone.phone_number}</p>
+                ))}
                  </div>
                </div>
                <hr />
@@ -216,7 +237,11 @@ const Contact = () => {
                    <a>
                      <h4>Location:</h4>
                    </a>
-                   <p>242 Carlyle Rd Zebulon, North Carolina (NC), 27597</p>
+                   {location && location.visible ? (
+                   <p>{location.location}</p>
+                  ) : (
+                    <p>Location not available</p>
+                  )}
                  </div>
                </div>
              </div>

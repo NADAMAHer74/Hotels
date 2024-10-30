@@ -26,7 +26,7 @@ const BlogDetails = () => {
           <div className="col-md-8">
             <div className="blog-post">
               <img
-                src={`http://localhost:1000/${blogData.imageUrl}`}
+                src={`http://localhost:5000/${blogData.imageUrl}`}
                 alt="Travel Blog"
                 height="400px"
               />

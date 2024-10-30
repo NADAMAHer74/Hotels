@@ -28,7 +28,7 @@ function Destination() {
                   <div className="overflow-hidden">
                     <img
                       className="w-100 rounded"
-                      src={`http://localhost:1000/${item.image}`}
+                      src={`http://localhost:5000/${item.image}`}
                       alt={item.name}
                     />
                   </div>
