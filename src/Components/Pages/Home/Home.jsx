@@ -33,24 +33,27 @@ import {
   fetchDestination,
   fetchAbout,
   fetchTour,
-  fetchVideo,
   fetchBlog,
 } from "../../../APIs/HomeApi";
 
 const Home = () => {
+  const imagesClasses = [
+    { className: "topImage" },
+    { className: "middleImage" },
+    { className: "bottomImage" },
+    // Add more images as needed
+  ];
   const distination = useSelector((state) => state.home.distinationData);
   const about = useSelector((state) => state.home.aboutData);
   const tour = useSelector((state) => state.home.tourData);
-  const video = useSelector((state) => state.home.videoData);
   const blog = useSelector((state) => state.home.blogData);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchDestination());
     dispatch(fetchAbout());
     dispatch(fetchTour());
-    dispatch(fetchVideo());
     dispatch(fetchBlog());
-  }, [dispatch], []);
+  }, []);
   return (
     <div>
       <div className="topDestinationSection">
@@ -79,7 +82,10 @@ const Home = () => {
           <div className="row text-center">
             {distination ? (
               distination.map((item) => (
-                <div className="col-12 col-md-6 col-lg-3 mb-4">
+                <div
+                  className="col-12 col-md-6 col-lg-3 mb-4"
+                  key={item.destination_id}
+                >
                   <div className="cardContainer position-relative">
                     <img
                       src={`http://localhost:1000/${item.image}`}
@@ -106,35 +112,29 @@ const Home = () => {
           <div className="row align-items-center">
             <div className="col-12 col-md-6 mb-4 mb-md-0 align-items-start ">
               <div className=" align-items-start imageStack">
-                <img
-                  src={TopImage}
-                  className="topImage img-fluid mb-3"
-                  alt="Top Image"
-                />
-                <img
-                  src={MiddleImage}
-                  className="middleImage img-fluid mb-3"
-                  alt="Middle Image"
-                />
-                <img
-                  src={BottomImage}
-                  className="bottomImage img-fluid"
-                  alt="Bottom Image"
-                />
+                {about ? (
+                  <div>
+                    {" "}
+                    {about.map((aboutImage) => (
+                      <div>
+                        <img
+                          className={`img-fluid mb-3 ${imagesClasses.className}`} // Apply unique and shared class names
+                          src={`http://localhost:1000/${aboutImage.Image}`}
+                          alt="About Image"
+                        />
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <div>Loading...</div>
+                )}
               </div>
             </div>
 
             <div className="col-12 col-md-6 aboutContent">
               <h3 className="sectionTitle">About Company</h3>
-              <h2 className="mainTitle">
-                Sollicitudin Vestibulum <br />
-                Vulputate Ipsum.
-              </h2>
-              <p className="description">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-                minim veniam, quis nostrud exercitation ullamco.
-              </p>
+              <h2 className="mainTitle">{about.head}</h2>
+              <p className="description">{about.Body}</p>
               <div className="feature d-flex align-items-center mb-3">
                 <div className="icons mr-3">
                   <img src={SafetyIcon} alt="Safety Icon" />
@@ -194,233 +194,112 @@ const Home = () => {
 
         <div className="container pb-5">
           <div className="row gy-4">
-            <div className="col-lg-4 col-md-6">
-              <div className="card shadow-lg">
-                <img
-                  src={featurImage1}
-                  className="card-img-top"
-                  alt="sea image"
-                />
-                <div className="row position-absolute positionValues">
-                  <div className="col-auto ">
-                    <p className="text-white p-2 greenBackground">10% off</p>
-                  </div>
-                  <div className="col">
-                    <p className="text-white p-2 orangBackground">Features</p>
-                  </div>
-                </div>
-                <div className="row position-absolute  translateValues g-3">
-                  <div className="col">
-                    <p className="bg-dark rounded">
-                      <FontAwesomeIcon
-                        icon={faHeart}
-                        className="iconsWhite fa-lg p-2  fa-regular "
-                      />
-                    </p>
-                  </div>
-                  <div className="col">
-                    <p className="bg-dark rounded">
-                      <FontAwesomeIcon
-                        icon={faCamera}
-                        className="iconsWhite fa-lg p-2 "
-                      />
-                    </p>
-                  </div>
-                </div>
-                <div className="card-body">
-                  <div className="row g-1">
-                    <div className=" col-auto">
-                      <FontAwesomeIcon
-                        icon={faLocationDot}
-                        className="greenColor "
-                      />
+            {tour ? (
+              tour.map((tourItem) => (
+                <div className="col-lg-4 col-md-6" key={tourItem.tour_id}>
+                  <div className="card shadow-lg">
+                    <img
+                      src={`http://localhost:1000/${tourItem.tourImage}`}
+                      className="card-img-top"
+                      alt="sea image"
+                    />
+                    <div className="row position-absolute positionValues">
+                      <div className="col-auto ">
+                        <p className="text-white p-2 greenBackground">
+                          10% off
+                        </p>
+                      </div>
+                      <div className="col">
+                        <p className="text-white p-2 orangBackground">
+                          Features
+                        </p>
+                      </div>
                     </div>
-                    <div className="col">
-                      <p>traford Park Lexington,40507</p>
+                    <div className="row position-absolute  translateValues g-3">
+                      <div className="col">
+                        <p className="bg-dark rounded">
+                          <FontAwesomeIcon
+                            icon={faHeart}
+                            className="iconsWhite fa-lg p-2  fa-regular "
+                          />
+                        </p>
+                      </div>
+                      <div className="col">
+                        <p className="bg-dark rounded">
+                          <FontAwesomeIcon
+                            icon={faCamera}
+                            className="iconsWhite fa-lg p-2 "
+                          />
+                        </p>
+                      </div>
                     </div>
-                  </div>
-                  <h5 className="card-title">Cuba Sailing Adventure</h5>
-                  <div className="row g-1">
-                    <div className="col-auto">
-                      <FontAwesomeIcon
-                        icon={faDollar}
-                        className="greenColor fa-lg "
-                      />
-                    </div>
-                    <div className="col ">
-                      <p>
-                        From<span className="orangColor">$116.10 </span>
-                      </p>
-                    </div>
-                    <div className="col-auto">
-                      <p className="orangColor">4.5</p>
-                    </div>
-                    <div className="col">
-                      <p>(1.5k review)</p>
-                    </div>
-                  </div>
-                  <div className="card-text"></div>
-                  <div className="border-bottom border-dark w-sm-100 mb-4"></div>
-                  <div className="row g-lg-1 gx-sm-2">
-                    <div className="col-auto">
-                      <FontAwesomeIcon
-                        icon={faClock}
-                        className="greenColor fa-lg "
-                      />
-                    </div>
-                    <div className="col">
-                      <p>6 days</p>
-                    </div>
-                    <div className="col col-lg-auto">
-                      <a
-                        href="#"
-                        className="btn text-white greenBackground buttonHover"
-                      >
-                        Explore More
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="col-lg-4 col-md-6">
-              <div className="card shadow-lg">
-                <img
-                  src="./assests/images/img-2.jpg"
-                  className="card-img-top"
-                  alt="sea image"
-                />
-                <p className="text-white p-2 position-absolute positionValues greenBackground">
-                  10% off
-                </p>
-                <div className="row position-absolute  translateValues g-3">
-                  <div className="col">
-                    <p className="bg-dark rounded">
-                      <i className="fa-regular fa-heart fa-lg p-2 py-3 iconsWhite"></i>
-                    </p>
-                  </div>
-                  <div className="col">
-                    <p className="bg-dark rounded">
-                      <i className="fa-solid fa-camera fa-lg p-2 py-3 iconsWhite"></i>
-                    </p>
-                  </div>
-                </div>
-                <div className="card-body">
-                  <div className="row g-1">
-                    <div className="col-auto">
-                      <i className="fa-solid fa-location-dot greenColor"></i>
-                    </div>
-                    <div className="col">
-                      <p>traford Park Lexington,40507</p>
-                    </div>
-                  </div>
-                  <h5 className="card-title">Tour in New York</h5>
-                  <div className="row g-1">
-                    <div className="col-auto">
-                      <i className="fa-solid fa-dollar-sign fa-lg greenColor"></i>
-                    </div>
-                    <div className="col ">
-                      <p>
-                        From<span className="orangColor">$116.10 </span>
-                      </p>
-                    </div>
-                    <div className="col-auto">
-                      <p className="orangColor">4.5</p>
-                    </div>
-                    <div className="col">
-                      <p>(1.5k review)</p>
-                    </div>
-                  </div>
-                  <div className="card-text"></div>
-                  <div className="border-bottom border-dark w-sm-100 mb-4"></div>
-                  <div className="row g-1">
-                    <div className="col-auto">
-                      <i className="fa-regular fa-clock fa-lg greenColor"></i>
-                    </div>
-                    <div className="col">
-                      <p>6 days</p>
-                    </div>
-                    <div className="col col-lg-auto">
-                      <a
-                        href="#"
-                        className="btn text-white buttonHover greenBackground"
-                      >
-                        Explore More
-                      </a>
+                    <div className="card-body">
+                      <div className="row g-1">
+                        <div className=" col-auto">
+                          <FontAwesomeIcon
+                            icon={faLocationDot}
+                            className="greenColor "
+                          />
+                        </div>
+                        <div className="col">
+                          <p>
+                            {" "}
+                            {tour.location}
+                            {tourItem.location}
+                          </p>
+                        </div>
+                      </div>
+                      <h5 className="card-title">{tourItem.name}</h5>
+                      <div className="row g-1">
+                        <div className="col-auto">
+                          <FontAwesomeIcon
+                            icon={faDollar}
+                            className="greenColor fa-lg "
+                          />
+                        </div>
+                        <div className="col ">
+                          <p>
+                            From
+                            <span className="orangColor">
+                              ${tourItem.adultPrice}{" "}
+                            </span>
+                          </p>
+                        </div>
+                        <div className="col-auto">
+                          <p className="orangColor">{tourItem.reviewStars}</p>
+                        </div>
+                        <div className="col">
+                          <p>(1.5k review)</p>
+                        </div>
+                      </div>
+                      <div className="card-text"></div>
+                      <div className="border-bottom border-dark w-sm-100 mb-4"></div>
+                      <div className="row g-lg-1 gx-sm-2">
+                        <div className="col-auto">
+                          <FontAwesomeIcon
+                            icon={faClock}
+                            className="greenColor fa-lg "
+                          />
+                        </div>
+                        <div className="col">
+                          <p>{tourItem.durationInDays}</p>
+                        </div>
+                        <div className="col col-lg-auto">
+                          <a
+                            href="#"
+                            className="btn text-white greenBackground buttonHover"
+                          >
+                            Explore More
+                          </a>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
-            <div className="col-lg-4 col-md-6">
-              <div className="card shadow-lg">
-                <img
-                  src="./assests/images/img-3.jpg"
-                  className="card-img-top "
-                  alt="sea image"
-                />
-                <p className="text-white p-2 position-absolute positionValues greenBackground">
-                  10% off
-                </p>
-                <div className="row position-absolute  translateValues g-3">
-                  <div className="col">
-                    <p className="bg-dark rounded">
-                      <i className="fa-regular fa-heart fa-lg p-2 py-3 iconsWhite"></i>
-                    </p>
-                  </div>
-                  <div className="col">
-                    <p className="bg-dark rounded">
-                      <i className="fa-solid fa-camera fa-lg p-2 py-3 iconsWhite"></i>
-                    </p>
-                  </div>
-                </div>
-                <div className="card-body">
-                  <div className="row g-1">
-                    <div className="col-auto">
-                      <i className="fa-solid fa-location-dot greenColor"></i>
-                    </div>
-                    <div className="col-auto">
-                      <p>traford Park Lexington,40507</p>
-                    </div>
-                  </div>
-                  <h5 className="card-title">Museum of Modern Art</h5>
-                  <div className="row g-1">
-                    <div className="col-auto">
-                      <i className="fa-solid fa-dollar-sign fa-lg greenColor"></i>
-                    </div>
-                    <div className="col ">
-                      <p>
-                        From<span className="orangColor">$116.10 </span>
-                      </p>
-                    </div>
-                    <div className="col-auto">
-                      <p className="orangColor">4.5</p>
-                    </div>
-                    <div className="col">
-                      <p>(1.5k review)</p>
-                    </div>
-                  </div>
-                  <div className="card-text"></div>
-                  <div className="border-bottom border-dark w-sm-100 mb-4"></div>
-                  <div className="row g-1">
-                    <div className="col-auto">
-                      <i className="fa-regular fa-clock fa-lg greenColor"></i>
-                    </div>
-                    <div className="col">
-                      <p>6 days</p>
-                    </div>
-                    <div className="col col-lg-auto">
-                      <a
-                        href="#"
-                        className="btn text-white buttonHover greenBackground"
-                      >
-                        Explore More
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+              ))
+            ) : (
+              <div>loading</div>
+            )}
           </div>
         </div>
       </div>
@@ -501,34 +380,34 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <div class="blogSection">
+      <div className="blogSection">
         <img
-          class="sticker img-fluid d-none d-md-inline-block"
+          className="sticker img-fluid d-none d-md-inline-block"
           src="./assests/images/ticket.png"
         />
-        <div class="container">
+        <div className="container">
           <h3>Our Recent Blog</h3>
-          <h2 class="headBold">Amazing news & blog for every update</h2>
-          <div class="row">
+          <h2 className="headBold">Amazing news & blog for every update</h2>
+          <div className="row">
             {blog ? (
               blog.map((blog) => (
-                <div class=" col-12 col-md-6 col-lg-3 ">
-                  <div class=" travelCard ">
+                <div className=" col-12 col-md-6 col-lg-3 " key={blog.blog_id}>
+                  <div className=" travelCard ">
                     <div className="position-relative">
                       <img
                         src={`http://localhost:1000/${blog.imageUrl}`}
                         alt="Travel Image"
                       />
-                      <div class="categoryBadge">{blog.title}</div>
+                      <div className="categoryBadge">{blog.title}</div>
                     </div>
                   </div>
-                  <div class="cardBody">
-                    <p class="card-date">
-                      <i class="fas fa-calendar-alt calenderSticker"></i>{" "}
+                  <div className="cardBody">
+                    <p className="card-date">
+                      <i className="fas fa-calendar-alt calenderSticker"></i>{" "}
                       {blog.date}
                     </p>
-                    <h5 class="cardTitle">{blog.content}</h5>
-                    <button class="cardBtn">Explore More</button>
+                    <h5 className="cardTitle">{blog.content}</h5>
+                    <button className="cardBtn">Explore More</button>
                   </div>
                 </div>
               ))

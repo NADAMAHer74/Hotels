@@ -4,7 +4,7 @@ import { fetchBanner } from "../APIs/MainBannerApi";
 const bannerSlice = createSlice({
     name: 'banner',
     initialState: {
-      bannerData: {},
+      bannerData: [],
       status: 'idle',
       error: null
     },
