@@ -3,16 +3,10 @@ import DistinationSlice from "../Reducers/DistinationSlice";
 import pagination from "../Reducers/PaginationSlice";
 import Blogs from "../Reducers/BlogsSlice";
 import home from "../Reducers/HomeSlice";
-// import packageReducer from "../Components/Pages/TourDetails/packageSlice.jsx";
-// import packageReducer from '../Components/Pages/TourDetails/packageSlice.jsx';
-// import AboutSlice from "../Reducers/AboutSlice";
-// import BlogSlice from "../Reducers/BlogSlice";
-// import ToursSlice from "../Reducers/TourGridSlice";
-import packageReducer from '../Reducers/packageSlice';
+
+import packageReducer from "../Reducers/packageSlice";
 import AboutSlice from "../Reducers/AboutSlice";
-import BlogSlice from "../Reducers/BlogSlice";
-// import ToursSlice from "../Reducers/TourGridSlice";
-// import packages from '../Reducers/packageSlice';
+
 import tourReducer from "../Reducers/TourSlice";
 import contactReducer from '../Reducers/contactSlice';
 import contactInfoSlice from '../Reducers/contactSlice';
@@ -36,15 +30,10 @@ const store = configureStore({
 
     contactInfo: contactInfoSlice,
     banner: bannerReducer,
-
-    blog: BlogSlice,
     tours: tourReducer,
     auth: AuthSlice,
-
 
   },
 });
 
 export default store;
-
-

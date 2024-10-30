@@ -33,7 +33,6 @@ import {
   fetchDestination,
   fetchAbout,
   fetchTour,
-  fetchVideo,
   fetchBlog,
 } from "../../../APIs/HomeApi";
 
@@ -41,14 +40,12 @@ const Home = () => {
   const distination = useSelector((state) => state.home.distinationData);
   const about = useSelector((state) => state.home.aboutData);
   const tour = useSelector((state) => state.home.tourData);
-  const video = useSelector((state) => state.home.videoData);
   const blog = useSelector((state) => state.home.blogData);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchDestination());
     dispatch(fetchAbout());
     dispatch(fetchTour());
-    dispatch(fetchVideo());
     dispatch(fetchBlog());
   });
   return (
@@ -82,7 +79,7 @@ const Home = () => {
                 <div className="col-12 col-md-6 col-lg-3 mb-4">
                   <div className="cardContainer position-relative">
                     <img
-                      src={`http://localhost:1000/${item.image}`}
+                      src={`http://localhost:5000/${item.image}`}
                       className="img-fluid"
                       alt="distination"
                     />
@@ -488,7 +485,7 @@ const Home = () => {
               <FontAwesomeIcon icon={faBurst} className="fa-2xl" />
             </div>
             <div className="col">
-              <h4 className="fw-bold">1000 +</h4>
+              <h4 className="fw-bold">5000 +</h4>
               <p>Happy people</p>
             </div>
             <div className="col my-auto">
@@ -501,34 +498,34 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <div class="blogSection">
+      <div className="blogSection">
         <img
-          class="sticker img-fluid d-none d-md-inline-block"
+          className="sticker img-fluid d-none d-md-inline-block"
           src="./assests/images/ticket.png"
         />
-        <div class="container">
+        <div className="container">
           <h3>Our Recent Blog</h3>
-          <h2 class="headBold">Amazing news & blog for every update</h2>
-          <div class="row">
+          <h2 className="headBold">Amazing news & blog for every update</h2>
+          <div className="row">
             {blog ? (
               blog.map((blog) => (
-                <div class=" col-12 col-md-6 col-lg-3 ">
-                  <div class=" travelCard ">
+                <div className=" col-12 col-md-6 col-lg-3 ">
+                  <div className=" travelCard ">
                     <div className="position-relative">
                       <img
-                        src={`http://localhost:1000/${blog.imageUrl}`}
+                        src={`http://localhost:5000/${blog.imageUrl}`}
                         alt="Travel Image"
                       />
-                      <div class="categoryBadge">{blog.title}</div>
+                      <div className="categoryBadge">{blog.title}</div>
                     </div>
                   </div>
-                  <div class="cardBody">
-                    <p class="card-date">
-                      <i class="fas fa-calendar-alt calenderSticker"></i>{" "}
+                  <div className="cardBody">
+                    <p className="card-date">
+                      <i className="fas fa-calendar-alt calenderSticker"></i>{" "}
                       {blog.date}
                     </p>
-                    <h5 class="cardTitle">{blog.content}</h5>
-                    <button class="cardBtn">Explore More</button>
+                    <h5 className="cardTitle">{blog.content}</h5>
+                    <button className="cardBtn">Explore More</button>
                   </div>
                 </div>
               ))

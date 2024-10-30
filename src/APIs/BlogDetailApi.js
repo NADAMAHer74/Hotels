@@ -3,10 +3,16 @@ import axios from "axios";
 
 // Define the API endpoint
 
-const API_ENDPOINT = "https://eecf8975-6c57-4990-969b-6a32dc2c0aff.mock.pstmn.io/hotels";
+const BASE_URL = "http://localhost:5000/api/blogs";
+
 export const fetchBlogData = createAsyncThunk(
-    'BlogData/fetchBlogData', async (blogId) => {
-        const response = await axios.get(`API_ENDPOINT/${blogId}`);
-        return response.data;
+  "BlogData/fetchBlogData",
+  async ({ id }) => {
+    try {
+      const response = await axios.get(`${BASE_URL}/${id}`);
+      return response.data;
+    } catch (error) {
+      throw error;
     }
+  }
 );

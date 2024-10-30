@@ -1,11 +1,10 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-const banner_url = "http://localhost:1000/api/banners";
-const destination_url = "http://localhost:1000/api/top-destinations";
-const about_url = "http://localhost:1000/api/aboutusimages";
-const tour_url = "http://localhost:1000/api/latestTours";
-const video_url = "http://localhost:1000/api/pagination";
-const blog_url = "http://localhost:1000/api/latest";
+const banner_url = "http://localhost:5000/api/banners";
+const destination_url = "http://localhost:5000/api/top-destinations";
+const about_url = "http://localhost:5000/api/aboutusimages";
+const tour_url = "http://localhost:5000/api/latestTours";
+const blog_url = "http://localhost:5000/api/latest";
 export const fetchBanner = createAsyncThunk("banner/fetchBanner", async () => {
   const response = await axios.get(banner_url);
   return response.data;
@@ -25,10 +24,7 @@ export const fetchTour = createAsyncThunk("tour/fetchTour", async () => {
   const response = await axios.get(tour_url);
   return response.data;
 });
-export const fetchVideo = createAsyncThunk("video/fetchVideo", async () => {
-  const response = await axios.get(video_url);
-  return response.data;
-});
+
 export const fetchBlog = createAsyncThunk("blog/fetchBlog", async () => {
   const response = await axios.get(blog_url);
   return response.data;
