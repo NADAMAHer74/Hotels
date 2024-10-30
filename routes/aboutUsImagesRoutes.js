@@ -104,7 +104,9 @@ router.get("/aboutusimages", (req, res) => {
       console.error("Error fetching About Us Images:", error);
       return res.status(500).json({ message: "Internal server error" });
     }
-    res.json(results);
+    // res.json(results);
+    console.log(results);
+    res.render("aboutUsImages", { aboutusimages: results });
   });
 });
 
@@ -152,6 +154,7 @@ router.get("/aboutusimages/:id", (req, res) => {
         .json({ message: "About Us Image entry not found" });
     }
     res.json(results[0]);
+    // res.render("viewAboutUsImage", { image: results[0] });
   });
 });
 
@@ -191,6 +194,20 @@ router.get("/aboutusimages/:id", (req, res) => {
  *         description: About Us Image entry not found
  */
 
+// router.get("/aboutusimages/:id/edit", async (req, res) => {
+//   const query = "SELECT * FROM tours WHERE AboutUsImages_ID = ?";
+//   req.pool.query(query, [req.params.AboutUsImages_ID], (error, results) => {
+//     if (error) {
+//       console.error("Error fetching about us image:", error);
+//       return res.status(500).json({ message: "Internal server error" });
+//     }
+//     if (results.length === 0) {
+//       return res.status(404).json({ message: "bout us image not found" });
+//     }
+//     // res.json(results[0]);
+//     res.render("editAboutUsImage", { aboutImage: results[0] });
+//   });
+// });
 router.put(
   "/aboutusimages/:id",
   verifyToken,

@@ -308,7 +308,7 @@ router.delete(
  *     requestBody:
  *       required: true
  *       content:
- *         application/json:
+ *         multipart/form-data:
  *           schema:
  *             type: object
  *             properties:
@@ -332,6 +332,7 @@ router.delete(
  *                 type: string
  *               tourImage:
  *                 type: string
+ *                 format: binary
  *               date:
  *                 type: string
  *                 format: date
@@ -481,6 +482,7 @@ router.put(
         miniAge,
         maxGusts,
         languagesSupport,
+        image,
       } = req.body;
 
       const updates = [];
@@ -546,7 +548,7 @@ router.put(
 
       // Check if a new image file is uploaded
       if (req.file) {
-        const tourImage = req.file.path;
+        const tourImage = req.file ? req.file.path : null;
         updates.push(tourImage);
         updateFields.push("tourImage = ?");
       }

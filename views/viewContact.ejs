@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Contact Us</title>
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <!-- AdminLTE CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/admin-lte@3.1/dist/css/adminlte.min.css"
+    />
+    <!-- Bootstrap 5 CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body class="hold-transition sidebar-mini layout-fixed">
+    <div class="wrapper">
+      <!-- Navbar -->
+      <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" data-widget="pushmenu" href="#" role="button"
+              ><i class="fas fa-bars"></i
+            ></a>
+          </li>
+          <li class="nav-item d-none d-sm-inline-block">
+            <a href="/" class="nav-link">Home</a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Sidebar -->
+      <aside class="main-sidebar sidebar-dark-primary elevation-4">
+        <a href="/" class="brand-link">
+          <span class="brand-text font-weight-light">AdminLTE 4</span>
+        </a>
+        <div class="sidebar">
+          <nav class="mt-2">
+            <ul
+              class="nav nav-pills nav-sidebar flex-column"
+              data-widget="treeview"
+              role="menu"
+              data-accordion="false"
+            >
+              <li class="nav-item">
+                <a href="/api/tours" class="nav-link">
+                  <i class="nav-icon fas fa-tachometer-alt"></i>
+                  <p>Toures</p>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a href="/api/destinations" class="nav-link">
+                  <i class="nav-icon fas fa-tachometer-alt"></i>
+                  <p>Distinations</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/api/contactus" class="nav-link">
+                  <i class="nav-icon fas fa-tachometer-alt"></i>
+                  <p>Contact Us</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/api/aboutus" class="nav-link">
+                  <i class="nav-icon fas fa-tachometer-alt"></i>
+                  <p>About Us</p>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </aside>
+
+      <!-- Content Wrapper -->
+      <div class="content-wrapper">
+        <!-- Content Header -->
+        <section class="content-header">
+          <div class="container-fluid">
+            <div class="row mb-2">
+              <div class="col-sm-6">
+                <h1>All Courses</h1>
+              </div>
+              <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                  <li class="breadcrumb-item"><a href="#">Home</a></li>
+                  <li class="breadcrumb-item active">All Contacts</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Main content -->
+        <div class="app-content">
+          <!--begin::Container-->
+          <div class="container-fluid">
+            <!--begin::Row-->
+            <div class="row g-4">
+              <!--begin::Col-->
+              <div class="col-md-6">
+                <!--begin::Quick Example-->
+                <div class="card card-primary card-outline mb-4">
+                  <div class="card-header">
+                    <div class="card-title"><%= contact.first_name %></div>
+                  </div>
+                  <!--end::Header-->
+                  <!--begin::Form-->
+                  <div class="card-body">
+                    <div class="mb-3">
+                      <p>
+                        <strong>First Name:</strong>
+                        <%= contact.first_name %>
+                      </p>
+                      <p>
+                        <strong>last Name:</strong>
+                        <%= contact.last_name %>
+                      </p>
+
+                      <p><strong>email:</strong> <%= contact.email %></p>
+                      <p><strong>phone:</strong> <%= contact.phone %></p>
+                      <p><strong>subject:</strong> <%= contact.subject %></p>
+                      <p><strong>message:</strong> <%= contact.message %></p>
+
+                      <a href="/api/contactus" class="btn btn-primary"
+                        >Back to Contacts</a
+                      >
+                    </div>
+                  </div>
+
+                  <!--end::Form-->
+                </div>
+              </div>
+              <!--end::Col-->
+              <!--begin::Col-->
+            </div>
+            <!--end::Row-->
+          </div>
+          <!--end::Container-->
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <footer class="main-footer">
+        <strong
+          >Copyright &copy; 2014-2024
+          <a href="https://adminlte.io">AdminLTE.io</a>.</strong
+        >
+        All rights reserved.
+        <div class="float-right d-none d-sm-inline">Anything you want</div>
+      </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.1/dist/js/adminlte.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

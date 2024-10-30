@@ -57,12 +57,6 @@
                   <p>Toures</p>
                 </a>
               </li>
-              <li class="nav-item">
-                <a href="/api/tours/new" class="nav-link">
-                  <i class="nav-icon fas fa-plus"></i>
-                  <p>Add Tour</p>
-                </a>
-              </li>
 
               <li class="nav-item">
                 <a href="/api/destinations" class="nav-link">
@@ -71,9 +65,15 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="/api/destinations/new" class="nav-link">
-                  <i class="nav-icon fas fa-plus"></i>
-                  <p>Add Destination</p>
+                <a href="/api/contactus" class="nav-link">
+                  <i class="nav-icon fas fa-tachometer-alt"></i>
+                  <p>Contact Us</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/api/aboutus" class="nav-link">
+                  <i class="nav-icon fas fa-tachometer-alt"></i>
+                  <p>About Us</p>
                 </a>
               </li>
             </ul>
@@ -88,7 +88,7 @@
           <div class="container-fluid">
             <div class="row mb-2">
               <div class="col-sm-6">
-                <h1>All Courses</h1>
+                <h1>All Tours</h1>
               </div>
               <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
@@ -162,6 +162,20 @@
                             required
                             minlength="5"
                             value="<%= tour.type || '' %>"
+                          />
+                        </div>
+                      </div>
+                      <div class="mb-3">
+                        <div class="form-group">
+                          <label for="reviewStars">Tour Review</label>
+                          <input
+                            type="number"
+                            class="form-control"
+                            id="reviewStars"
+                            name="reviewStars"
+                            required
+                            minlength="5"
+                            value="<%= tour.reviewStars || '' %>"
                           />
                         </div>
                       </div>
