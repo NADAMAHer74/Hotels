@@ -75,14 +75,18 @@ router.post(
             .status(400)
             .json({ message: "Error creating blog post", error });
         }
-        res.status(201).json({
-          message: "Blog post created successfully",
-          blogId: results.insertId,
-        });
+
+        res.status(201).redirect("/api/blogs");
       }
     );
   }
 );
+
+router.get("/blogs/new", async (req, res) => {
+  // Pass authors to the template along with an empty course object
+
+  res.render("addBlog", { blog: {} });
+});
 
 /**
  * @swagger
@@ -117,7 +121,7 @@ router.get("/blogs", (req, res) => {
     if (error) {
       return res.status(500).json({ message: "Internal server error" });
     }
-    res.json(results);
+    res.render("blogs", { blogs: results });
   });
 });
 
@@ -164,7 +168,7 @@ router.get("/blogs/:id", (req, res) => {
     if (results.length === 0) {
       return res.status(404).json({ message: "Blog post not found" });
     }
-    res.json(results[0]);
+    res.render("viewBlog", { blog: results[0] });
   });
 });
 
@@ -256,6 +260,21 @@ router.put(
     });
   }
 );
+
+router.get("/blogs/:blog_id/edit", async (req, res) => {
+  const query = "SELECT * FROM blogs WHERE blog_id = ?";
+  req.pool.query(query, [req.params.blog_id], (error, results) => {
+    if (error) {
+      console.error("Error fetching blog post:", error);
+      return res.status(500).json({ message: "Internal server error" });
+    }
+    if (results.length === 0) {
+      return res.status(404).json({ message: "Blog not found" });
+    }
+    // res.json(results[0]);
+    res.render("editBlog", { blog: results[0] });
+  });
+});
 
 /**
  * @swagger

@@ -57,6 +57,12 @@
                   <p>Toures</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="/api/tours/new" class="nav-link">
+                  <i class="nav-icon fas fa-plus"></i>
+                  <p>Add Tour</p>
+                </a>
+              </li>
 
               <li class="nav-item">
                 <a href="/api/destinations" class="nav-link">
@@ -65,27 +71,15 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="/api/contactus" class="nav-link">
-                  <i class="nav-icon fas fa-tachometer-alt"></i>
-                  <p>Contact Us</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="/api/aboutus" class="nav-link">
-                  <i class="nav-icon fas fa-tachometer-alt"></i>
-                  <p>About Us</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="/api/blogs" class="nav-link">
-                  <i class="nav-icon fas fa-tachometer-alt"></i>
-                  <p>Blogs</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="/api/blogs/new" class="nav-link">
+                <a href="/api/destinations/new" class="nav-link">
                   <i class="nav-icon fas fa-plus"></i>
-                  <p>Add Blogs</p>
+                  <p>Add Destination</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/api/user_tours" class="nav-link">
+                  <i class="nav-icon fas fa-tachometer-alt"></i>
+                  <p>Reservations</p>
                 </a>
               </li>
             </ul>
@@ -100,12 +94,12 @@
           <div class="container-fluid">
             <div class="row mb-2">
               <div class="col-sm-6">
-                <h1>All Destinations</h1>
+                <h1>All Reservations</h1>
               </div>
               <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                   <li class="breadcrumb-item"><a href="#">Home</a></li>
-                  <li class="breadcrumb-item active">All Destinations</li>
+                  <li class="breadcrumb-item active">All Reservations</li>
                 </ol>
               </div>
             </div>
@@ -123,94 +117,45 @@
                 <!--begin::Quick Example-->
                 <div class="card card-primary card-outline mb-4">
                   <div class="card-header">
-                    <div class="card-title">Adding Destination</div>
+                    <div class="card-title"><%= user_tour.user_id %></div>
                   </div>
                   <!--end::Header-->
                   <!--begin::Form-->
-                  <form
-                    action="/api/destinations"
-                    method="POST"
-                    enctype="multipart/form-data"
-                  >
-                    <div class="card-body">
-                      <!-- Display Error Messages -->
-                      <div class="mb-3">
-                        <div class="form-group">
-                          <label for="name">Destination Name</label>
-                          <input
-                            type="text"
-                            class="form-control"
-                            id="name"
-                            name="name"
-                            required
-                            minlength="5"
-                            value="<%= destination.name || '' %>"
-                          />
-                        </div>
-                      </div>
-                      <div class="mb-3">
-                        <div class="form-group">
-                          <label for="location">Location</label>
-                          <input
-                            type="text"
-                            class="form-control"
-                            id="location"
-                            name="location"
-                            required
-                            minlength="5"
-                            value="<%= destination.location || '' %>"
-                          />
-                        </div>
-                      </div>
+                  <div class="card-body">
+                    <div class="mb-3">
+                      <p>
+                        <strong>user_id:</strong>
+                        <%= user_tour.user_id %>
+                      </p>
+                      <p>
+                        <strong>tour_id:</strong>
+                        <%= user_tour.tour_id %>
+                      </p>
 
-                      <div class="mb-3">
-                        <div class="form-group">
-                          <label for="category">Category</label>
-                          <input
-                            type="text"
-                            class="form-control"
-                            id="category"
-                            name="category"
-                            required
-                            minlength="5"
-                            value="<%= destination.category || '' %>"
-                          />
-                        </div>
-                      </div>
+                      <p>
+                        <strong>adultQuantity:</strong> <%=
+                        user_tour.adult_quantity %>
+                      </p>
+                      <p>
+                        <strong>kidsQuantity:</strong> <%=
+                        user_tour.kids_quantity %>
+                      </p>
+                      <p>
+                        <strong>childQuantity:</strong> <%=
+                        user_tour.child_quantity %>
+                      </p>
+                      <p>
+                            <strong>additional_services:</strong> <%=
+                            user_tour.additional_services %>
+                          </p> %>
+                      </p>
 
-                      <div class="mb-3">
-                        <div class="form-group">
-                          <label for="image">Destination Cover</label>
-                          <input
-                            type="file"
-                            class="form-control-file"
-                            id="image"
-                            name="image"
-                          />
-                        </div>
-                      </div>
-                      <div class="mb-3">
-                        <div class="form-group">
-                          <label for="visible">Visibility</label>
-                          <input
-                            type="number"
-                            class="form-control"
-                            id="visible"
-                            name="visible"
-                            required
-                            minlength="5"
-                            value="<%= destination.visible || '' %>"
-                          />
-                        </div>
-                      </div>
-
-                      <div class="mb-3">
-                        <button type="submit" class="btn btn-primary">
-                          Add Destination
-                        </button>
-                      </div>
+                      <a href="/api/user_tours" class="btn btn-primary"
+                        >Back to tours</a
+                      >
                     </div>
-                  </form>
+                  </div>
+
                   <!--end::Form-->
                 </div>
               </div>

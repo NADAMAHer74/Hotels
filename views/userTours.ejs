@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Admin Blogs</title>
+    <title>Admin Courses</title>
 
     <!-- Font Awesome -->
     <link
@@ -57,11 +57,23 @@
                   <p>Toures</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="/api/tours/new" class="nav-link">
+                  <i class="nav-icon fas fa-plus"></i>
+                  <p>Add Tour</p>
+                </a>
+              </li>
 
               <li class="nav-item">
                 <a href="/api/destinations" class="nav-link">
                   <i class="nav-icon fas fa-tachometer-alt"></i>
                   <p>Distinations</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/api/destinations/new" class="nav-link">
+                  <i class="nav-icon fas fa-plus"></i>
+                  <p>Add Destination</p>
                 </a>
               </li>
               <li class="nav-item">
@@ -94,12 +106,12 @@
           <div class="container-fluid">
             <div class="row mb-2">
               <div class="col-sm-6">
-                <h1>All blogs</h1>
+                <h1>All Reservations</h1>
               </div>
               <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                   <li class="breadcrumb-item"><a href="#">Home</a></li>
-                  <li class="breadcrumb-item active">All blogs</li>
+                  <li class="breadcrumb-item active">All Reservations</li>
                 </ol>
               </div>
             </div>
@@ -111,45 +123,48 @@
           <div class="container-fluid">
             <div class="card card-primary card-outline">
               <div class="card-header">
-                <h3 class="card-title">All blogs</h3>
-                <a href="/api/blogs/new" class="btn btn-primary float-right"
-                  >Add New Blog</a
-                >
+                <h3 class="card-title">All Reservations</h3>
               </div>
-              <!-- Table displaying blogs -->
+              <!-- Table displaying reservations -->
               <div class="card-body">
                 <div class="table-responsive">
                   <table class="table table-striped table-sm">
                     <thead>
                       <tr>
-                        <th>title</th>
-                        <th>content</th>
-                        <th>author_id</th>
-                        <th>imageUrl</th>
+                        <th>user_tour_id</th>
+
+                        <th>user_id</th>
+                        <th>tour_id</th>
+                        <th>adult_quantity</th>
+                        <th>kids_quantity</th>
+                        <th>child_quantity</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <% blogs.forEach(blog => { %>
+                      <% user_tours.forEach(usertour => { %>
                       <tr>
-                        <td><%= blog.title %></td>
-                        <td><%= blog.content %></td>
-                        <td><%= blog.author_id %></td>
-                        <td><%= blog.imageUrl %></td>
+                        <td><%= usertour.user_tour_id %></td>
+
+                        <td><%= usertour.user_id %></td>
+                        <td><%= usertour.tour_id %></td>
+                        <td><%= usertour.adult_quantity %></td>
+                        <td><%= usertour.kids_quantity %></td>
+                        <td><%= usertour.child_quantity %></td>
 
                         <td>
                           <a
-                            href="/api/blogs/<%= blog.blog_id %>"
+                            href="/api/user_tours/<%= usertour.user_tour_id %>"
                             class="btn btn-info btn-sm my-2"
                             >View</a
                           >
                           <a
-                            href="/api/blogs/<%= blog.blog_id %>/edit"
+                            href="/api/user_tours/<%= usertour.user_tour_id%>/edit"
                             class="btn btn-warning btn-sm mb-2"
                             >Update</a
                           >
                           <button
                             class="btn btn-danger btn-sm"
-                            onclick="deleteBlog('<%= blog.blog_id %>')"
+                            onclick="deleteReservation('<%=usertour.user_tour_id  %>')"
                           >
                             Delete
                           </button>
@@ -181,14 +196,14 @@
     <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.1/dist/js/adminlte.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-      function deleteBlog(blogId) {
-        if (confirm("Are you sure you want to delete this blog?")) {
-          fetch(`/api/blogs/${blogId}`, { method: "DELETE" })
+      function deleteReservation(userTourId) {
+        if (confirm("Are you sure you want to delete this reservation?")) {
+          fetch(`/api/userTours/${userTourId}`, { method: "DELETE" })
             .then((response) => {
               if (response.ok) {
                 window.location.reload();
               } else {
-                alert("Failed to delete the blog");
+                alert("Failed to delete the reservation");
               }
             })
             .catch((error) => {
