@@ -319,15 +319,30 @@ const BookPackage = ({
 
   useEffect(() => {
     dispatch(setPrices({ adultPrice, kidsPrice, childrenPrice }));
-  }, []);
+  }, [dispatch, adultPrice, kidsPrice, childrenPrice]);
 
   useEffect(() => {
     dispatch(setPrices({ adultPrice, kidsPrice, childrenPrice })); // Set prices in the slice
-  }, []);
+  }, [
+    adultPrice,
+    kidsPrice,
+    childrenPrice,
+    name,
+    languagesSupport,
+    maxGusts,
+    miniAge,
+    dispatch,
+  ]);
 
   useEffect(() => {
     dispatch(calculateTotalCost()); // Calculate total cost
-  }, []);
+  }, [
+    adult_quantity,
+    kids_quantity,
+    child_quantity,
+    additional_service_ids,
+    dispatch,
+  ]);
 
   return (
     <div>
