@@ -133,16 +133,16 @@ function Header() {
 
                 <li className="nav-item dropdown me-4">
                   <Link
-                    className="nav-link dropdown-toggle text-dark"
-                    to="#"
-                    id="navbarDropdownTours"
-                    role="button"
-                    data-bs-toggle="dropdown"
-                    aria-expanded="false"
+                    className="nav-link  text-dark"
+                    to="/tourgrid"
+                  /* id="navbarDropdownTours"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false" */
                   >
                     Tours
                   </Link>
-                  <ul
+                  {/* <ul
                     className="dropdown-menu"
                     aria-labelledby="navbarDropdownTours"
                   >
@@ -152,11 +152,11 @@ function Header() {
                       </Link>
                     </li>
                     <li>
-                      <Link className="dropdown-item" to="/tourdetail">
+                       <Link className="dropdown-item" to="/tourdetail">
                         Tour Detail
-                      </Link>
+                      </Link> 
                     </li>
-                  </ul>
+                  </ul> */}
                 </li>
                 <li className="nav-item me-4">
                   <Link to="/destination" className="nav-link text-dark">
@@ -170,17 +170,19 @@ function Header() {
                 </li>
 
                 <li className="nav-item dropdown me-4">
-                  <a
-                    className="nav-link dropdown-toggle text-dark"
-                    href="#"
-                    id="navbarDropdownBlog"
-                    role="button"
-                    data-bs-toggle="dropdown"
-                    aria-expanded="false"
+
+                  <Link
+                    className="nav-link  text-dark"
+                    to="/blog"
+
+                  /* id="navbarDropdownBlog"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false" */
                   >
                     Blog
-                  </a>
-                  <ul
+                  </Link>
+                  {/* <ul
                     className="dropdown-menu"
                     aria-labelledby="navbarDropdownBlog"
                   >
@@ -194,7 +196,7 @@ function Header() {
                         Blog Detail
                       </Link>
                     </li>
-                  </ul>
+                  </ul> */}
                 </li>
               </ul>
 
