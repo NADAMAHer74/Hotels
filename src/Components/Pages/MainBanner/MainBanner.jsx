@@ -43,11 +43,6 @@
 
 // export default MainBanner;
 
-
-
-
-
-
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchBanner } from "../../../APIs/MainBannerApi";
@@ -59,7 +54,7 @@ function MainBanner(props) {
   const { bannerData, status, error } = useSelector((state) => state.banner);
 
   useEffect(() => {
-    if (status === 'idle') {
+    if (status === "idle") {
       dispatch(fetchBanner());
     }
   }, [status, dispatch]);
@@ -68,7 +63,7 @@ function MainBanner(props) {
     <div>
       <div className="mainBanner position-relative d-flex align-items-center justify-content-center z-1">
         <img
-          src={`http://localhost:4000/${bannerData.Image}`} // Assuming Image is the URL or use `URL.createObjectURL()`
+          src={`http://localhost:1000/${bannerData.Image}`} // Assuming Image is the URL or use `URL.createObjectURL()`
           draggable="false"
           className="mainBannerImg"
           alt="mainBanner"
@@ -101,4 +96,3 @@ function MainBanner(props) {
 }
 
 export default MainBanner;
-

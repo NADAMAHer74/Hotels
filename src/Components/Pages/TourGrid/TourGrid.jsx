@@ -36,7 +36,7 @@
 //               <div className="tourCard">
 //                 <img
 //                   className="cardImgTop"
-//                   src={`http://localhost:5000/${tour.tourImage}`}
+//                   src={`http://localhost:1000/${tour.tourImage}`}
 //                   alt={tour.name}
 //                 />
 //                 <div className="cardOverlay">
@@ -209,7 +209,7 @@ const TourGrid = () => {
 
   useEffect(() => {
     dispatch(fetchTours(currentPage));
-  }, [dispatch, currentPage]);
+  }, []);
 
   return (
     <>

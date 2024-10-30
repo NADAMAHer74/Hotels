@@ -15,7 +15,7 @@ const BlogDetails = () => {
   const blogData = useSelector((state) => state.Blogs.blog);
   useEffect(() => {
     dispatch(fetchBlogData({ id }));
-  }, [dispatch, id]);
+  }, []);
 
   return (
     <>
