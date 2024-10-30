@@ -52,7 +52,6 @@ const Home = () => {
     dispatch(fetchDestination());
     dispatch(fetchAbout());
     dispatch(fetchTour());
-    dispatch(fetchVideo());
     dispatch(fetchBlog());
   }, [dispatch]);
   return (
