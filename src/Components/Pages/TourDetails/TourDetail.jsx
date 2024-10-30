@@ -15,11 +15,10 @@ const TourDetail = () => {
   useEffect(() => {
     dispatch(fetchTour({ id }));
   }, [dispatch, id]);
-  useEffect(() => {
-    dispatch(fetchTour({ id })).then(() => {
-    });
-  }, []);
-console.log(tour);
+  // useEffect(() => {
+  //   dispatch(fetchTour({ id })).then(() => {});
+  // }, []);
+  console.log(tour);
   return (
     <div>
       <MainBanner title="Discovery Island Kayak Tour" />
@@ -67,12 +66,14 @@ console.log(tour);
             </div>
 
             <div className="second-section">
-              <img src={`http://localhost:5000/${tour.tourImage}`} alt="Tour" className="discover-image" />
+              <img
+                src={`http://localhost:1000/${tour.tourImage}`}
+                alt="Tour"
+                className="discover-image"
+              />
               <div className="text-image mt-5">
                 <h3>Tour Overview</h3>
-                <p className="mt-3">
-                  {tour.overview}
-                </p>
+                <p className="mt-3">{tour.overview}</p>
               </div>
             </div>
 
@@ -157,22 +158,21 @@ console.log(tour);
             </section>
           </div>
           <div className="col-lg-4 col-md-10 col-sm-12">
-              <BookPackage
-               adultPrice={tour.adultPrice}
-               kidsPrice={tour.kidsPrice}
-               childrenPrice={tour.childrenPrice}
-               location= {tour.location}
-               name= {tour.name}
-               languagesSupport= {tour.languagesSupport}
-               maxGusts= {tour.maxGusts}
-               miniAge= {tour.miniAge}
-               
-               />
-            </div>
+            <BookPackage
+              adultPrice={tour.adultPrice}
+              kidsPrice={tour.kidsPrice}
+              childrenPrice={tour.childrenPrice}
+              location={tour.location}
+              name={tour.name}
+              languagesSupport={tour.languagesSupport}
+              maxGusts={tour.maxGusts}
+              miniAge={tour.miniAge}
+            />
+          </div>
         </div>
       </div>
     </div>
   );
-}
+};
 
 export default TourDetail;

@@ -9,6 +9,7 @@ import {
   faArrowRight,
 } from "@fortawesome/free-solid-svg-icons";
 import Pagination from "../../Shared/Pagination/Pagination";
+import { Link } from "react-router-dom";
 export default function Blog() {
   const dispatch = useDispatch();
   const { blogs } = useSelector((state) => state.Blogs);
@@ -54,7 +55,12 @@ export default function Blog() {
 
                       <div className="row g-lg-1 gx-sm-2 mt-3">
                         <div className="col-auto">
-                          <p className="greenColor">Read more</p>
+                          <Link
+                            to={`/Blogdetail/${blog.blog_id}`}
+                            className="greenColor"
+                          >
+                            Read more
+                          </Link>
                         </div>
                         <div className="col greenColor">
                           <FontAwesomeIcon icon={faArrowRight} />

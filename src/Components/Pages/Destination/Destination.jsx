@@ -10,7 +10,7 @@ function Destination() {
   );
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(fetchDestinations()).then(() => { });
+    dispatch(fetchDestinations()).then(() => {});
   });
   return (
     <>
