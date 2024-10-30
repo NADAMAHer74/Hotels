@@ -5,17 +5,25 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, useLocation } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleUser } from "@fortawesome/free-solid-svg-icons";
-
+import { useNavigate } from 'react-router-dom';
 import { Modal, Button, ModalTitle } from 'react-bootstrap';
 import logo from '../../../images/logo.png'
 import Signup from '../Signup/Signup';
+import { useEffect } from 'react';
 
 const AuthModal = () => {
     const [showModal, setShowModal] = useState(false);
     const [isLogin, setIsLogin] = useState(true);
 
 
+    const { token } = useSelector((state) => state.auth);
+    const navigate = useNavigate();
 
+    useEffect(() => {
+        if (token) {
+            navigate('/protected-route')
+        }
+    }, [token, navigate]);
 
     const handleClose = () => setShowModal(false);
     const handleShow = () => {

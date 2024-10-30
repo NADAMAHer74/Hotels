@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import Cookies from "js-cookie";
 
 import { signInUser, signUpUser } from "../APIs/AuthApi";
 
@@ -7,8 +8,8 @@ export const AuthSlice = createSlice({
     name: 'auth',
     initialState: {
         user: null,
-        token: null,
-        isAuthenticated: false,
+        token: Cookies.get('token') || null,
+        isAuthenticated: !!Cookies.get('token'),
         loading: false,
         error: null,
     },
@@ -18,6 +19,7 @@ export const AuthSlice = createSlice({
             state.token = null;
             state.isAuthenticated = null;
             state.error = null;
+            Cookies.remove('token');
         }
     },
 
@@ -32,6 +34,7 @@ export const AuthSlice = createSlice({
             state.user = action.payload.user;
             state.isAuthenticated = true;
             state.token = action.payload.token;
+            Cookies.set('token', action.payload.token);
         });
         builder.addCase(signUpUser.rejected, (state, action) => {
             state.loading = false;
@@ -47,6 +50,7 @@ export const AuthSlice = createSlice({
             state.user = action.payload.user;
             state.isAuthenticated = true;
             state.token = action.payload.token;
+            Cookies.set('token', action.payload.token);
         });
         builder.addCase(signInUser.rejected, (state, action) => {
             state.loading = false;
