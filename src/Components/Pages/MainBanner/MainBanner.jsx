@@ -63,7 +63,7 @@ function MainBanner(props) {
     <div>
       <div className="mainBanner position-relative d-flex align-items-center justify-content-center z-1">
         <img
-          src={`http://localhost:1000/${bannerData.Image}`} // Assuming Image is the URL or use `URL.createObjectURL()`
+          src={`http://localhost:1000/${bannerData.image}`}
           draggable="false"
           className="mainBannerImg"
           alt="mainBanner"
