@@ -169,7 +169,11 @@
                       <p><strong>kidsPrice:</strong> <%= tour.kidsPrice %></p>
 
                       <p><strong>Type:</strong> <%= tour.type %></p>
-                      <p><strong>Tour Cover:</strong> <%= tour.tourImage %></p>
+                      <p><strong>Tour Cover:</strong><img
+                        src="/<%= tour.tourImage %>"
+                        alt="tour Cover"
+                        style="width: 150px; margin-top: 10px"
+                      /></p>
 
                       <a href="/api/tours" class="btn btn-primary"
                         >Back to tours</a

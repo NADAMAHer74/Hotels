@@ -371,5 +371,77 @@ router.put(
     );
   }
 );
+router.delete("/aboutusimages/:id", verifyToken, checkRole(["Admin"]), (req, res) => {
+  const deleteQuery = "DELETE FROM AboutUsImages WHERE AboutUsImages_ID = ?";
+  
+  req.pool.query(deleteQuery, [req.params.id], (error, results) => {
+    if (error) {
+      console.error("Error deleting AboutUsImages entry:", error);
+      return res.status(500).json({ message: "Internal server error" });
+    }
+    if (results.affectedRows === 0) {
+      return res.status(404).json({ message: "Email AboutUsImages not found" });
+    }
+    res.json({ message: "AboutUsImages entry deleted successfully" });
+  });
+});
+
+router.put("/aboutusimages/visible/:id", verifyToken, checkRole(["Admin"]), (req, res) => {
+  const { visible } = req.body;
+  const updateQuery = `
+    UPDATE AboutUsImages 
+    SET visible = ? 
+    WHERE AboutUsImages_ID = ?
+  `;
+  
+  req.pool.query(updateQuery, [visible, req.params.id], (error, results) => {
+    if (error) {
+      console.error("Error updating visibility:", error);
+      return res.status(500).json({ message: "Internal server error" });
+    }
+    if (results.affectedRows === 0) {
+      return res.status(404).json({ message: "About Us image entry not found" });
+    }
+    res.json({ message: "Visibility updated successfully" });
+  });
+});
+
+
+
+/**
+ * @swagger
+ * /aboutus/body:
+ *   put:
+ *     summary: Update the body of the About Us entry
+ *     tags: [About Us]
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               Body:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: About Us body updated successfully
+ */
+router.put("/aboutusimages/image/:id", verifyToken, checkRole(["Admin"]), (req, res) => {
+  const { image } = req.body;
+  const updateQuery = `UPDATE AboutUs SET image = ? WHERE AboutUsImages_ID = ?`; // Assuming ID 1 for single row
+  req.pool.query(updateQuery, [image,req.params.id], (error, results) => {
+    if (error) {
+      console.error("Error updating About Us image:", error);
+      return res.status(500).json({ message: "Internal server error" });
+    }
+    if (results.affectedRows === 0) {
+      return res.status(404).json({ message: "About Us image entry not found" });
+    }
+    res.json({ message: "About Us image updated successfully" });
+  });
+});
 
 module.exports = router;

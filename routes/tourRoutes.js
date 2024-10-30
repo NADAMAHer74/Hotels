@@ -135,12 +135,12 @@ router.post(
               .status(400)
               .json({ message: "Error creating tour", error });
           }
-          res.status(201).redirect("/api/tours");
-          // .json({
-          //   message: "Tour created successfully",
+           //status(201).redirect("/api/tours"); 
+           res.json({
+            message: "Tour created successfully",
 
-          //   tourId: results.insertId,
-          // });
+            tourId: results.insertId,
+          });
         }
       );
     } catch (error) {
@@ -482,8 +482,8 @@ router.put(
         miniAge,
         maxGusts,
         languagesSupport,
-        image
       } = req.body;
+      const tourImage = req.file ? req.file.path : null;
 
       const updates = [];
       const updateFields = [];
@@ -547,11 +547,14 @@ router.put(
       }
 
       // Check if a new image file is uploaded
-      if (req.file) {
+/*       if (req.file) {
         const tourImage = req.file ? req.file.path : null;
         updates.push(tourImage);
         updateFields.push("tourImage = ?");
-      }
+      } */
+      updates.push(tourImage);
+      updateFields.push("tourImage = ?");
+
 
       // Construct the SQL query with dynamic updates
       const sqlQuery = `

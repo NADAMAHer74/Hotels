@@ -259,41 +259,41 @@
         .getElementById("editDestinationForm")
         .addEventListener("submit", async function (event) {
           event.preventDefault(); // Prevent the default form submission
-
+    
           // Get form element
           const form = document.getElementById("editDestinationForm");
-
-          // Create a JSON object from form data
-          const formData = {
-            name: form.name.value,
-
-            location: form.location.value,
-            category: form.category.value,
-            visible: form.visible.value,
-          };
-
+    
+          // Create FormData object from form data
+          const formData = new FormData();
+          formData.append("name", form.name.value);
+          formData.append("location", form.location.value);
+          formData.append("category", form.category.value);
+          formData.append("visible", form.visible.value);
+    
+          // Append the image file if a file is selected
+          if (form.image.files[0]) {
+            formData.append("image", form.image.files[0]);
+          }
+    
           const destinationId = "<%= destination.destination_id %>";
-
+    
           try {
             const response = await fetch(`/api/destinations/${destinationId}`, {
               method: "PUT",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify(formData),
+              body: formData, // Send FormData directly
             });
-
+    
             if (response.ok) {
               alert("Destination updated successfully");
-              window.location.href = "/api/destinations"; // Redirect to tours list
+              window.location.href = "/api/destinations"; // Redirect to destinations list
             } else {
               const errorData = await response.json();
-
+    
               // Check if errorData is an array, otherwise handle it as an object
               const errorMessage = Array.isArray(errorData)
                 ? errorData.join(", ")
                 : errorData.message || JSON.stringify(errorData);
-
+    
               alert("Failed to update destination: " + errorMessage);
             }
           } catch (error) {
