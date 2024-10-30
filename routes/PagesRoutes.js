@@ -236,7 +236,7 @@ router.delete("/pages/:id", verifyToken, checkRole(["Admin"]), (req, res) => {
   });
 });
 
-router.get("/pages/:tour_id/edit", async (req, res) => {
+router.get("/pages/:page_id/edit", async (req, res) => {
   const query = "SELECT * FROM tours WHERE page_id = ?";
   req.pool.query(query, [req.params.tour_id], (error, results) => {
     if (error) {
@@ -244,7 +244,7 @@ router.get("/pages/:tour_id/edit", async (req, res) => {
       return res.status(500).json({ message: "Internal server error" });
     }
     if (results.length === 0) {
-      return res.status(404).json({ message: "Tour not found" });
+      return res.status(404).json({ message: "page not found" });
     }
     // res.json(results[0]);
     res.render("editPage", { tour: results[0] });

@@ -34,7 +34,7 @@ const JWT_SECRET = "your_jwt_secret_key";
  *       400:
  *         description: User already exists
  */
-router.post("/signup", async (req, res) => {
+/* router.post("/signup", async (req, res) => {
   const {
     firstName,
     lastName,
@@ -98,7 +98,7 @@ router.post("/signup", async (req, res) => {
     console.error("Unexpected error:", error);
     res.status(500).json({ message: "Internal server error" });
   }
-});
+}); */
 
 /**
  * @swagger
@@ -147,7 +147,7 @@ router.post("/signup", async (req, res) => {
  *       404:
  *         description: User not found
  */
-/* router.post("/admin/signin", async (req, res) => {
+router.post("/admin/signin", async (req, res) => {
   const { email, password } = req.body;
   console.log("Received signin request:", req.body);
 
@@ -205,9 +205,9 @@ router.post("/signup", async (req, res) => {
     console.error("Unexpected error:", error);
     res.status(500).json({ message: "Internal server error" });
   }
-}); */
+});
 
-router.post("/signin", async (req, res) => {
+/* router.post("/signin", async (req, res) => {
   const { email, password } = req.body;
   console.log("Received signin request:", req.body);
 
@@ -254,17 +254,17 @@ router.post("/signin", async (req, res) => {
         maxAge: 3600000, // Expiration time in milliseconds (1 hour)
       });
 
-      res.status(200).json({
-        message: "User authenticated successfully",
-        user: userData,
-      });
-/*       res.header("token", token).redirect("/api/tours"); */
+      // res.status(200).json({
+      //   message: "User authenticated successfully",
+      //   user: userData,
+      // });
+      res.header("token", token).redirect("/api/tours");
     });
   } catch (error) {
     console.error("Unexpected error:", error);
     res.status(500).json({ message: "Internal server error" });
   }
-});
+}); */
 
 /**
  * @swagger
@@ -282,7 +282,7 @@ router.post("/signin", async (req, res) => {
  *               items:
  *                 type: object
  */
-router.get("/users", (req, res) => {
+/* router.get("/users", (req, res) => {
   const query = "SELECT * FROM users";
   req.pool.query(query, (error, results) => {
     if (error) {
@@ -291,7 +291,7 @@ router.get("/users", (req, res) => {
     }
     res.json(results);
   });
-});
+}); */
 
 /**
  * @swagger
@@ -349,7 +349,7 @@ router.get("/users/:id", (req, res) => {
  *       404:
  *         description: User not found
  */
-router.delete("/users/:id", (req, res) => {
+/* router.delete("/users/:id", (req, res) => {
   const query = "DELETE FROM users WHERE id = ?";
   req.pool.query(query, [req.params.id], (error, results) => {
     if (error) {
@@ -361,7 +361,7 @@ router.delete("/users/:id", (req, res) => {
     }
     res.json({ message: "User deleted successfully" });
   });
-});
+}); */
 
 /**
  * @swagger
@@ -401,7 +401,7 @@ router.delete("/users/:id", (req, res) => {
  *       404:
  *         description: User not found
  */
-router.put("/users/:id", (req, res) => {
+/* router.put("/users/:id", (req, res) => {
   try {
     const { firstName, lastName, email, phone, password, role } = req.body;
 
@@ -457,6 +457,6 @@ router.put("/users/:id", (req, res) => {
     console.error("Invalid JSON format:", error);
     return res.status(400).json({ message: "Invalid JSON format" });
   }
-});
+}); */
 
 module.exports = router;

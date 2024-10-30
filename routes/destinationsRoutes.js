@@ -70,19 +70,21 @@ router.post(
   (req, res) => {
     const { name, location, category, visible } = req.body;
     const image = req.file ? req.file.path : null;
-    const insertQuery = `INSERT INTO destinations (name, location, category, image, visible) VALUES (?, ?, ?, ?, ?)`;
+    const insertQuery = `INSERT INTO destinations (name, location,category, image, visible) VALUES (?, ?, ?, ?, ?)`;
 
     req.pool.query(
       insertQuery,
-      [name,location, category, image, visible],
+      [name, location, category, image, visible],
       (error, results) => {
         if (error) {
           console.error("Error inserting destination entry:", error);
           return res.status(500).json({ message: "Internal server error" });
         }
-        res
-          .status(201)
-          .json({ message: "Destination entry created successfully" });
+        res.status(201).redirect("/api/destinations");
+
+        // res
+        //   .status(201)
+        //   .json({ message: "Destination entry created successfully" });
       }
     );
   }
@@ -126,8 +128,14 @@ router.get("/destinations", (req, res) => {
       console.error("Error fetching destination entries:", error);
       return res.status(500).json({ message: "Internal server error" });
     }
-    res.json(results);
+    //res.json(results);
+     res.render("destinations", { destinations: results });
   });
+});
+router.get("/destinations/new", async (req, res) => {
+  // Pass authors to the template along with an empty course object
+
+  res.render("addDestination", { destination: {} });
 });
 
 /**
@@ -178,7 +186,23 @@ router.get("/destinations/:id", (req, res) => {
     if (results.length === 0) {
       return res.status(404).json({ message: "Destination entry not found" });
     }
-    res.json(results[0]);
+    // res.json(results[0]);
+    res.render("viewDestination", { destination: results[0] });
+  });
+});
+
+router.get("/destinations/:id/edit", async (req, res) => {
+  const query = "SELECT * FROM destinations WHERE destination_id = ?";
+  req.pool.query(query, [req.params.id], (error, results) => {
+    if (error) {
+      console.error("Error fetching destination entry:", error);
+      return res.status(500).json({ message: "Internal server error" });
+    }
+    if (results.length === 0) {
+      return res.status(404).json({ message: "Destination entry not found" });
+    }
+    // res.json(results[0]);
+    res.render("editDestination", { destination: results[0] });
   });
 });
 
@@ -226,13 +250,13 @@ router.put(
   checkRole(["Admin"]),
   upload.single("image"),
   (req, res) => {
-    const { name, category, visible } = req.body;
+    const { name, category, location, visible } = req.body;
     const image = req.file ? req.file.path : null;
-    const updateQuery = `UPDATE destinations SET name = ?, category = ?, image = ?, visible = ? WHERE destination_id = ?`;
+    const updateQuery = `UPDATE destinations SET name = ?, category = ?, location = ?, image = ?, visible = ? WHERE destination_id = ?`;
 
     req.pool.query(
       updateQuery,
-      [name, category, image, visible, req.params.id],
+      [name, category, location, image, visible, req.params.id],
       (error, results) => {
         if (error) {
           console.error("Error updating destination entry:", error);
@@ -289,65 +313,5 @@ router.delete(
     });
   }
 );
-
-
-/**
- * @swagger
- * /paginationOfDestinations:
- *   get:
- *     summary: Get pagination destination entries
- *     tags: [Destinations]
- *     parameters:
- *       - in: query
- *         name: page
- *         schema:
- *           type: integer
- *         description: Page number for pagination
- *       - in: query
- *         name: limit
- *         schema:
- *           type: integer
- *         description: Number of tours to retrieve per page (default is 6)
- *     responses:
- *       200:
- *         description: A list of destination entries
- *         content:
- *           application/json:
- *             schema:
- *               type: array
- *               items:
- *                 type: object
- *                 properties:
- *                   destination_id:
- *                     type: integer
- *                   name:
- *                     type: string
- *                   location:
- *                     type: string
- *                   category:
- *                     type: string
- *                   image:
- *                     type: string
- *                     description: Local URL of the image
- *                   visible:
- *                     type: integer
- */
-router.get("/paginationOfDestinations", (req, res) => {
-  const page = parseInt(req.query.page) || 1;
-  const limit = parseInt(req.query.limit) || 6;
-  const offset = (page - 1) * limit;
-
-  const query = "SELECT * FROM destinations LIMIT ? OFFSET ?";
-  req.pool.query(query, [limit, offset], (error, results) => {
-    if (error) {
-      return res.status(500).json({ message: "Internal server error" });
-    }
-    res.json({
-      page,
-      limit,
-      tours: results,
-    });
-  });
-});
 
 module.exports = router;

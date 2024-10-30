@@ -3,7 +3,6 @@ const jwt = require("jsonwebtoken");
 const { verifyToken } = require("../middlewares/token");
 const userRoutes = require("./userRoutes");
 const router = express.Router();
-const getCurrentTimestamp = require("../migrations/time");
 
 /**
  * @swagger
@@ -49,14 +48,14 @@ router.post("/user_tours", verifyToken, (req, res) => {
   if (!tour_id || !adult_quantity || !kids_quantity || !child_quantity) {
     return res.status(400).json({ message: "Missing required fields." });
   }
-  const created_at = getCurrentTimestamp();
+
   const insertTourQuery = `
-        INSERT INTO user_tours (user_id, tour_id, adult_quantity, kids_quantity, child_quantity, created_at)
-        VALUES (?, ?, ?, ?, ?, ?)`;
+        INSERT INTO user_tours (user_id, tour_id, adult_quantity, kids_quantity, child_quantity)
+        VALUES (?, ?, ?, ?, ?)`;
 
   req.pool.query(
     insertTourQuery,
-    [req.user.userId, tour_id, adult_quantity, kids_quantity, child_quantity, created_at],
+    [req.user.userId, tour_id, adult_quantity, kids_quantity, child_quantity],
     (error, tourResult) => {
       if (error) {
         console.error("Error inserting tour:", error);
@@ -64,8 +63,6 @@ router.post("/user_tours", verifyToken, (req, res) => {
       }
 
       const userTourId = tourResult.insertId;
-      console.log("User tour ID:", userTourId);
-      console.log("Additional services:", additional_service_ids);
 
       if (additional_service_ids && additional_service_ids.length > 0) {
         const insertServicesQuery = `
@@ -132,38 +129,38 @@ router.post("/user_tours", verifyToken, (req, res) => {
  *       500:
  *         description: Internal server error
  */
-router.get("/user_tours", verifyToken, (req, res) => {
-  const userId = req.user.userId;
-
+router.get("/user_tours", (req, res) => {
   const query = `
       SELECT ut.*, 
              GROUP_CONCAT(s.service_name) AS additional_services
       FROM user_tours ut
       LEFT JOIN user_tours_additional_services uas ON ut.user_tour_id = uas.user_tour_id
       LEFT JOIN available_additional_services s ON uas.additional_service_id = s.available_additional_service_id
-      WHERE ut.user_id = ?
       GROUP BY ut.user_tour_id`;
 
-  req.pool.query(query, [userId], (error, tours) => {
+  req.pool.query(query, (error, results) => {
     if (error) {
       console.error("Error fetching user tours:", error);
       return res.status(500).json({ message: "Internal server error" });
     }
+    console.log(results);
 
-    res.json({
-      user_tours: tours.map((tour) => ({
-        user_tour_id: tour.user_tour_id,
-        tour_id: tour.tour_id,
-        adult_quantity: tour.adult_quantity,
-        kids_quantity: tour.kids_quantity,
-        child_quantity: tour.child_quantity,
-        created_at: tour.created_at,
-        updated_at: tour.updated_at,
-        additional_services: tour.additional_services
-          ? tour.additional_services.split(",")
-          : [],
-      })),
-    });
+    res.render("userTours", { user_tours: results });
+
+    // res.json({
+    //   user_tours: tours.map((tour) => ({
+    //     user_tour_id: tour.user_tour_id,
+    //     tour_id: tour.tour_id,
+    //     adult_quantity: tour.adult_quantity,
+    //     kids_quantity: tour.kids_quantity,
+    //     child_quantity: tour.child_quantity,
+    //     created_at: tour.created_at,
+    //     updated_at: tour.updated_at,
+    //     additional_services: tour.additional_services
+    //       ? tour.additional_services.split(",")
+    //       : [],
+    //   })),
+    // });
   });
 });
 
@@ -215,19 +212,34 @@ router.get("/user_tours/:id", (req, res) => {
           return res.status(500).json({ message: "Internal server error" });
         }
 
-        res.json({
-          trip: {
-            data: {
-              ...tourResult[0],
-              additional_services: additionalServices,
-            },
-          },
-        });
+        // res.json({
+        //   trip: {
+        //     data: {
+        //       ...tourResult[0],
+        //       additional_services: additionalServices,
+        //     },
+        //   },
+        // });
+        res.render("viewUserTours", { user_tour: tourResult[0] });
       }
     );
   });
 });
 
+router.get("/user_tours/:id/edit", async (req, res) => {
+  const query = "SELECT * FROM user_tours WHERE user_tour_id = ?";
+  req.pool.query(query, [req.params.id], (error, results) => {
+    if (error) {
+      console.error("Error fetching reservation entry:", error);
+      return res.status(500).json({ message: "Internal server error" });
+    }
+    if (results.length === 0) {
+      return res.status(404).json({ message: "Reservation entry not found" });
+    }
+    // res.json(results[0]);
+    res.render("editUserTours", { user_tour: results[0] });
+  });
+});
 /**
  * @swagger
  * /user_tours/{id}:

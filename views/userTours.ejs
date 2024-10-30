@@ -119,12 +119,12 @@
           <div class="container-fluid">
             <div class="row mb-2">
               <div class="col-sm-6">
-                <h1>All Destinations</h1>
+                <h1>All Reservations</h1>
               </div>
               <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                   <li class="breadcrumb-item"><a href="#">Home</a></li>
-                  <li class="breadcrumb-item active">All Destinations</li>
+                  <li class="breadcrumb-item active">All Reservations</li>
                 </ol>
               </div>
             </div>
@@ -132,114 +132,65 @@
         </section>
 
         <!-- Main content -->
-        <div class="app-content">
-          <!--begin::Container-->
+        <section class="content">
           <div class="container-fluid">
-            <!--begin::Row-->
-            <div class="row g-4">
-              <!--begin::Col-->
-              <div class="col-md-6">
-                <!--begin::Quick Example-->
-                <div class="card card-primary card-outline mb-4">
-                  <div class="card-header">
-                    <div class="card-title">Adding Destination</div>
-                  </div>
-                  <!--end::Header-->
-                  <!--begin::Form-->
-                  <form
-                    action="/api/destinations"
-                    method="POST"
-                    enctype="multipart/form-data"
-                  >
-                    <div class="card-body">
-                      <!-- Display Error Messages -->
-                      <div class="mb-3">
-                        <div class="form-group">
-                          <label for="name">Destination Name</label>
-                          <input
-                            type="text"
-                            class="form-control"
-                            id="name"
-                            name="name"
-                            required
-                            minlength="5"
-                            value="<%= destination.name || '' %>"
-                          />
-                        </div>
-                      </div>
-                      <div class="mb-3">
-                        <div class="form-group">
-                          <label for="location">Location</label>
-                          <input
-                            type="text"
-                            class="form-control"
-                            id="location"
-                            name="location"
-                            required
-                            minlength="5"
-                            value="<%= destination.location || '' %>"
-                          />
-                        </div>
-                      </div>
+            <div class="card card-primary card-outline">
+              <div class="card-header">
+                <h3 class="card-title">All Reservations</h3>
+              </div>
+              <!-- Table displaying reservations -->
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table class="table table-striped table-sm">
+                    <thead>
+                      <tr>
+                        <th>user_tour_id</th>
 
-                      <div class="mb-3">
-                        <div class="form-group">
-                          <label for="category">Category</label>
-                          <input
-                            type="text"
-                            class="form-control"
-                            id="category"
-                            name="category"
-                            required
-                            minlength="5"
-                            value="<%= destination.category || '' %>"
-                          />
-                        </div>
-                      </div>
+                        <th>user_id</th>
+                        <th>tour_id</th>
+                        <th>adult_quantity</th>
+                        <th>kids_quantity</th>
+                        <th>child_quantity</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <% user_tours.forEach(usertour => { %>
+                      <tr>
+                        <td><%= usertour.user_tour_id %></td>
 
-                      <div class="mb-3">
-                        <div class="form-group">
-                          <label for="image">Destination Cover</label>
-                          <input
-                            type="file"
-                            class="form-control-file"
-                            id="image"
-                            name="image"
-                          />
-                        </div>
-                      </div>
-                      <div class="mb-3">
-                        <div class="form-group">
-                          <label for="visible">Visibility</label>
-                          <input
-                            type="number"
-                            class="form-control"
-                            id="visible"
-                            name="visible"
-                            required
-                            minlength="5"
-                            value="<%= destination.visible || '' %>"
-                          />
-                        </div>
-                      </div>
+                        <td><%= usertour.user_id %></td>
+                        <td><%= usertour.tour_id %></td>
+                        <td><%= usertour.adult_quantity %></td>
+                        <td><%= usertour.kids_quantity %></td>
+                        <td><%= usertour.child_quantity %></td>
 
-                      <div class="mb-3">
-                        <button type="submit" class="btn btn-primary">
-                          Add Destination
-                        </button>
-                      </div>
-                    </div>
-                  </form>
-                  <!--end::Form-->
+                        <td>
+                          <a
+                            href="/api/user_tours/<%= usertour.user_tour_id %>"
+                            class="btn btn-info btn-sm my-2"
+                            >View</a
+                          >
+                          <a
+                            href="/api/user_tours/<%= usertour.user_tour_id%>/edit"
+                            class="btn btn-warning btn-sm mb-2"
+                            >Update</a
+                          >
+                          <button
+                            class="btn btn-danger btn-sm"
+                            onclick="deleteReservation('<%=usertour.user_tour_id  %>')"
+                          >
+                            Delete
+                          </button>
+                        </td>
+                      </tr>
+                      <% }) %>
+                    </tbody>
+                  </table>
                 </div>
               </div>
-              <!--end::Col-->
-              <!--begin::Col-->
             </div>
-            <!--end::Row-->
           </div>
-          <!--end::Container-->
-        </div>
+        </section>
       </div>
 
       <!-- Footer -->
@@ -257,5 +208,22 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.1/dist/js/adminlte.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      function deleteReservation(userTourId) {
+        if (confirm("Are you sure you want to delete this reservation?")) {
+          fetch(`/api/userTours/${userTourId}`, { method: "DELETE" })
+            .then((response) => {
+              if (response.ok) {
+                window.location.reload();
+              } else {
+                alert("Failed to delete the reservation");
+              }
+            })
+            .catch((error) => {
+              console.error("Error:", error);
+            });
+        }
+      }
+    </script>
   </body>
 </html>

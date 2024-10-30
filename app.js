@@ -4,6 +4,7 @@ const cors = require("cors");
 const path = require("path");                        
 const app = express();
 const cookieParser = require("cookie-parser"); // Import cookie-parser
+const adminRoutes = require("./routes/adminRoutes/adminUserRoutes");
 const userRoutes = require("./routes/userRoutes");
 const tourRoutes = require("./routes/tourRoutes");
 const userTourRoutes = require("./routes/userTourRoutes");
@@ -128,7 +129,8 @@ app.use("/api", servicesRoutes);
 app.use("/api", imageBannersRoutes);
 app.use("/api", userToursAdditionalServicesRoutes);
 app.use("/api", toursAdditionalServices);
-app.get("/signin", (req, res) => {
+app.use("/api", adminRoutes);
+app.get("/admin/signin", (req, res) => {
   res.render("signin");
 });
 app.listen(1000, () => {

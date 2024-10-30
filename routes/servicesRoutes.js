@@ -1,5 +1,6 @@
 const express = require("express");
-const multer = require("multer");
+const multer = require("multer")
+const path = require("path");;
 const router = express.Router();
 const { verifyToken, checkRole } = require("../middlewares/token");
 const storage = multer.diskStorage({

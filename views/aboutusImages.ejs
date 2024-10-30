@@ -119,12 +119,12 @@
           <div class="container-fluid">
             <div class="row mb-2">
               <div class="col-sm-6">
-                <h1>All Destinations</h1>
+                <h1>All About Us</h1>
               </div>
               <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                   <li class="breadcrumb-item"><a href="#">Home</a></li>
-                  <li class="breadcrumb-item active">All Destinations</li>
+                  <li class="breadcrumb-item active">All Courses</li>
                 </ol>
               </div>
             </div>
@@ -132,114 +132,75 @@
         </section>
 
         <!-- Main content -->
-        <div class="app-content">
-          <!--begin::Container-->
+        <section class="content">
           <div class="container-fluid">
-            <!--begin::Row-->
-            <div class="row g-4">
-              <!--begin::Col-->
-              <div class="col-md-6">
-                <!--begin::Quick Example-->
-                <div class="card card-primary card-outline mb-4">
-                  <div class="card-header">
-                    <div class="card-title">Adding Destination</div>
-                  </div>
-                  <!--end::Header-->
-                  <!--begin::Form-->
-                  <form
-                    action="/api/destinations"
-                    method="POST"
-                    enctype="multipart/form-data"
-                  >
-                    <div class="card-body">
-                      <!-- Display Error Messages -->
-                      <div class="mb-3">
-                        <div class="form-group">
-                          <label for="name">Destination Name</label>
-                          <input
-                            type="text"
-                            class="form-control"
-                            id="name"
-                            name="name"
-                            required
-                            minlength="5"
-                            value="<%= destination.name || '' %>"
-                          />
-                        </div>
-                      </div>
-                      <div class="mb-3">
-                        <div class="form-group">
-                          <label for="location">Location</label>
-                          <input
-                            type="text"
-                            class="form-control"
-                            id="location"
-                            name="location"
-                            required
-                            minlength="5"
-                            value="<%= destination.location || '' %>"
-                          />
-                        </div>
-                      </div>
-
-                      <div class="mb-3">
-                        <div class="form-group">
-                          <label for="category">Category</label>
-                          <input
-                            type="text"
-                            class="form-control"
-                            id="category"
-                            name="category"
-                            required
-                            minlength="5"
-                            value="<%= destination.category || '' %>"
-                          />
-                        </div>
-                      </div>
-
-                      <div class="mb-3">
-                        <div class="form-group">
-                          <label for="image">Destination Cover</label>
+            <div class="card card-primary card-outline">
+              <div class="card-header">
+                <h3 class="card-title">All aboutus Images</h3>
+              </div>
+              <!-- Table displaying courses -->
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table class="table table-striped table-sm">
+                    <thead>
+                      <tr>
+                        <th>Images</th>
+                        <th>Visible</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <% aboutusimages.forEach(aboutimage => { %>
+                      <tr>
+                        <td>
                           <input
                             type="file"
                             class="form-control-file"
-                            id="image"
+                            id="image-<%= aboutimage.AboutUsImages_ID %>"
                             name="image"
                           />
-                        </div>
-                      </div>
-                      <div class="mb-3">
-                        <div class="form-group">
-                          <label for="visible">Visibility</label>
-                          <input
-                            type="number"
-                            class="form-control"
-                            id="visible"
-                            name="visible"
-                            required
-                            minlength="5"
-                            value="<%= destination.visible || '' %>"
+                          <img
+                            src="/<%= aboutimage.Image %>"
+                            alt="aboutus Covers"
+                            style="width: 150px; margin-top: 10px"
                           />
-                        </div>
-                      </div>
+                        </td>
+                        <td>
+                          <label>
+                            <input
+                              type="number"
+                              name="visible"
+                              id="visible-<%= aboutimage.AboutUsImages_ID %>"
+                              value="<%= aboutimage.visible %>"
+                            />
+                          </label>
+                          <p><%= aboutimage.visible %></p>
+                        </td>
 
-                      <div class="mb-3">
-                        <button type="submit" class="btn btn-primary">
-                          Add Destination
-                        </button>
-                      </div>
-                    </div>
-                  </form>
-                  <!--end::Form-->
+                        <td>
+                          <button
+                            class="btn btn-danger btn-sm"
+                            onclick="handleUpdateAboutImage('<%= aboutimage.AboutUsImages_ID %>')"
+                          >
+                            Update
+                          </button>
+                        </td>
+                        <td>
+                          <button
+                            class="btn btn-danger btn-sm"
+                            onclick="deleteCourse('<%= aboutimage.AboutUsImages_ID %>')"
+                          >
+                            Delete
+                          </button>
+                        </td>
+                      </tr>
+                      <% }) %>
+                    </tbody>
+                  </table>
                 </div>
               </div>
-              <!--end::Col-->
-              <!--begin::Col-->
             </div>
-            <!--end::Row-->
           </div>
-          <!--end::Container-->
-        </div>
+        </section>
       </div>
 
       <!-- Footer -->
@@ -257,5 +218,81 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.1/dist/js/adminlte.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      function deleteCourse(aboutImageId) {
+        if (confirm("Are you sure you want to delete this about image?")) {
+          fetch(`/api/aboutusimages/${aboutImageId}`, { method: "DELETE" })
+            .then((response) => {
+              if (response.ok) {
+                window.location.reload();
+              } else {
+                alert("Failed to delete the about image");
+              }
+            })
+            .catch((error) => {
+              console.error("Error:", error);
+            });
+        }
+      }
+      //   function updateAboutImage(aboutImageId) {
+      //     fetch(`/api/aboutusimages/${aboutImageId}`, { method: "PUT" })
+      //       .then((response) => {
+      //         if (response.ok) {
+      //           window.location.reload();
+      //         } else {
+      //           alert("Failed to update the about image");
+      //         }
+      //       })
+      //       .catch((error) => {
+      //         console.error("Error:", error);
+      //       });
+      //   }
+      function handleUpdateAboutImage(aboutImageId) {
+        const visibilityInput = document.getElementById(
+          `visible-${aboutImageId}`
+        );
+        const visibility = visibilityInput ? visibilityInput.value : null;
+
+        const imageInput = document.getElementById(`image-${aboutImageId}`);
+        const imageFile = imageInput.files[0];
+
+        if (imageFile) {
+          const reader = new FileReader();
+          reader.onload = function (event) {
+            const imageData = event.target.result; // Base64 image data
+            updateAboutImage(aboutImageId, visibility, imageData);
+          };
+          reader.readAsDataURL(imageFile); // Converts the image to Base64
+        } else {
+          // If no new image is provided, only send visibility
+          updateAboutImage(aboutImageId, visibility, null);
+        }
+      }
+
+      function updateAboutImage(aboutImageId, visibility, imageData) {
+        const data = {
+          visibility: visibility,
+          image: imageData, // This will be null if no new image is provided
+        };
+
+        fetch(`/api/aboutusimages/${aboutImageId}`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        })
+          .then((response) => {
+            if (response.ok) {
+              window.location.reload();
+            } else {
+              alert("Failed to update the about image");
+            }
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+          });
+      }
+    </script>
   </body>
 </html>
