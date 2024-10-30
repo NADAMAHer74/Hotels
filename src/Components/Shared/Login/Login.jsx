@@ -6,6 +6,10 @@ import logo from "../../../images/logo.png";
 import { useDispatch, useSelector } from 'react-redux';
 import { signInUser } from '../../../APIs/AuthApi';
 import '../Login/Login.css'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
 
 const Login = () => {
 
@@ -19,8 +23,10 @@ const Login = () => {
 
 
 
-    const handleLogin = (e) => {
+    const handleLogin = async (e) => {
         e.preventDefault();
+
+        setError({ email: '', password: '' });
 
 
 
@@ -36,19 +42,35 @@ const Login = () => {
         }
 
 
+        try {
+            await dispatch(signInUser({ email, password }));
+            toast.success("Login Successful!");
+            setFormSubmitted(true);
+
+            setEmail('');
+            setPassword('');
+        } catch (error) {
+            const errorMessage = error.message || "An error occurred during login.";
+            toast.error(errorMessage);
+        }
+
+
+
         console.log({ email, password });
         // Handle login logic here
-        dispatch(signInUser({ email, password }));
+        /* dispatch(signInUser({ email, password }));
         setEmail('');
         setPassword('')
-        setFormSubmitted(true);
+        setFormSubmitted(true); */
     };
+    const authErrorMessage = auth.error ? (typeof auth.error === 'object' ? auth.error.message : auth.error) : null;
+
 
     return (
         <div>
             <Form onSubmit={handleLogin}>
                 {auth.loading && <p>Loading...</p>}
-                {auth.error && <Alert variant='danger'>{auth.error}</Alert>}
+                {authErrorMessage && <Alert variant='danger'>{authErrorMessage}</Alert>}
                 {formSubmitted && <Alert variant='success'>Login Successful!</Alert>}
                 <Row>
                     <Form.Label htmlFor="loginEmail">Email</Form.Label>

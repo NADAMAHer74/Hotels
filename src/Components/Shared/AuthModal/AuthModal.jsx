@@ -49,7 +49,8 @@ const AuthModal = () => {
  */    return (
         <>
             {token && user ? (
-                <Dropdown className='profileBtn p-0'>
+                <Dropdown className='profileBtn '>
+
                     <Dropdown.Toggle variant="success" id="dropdown-basic">
                         {`${user.firstName} ${user.lastName}`}
                     </Dropdown.Toggle>
