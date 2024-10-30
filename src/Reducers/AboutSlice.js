@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchAboutImgs, fetchAboutContent, fetchAboutStats, fetchWhatWeDoImg, fetchWhatWeDo } from "../APIs/AboutApi";
+import { fetchAboutImgs, fetchAboutContent, fetchAboutStats, fetchWhatWeDoImg, fetchWhatWeDo, fetchAboutServices } from "../APIs/AboutApi";
 
 export const AboutSlice = createSlice({
     name: 'about',
@@ -9,6 +9,7 @@ export const AboutSlice = createSlice({
         aboutUsStats: [],
         whatWeDoImg: [],
         whatWeDo: {},
+        aboutServices: [],
     },
     reducers: {},
     extraReducers: (builder) => {
@@ -26,6 +27,9 @@ export const AboutSlice = createSlice({
         });
         builder.addCase(fetchWhatWeDo.fulfilled, (state, action) => {
             state.whatWeDo = action.payload;
+        });
+        builder.addCase(fetchAboutServices.fulfilled, (state, action) => {
+            state.aboutServices = action.payload;
         });
     },
 })

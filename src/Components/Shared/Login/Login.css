@@ -5,11 +5,19 @@
     --bs-focus-ring-color: #11bb67;
 }
 
+.btn-primary:hover {
+    background-color: white;
+    color: #10a865;
+    border: 1px solid #10a865;
+}
+
 .btn-primary:active {
     --bs-btn-active-bg: white;
     --bs-btn-color: #11BB67;
     --bs-btn-border-color: #11bb67;
-    background-color: whitesmoke;
+    /*     background-color: whitesmoke;
+ */
+    border: 1px solid;
     border-color: #11BB67 !important;
     color: #11BB67 !important;
 }
@@ -43,10 +51,11 @@ img {
 }
 
 .Form h2 {
-    margin-top: 1.3rem;
+    margin-top: 0.3rem;
     font-family: 'Dm Sans', sans-serif;
     text-align: center;
     color: var(--color-secondary);
+    margin-bottom: 3rem;
 }
 
 
@@ -78,7 +87,7 @@ input {
 }
 
 .formSubmitBtn:hover {
-    background-color: #10a865;
+    background-color: NONE;
     border-color: #10a865;
 }
 

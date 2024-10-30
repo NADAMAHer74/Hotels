@@ -16,10 +16,6 @@ body {
   --second-font: gloss;
 }
 
-body {
-  font-family: "DM Sans", sans-serif;
-}
-
 img {
   max-width: 100%;
 }
@@ -35,6 +31,63 @@ img {
   display: inline-block;
 }
 
+
+
+
+
+.navBtns .contactBtn {
+  background-color: var(--color-primary) !important;
+  color: white;
+  font-family: var(--main-font);
+  font-weight: 500;
+  transition: 0.3s ease-in-out;
+  border-radius: 5px;
+  cursor: pointer;
+  display: inline-block;
+  padding: 10px 20px;
+  text-decoration: none;
+  text-align: center;
+}
+
+.registrationBtn {
+  border: 2px solid #11bb67;
+  padding: 10px 20px;
+  border-radius: 5px;
+  align-content: center;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  color: black;
+  font-family: 'DM Sans';
+  gap: 0.8rem;
+  transition: 0.3s ease-in-out;
+  font-weight: 500;
+  margin-right: 0.8rem;
+}
+
+.navBtns .registrationBtn svg {
+  align-items: center;
+  align-content: center;
+  color: #11bb67;
+  width: 30px;
+  height: 30px;
+  transition: 0.3s ease-in-out;
+
+}
+
+.navBtns .contactBtn:hover {
+  background-color: var(--color-secondary) !important;
+}
+
+.registrationBtn:hover {
+  border-color: #ff6525;
+}
+
+.registrationBtn:hover,
+.registrationBtn:hover svg {
+  color: #ff6525;
+}
+
 .contactNavBtn a {
   display: block;
   text-decoration: none;
@@ -43,9 +96,6 @@ img {
   padding: 10px 20px;
 }
 
-.contactNavBtn:hover {
-  background-color: var(--color-secondary) !important;
-}
 
 .topBar {
   background-color: #000;
@@ -70,7 +120,7 @@ img {
   font-size: 18px;
 }
 
-.topBar .container .dropdownCompanyInfo > i:hover {
+.topBar .container .dropdownCompanyInfo>i:hover {
   transform: rotate(90deg);
 }
 
@@ -566,7 +616,7 @@ img {
 /*Media Queries*/
 
 @media screen and (max-width: 395px) {
-  .dropdownCompanyInfo > a {
+  .dropdownCompanyInfo>a {
     display: none;
   }
 }

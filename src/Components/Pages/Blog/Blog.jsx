@@ -31,7 +31,7 @@ export default function Blog() {
                   <div className="card shadow-lg">
                     <div className="overflow-hidden">
                       <img
-                        src={`http://localhost:2000/${blog.imageUrl}`}
+                        src={`http://localhost:1000/${blog.imageUrl}`}
                         className="card-img-top"
                         alt="blogImage"
                       />

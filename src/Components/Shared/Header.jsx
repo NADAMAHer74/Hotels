@@ -3,6 +3,11 @@ import { useEffect, useState } from "react";
 import "./general.css";
 import { Link, useLocation } from "react-router-dom";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleUser } from "@fortawesome/free-solid-svg-icons";
+
+import AuthModal from "./AuthModal/AuthModal";
+
 import logo from "../../images/logo.png";
 
 function Header() {
@@ -192,8 +197,17 @@ function Header() {
                   </ul>
                 </li>
               </ul>
-              <div className="contactNavBtn ms-auto">
+
+              {/* <div className="contactNavBtn ms-auto">
                 <Link to="/contact">Contact Us</Link>
+              </div> */}
+              <div className="navBtns ms-auto d-flex">
+                {/* <Link className="registrationBtn" to="/authModal">
+                  <FontAwesomeIcon icon={faCircleUser} />
+                  <span>Sign In</span>
+                </Link> */}
+                <AuthModal />
+                <Link className="contactBtn align-content-center" to="/contact">Contact Us</Link>
               </div>
             </div>
           </div>

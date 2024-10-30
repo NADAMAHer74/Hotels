@@ -10,7 +10,7 @@ function Destination() {
   );
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(fetchDestinations()).then(() => {});
+    dispatch(fetchDestinations()).then(() => { });
   });
   return (
     <>
@@ -28,7 +28,7 @@ function Destination() {
                   <div className="overflow-hidden">
                     <img
                       className="w-100 rounded"
-                      src={`http://localhost:2000/${item.image}`}
+                      src={`http://localhost:1000/${item.image}`}
                       alt={item.name}
                     />
                   </div>
