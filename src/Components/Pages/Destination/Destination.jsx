@@ -9,9 +9,10 @@ function Destination() {
     (state) => state.distination.destinations
   );
   const dispatch = useDispatch();
+
   useEffect(() => {
-    dispatch(fetchDestinations()).then(() => { });
-  });
+    dispatch(fetchDestinations());
+  }, []);
   return (
     <>
       <MainBanner title="Destination" />
