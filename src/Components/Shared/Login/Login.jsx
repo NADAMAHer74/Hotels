@@ -8,9 +8,9 @@ import { signInUser } from '../../../APIs/AuthApi';
 import '../Login/Login.css'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
- 
- 
- 
+
+
+
 const Login = () => {
  
     const dispatch = useDispatch();
@@ -19,17 +19,17 @@ const Login = () => {
     const [password, setPassword] = useState('');
     const [error, setError] = useState({ email: '', password: '' });
     const [formSubmitted, setFormSubmitted] = useState(false);
- 
- 
- 
- 
+
+
+
+
     const handleLogin = async (e) => {
         e.preventDefault();
- 
+
         setError({ email: '', password: '' });
- 
- 
- 
+
+
+
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(email)) {
             setError((prevError) => ({ ...prevError, email: 'Please enter a valid email address.' }));
@@ -40,22 +40,21 @@ const Login = () => {
             setError((prevError) => ({ ...prevError, password: 'Password must be at least 6 characters long.' }));
             return;
         }
- 
- 
+
+
         try {
             await dispatch(signInUser({ email, password }));
             toast.success("Login Successful!");
             setFormSubmitted(true);
- 
             setEmail('');
             setPassword('');
         } catch (error) {
             const errorMessage = error.message || "An error occurred during login.";
             toast.error(errorMessage);
         }
- 
- 
- 
+
+
+
         console.log({ email, password });
         // Handle login logic here
         /* dispatch(signInUser({ email, password }));
@@ -64,8 +63,8 @@ const Login = () => {
         setFormSubmitted(true); */
     };
     const authErrorMessage = auth.error ? (typeof auth.error === 'object' ? auth.error.message : auth.error) : null;
- 
- 
+
+
     return (
         <div>
             <Form onSubmit={handleLogin}>
