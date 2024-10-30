@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const BASE_URL = "http://localhost:1000/api/tours";
+const BASE_URL = "http://localhost:1000/api/paginationOfTours";
 
 export const fetchTours = createAsyncThunk("tours/fetchTours", async (page) => {
   try {

@@ -52,8 +52,9 @@ const Home = () => {
     dispatch(fetchDestination());
     dispatch(fetchAbout());
     dispatch(fetchTour());
+    dispatch(fetchVideo());
     dispatch(fetchBlog());
-  }, []);
+  }, [dispatch]);
   return (
     <div>
       <div className="topDestinationSection">
@@ -391,8 +392,8 @@ const Home = () => {
           <div className="row">
             {blog ? (
               blog.map((blog) => (
-                <div className=" col-12 col-md-6 col-lg-3 " key={blog.blog_id}>
-                  <div className=" travelCard ">
+                <div class=" col-12 col-md-6 col-lg-4 ">
+                  <div class=" travelCard ">
                     <div className="position-relative">
                       <img
                         src={`http://localhost:1000/${blog.imageUrl}`}
@@ -414,24 +415,6 @@ const Home = () => {
             ) : (
               <p>No blogs found</p>
             )}
-            {/* <div class=" col-12 col-md-6 col-lg-3 ">
-              <div class=" travelCard ">
-                <div className="position-relative">
-                  <img src="./assests/images/blog-1.jpg" alt="Travel Image" />
-                  <div class="categoryBadge">City Tours</div>
-                </div>
-              </div>
-              <div class="cardBody">
-                <p class="card-date">
-                  <i class="fas fa-calendar-alt calenderSticker"></i> March 28,
-                  2023
-                </p>
-                <h5 class="cardTitle">
-                  A place where start new life with adventure Dhaka
-                </h5>
-                <button class="cardBtn">Explore More</button>
-              </div>
-            </div> */}
           </div>
         </div>
       </div>
