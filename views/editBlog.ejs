@@ -137,7 +137,7 @@
               <div class="card-header">
                 <h3 class="card-title">All Blogs</h3>
                 <a
-                  href="/api/blogs/new"
+                  href="/api/admin/blogs/new"
                   class="btn btn-primary float-right"
                   >Add New Destination</a
                 >
@@ -303,14 +303,14 @@
           const blogId = "<%= blog.blog_id %>"; // Assuming `blog_id` is the identifier in your database
       
           try {
-            const response = await fetch(`/api/blogs/${blogId}`, {
+            const response = await fetch(`/api/admin/blogs/${blogId}`, {
               method: "PUT",
               body: formData, // Send FormData directly without setting Content-Type
             });
       
             if (response.ok) {
               alert("Blog updated successfully");
-              window.location.href = "/api/blogs"; // Redirect to blog list
+              window.location.href = "/api/admin/blogs"; // Redirect to blog list
             } else {
               const errorData = await response.json();
               const errorMessage = Array.isArray(errorData)

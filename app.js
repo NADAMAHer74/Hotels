@@ -9,6 +9,8 @@ const adminAboutUsImagesRoutes = require("./routes/adminRoutes/adminAboutUsImage
 const adminAboutUsRoutes = require("./routes/adminRoutes/adminAboutUsRoutes");
 const adminTourRoutes = require("./routes/adminRoutes/adminTourRoutes");
 const adminDestinationsRoutes = require("./routes/adminRoutes/adminDestinationsRoutes");
+const adminContactUsRoutes = require("./routes/adminRoutes/adminContactUsRoutes");
+const adminBlogRoutes = require("./routes/adminRoutes/adminBlogRoutes");
 const userRoutes = require("./routes/userRoutes");
 const tourRoutes = require("./routes/tourRoutes");
 const userTourRoutes = require("./routes/userTourRoutes");
@@ -138,6 +140,9 @@ app.use("/api", adminAboutUsImagesRoutes);
 app.use("/api", adminAboutUsRoutes);
 app.use("/api", adminTourRoutes);
 app.use("/api", adminDestinationsRoutes);
+app.use("/api", adminContactUsRoutes);
+app.use("/api", adminBlogRoutes);
+
 app.get("/admin/signin", (req, res) => {
   res.render("signin");
 });

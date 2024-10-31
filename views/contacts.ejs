@@ -52,7 +52,7 @@
               data-accordion="false"
             >
               <li class="nav-item">
-                <a href="/api/tours" class="nav-link">
+                <a href="/api/admin/tours" class="nav-link">
                   <i class="nav-icon fas fa-tachometer-alt"></i>
                   <p>Toures</p>
                 </a>
@@ -164,7 +164,7 @@
 
                         <td>
                           <a
-                            href="/api/contactus/<%= contact.form_id %>"
+                            href="/api/admin/contactus/<%= contact.form_id %>"
                             class="btn btn-info btn-sm my-2"
                             >View</a
                           >
@@ -205,7 +205,7 @@
     <script>
       function deleteCourse(contactId) {
         if (confirm("Are you sure you want to delete this tour?")) {
-          fetch(`/api/contactus/${contactId}`, { method: "DELETE" })
+          fetch(`/api/admin/contactus/${contactId}`, { method: "DELETE" })
             .then((response) => {
               if (response.ok) {
                 window.location.reload();

@@ -137,7 +137,7 @@
             <div class="card card-primary card-outline">
               <div class="card-header">
                 <h3 class="card-title">All blogs</h3>
-                <a href="/api/blogs/new" class="btn btn-primary float-right"
+                <a href="/api/admin/blogs/new" class="btn btn-primary float-right"
                   >Add New Blog</a
                 >
               </div>
@@ -163,12 +163,12 @@
 
                         <td>
                           <a
-                            href="/api/blogs/<%= blog.blog_id %>"
+                            href="/api/admin/blogs/<%= blog.blog_id %>"
                             class="btn btn-info btn-sm my-2"
                             >View</a
                           >
                           <a
-                            href="/api/blogs/<%= blog.blog_id %>/edit"
+                            href="/api/admin/blogs/<%= blog.blog_id %>/edit"
                             class="btn btn-warning btn-sm mb-2"
                             >Update</a
                           >
@@ -208,7 +208,7 @@
     <script>
       function deleteBlog(blogId) {
         if (confirm("Are you sure you want to delete this blog?")) {
-          fetch(`/api/blogs/${blogId}`, { method: "DELETE" })
+          fetch(`/api/admin/blogs/${blogId}`, { method: "DELETE" })
             .then((response) => {
               if (response.ok) {
                 window.location.reload();
