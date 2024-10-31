@@ -1,0 +1,15 @@
+.card {
+  border: none;
+}
+
+.blog {
+  margin-top: 10% !important;
+  margin-bottom: 10%;
+}
+.orangBackground {
+  background-color: #ff6525;
+}
+.positionValues {
+  top: 20px;
+  left: 20px;
+}

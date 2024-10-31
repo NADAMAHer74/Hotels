@@ -1,0 +1,76 @@
+/* .btn-primary:hover {
+    border: 1px solid;
+    --bs-btn-active-bg: white;
+    --bs-btn-color: #11BB67;
+    --bs-btn-border-color: #11bb67;
+    background-color: whitesmoke;
+    border-color: #11BB67 !important;
+    color: #11BB67 !important;
+}
+ */
+.modal-text {
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.modal-dialog {
+    width: fit-content !important;
+    max-width: none;
+}
+
+
+.modal-content h4 {
+    font-family: 'Gloss and bloom';
+    text-align: center;
+    margin: 2.5nrem 1rem 1rem 1rem;
+    color: var(--color-secondary);
+}
+
+.modal-content span {
+    text-align: center;
+}
+
+.modal-body {
+    padding: 3rem 5rem 5rem 5rem;
+}
+
+
+.btn-success {
+    --bs-btn-color: white;
+    --bs-btn-bg: #198754;
+    --bs-btn-border-color: none;
+    --bs-btn-hover-color: black;
+    --bs-btn-hover-bg: transparent;
+    --bs-btn-hover-border-color: #ff6525;
+    --bs-btn-focus-shadow-rgb: 60, 153, 110;
+    --bs-btn-active-color: black;
+    --bs-btn-active-bg: transparent;
+    --bs-btn-active-border-color: #ff6525;
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --bs-btn-disabled-color: #fff;
+    --bs-btn-disabled-bg: #198754;
+    --bs-btn-disabled-border-color: #198754;
+}
+
+.profileBtn {
+    font-family: 'Poppins';
+    align-content: center;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    color: black;
+    font-family: 'DM Sans';
+    gap: 0.8rem;
+    transition: 0.3s ease-in-out;
+    font-weight: 500;
+    margin-right: 0.8rem;
+    padding-left: 0;
+}
+
+.profileBtn button {
+    border: 2px solid #11bb67;
+    padding: 13px 15px;
+    background-color: #11bb67;
+    border-radius: 5px;
+
+}
