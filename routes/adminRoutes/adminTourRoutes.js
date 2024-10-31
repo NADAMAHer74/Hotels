@@ -17,7 +17,6 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage });
 
-
 router.post(
   "/admin/tours",
   verifyToken,
@@ -75,12 +74,7 @@ router.post(
               .status(400)
               .json({ message: "Error creating tour", error });
           }
-           res.status(201).redirect("/api/admin/tours"); 
-/*            res.json({
-            message: "Tour created successfully",
-
-            tourId: results.insertId,
-          }); */
+          res.status(201).redirect("/api/admin/tours");
         }
       );
     } catch (error) {
@@ -89,7 +83,6 @@ router.post(
     }
   }
 );
-
 
 router.get("/admin/tours", (req, res) => {
   const query = "SELECT * FROM tours";
@@ -107,7 +100,6 @@ router.get("/admin/tours/new", async (req, res) => {
 
   res.render("addTour", { tour: {} });
 });
-
 
 router.get("/admin/tours/:tour_id", (req, res) => {
   const query = "SELECT * FROM tours WHERE tour_id = ?";
@@ -139,7 +131,6 @@ router.get("/admin/tours/:tour_id/edit", async (req, res) => {
   });
 });
 
-
 router.delete(
   "/admin/tours/:tour_id",
   verifyToken,
@@ -158,116 +149,6 @@ router.delete(
     });
   }
 );
-
-
-// router.put("/tours/:tour_id", verifyToken, checkRole(["Admin"]), (req, res) => {
-//   try {
-//     const {
-//       location,
-//       name,
-//       adultPrice,
-//       kidsPrice,
-//       childrenPrice,
-//       durationInDays,
-//       type,
-//       reviewStars,
-//       overview,
-//       tourImage,
-//       date,
-//       time,
-//       miniAge,
-//       maxGusts,
-//       languagesSupport,
-//     } = req.body;
-
-//     console.log(req.body);
-//     const updates = [];
-//     const updateFields = [];
-
-//     if (location) {
-//       updates.push(location);
-//       updateFields.push("location = ?");
-//     }
-//     if (name) {
-//       updates.push(name);
-//       updateFields.push("name = ?");
-//     }
-//     if (adultPrice) {
-//       updates.push(adultPrice);
-//       updateFields.push("adultPrice = ?");
-//     }
-//     if (kidsPrice) {
-//       updates.push(kidsPrice);
-//       updateFields.push("kidsPrice = ?");
-//     }
-//     if (childrenPrice) {
-//       updates.push(childrenPrice);
-//       updateFields.push("childrenPrice = ?");
-//     }
-//     if (durationInDays) {
-//       updates.push(durationInDays);
-//       updateFields.push("durationInDays = ?");
-//     }
-//     if (type) {
-//       updates.push(type);
-//       updateFields.push("type = ?");
-//     }
-//     if (reviewStars) {
-//       updates.push(reviewStars);
-//       updateFields.push("reviewStars = ?");
-//     }
-//     if (overview) {
-//       updates.push(overview);
-//       updateFields.push("overview = ?");
-//     }
-//     if (tourImage) {
-//       updates.push(tourImage);
-//       updateFields.push("tourImage = ?");
-//     }
-//     if (date) {
-//       updates.push(date);
-//       updateFields.push("date = ?");
-//     }
-//     if (time) {
-//       updates.push(time);
-//       updateFields.push("time = ?");
-//     }
-//     if (miniAge) {
-//       updates.push(miniAge);
-//       updateFields.push("miniAge = ?");
-//     }
-//     if (maxGusts) {
-//       updates.push(maxGusts);
-//       updateFields.push("maxGusts = ?");
-//     }
-//     if (languagesSupport) {
-//       updates.push(languagesSupport);
-//       updateFields.push("languagesSupport = ?");
-//     }
-
-//     const sqlQuery = `
-//       UPDATE tours
-//       SET  ${updateFields.join(", ")}
-//       WHERE tour_id = ?
-//     `;
-//     updates.push(req.params.tour_id);
-//     console.log(req.body);
-
-//     req.pool.query(sqlQuery, updates, (error, results) => {
-//       if (error) {
-//         console.error("Error updating tour:", error);
-//         return res.status(400).json({ message: "Error updating tour", error });
-//       }
-//       if (results.affectedRows === 0) {
-//         return res.status(404).json({ message: "Tour not found" });
-//       }
-//       res.json({ message: "Tour updated successfully" });
-//     });
-//   } catch (error) {
-//     console.error("Unexpected error:", error);
-//     res.status(500).json({ message: "Internal server error" });
-//   }
-// });
 
 router.put(
   "/admin/tours/:tour_id",
@@ -356,14 +237,13 @@ router.put(
       }
 
       // Check if a new image file is uploaded
-/*       if (req.file) {
+      /*       if (req.file) {
         const tourImage = req.file ? req.file.path : null;
         updates.push(tourImage);
         updateFields.push("tourImage = ?");
       } */
       updates.push(tourImage);
       updateFields.push("tourImage = ?");
-
 
       // Construct the SQL query with dynamic updates
       const sqlQuery = `
@@ -395,7 +275,6 @@ router.put(
   }
 );
 
-
 router.get("/paginationOfTours", (req, res) => {
   const page = parseInt(req.query.page) || 1;
   const limit = parseInt(req.query.limit) || 6;
@@ -413,7 +292,6 @@ router.get("/paginationOfTours", (req, res) => {
     });
   });
 });
-
 
 router.get("/latestTours", (req, res) => {
   const query = "SELECT * FROM tours ORDER BY created_at DESC LIMIT 3";

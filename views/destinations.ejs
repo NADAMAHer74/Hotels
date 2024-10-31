@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Admin Courses</title>
+    <title>Admin Destinations</title>
 
     <!-- Font Awesome -->
     <link
@@ -52,65 +52,53 @@
               data-accordion="false"
             >
               <li class="nav-item">
-                <a href="/api/tours" class="nav-link">
+                <a href="/api/admin/tours" class="nav-link">
                   <i class="nav-icon fas fa-tachometer-alt"></i>
                   <p>Toures</p>
                 </a>
               </li>
 
               <li class="nav-item">
-                <a href="/api/destinations" class="nav-link">
+                <a href="/api/admin/destinations" class="nav-link">
                   <i class="nav-icon fas fa-tachometer-alt"></i>
                   <p>Distinations</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="/api/contactus" class="nav-link">
+                <a href="/api/admin/contactus" class="nav-link">
                   <i class="nav-icon fas fa-tachometer-alt"></i>
                   <p>Contact Us</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="/api/aboutus" class="nav-link">
+                <a href="/api/admin/aboutus" class="nav-link">
                   <i class="nav-icon fas fa-tachometer-alt"></i>
                   <p>About Us</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="/api/aboutusimages" class="nav-link">
+                <a href="/api/admin/aboutusimages" class="nav-link">
                   <i class="nav-icon fas fa-tachometer-alt"></i>
                   <p>About Us Images</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="/api/blogs" class="nav-link">
+                <a href="/api/admin/blogs" class="nav-link">
                   <i class="nav-icon fas fa-tachometer-alt"></i>
                   <p>Blogs</p>
                 </a>
               </li>
+
               <li class="nav-item">
-                <a href="/api/blogs/new" class="nav-link">
-                  <i class="nav-icon fas fa-plus"></i>
-                  <p>Add Blogs</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="/api/user_tours" class="nav-link">
+                <a href="/api/admin/user_tours" class="nav-link">
                   <i class="nav-icon fas fa-tachometer-alt"></i>
                   <p>Reservations</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="/api/pages" class="nav-link">
-                  <i class="nav-icon fas fa-tachometer-alt"></i>
-                  <p>pages</p>
                 </a>
               </li>
             </ul>
           </nav>
         </div>
       </aside>
-
 
       <!-- Content Wrapper -->
       <div class="content-wrapper">
@@ -143,7 +131,7 @@
                   >Add New Destination</a
                 >
               </div>
-              <!-- Table displaying courses -->
+              <!-- Table displaying destinations -->
               <div class="card-body">
                 <div class="table-responsive">
                   <table class="table table-striped table-sm">
@@ -176,7 +164,7 @@
                           >
                           <button
                             class="btn btn-danger btn-sm"
-                            onclick="deleteCourse('<%= destination.destination_id  %>')"
+                            onclick="deleteDestination('<%= destination.destination_id  %>')"
                           >
                             Delete
                           </button>
@@ -208,9 +196,11 @@
     <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.1/dist/js/adminlte.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-      function deleteCourse(DestinationId) {
-        if (confirm("Are you sure you want to delete this tour?")) {
-          fetch(`/api/admin/destinations/${DestinationId}`, { method: "DELETE" })
+      function deleteDestination(DestinationId) {
+        if (confirm("Are you sure you want to delete this destination?")) {
+          fetch(`/api/admin/destinations/${DestinationId}`, {
+            method: "DELETE",
+          })
             .then((response) => {
               if (response.ok) {
                 window.location.reload();

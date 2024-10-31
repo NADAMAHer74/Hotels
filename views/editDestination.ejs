@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Admin Courses</title>
+    <title>Admin Destinations</title>
 
     <!-- Font Awesome -->
     <link
@@ -52,65 +52,53 @@
               data-accordion="false"
             >
               <li class="nav-item">
-                <a href="/api/tours" class="nav-link">
+                <a href="/api/admin/tours" class="nav-link">
                   <i class="nav-icon fas fa-tachometer-alt"></i>
                   <p>Toures</p>
                 </a>
               </li>
 
               <li class="nav-item">
-                <a href="/api/destinations" class="nav-link">
+                <a href="/api/admin/destinations" class="nav-link">
                   <i class="nav-icon fas fa-tachometer-alt"></i>
                   <p>Distinations</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="/api/contactus" class="nav-link">
+                <a href="/api/admin/contactus" class="nav-link">
                   <i class="nav-icon fas fa-tachometer-alt"></i>
                   <p>Contact Us</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="/api/aboutus" class="nav-link">
+                <a href="/api/admin/aboutus" class="nav-link">
                   <i class="nav-icon fas fa-tachometer-alt"></i>
                   <p>About Us</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="/api/aboutusimages" class="nav-link">
+                <a href="/api/admin/aboutusimages" class="nav-link">
                   <i class="nav-icon fas fa-tachometer-alt"></i>
                   <p>About Us Images</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="/api/blogs" class="nav-link">
+                <a href="/api/admin/blogs" class="nav-link">
                   <i class="nav-icon fas fa-tachometer-alt"></i>
                   <p>Blogs</p>
                 </a>
               </li>
+
               <li class="nav-item">
-                <a href="/api/blogs/new" class="nav-link">
-                  <i class="nav-icon fas fa-plus"></i>
-                  <p>Add Blogs</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="/api/user_tours" class="nav-link">
+                <a href="/api/admin/user_tours" class="nav-link">
                   <i class="nav-icon fas fa-tachometer-alt"></i>
                   <p>Reservations</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="/api/pages" class="nav-link">
-                  <i class="nav-icon fas fa-tachometer-alt"></i>
-                  <p>pages</p>
                 </a>
               </li>
             </ul>
           </nav>
         </div>
       </aside>
-
 
       <!-- Content Wrapper -->
       <div class="content-wrapper">
@@ -135,14 +123,14 @@
           <div class="container-fluid">
             <div class="card card-primary card-outline">
               <div class="card-header">
-                <h3 class="card-title">All Courses</h3>
+                <h3 class="card-title">All Destinations</h3>
                 <a
                   href="/api/admin/destinations/new"
                   class="btn btn-primary float-right"
                   >Add New Destination</a
                 >
               </div>
-              <!-- Table displaying courses -->
+              <!-- Table displaying destinations -->
               <div class="card card-primary card-outline mb-4">
                 <div class="card-header">
                   <div class="card-title">Quick Example</div>
@@ -259,41 +247,44 @@
         .getElementById("editDestinationForm")
         .addEventListener("submit", async function (event) {
           event.preventDefault(); // Prevent the default form submission
-    
+
           // Get form element
           const form = document.getElementById("editDestinationForm");
-    
+
           // Create FormData object from form data
           const formData = new FormData();
           formData.append("name", form.name.value);
           formData.append("location", form.location.value);
           formData.append("category", form.category.value);
           formData.append("visible", form.visible.value);
-    
+
           // Append the image file if a file is selected
           if (form.image.files[0]) {
             formData.append("image", form.image.files[0]);
           }
-    
+
           const destinationId = "<%= destination.destination_id %>";
-    
+
           try {
-            const response = await fetch(`/api/admin/destinations/${destinationId}`, {
-              method: "PUT",
-              body: formData, // Send FormData directly
-            });
-    
+            const response = await fetch(
+              `/api/admin/destinations/${destinationId}`,
+              {
+                method: "PUT",
+                body: formData, // Send FormData directly
+              }
+            );
+
             if (response.ok) {
               alert("Destination updated successfully");
               window.location.href = "/api/admin/destinations"; // Redirect to destinations list
             } else {
               const errorData = await response.json();
-    
+
               // Check if errorData is an array, otherwise handle it as an object
               const errorMessage = Array.isArray(errorData)
                 ? errorData.join(", ")
                 : errorData.message || JSON.stringify(errorData);
-    
+
               alert("Failed to update destination: " + errorMessage);
             }
           } catch (error) {

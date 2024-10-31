@@ -16,9 +16,6 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage });
 
-
-
-
 router.post(
   "/admin/destinations",
   verifyToken,
@@ -47,7 +44,6 @@ router.post(
   }
 );
 
-
 router.get("/admin/destinations", (req, res) => {
   const query = "SELECT * FROM destinations";
 
@@ -57,15 +53,14 @@ router.get("/admin/destinations", (req, res) => {
       return res.status(500).json({ message: "Internal server error" });
     }
     //res.json(results);
-     res.render("destinations", { destinations: results });
+    res.render("destinations", { destinations: results });
   });
 });
-router.get("/destinations/new", async (req, res) => {
+router.get("/admin/destinations/new", async (req, res) => {
   // Pass authors to the template along with an empty course object
 
   res.render("addDestination", { destination: {} });
 });
-
 
 router.get("/admin/destinations/:id", (req, res) => {
   const query = "SELECT * FROM destinations WHERE destination_id = ?";
@@ -98,7 +93,6 @@ router.get("/admin/destinations/:id/edit", async (req, res) => {
   });
 });
 
-
 router.put(
   "/admin/destinations/:id",
   verifyToken,
@@ -127,7 +121,6 @@ router.put(
     );
   }
 );
-
 
 router.delete(
   "/admin/destinations/:id",

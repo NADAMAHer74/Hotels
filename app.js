@@ -1,13 +1,14 @@
 const express = require("express");
 const mysql = require("mysql2");
 const cors = require("cors");
-const path = require("path");                        
+const path = require("path");
 const app = express();
 const cookieParser = require("cookie-parser"); // Import cookie-parser
 const adminRoutes = require("./routes/adminRoutes/adminUserRoutes");
 const adminAboutUsImagesRoutes = require("./routes/adminRoutes/adminAboutUsImagesRoutes");
 const adminAboutUsRoutes = require("./routes/adminRoutes/adminAboutUsRoutes");
 const adminTourRoutes = require("./routes/adminRoutes/adminTourRoutes");
+const adminUserRoutes = require("./routes/adminRoutes/adminUserTourRoutes");
 const adminDestinationsRoutes = require("./routes/adminRoutes/adminDestinationsRoutes");
 const adminContactUsRoutes = require("./routes/adminRoutes/adminContactUsRoutes");
 const adminBlogRoutes = require("./routes/adminRoutes/adminBlogRoutes");
@@ -34,7 +35,8 @@ const destinationsHomeRoutes = require("./routes/destinationsHomeRoutes");
 const aboutUsImagesRoutes = require("./routes/aboutUsImagesRoutes");
 const WhatToDoImagesRoutes = require("./routes/WhatToDoImagesRoutes");
 const servicesRoutes = require("./routes/servicesRoutes");
-const imageBannersRoutes = require("./routes/imageBannersRoutes");0
+const imageBannersRoutes = require("./routes/imageBannersRoutes");
+0;
 const userToursAdditionalServicesRoutes = require("./routes/userToursAdditionalServicesRoutes");
 const toursAdditionalServices = require("./routes/toursAdditionalServices");
 const swaggerUi = require("swagger-ui-express");
@@ -49,8 +51,8 @@ const pool = mysql.createPool({
   host: "sql7.freesqldatabase.com",
   user: "sql7741161",
   database: "sql7741161",
-  password: "ykxiIkPIIt", 
-/*   host: "localhost",
+  password: "ykxiIkPIIt",
+  /*   host: "localhost",
   user: "root",
   database: "hotels",
   password: "Om@rEssam2003", */
@@ -142,6 +144,7 @@ app.use("/api", adminTourRoutes);
 app.use("/api", adminDestinationsRoutes);
 app.use("/api", adminContactUsRoutes);
 app.use("/api", adminBlogRoutes);
+app.use("/api", adminUserRoutes);
 
 app.get("/admin/signin", (req, res) => {
   res.render("signin");

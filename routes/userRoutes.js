@@ -250,7 +250,7 @@ router.post("/signin", async (req, res) => {
       res.cookie("token", token, {
         httpOnly: true, // JavaScript cannot access this cookie on the client side
         secure: process.env.NODE_ENV === "production", // Cookie is sent only over HTTPS in production
-/*         sameSite: "Strict", // CSRF protection */
+        /*         sameSite: "Strict", // CSRF protection */
         sameSite: "Lax", // Allows cookies to be sent in cross-origin requests (adjust as needed)
         maxAge: 3600000, // Expiration time in milliseconds (1 hour)
       });
@@ -258,8 +258,9 @@ router.post("/signin", async (req, res) => {
       res.status(200).json({
         message: "User authenticated successfully",
         user: userData,
+        token,
       });
-/*       res.header("token", token).redirect("/api/tours"); */
+      /*       res.header("token", token).redirect("/api/tours"); */
     });
   } catch (error) {
     console.error("Unexpected error:", error);

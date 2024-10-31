@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Admin Courses</title>
+    <title>Admin Tours</title>
 
     <!-- Font Awesome -->
     <link
@@ -52,65 +52,53 @@
               data-accordion="false"
             >
               <li class="nav-item">
-                <a href="/api/tours" class="nav-link">
+                <a href="/api/admin/tours" class="nav-link">
                   <i class="nav-icon fas fa-tachometer-alt"></i>
                   <p>Toures</p>
                 </a>
               </li>
 
               <li class="nav-item">
-                <a href="/api/destinations" class="nav-link">
+                <a href="/api/admin/destinations" class="nav-link">
                   <i class="nav-icon fas fa-tachometer-alt"></i>
                   <p>Distinations</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="/api/contactus" class="nav-link">
+                <a href="/api/admin/contactus" class="nav-link">
                   <i class="nav-icon fas fa-tachometer-alt"></i>
                   <p>Contact Us</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="/api/aboutus" class="nav-link">
+                <a href="/api/admin/aboutus" class="nav-link">
                   <i class="nav-icon fas fa-tachometer-alt"></i>
                   <p>About Us</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="/api/aboutusimages" class="nav-link">
+                <a href="/api/admin/aboutusimages" class="nav-link">
                   <i class="nav-icon fas fa-tachometer-alt"></i>
                   <p>About Us Images</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="/api/blogs" class="nav-link">
+                <a href="/api/admin/blogs" class="nav-link">
                   <i class="nav-icon fas fa-tachometer-alt"></i>
                   <p>Blogs</p>
                 </a>
               </li>
+
               <li class="nav-item">
-                <a href="/api/blogs/new" class="nav-link">
-                  <i class="nav-icon fas fa-plus"></i>
-                  <p>Add Blogs</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="/api/user_tours" class="nav-link">
+                <a href="/api/admin/user_tours" class="nav-link">
                   <i class="nav-icon fas fa-tachometer-alt"></i>
                   <p>Reservations</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="/api/pages" class="nav-link">
-                  <i class="nav-icon fas fa-tachometer-alt"></i>
-                  <p>pages</p>
                 </a>
               </li>
             </ul>
           </nav>
         </div>
       </aside>
-
 
       <!-- Content Wrapper -->
       <div class="content-wrapper">
@@ -119,12 +107,12 @@
           <div class="container-fluid">
             <div class="row mb-2">
               <div class="col-sm-6">
-                <h1>All Courses</h1>
+                <h1>All Tours</h1>
               </div>
               <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                   <li class="breadcrumb-item"><a href="#">Home</a></li>
-                  <li class="breadcrumb-item active">All Courses</li>
+                  <li class="breadcrumb-item active">All Tours</li>
                 </ol>
               </div>
             </div>
@@ -169,11 +157,14 @@
                       <p><strong>kidsPrice:</strong> <%= tour.kidsPrice %></p>
 
                       <p><strong>Type:</strong> <%= tour.type %></p>
-                      <p><strong>Tour Cover:</strong><img
-                        src="/<%= tour.tourImage %>"
-                        alt="tour Cover"
-                        style="width: 150px; margin-top: 10px"
-                      /></p>
+                      <p>
+                        <strong>Tour Cover:</strong
+                        ><img
+                          src="/<%= tour.tourImage %>"
+                          alt="tour Cover"
+                          style="width: 150px; margin-top: 10px"
+                        />
+                      </p>
 
                       <a href="/api/admin/tours" class="btn btn-primary"
                         >Back to tours</a

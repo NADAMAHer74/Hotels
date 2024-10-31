@@ -10,7 +10,7 @@ router.get("/admin/aboutus", (req, res) => {
       console.error("Error fetching About Us entry:", error);
       return res.status(500).json({ message: "Internal server error" });
     }
-    res.render("aboutus", { aboutus: results, aboutusImages: results[0] });
+    res.render("aboutus", { aboutus: results });
 
     // res.json(results[0]); // Return the single row
   });
@@ -30,35 +30,44 @@ router.get("admin/aboutus/:id/edit", async (req, res) => {
   });
 });
 
+router.put(
+  "/admin/aboutus/head",
+  verifyToken,
+  checkRole(["Admin"]),
+  (req, res) => {
+    const { head } = req.body;
+    const updateQuery = `UPDATE AboutUs SET head = ? WHERE AboutUs_ID = 1`; // Assuming ID 1 for single row
+    req.pool.query(updateQuery, [head], (error, results) => {
+      if (error) {
+        console.error("Error updating About Us head:", error);
+        return res.status(500).json({ message: "Internal server error" });
+      }
+      if (results.affectedRows === 0) {
+        return res.status(404).json({ message: "About Us entry not found" });
+      }
+      res.json({ message: "About Us head updated successfully" });
+    });
+  }
+);
 
-router.put("/admin/aboutus/head", verifyToken, checkRole(["Admin"]), (req, res) => {
-  const { head } = req.body;
-  const updateQuery = `UPDATE AboutUs SET head = ? WHERE AboutUs_ID = 1`; // Assuming ID 1 for single row
-  req.pool.query(updateQuery, [head], (error, results) => {
-    if (error) {
-      console.error("Error updating About Us head:", error);
-      return res.status(500).json({ message: "Internal server error" });
-    }
-    if (results.affectedRows === 0) {
-      return res.status(404).json({ message: "About Us entry not found" });
-    }
-    res.json({ message: "About Us head updated successfully" });
-  });
-});
-
-router.put("/admin/aboutus/body", verifyToken, checkRole(["Admin"]), (req, res) => {
-  const { Body } = req.body;
-  const updateQuery = `UPDATE AboutUs SET Body = ? WHERE AboutUs_ID = 1`; // Assuming ID 1 for single row
-  req.pool.query(updateQuery, [Body], (error, results) => {
-    if (error) {
-      console.error("Error updating About Us body:", error);
-      return res.status(500).json({ message: "Internal server error" });
-    }
-    if (results.affectedRows === 0) {
-      return res.status(404).json({ message: "About Us entry not found" });
-    }
-    res.json({ message: "About Us body updated successfully" });
-  });
-});
+router.put(
+  "/admin/aboutus/body",
+  verifyToken,
+  checkRole(["Admin"]),
+  (req, res) => {
+    const { Body } = req.body;
+    const updateQuery = `UPDATE AboutUs SET Body = ? WHERE AboutUs_ID = 1`; // Assuming ID 1 for single row
+    req.pool.query(updateQuery, [Body], (error, results) => {
+      if (error) {
+        console.error("Error updating About Us body:", error);
+        return res.status(500).json({ message: "Internal server error" });
+      }
+      if (results.affectedRows === 0) {
+        return res.status(404).json({ message: "About Us entry not found" });
+      }
+      res.json({ message: "About Us body updated successfully" });
+    });
+  }
+);
 
 module.exports = router;

@@ -36,7 +36,7 @@ const router = express.Router();
  *         description: User tour created successfully
  */
 router.post("/user_tours", (req, res) => {
-/*   console.log("User ID:", req.user.userId); */
+  /*   console.log("User ID:", req.user.userId); */
   const {
     tour_id,
     adult_quantity,
@@ -47,7 +47,7 @@ router.post("/user_tours", (req, res) => {
 
   console.log(req.body);
 
-/*   if (!tour_id || !adult_quantity || !kids_quantity || !child_quantity) {
+  /*   if (!tour_id || !adult_quantity || !kids_quantity || !child_quantity) {
     return res.status(400).json({ message: "Missing required fields." });
   } */
 
@@ -150,22 +150,20 @@ router.get("/user_tours", (req, res) => {
     }
     console.log(results);
 
-    res.render("userTours", { user_tours: results });
-
-    // res.json({
-    //   user_tours: tours.map((tour) => ({
-    //     user_tour_id: tour.user_tour_id,
-    //     tour_id: tour.tour_id,
-    //     adult_quantity: tour.adult_quantity,
-    //     kids_quantity: tour.kids_quantity,
-    //     child_quantity: tour.child_quantity,
-    //     created_at: tour.created_at,
-    //     updated_at: tour.updated_at,
-    //     additional_services: tour.additional_services
-    //       ? tour.additional_services.split(",")
-    //       : [],
-    //   })),
-    // });
+    res.json({
+      user_tours: tours.map((tour) => ({
+        user_tour_id: tour.user_tour_id,
+        tour_id: tour.tour_id,
+        adult_quantity: tour.adult_quantity,
+        kids_quantity: tour.kids_quantity,
+        child_quantity: tour.child_quantity,
+        created_at: tour.created_at,
+        updated_at: tour.updated_at,
+        additional_services: tour.additional_services
+          ? tour.additional_services.split(",")
+          : [],
+      })),
+    });
   });
 });
 
@@ -217,15 +215,14 @@ router.get("/user_tours/:id", (req, res) => {
           return res.status(500).json({ message: "Internal server error" });
         }
 
-        // res.json({
-        //   trip: {
-        //     data: {
-        //       ...tourResult[0],
-        //       additional_services: additionalServices,
-        //     },
-        //   },
-        // });
-        res.render("viewUserTours", { user_tour: tourResult[0] });
+        res.json({
+          trip: {
+            data: {
+              ...tourResult[0],
+              additional_services: additionalServices,
+            },
+          },
+        });
       }
     );
   });
@@ -241,8 +238,7 @@ router.get("/user_tours/:id/edit", async (req, res) => {
     if (results.length === 0) {
       return res.status(404).json({ message: "Reservation entry not found" });
     }
-    // res.json(results[0]);
-    res.render("editUserTours", { user_tour: results[0] });
+    res.json(results[0]);
   });
 });
 /**
