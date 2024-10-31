@@ -17,7 +17,7 @@ export default function Blog() {
 
   useEffect(() => {
     dispatch(fetchBlogs(currentPage));
-  }, []);
+  }, [currentPage, dispatch]);
 
   return (
     <>
