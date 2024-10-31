@@ -38,7 +38,7 @@ const router = express.Router();
 router.post("/user_tours", (req, res) => {
   /*   console.log("User ID:", req.user.userId); */
   const {
-    tour_id,
+    tourId,
     adult_quantity,
     kids_quantity,
     child_quantity,
@@ -57,7 +57,7 @@ router.post("/user_tours", (req, res) => {
   console.log("trying to insert tour");
   req.pool.query(
     insertTourQuery,
-    [1, tour_id, adult_quantity, kids_quantity, child_quantity],
+    [1, tourId, adult_quantity, kids_quantity, child_quantity],
     (error, tourResult) => {
       if (error) {
         console.error("Error inserting tour:", error);
