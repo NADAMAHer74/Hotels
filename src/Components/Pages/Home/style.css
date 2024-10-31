@@ -99,7 +99,7 @@ body {
   z-index: 1;
 }
 
-.imageStack {
+/* .imageStack {
   position: relative;
   height: 500px;
 }
@@ -136,7 +136,32 @@ body {
   z-index: 1;
   width: 40%;
   height: 30vh;
+} */
+.imageStack {
+  position: relative;
 }
+
+.image-0 img {
+  position: absolute;
+  top: 0;
+  left: 20px;
+  z-index: 3;
+}
+
+.image-1 img {
+  position: absolute;
+  top: 30px;
+  left: 40px;
+  z-index: 2;
+}
+
+.image-2 img {
+  position: absolute;
+  top: 60px;
+  left: 60px;
+  z-index: 1;
+}
+
 .aboutContent {
   position: absolute;
   left: 50%;

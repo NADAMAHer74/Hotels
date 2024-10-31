@@ -177,10 +177,7 @@ const Home = () => {
               <div className="align-items-start imageStack">
                 {about ? (
                   about.map((aboutImage, index) => (
-                    <div
-                      key={index}
-                      className={imagesClasses[index]?.className}
-                    >
+                    <div key={index} className={`image-${index}`}>
                       <img
                         className="img-fluid mb-3"
                         src={`http://localhost:1000/${aboutImage.Image}`}
