@@ -44,9 +44,9 @@ router.get("/aboutus", (req, res) => {
       console.error("Error fetching About Us entry:", error);
       return res.status(500).json({ message: "Internal server error" });
     }
-    res.render("aboutus", { aboutus: results, aboutusImages: results[0] });
+    //res.render("aboutus", { aboutus: results, aboutusImages: results[0] });
 
-    // res.json(results[0]); // Return the single row
+    res.json(results[0]); // Return the single row
   });
 });
 router.get("/aboutus/:id/edit", async (req, res) => {
@@ -59,8 +59,8 @@ router.get("/aboutus/:id/edit", async (req, res) => {
     if (results.length === 0) {
       return res.status(404).json({ message: "about not found" });
     }
-    // res.json(results[0]);
-    res.render("editAbout", { about: results[0] });
+    res.json(results[0]);
+    //res.render("editAbout", { about: results[0] });
   });
 });
 
