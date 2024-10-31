@@ -2,7 +2,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 const PAGINATION_URL = "http://localhost:1000/api/paginationOfTours";
-const BASE_URL = "http://localhost:1000/api/tors";
+const BASE_URL = "http://localhost:1000/api/tours";
 
 export const fetchTours = createAsyncThunk("tours/fetchTours", async (page) => {
   try {
