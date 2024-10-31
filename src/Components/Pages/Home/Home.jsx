@@ -33,6 +33,7 @@ import {
   fetchAbout,
   fetchTour,
   fetchBlog,
+  fetchAboutContent,
   fetchBannerHome,
 } from "../../../APIs/HomeApi";
 
@@ -48,21 +49,20 @@ const Home = () => {
   const about = useSelector((state) => state.home.aboutData);
   const tour = useSelector((state) => state.home.tourData);
   const blog = useSelector((state) => state.home.blogData);
-  const bannerHomeData = useSelector((state) => state.home.bannerHomeData); // Adjust selector as needed
-  
+  const aboutContent = useSelector((state) => state.home.aboutContent);
+  const bannerHome = useSelector((state) => state.home.bannerHomeData);
   useEffect(() => {
     dispatch(fetchDestination());
     dispatch(fetchAbout());
     dispatch(fetchTour());
     dispatch(fetchBlog());
+    dispatch(fetchAboutContent());
     dispatch(fetchBannerHome());
   }, [dispatch]);
-
-  const visibleBanners = bannerHomeData?.filter((banner) => banner.visible === 1).slice(1, 3);
-
+  const visibleBanners = bannerHome?.filter((banner) => banner.visible === 1).slice(1, 4);
   return (
     <div>
-      <section className="homeBanner">
+        <section className="homeBanner">
         <div className="BannerContent">
           {visibleBanners.map((banner, index) => (
             <img
@@ -78,12 +78,6 @@ const Home = () => {
           </div>
         </div>
       </section>
-
-
-
-
-
-
       <div className="topDestinationSection">
         <div className="container-fluid   text-center my-5 position-relative">
           <div className="row">
@@ -135,7 +129,7 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="aboutPart ">
+      {/* <div className="aboutPart ">
         <div className="container ">
           <div className="row align-items-center">
             <div className="col-12 col-md-6 mb-4 mb-md-0 align-items-start ">
@@ -161,8 +155,65 @@ const Home = () => {
 
             <div className="col-12 col-md-6 aboutContent">
               <h3 className="sectionTitle">About Company</h3>
-              <h2 className="mainTitle">{about.head}</h2>
-              <p className="description">{about.Body}</p>
+              <h2 className="mainTitle">{aboutContent.head}</h2>
+              <p className="description">{aboutContent.Body}</p>
+              <div className="feature d-flex align-items-center mb-3">
+                <div className="icons mr-3">
+                  <img src={SafetyIcon} alt="Safety Icon" />
+                </div>
+                <div className="featureText">
+                  <h5 className="iconName">Safety First Always</h5>
+                  <p>
+                    Duis aute irure dolor in reprehenderit in voluptate velit
+                    esse cillum dolore
+                  </p>
+                </div>
+              </div>
+              <div className="feature d-flex align-items-center mb-3">
+                <div className="icons mr-3">
+                  <img src={SafetyIcon} alt="Service Icon" />
+                </div>
+                <div className="featureText">
+                  <h5 className="iconName">Nllamco laboris nisi</h5>
+                  <p>
+                    Duis aute irure dolor in reprehenderit in voluptate velit
+                    esse cillum dolore
+                  </p>
+                </div>
+              </div>
+              <button className="btn btn-primary">Discover More</button>
+            </div>
+          </div>
+        </div>
+        <div className="backgroundOverlay">
+          <img src={AboutBg} className="backgroundImage" alt="Background" />
+        </div>
+      </div> */}
+      <div className="aboutPart">
+        <div className="container">
+          <div className="row align-items-center">
+            <div className="col-12 col-md-6 mb-4 mb-md-0 align-items-start">
+              <div className="align-items-start imageStack">
+                {about ? (
+                  about.map((aboutImage, index) => (
+                    <div key={index} className={`image-${index}`}>
+                      <img
+                        className="img-fluid mb-3"
+                        src={`http://localhost:1000/${aboutImage.Image}`}
+                        alt="About Image"
+                      />
+                    </div>
+                  ))
+                ) : (
+                  <div>Loading...</div>
+                )}
+              </div>
+            </div>
+
+            <div className="col-12 col-md-6 aboutContent">
+              <h3 className="sectionTitle">About Company</h3>
+              <h2 className="mainTitle">{aboutContent.head}</h2>
+              <p className="description">{aboutContent.Body}</p>
               <div className="feature d-flex align-items-center mb-3">
                 <div className="icons mr-3">
                   <img src={SafetyIcon} alt="Safety Icon" />
@@ -419,7 +470,7 @@ const Home = () => {
           <div className="row">
             {blog ? (
               blog.map((blog) => (
-                <div className=" col-12 col-md-6 col-lg-3 " key={blog.blog_id}>
+                <div className=" col-12 col-md-6 col-lg-4 " key={blog.blog_id}>
                   <div className=" travelCard ">
                     <div className="position-relative">
                       <img
@@ -432,7 +483,7 @@ const Home = () => {
                   <div className="cardBody">
                     <p className="card-date">
                       <i className="fas fa-calendar-alt calenderSticker"></i>{" "}
-                      {blog.date}
+                      {blog.created_at}
                     </p>
                     <h5 className="cardTitle">{blog.content}</h5>
                     <button className="cardBtn">Explore More</button>
@@ -442,24 +493,6 @@ const Home = () => {
             ) : (
               <p>No blogs found</p>
             )}
-            {/* <div class=" col-12 col-md-6 col-lg-3 ">
-              <div class=" travelCard ">
-                <div className="position-relative">
-                  <img src="./assests/images/blog-1.jpg" alt="Travel Image" />
-                  <div class="categoryBadge">City Tours</div>
-                </div>
-              </div>
-              <div class="cardBody">
-                <p class="card-date">
-                  <i class="fas fa-calendar-alt calenderSticker"></i> March 28,
-                  2023
-                </p>
-                <h5 class="cardTitle">
-                  A place where start new life with adventure Dhaka
-                </h5>
-                <button class="cardBtn">Explore More</button>
-              </div>
-            </div> */}
           </div>
         </div>
       </div>

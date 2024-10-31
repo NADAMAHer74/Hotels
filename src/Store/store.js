@@ -24,7 +24,6 @@ const store = configureStore({
     home: HomeSlice,
     package: packageReducer,
     toursData: tourReducer,
-    home: home,
     contact: contactSlice,
     about: AboutSlice,
 

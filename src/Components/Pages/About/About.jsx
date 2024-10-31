@@ -40,6 +40,7 @@ const About = () => {
 
   return (
     <>
+
       <MainBanner title="About Us" />
       <div className="about">
         <Container>

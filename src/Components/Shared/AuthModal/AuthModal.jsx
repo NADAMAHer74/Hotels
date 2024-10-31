@@ -12,44 +12,45 @@ import Signup from '../Signup/Signup';
 import { useEffect } from 'react';
 import { logout } from '../../../Reducers/AuthSlice';
 import '../AuthModal/AuthModal.css'
-
+ 
 const AuthModal = () => {
     const [showModal, setShowModal] = useState(false);
     const [isLogin, setIsLogin] = useState(true);
     const [showMenu, setShowMenu] = useState(false);
-
+ 
     const dispatch = useDispatch();
-
+ 
     const { token, user } = useSelector((state) => state.auth);
     const navigate = useNavigate();
-
-
+ 
+ 
     const handleLogout = () => {
         dispatch(logout());
     }
-
+ 
     useEffect(() => {
         if (token) {
             handleClose();
         }
     }, [token]);
-
+ 
     const handleClose = () => setShowModal(false);
     const handleShow = () => {
         setIsLogin(true);
         setShowModal(true);
     }
-
+ 
     const toggleMenu = () => {
         setShowMenu(!showMenu)
     }
     const switchForm = () => setIsLogin(!isLogin);
-
+ 
 /*     <span className="registrationBtn username">{`${user.firstName} ${user.lastName}`}</span>
  */    return (
         <>
             {token && user ? (
-                <Dropdown className='profileBtn p-0'>
+                <Dropdown className='profileBtn '>
+ 
                     <Dropdown.Toggle variant="success" id="dropdown-basic">
                         {`${user.firstName} ${user.lastName}`}
                     </Dropdown.Toggle>
@@ -57,18 +58,18 @@ const AuthModal = () => {
                         <Dropdown.Item onClick={handleLogout}>Sign Out</Dropdown.Item>
                     </DropdownMenu>
                 </Dropdown>
-
+ 
             ) : (
                 <Link className="registrationBtn" onClick={() => { setIsLogin(true); handleShow(); }}>
                     <FontAwesomeIcon icon={faCircleUser} />
                     <span>Sign In</span>
                 </Link>
             )}
-
+ 
             {/* <Button variant="primary" onClick={() => { setIsLogin(true); handleShow(); }}>
                 Login
             </Button> */}
-
+ 
             {/* Login Modal */}
             <Modal show={showModal} onHide={handleClose}>
                 <Modal.Header closeButton>
@@ -79,7 +80,7 @@ const AuthModal = () => {
                 </Modal.Body>
                 <Modal.Footer>
                     <p className="switch-text m-auto">
-
+ 
                         {isLogin ? "Don't have an account?" : "Already have an account?"}
                         <span onClick={switchForm} style={{ color: '#11bb67', cursor: 'pointer' }}>
                             {!isLogin ? ' Log in' : ' Sign up'}
@@ -88,9 +89,9 @@ const AuthModal = () => {
                 </Modal.Footer>
             </Modal>
             {/* Signup Modal */}
-
+ 
         </>
     )
 }
-
+ 
 export default AuthModal

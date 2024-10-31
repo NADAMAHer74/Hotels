@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 
+=======
+>>>>>>> b7edde223d82121660b60e7a96642e64f2ba22cf
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { toast, ToastContainer } from "react-toastify";
@@ -24,6 +27,7 @@ import { TourDetailApi } from "../../../APIs/TourDetailApi"; // Import the thunk
 import "./TourDetailcss.css";
 
 const BookPackage = ({
+  tourId,
   adultPrice,
   kidsPrice,
   childrenPrice,
@@ -46,6 +50,7 @@ const BookPackage = ({
   const handleBookPackage = (e) => {
     e.preventDefault();
     const packageData = {
+      tourId,
       adult_quantity,
       kids_quantity,
       child_quantity,
@@ -66,6 +71,7 @@ const BookPackage = ({
   };
 
   useEffect(() => {
+<<<<<<< HEAD
     dispatch(setPrices({ adultPrice, kidsPrice, childrenPrice })); // Set prices in the slice
   }, [adultPrice, kidsPrice, childrenPrice,name, languagesSupport, maxGusts, miniAge, dispatch]);
 
@@ -77,6 +83,33 @@ const BookPackage = ({
       dispatch(calculateTotalCost());
     }
   }, [adult_quantity, kids_quantity, child_quantity, additional_service_ids, adultPrice, kidsPrice, childrenPrice, dispatch]);
+=======
+    dispatch(setPrices({ adultPrice, kidsPrice, childrenPrice }));
+  }, [dispatch, adultPrice, kidsPrice, childrenPrice]);
+
+  useEffect(() => {
+    dispatch(setPrices({ adultPrice, kidsPrice, childrenPrice })); // Set prices in the slice
+  }, [
+    adultPrice,
+    kidsPrice,
+    childrenPrice,
+    name,
+    languagesSupport,
+    maxGusts,
+    miniAge,
+    dispatch,
+  ]);
+
+  useEffect(() => {
+    dispatch(calculateTotalCost()); // Calculate total cost
+  }, [
+    adult_quantity,
+    kids_quantity,
+    child_quantity,
+    additional_service_ids,
+    dispatch,
+  ]);
+>>>>>>> b7edde223d82121660b60e7a96642e64f2ba22cf
 
   return (
     <div>
