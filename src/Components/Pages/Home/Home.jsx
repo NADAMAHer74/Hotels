@@ -38,7 +38,6 @@ const Home = () => {
     { className: "topImage" },
     { className: "middleImage" },
     { className: "bottomImage" },
-    // Add more images as needed
   ];
   const distination = useSelector((state) => state.home.distinationData);
   const about = useSelector((state) => state.home.aboutData);
@@ -46,7 +45,6 @@ const Home = () => {
   const blog = useSelector((state) => state.home.blogData);
   const aboutContent = useSelector((state) => state.home.aboutContent);
   const bannerHome = useSelector((state) => state.home.bannerHomeData);
-  const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchDestination());
     dispatch(fetchAbout());
