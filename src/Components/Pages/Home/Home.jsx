@@ -39,6 +39,8 @@ const Home = () => {
     { className: "middleImage" },
     { className: "bottomImage" },
   ];
+
+  const dispatch = useDispatch();
   const distination = useSelector((state) => state.home.distinationData);
   const about = useSelector((state) => state.home.aboutData);
   const tour = useSelector((state) => state.home.tourData);
@@ -301,7 +303,7 @@ const Home = () => {
                         </div>
                         <div className="col col-lg-auto">
                           <Link
-                            to={`/tourdetail/${tour.tour_id}`}
+                            to={`/tourdetail/${tourItem.tour_id}`}
                             className="btn text-white greenBackground buttonHover"
                           >
                             Explore More
