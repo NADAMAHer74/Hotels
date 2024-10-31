@@ -404,7 +404,7 @@ const Home = () => {
                   <div className="cardBody">
                     <p className="card-date">
                       <i className="fas fa-calendar-alt calenderSticker"></i>{" "}
-                      {blog.date}
+                      {blog.created_at}
                     </p>
                     <h5 className="cardTitle">{blog.content}</h5>
                     <button className="cardBtn">Explore More</button>
