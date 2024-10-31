@@ -35,6 +35,7 @@ import {
   fetchTour,
   fetchBlog,
   fetchAboutContent,
+  fetchBannerHome,
 } from "../../../APIs/HomeApi";
 
 const Home = () => {
@@ -49,6 +50,7 @@ const Home = () => {
   const tour = useSelector((state) => state.home.tourData);
   const blog = useSelector((state) => state.home.blogData);
   const aboutContent = useSelector((state) => state.home.aboutContent);
+  const bannerHome = useSelector((state) => state.home.bannerHomeData);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchDestination());
@@ -56,9 +58,27 @@ const Home = () => {
     dispatch(fetchTour());
     dispatch(fetchBlog());
     dispatch(fetchAboutContent());
+    dispatch(fetchBannerHome());
   }, [dispatch]);
+  const visibleBanners = bannerHome?.filter((banner) => banner.visible === 1).slice(1, 4);
   return (
     <div>
+        <section className="homeBanner">
+        <div className="BannerContent">
+          {visibleBanners.map((banner, index) => (
+            <img
+              key={index}
+              src={`http://localhost:1000/${banner.image}`}
+              alt="background"
+              className="BannerImage"
+            />
+          ))}
+          <div className="BannerText">
+            <h3>Memories For Life</h3>
+            <h1>Let's Explore The World</h1>
+          </div>
+        </div>
+      </section>
       <div className="topDestinationSection">
         <div className="container-fluid   text-center my-5 position-relative">
           <div className="row">
@@ -451,8 +471,8 @@ const Home = () => {
           <div className="row">
             {blog ? (
               blog.map((blog) => (
-                <div class=" col-12 col-md-6 col-lg-4 ">
-                  <div class=" travelCard ">
+                <div className=" col-12 col-md-6 col-lg-4 " key={blog.blog_id}>
+                  <div className=" travelCard ">
                     <div className="position-relative">
                       <img
                         src={`http://localhost:1000/${blog.imageUrl}`}

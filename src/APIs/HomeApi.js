@@ -1,14 +1,18 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-const banner_url = "http://localhost:1000/api/banners";
+const homebanner_url = "http://localhost:1000/api/imagebanners";
 const destination_url = "http://localhost:1000/api/top-destinations";
 const about_url = "http://localhost:1000/api/aboutusimages";
 const aboutContent_url = "http://localhost:1000/api/aboutus";
 const tour_url = "http://localhost:1000/api/latestTours";
 const blog_url = "http://localhost:1000/api/latest";
-export const fetchBanner = createAsyncThunk("banner/fetchBanner", async () => {
-  const response = await axios.get(banner_url);
-  return response.data;
+export const fetchBannerHome = createAsyncThunk("banner/fetchBannerHome", async () => {
+  try {
+    const response = await axios.get(homebanner_url);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
 });
 export const fetchDestination = createAsyncThunk(
   "distination/fetchDestination",

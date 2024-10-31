@@ -5,12 +5,14 @@ import {
   fetchTour,
   fetchBlog,
   fetchAboutContent,
+  fetchBannerHome,
 } from "../APIs/HomeApi";
 
 const initialState = {
   distinationData: [],
   aboutData: [],
   tourData: [],
+  bannerHomeData:[],
   blogData: [],
   aboutContent: [],
 };
@@ -37,6 +39,9 @@ export const HomeSlice = createSlice({
     });
     builder.addCase(fetchAboutContent.fulfilled, (state, action) => {
       state.aboutContent = action.payload;
+    });
+    builder.addCase(fetchBannerHome.fulfilled, (state, action) => {
+      state.bannerHomeData = action.payload;
     });
   },
 });
