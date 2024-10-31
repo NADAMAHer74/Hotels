@@ -16,7 +16,6 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage });
 
-
 router.post(
   "/admin/aboutusimages",
   verifyToken,
@@ -37,7 +36,6 @@ router.post(
   }
 );
 
-
 router.get("/admin/aboutusimages", (req, res) => {
   const query = "SELECT * FROM AboutUsImages";
 
@@ -47,11 +45,10 @@ router.get("/admin/aboutusimages", (req, res) => {
       return res.status(500).json({ message: "Internal server error" });
     }
     // res.json(results);
-    console.log(results);
+    // console.log(results);
     res.render("aboutUsImages", { aboutusimages: results });
   });
 });
-
 
 router.get("/admin/aboutusimages/:id", (req, res) => {
   const query = "SELECT * FROM AboutUsImages WHERE AboutUsImages_ID = ?";
@@ -66,11 +63,10 @@ router.get("/admin/aboutusimages/:id", (req, res) => {
         .status(404)
         .json({ message: "About Us Image entry not found" });
     }
-    res.json(results[0]);
-    // res.render("viewAboutUsImage", { image: results[0] });
+    // res.json(results[0]);
+    res.render("viewAboutUsImage", { image: results[0] });
   });
 });
-
 
 router.put(
   "/admin/aboutusimages/:id",
@@ -126,7 +122,6 @@ router.put(
     });
   }
 );
-
 
 router.put(
   "/admin/switch-visibility",
@@ -211,57 +206,75 @@ router.put(
     );
   }
 );
-router.delete("/admin/aboutusimages/:id", verifyToken, checkRole(["Admin"]), (req, res) => {
-  const deleteQuery = "DELETE FROM AboutUsImages WHERE AboutUsImages_ID = ?";
-  
-  req.pool.query(deleteQuery, [req.params.id], (error, results) => {
-    if (error) {
-      console.error("Error deleting AboutUsImages entry:", error);
-      return res.status(500).json({ message: "Internal server error" });
-    }
-    if (results.affectedRows === 0) {
-      return res.status(404).json({ message: "Email AboutUsImages not found" });
-    }
-    res.json({ message: "AboutUsImages entry deleted successfully" });
-  });
-});
+router.delete(
+  "/admin/aboutusimages/:id",
+  verifyToken,
+  checkRole(["Admin"]),
+  (req, res) => {
+    const deleteQuery = "DELETE FROM AboutUsImages WHERE AboutUsImages_ID = ?";
 
-router.put("/admin/aboutusimages/visible/:id", verifyToken, checkRole(["Admin"]), (req, res) => {
-  const { visible } = req.body;
-  const updateQuery = `
+    req.pool.query(deleteQuery, [req.params.id], (error, results) => {
+      if (error) {
+        console.error("Error deleting AboutUsImages entry:", error);
+        return res.status(500).json({ message: "Internal server error" });
+      }
+      if (results.affectedRows === 0) {
+        return res
+          .status(404)
+          .json({ message: "Email AboutUsImages not found" });
+      }
+      res.json({ message: "AboutUsImages entry deleted successfully" });
+    });
+  }
+);
+
+router.put(
+  "/admin/aboutusimages/visible/:id",
+  verifyToken,
+  checkRole(["Admin"]),
+  (req, res) => {
+    const { visible } = req.body;
+    const updateQuery = `
     UPDATE AboutUsImages 
     SET visible = ? 
     WHERE AboutUsImages_ID = ?
   `;
-  
-  req.pool.query(updateQuery, [visible, req.params.id], (error, results) => {
-    if (error) {
-      console.error("Error updating visibility:", error);
-      return res.status(500).json({ message: "Internal server error" });
-    }
-    if (results.affectedRows === 0) {
-      return res.status(404).json({ message: "About Us image entry not found" });
-    }
-    res.json({ message: "Visibility updated successfully" });
-  });
-});
 
+    req.pool.query(updateQuery, [visible, req.params.id], (error, results) => {
+      if (error) {
+        console.error("Error updating visibility:", error);
+        return res.status(500).json({ message: "Internal server error" });
+      }
+      if (results.affectedRows === 0) {
+        return res
+          .status(404)
+          .json({ message: "About Us image entry not found" });
+      }
+      res.json({ message: "Visibility updated successfully" });
+    });
+  }
+);
 
-
-
-router.put("/admin/aboutusimages/image/:id", verifyToken, checkRole(["Admin"]), (req, res) => {
-  const { image } = req.body;
-  const updateQuery = `UPDATE AboutUs SET image = ? WHERE AboutUsImages_ID = ?`; // Assuming ID 1 for single row
-  req.pool.query(updateQuery, [image,req.params.id], (error, results) => {
-    if (error) {
-      console.error("Error updating About Us image:", error);
-      return res.status(500).json({ message: "Internal server error" });
-    }
-    if (results.affectedRows === 0) {
-      return res.status(404).json({ message: "About Us image entry not found" });
-    }
-    res.json({ message: "About Us image updated successfully" });
-  });
-});
+router.put(
+  "/admin/aboutusimages/image/:id",
+  verifyToken,
+  checkRole(["Admin"]),
+  (req, res) => {
+    const { image } = req.body;
+    const updateQuery = `UPDATE AboutUs SET image = ? WHERE AboutUsImages_ID = ?`; // Assuming ID 1 for single row
+    req.pool.query(updateQuery, [image, req.params.id], (error, results) => {
+      if (error) {
+        console.error("Error updating About Us image:", error);
+        return res.status(500).json({ message: "Internal server error" });
+      }
+      if (results.affectedRows === 0) {
+        return res
+          .status(404)
+          .json({ message: "About Us image entry not found" });
+      }
+      res.json({ message: "About Us image updated successfully" });
+    });
+  }
+);
 
 module.exports = router;

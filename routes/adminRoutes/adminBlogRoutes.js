@@ -3,7 +3,6 @@ const multer = require("multer");
 const path = require("path");
 const { verifyToken, checkRole } = require("../../middlewares/token");
 
-
 const router = express.Router();
 
 const storage = multer.diskStorage({
@@ -39,7 +38,7 @@ router.post(
             .json({ message: "Error creating blog post", error });
         }
 
-        res.status(201).redirect("/api/blogs");
+        res.status(201).redirect("/api/admin/blogs");
       }
     );
   }
@@ -51,7 +50,6 @@ router.get("/admin/blogs/new", async (req, res) => {
   res.render("addBlog", { blog: {} });
 });
 
-
 router.get("/admin/blogs", (req, res) => {
   const query = "SELECT * FROM blogs";
   req.pool.query(query, (error, results) => {
@@ -61,7 +59,6 @@ router.get("/admin/blogs", (req, res) => {
     res.render("blogs", { blogs: results });
   });
 });
- 
 
 router.get("/admin/blogs/:id", (req, res) => {
   const query = "SELECT * FROM blogs WHERE blog_id = ?";
@@ -75,7 +72,6 @@ router.get("/admin/blogs/:id", (req, res) => {
     res.render("viewBlog", { blog: results[0] });
   });
 });
-
 
 router.put(
   "/admin/blogs/:id",
@@ -138,20 +134,22 @@ router.get("/admin/blogs/:blog_id/edit", async (req, res) => {
   });
 });
 
-
-router.delete("/admin/blogs/:id", verifyToken, checkRole(["Admin"]), (req, res) => {
-  const query = "DELETE FROM blogs WHERE blog_id = ?";
-  req.pool.query(query, [req.params.id], (error, results) => {
-    if (error) {
-      return res.status(500).json({ message: "Internal server error" });
-    }
-    if (results.affectedRows === 0) {
-      return res.status(404).json({ message: "Blog post not found" });
-    }
-    res.json({ message: "Blog post deleted successfully" });
-  });
-});
-
-
+router.delete(
+  "/admin/blogs/:id",
+  verifyToken,
+  checkRole(["Admin"]),
+  (req, res) => {
+    const query = "DELETE FROM blogs WHERE blog_id = ?";
+    req.pool.query(query, [req.params.id], (error, results) => {
+      if (error) {
+        return res.status(500).json({ message: "Internal server error" });
+      }
+      if (results.affectedRows === 0) {
+        return res.status(404).json({ message: "Blog post not found" });
+      }
+      res.json({ message: "Blog post deleted successfully" });
+    });
+  }
+);
 
 module.exports = router;

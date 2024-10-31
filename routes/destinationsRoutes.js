@@ -80,11 +80,10 @@ router.post(
           console.error("Error inserting destination entry:", error);
           return res.status(500).json({ message: "Internal server error" });
         }
-        res.status(201).redirect("/api/destinations");
 
-        // res
-        //   .status(201)
-        //   .json({ message: "Destination entry created successfully" });
+        res
+          .status(201)
+          .json({ message: "Destination entry created successfully" });
       }
     );
   }
@@ -129,13 +128,8 @@ router.get("/destinations", (req, res) => {
       return res.status(500).json({ message: "Internal server error" });
     }
     res.json(results);
-/*      res.render("destinations", { destinations: results }); */
+    /*      res.render("destinations", { destinations: results }); */
   });
-});
-router.get("/destinations/new", async (req, res) => {
-  // Pass authors to the template along with an empty course object
-
-  res.render("addDestination", { destination: {} });
 });
 
 /**
@@ -186,25 +180,25 @@ router.get("/destinations/:id", (req, res) => {
     if (results.length === 0) {
       return res.status(404).json({ message: "Destination entry not found" });
     }
-    // res.json(results[0]);
-    res.render("viewDestination", { destination: results[0] });
+    res.json(results[0]);
+    // res.render("viewDestination", { destination: results[0] });
   });
 });
 
-router.get("/destinations/:id/edit", async (req, res) => {
-  const query = "SELECT * FROM destinations WHERE destination_id = ?";
-  req.pool.query(query, [req.params.id], (error, results) => {
-    if (error) {
-      console.error("Error fetching destination entry:", error);
-      return res.status(500).json({ message: "Internal server error" });
-    }
-    if (results.length === 0) {
-      return res.status(404).json({ message: "Destination entry not found" });
-    }
-    // res.json(results[0]);
-    res.render("editDestination", { destination: results[0] });
-  });
-});
+// router.get("/destinations/:id/edit", async (req, res) => {
+//   const query = "SELECT * FROM destinations WHERE destination_id = ?";
+//   req.pool.query(query, [req.params.id], (error, results) => {
+//     if (error) {
+//       console.error("Error fetching destination entry:", error);
+//       return res.status(500).json({ message: "Internal server error" });
+//     }
+//     if (results.length === 0) {
+//       return res.status(404).json({ message: "Destination entry not found" });
+//     }
+//     // res.json(results[0]);
+//     res.render("editDestination", { destination: results[0] });
+//   });
+// });
 
 /**
  * @swagger
