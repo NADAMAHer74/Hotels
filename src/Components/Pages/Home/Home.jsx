@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import "./style.css";
 import { useSelector, useDispatch } from "react-redux";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBurst,
@@ -34,6 +33,7 @@ import {
   fetchAbout,
   fetchTour,
   fetchBlog,
+  fetchBannerHome,
 } from "../../../APIs/HomeApi";
 
 const Home = () => {
@@ -41,21 +41,49 @@ const Home = () => {
     { className: "topImage" },
     { className: "middleImage" },
     { className: "bottomImage" },
-    // Add more images as needed
   ];
+  const dispatch = useDispatch();
+  
   const distination = useSelector((state) => state.home.distinationData);
   const about = useSelector((state) => state.home.aboutData);
   const tour = useSelector((state) => state.home.tourData);
   const blog = useSelector((state) => state.home.blogData);
-  const dispatch = useDispatch();
+  const bannerHomeData = useSelector((state) => state.home.bannerHomeData); // Adjust selector as needed
+  
   useEffect(() => {
     dispatch(fetchDestination());
     dispatch(fetchAbout());
     dispatch(fetchTour());
     dispatch(fetchBlog());
-  }, []);
+    dispatch(fetchBannerHome());
+  }, [dispatch]);
+
+  const visibleBanners = bannerHomeData?.filter((banner) => banner.visible === 1).slice(1, 3);
+
   return (
     <div>
+      <section className="homeBanner">
+        <div className="BannerContent">
+          {visibleBanners.map((banner, index) => (
+            <img
+              key={index}
+              src={`http://localhost:1000/${banner.image}`}
+              alt="background"
+              className="BannerImage"
+            />
+          ))}
+          <div className="BannerText">
+            <h3>Memories For Life</h3>
+            <h1>Let's Explore The World</h1>
+          </div>
+        </div>
+      </section>
+
+
+
+
+
+
       <div className="topDestinationSection">
         <div className="container-fluid   text-center my-5 position-relative">
           <div className="row">

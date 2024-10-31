@@ -5,6 +5,7 @@ const destination_url = "http://localhost:1000/api/top-destinations";
 const about_url = "http://localhost:1000/api/aboutusimages";
 const tour_url = "http://localhost:1000/api/latestTours";
 const blog_url = "http://localhost:1000/api/latest";
+const homebanner_url = "http://localhost:1000/api/imagebanners";
 export const fetchBanner = createAsyncThunk("banner/fetchBanner", async () => {
   const response = await axios.get(banner_url);
   return response.data;
@@ -28,4 +29,12 @@ export const fetchTour = createAsyncThunk("tour/fetchTour", async () => {
 export const fetchBlog = createAsyncThunk("blog/fetchBlog", async () => {
   const response = await axios.get(blog_url);
   return response.data;
+});
+export const fetchBannerHome = createAsyncThunk("banner/fetchBannerHome", async () => {
+  try {
+    const response = await axios.get(homebanner_url);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
 });
