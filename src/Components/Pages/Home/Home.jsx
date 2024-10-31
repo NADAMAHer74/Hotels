@@ -34,6 +34,7 @@ import {
   fetchAbout,
   fetchTour,
   fetchBlog,
+  fetchAboutContent,
 } from "../../../APIs/HomeApi";
 
 const Home = () => {
@@ -47,12 +48,14 @@ const Home = () => {
   const about = useSelector((state) => state.home.aboutData);
   const tour = useSelector((state) => state.home.tourData);
   const blog = useSelector((state) => state.home.blogData);
+  const aboutContent = useSelector((state) => state.home.aboutContent);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchDestination());
     dispatch(fetchAbout());
     dispatch(fetchTour());
     dispatch(fetchBlog());
+    dispatch(fetchAboutContent());
   }, [dispatch]);
   return (
     <div>
@@ -133,8 +136,8 @@ const Home = () => {
 
             <div className="col-12 col-md-6 aboutContent">
               <h3 className="sectionTitle">About Company</h3>
-              <h2 className="mainTitle">{about.head}</h2>
-              <p className="description">{about.Body}</p>
+              <h2 className="mainTitle">{aboutContent.head}</h2>
+              <p className="description">{aboutContent.Body}</p>
               <div className="feature d-flex align-items-center mb-3">
                 <div className="icons mr-3">
                   <img src={SafetyIcon} alt="Safety Icon" />
