@@ -13,7 +13,7 @@ const TourGrid = () => {
 
   useEffect(() => {
     dispatch(fetchTours(currentPage));
-  }, []);
+  }, [currentPage, dispatch]);
 
   return (
     <>
