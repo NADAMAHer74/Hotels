@@ -223,7 +223,7 @@
           const aboutId = "<%= about.AboutUs_ID %>";
 
           try {
-            const response = await fetch(`/api/destinations/${aboutId}`, {
+            const response = await fetch(`/api/admin/aboutus/${aboutId}`, {
               method: "PUT",
               headers: {
                 "Content-Type": "application/json",
@@ -233,7 +233,7 @@
 
             if (response.ok) {
               alert("Destination updated successfully");
-              window.location.href = "/api/aboutus"; // Redirect to tours list
+              window.location.href = "/api/admin/aboutus"; // Redirect to tours list
             } else {
               const errorData = await response.json();
 

@@ -128,8 +128,8 @@ router.get("/destinations", (req, res) => {
       console.error("Error fetching destination entries:", error);
       return res.status(500).json({ message: "Internal server error" });
     }
-    //res.json(results);
-     res.render("destinations", { destinations: results });
+    res.json(results);
+/*      res.render("destinations", { destinations: results }); */
   });
 });
 router.get("/destinations/new", async (req, res) => {

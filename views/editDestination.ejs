@@ -137,7 +137,7 @@
               <div class="card-header">
                 <h3 class="card-title">All Courses</h3>
                 <a
-                  href="/api/destinations/new"
+                  href="/api/admin/destinations/new"
                   class="btn btn-primary float-right"
                   >Add New Destination</a
                 >
@@ -278,14 +278,14 @@
           const destinationId = "<%= destination.destination_id %>";
     
           try {
-            const response = await fetch(`/api/destinations/${destinationId}`, {
+            const response = await fetch(`/api/admin/destinations/${destinationId}`, {
               method: "PUT",
               body: formData, // Send FormData directly
             });
     
             if (response.ok) {
               alert("Destination updated successfully");
-              window.location.href = "/api/destinations"; // Redirect to destinations list
+              window.location.href = "/api/admin/destinations"; // Redirect to destinations list
             } else {
               const errorData = await response.json();
     

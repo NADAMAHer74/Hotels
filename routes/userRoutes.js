@@ -250,7 +250,8 @@ router.post("/signin", async (req, res) => {
       res.cookie("token", token, {
         httpOnly: true, // JavaScript cannot access this cookie on the client side
         secure: process.env.NODE_ENV === "production", // Cookie is sent only over HTTPS in production
-        sameSite: "Strict", // CSRF protection
+/*         sameSite: "Strict", // CSRF protection */
+        sameSite: "Lax", // Allows cookies to be sent in cross-origin requests (adjust as needed)
         maxAge: 3600000, // Expiration time in milliseconds (1 hour)
       });
 

@@ -5,35 +5,7 @@ const jwt = require("jsonwebtoken");
 const router = express.Router();
 const JWT_SECRET = "your_jwt_secret_key";
 
-/**
- * @swagger
- * /signup:
- *   post:
- *     summary: Create a new user (Signup)
- *     tags: [Users]
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             type: object
- *             properties:
- *               firstName:
- *                 type: string
- *               lastName:
- *                 type: string
- *               email:
- *                 type: string
- *               phone:
- *                 type: string
- *               password:
- *                 type: string
- *     responses:
- *       201:
- *         description: User created successfully
- *       400:
- *         description: User already exists
- */
+
 /* router.post("/signup", async (req, res) => {
   const {
     firstName,
@@ -100,53 +72,7 @@ const JWT_SECRET = "your_jwt_secret_key";
   }
 }); */
 
-/**
- * @swagger
- * /signin:
- *   post:
- *     summary: Sign in with email and password
- *     tags: [Users]
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             type: object
- *             properties:
- *               email:
- *                 type: string
- *               password:
- *                 type: string
- *     responses:
- *       200:
- *         description: User authenticated successfully
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 user:
- *                   type: object
- *                   properties:
- *                     id:
- *                       type: integer
- *                     firstName:
- *                       type: string
- *                     lastName:
- *                       type: string
- *                     email:
- *                       type: string
- *                     phone:
- *                       type: string
- *                     role:
- *                       type: string
- *                 token:
- *                   type: string
- *       400:
- *         description: Invalid email or password
- *       404:
- *         description: User not found
- */
+
 router.post("/admin/signin", async (req, res) => {
   const { email, password } = req.body;
   console.log("Received signin request:", req.body);
@@ -199,7 +125,7 @@ router.post("/admin/signin", async (req, res) => {
       //   message: "User authenticated successfully",
       //   user: userData,
       // });
-      res.header("token", token).redirect("/api/tours");
+      res.header("token", token).redirect("/api/admin/tours");
     });
   } catch (error) {
     console.error("Unexpected error:", error);
@@ -266,56 +192,9 @@ router.post("/admin/signin", async (req, res) => {
   }
 }); */
 
-/**
- * @swagger
- * /users:
- *   get:
- *     summary: Get all users
- *     tags: [Users]
- *     responses:
- *       200:
- *         description: A list of users
- *         content:
- *           application/json:
- *             schema:
- *               type: array
- *               items:
- *                 type: object
- */
-/* router.get("/users", (req, res) => {
-  const query = "SELECT * FROM users";
-  req.pool.query(query, (error, results) => {
-    if (error) {
-      console.error("Error fetching users:", error);
-      return res.status(500).json({ message: "Internal server error" });
-    }
-    res.json(results);
-  });
-}); */
 
-/**
- * @swagger
- * /users/{id}:
- *   get:
- *     summary: Get user by ID
- *     tags: [Users]
- *     parameters:
- *       - in: path
- *         name: id
- *         schema:
- *           type: integer
- *         required: true
- *         description: The user ID
- *     responses:
- *       200:
- *         description: User details
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *       404:
- *         description: User not found
- */
+
+
 router.get("/users/:id", (req, res) => {
   const query = "SELECT * FROM users WHERE id = ?";
   req.pool.query(query, [req.params.id], (error, results) => {
@@ -330,25 +209,7 @@ router.get("/users/:id", (req, res) => {
   });
 });
 
-/**
- * @swagger
- * /users/{id}:
- *   delete:
- *     summary: Delete user by ID
- *     tags: [Users]
- *     parameters:
- *       - in: path
- *         name: id
- *         schema:
- *           type: integer
- *         required: true
- *         description: The user ID
- *     responses:
- *       200:
- *         description: User deleted successfully
- *       404:
- *         description: User not found
- */
+
 /* router.delete("/users/:id", (req, res) => {
   const query = "DELETE FROM users WHERE id = ?";
   req.pool.query(query, [req.params.id], (error, results) => {
@@ -363,44 +224,7 @@ router.get("/users/:id", (req, res) => {
   });
 }); */
 
-/**
- * @swagger
- * /users/{id}:
- *   put:
- *     summary: Update user by ID
- *     tags: [Users]
- *     parameters:
- *       - in: path
- *         name: id
- *         schema:
- *           type: integer
- *         required: true
- *         description: The user ID
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             type: object
- *             properties:
- *               firstName:
- *                 type: string
- *               lastName:
- *                 type: string
- *               email:
- *                 type: string
- *               phone:
- *                 type: string
- *               password:
- *                 type: string
- *               role:
- *                 type: string
- *     responses:
- *       200:
- *         description: User updated successfully
- *       404:
- *         description: User not found
- */
+
 /* router.put("/users/:id", (req, res) => {
   try {
     const { firstName, lastName, email, phone, password, role } = req.body;

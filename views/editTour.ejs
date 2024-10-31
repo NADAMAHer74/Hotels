@@ -137,7 +137,7 @@
             <div class="card card-primary card-outline">
               <div class="card-header">
                 <h3 class="card-title">All Tours</h3>
-                <a href="/api/tours/new" class="btn btn-primary float-right"
+                <a href="/api/admin/tours/new" class="btn btn-primary float-right"
                   >Add New Tour</a
                 >
               </div>
@@ -415,14 +415,14 @@
         const tourId = "<%= tour.tour_id %>";
     
         try {
-          const response = await fetch(`/api/tours/${tourId}`, {
+          const response = await fetch(`/api/admin/tours/${tourId}`, {
             method: "PUT",
             body: formData // Send FormData with the image as binary
           });
     
           if (response.ok) {
             alert("Tour updated successfully");
-            window.location.href = "/api/tours"; // Redirect to tours list
+            window.location.href = "/api/admin/tours"; // Redirect to tours list
           } else {
             const errorData = await response.json();
             const errorMessage = Array.isArray(errorData)

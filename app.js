@@ -5,6 +5,10 @@ const path = require("path");
 const app = express();
 const cookieParser = require("cookie-parser"); // Import cookie-parser
 const adminRoutes = require("./routes/adminRoutes/adminUserRoutes");
+const adminAboutUsImagesRoutes = require("./routes/adminRoutes/adminAboutUsImagesRoutes");
+const adminAboutUsRoutes = require("./routes/adminRoutes/adminAboutUsRoutes");
+const adminTourRoutes = require("./routes/adminRoutes/adminTourRoutes");
+const adminDestinationsRoutes = require("./routes/adminRoutes/adminDestinationsRoutes");
 const userRoutes = require("./routes/userRoutes");
 const tourRoutes = require("./routes/tourRoutes");
 const userTourRoutes = require("./routes/userTourRoutes");
@@ -39,7 +43,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 const pool = mysql.createPool({
-  connectionLimit: 20,
+  connectionLimit: 50,
   host: "sql7.freesqldatabase.com",
   user: "sql7741161",
   database: "sql7741161",
@@ -130,6 +134,10 @@ app.use("/api", imageBannersRoutes);
 app.use("/api", userToursAdditionalServicesRoutes);
 app.use("/api", toursAdditionalServices);
 app.use("/api", adminRoutes);
+app.use("/api", adminAboutUsImagesRoutes);
+app.use("/api", adminAboutUsRoutes);
+app.use("/api", adminTourRoutes);
+app.use("/api", adminDestinationsRoutes);
 app.get("/admin/signin", (req, res) => {
   res.render("signin");
 });

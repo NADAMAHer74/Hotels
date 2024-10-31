@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const multer = require("multer");
 const jwt = require("jsonwebtoken");
-const { verifyToken, checkRole } = require("../middlewares/token");
+const { verifyToken, checkRole } = require("../../middlewares/token");
 const path = require("path");
 
 const storage = multer.diskStorage({
@@ -16,45 +16,9 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage });
 
-/**
- * @swagger
- * tags:
- *   name: AboutUsImages
- *   description: API to manage About Us Images
- */
 
-/**
- * @swagger
- * components:
- *   securitySchemes:
- *     bearerAuth:
- *       type: http
- *       scheme: bearer
- *       bearerFormat: JWT
- * /aboutusimages:
- *   post:
- *     summary: Create a new About Us Image entry
- *     tags: [AboutUsImages]
- *     security:
- *       - bearerAuth: []
- *     requestBody:
- *       required: true
- *       content:
- *         multipart/form-data:
- *           schema:
- *             type: object
- *             properties:
- *               Image:
- *                 type: string
- *                 format: binary
- *     responses:
- *       201:
- *         description: About Us Image created successfully
- *       500:
- *         description: Internal server error
- */
 router.post(
-  "/aboutusimages",
+  "/admin/aboutusimages",
   verifyToken,
   checkRole(["Admin"]),
   upload.single("Image"),
@@ -73,30 +37,8 @@ router.post(
   }
 );
 
-/**
- * @swagger
- * /aboutusimages:
- *   get:
- *     summary: Get all About Us Images
- *     tags: [AboutUsImages]
- *     responses:
- *       200:
- *         description: A list of About Us Images
- *         content:
- *           application/json:
- *             schema:
- *               type: array
- *               items:
- *                 type: object
- *                 properties:
- *                   AboutUsImages_ID:
- *                     type: integer
- *                   Image:
- *                     type: string
- *                   visible:
- *                     type: integer
- */
-router.get("/aboutusimages", (req, res) => {
+
+router.get("/admin/aboutusimages", (req, res) => {
   const query = "SELECT * FROM AboutUsImages";
 
   req.pool.query(query, (error, results) => {
@@ -104,41 +46,14 @@ router.get("/aboutusimages", (req, res) => {
       console.error("Error fetching About Us Images:", error);
       return res.status(500).json({ message: "Internal server error" });
     }
-    res.json(results);
+    // res.json(results);
+    console.log(results);
+    res.render("aboutUsImages", { aboutusimages: results });
   });
 });
 
-/**
- * @swagger
- * /aboutusimages/{id}:
- *   get:
- *     summary: Get an About Us Image entry by ID
- *     tags: [AboutUsImages]
- *     parameters:
- *       - in: path
- *         name: id
- *         schema:
- *           type: integer
- *         required: true
- *         description: The About Us Image ID
- *     responses:
- *       200:
- *         description: About Us Image entry details
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 AboutUsImages_ID:
- *                   type: integer
- *                 Image:
- *                   type: string
- *                 visible:
- *                   type: integer
- *       404:
- *         description: About Us Image entry not found
- */
-router.get("/aboutusimages/:id", (req, res) => {
+
+router.get("/admin/aboutusimages/:id", (req, res) => {
   const query = "SELECT * FROM AboutUsImages WHERE AboutUsImages_ID = ?";
 
   req.pool.query(query, [req.params.id], (error, results) => {
@@ -152,47 +67,13 @@ router.get("/aboutusimages/:id", (req, res) => {
         .json({ message: "About Us Image entry not found" });
     }
     res.json(results[0]);
+    // res.render("viewAboutUsImage", { image: results[0] });
   });
 });
 
-/**
- * @swagger
- * /aboutusimages/{id}:
- *   put:
- *     summary: Update an About Us Image entry by ID with visibility constraints
- *     tags: [AboutUsImages]
- *     security:
- *       - bearerAuth: []
- *     parameters:
- *       - in: path
- *         name: id
- *         schema:
- *           type: integer
- *         required: true
- *         description: The About Us Image ID
- *     requestBody:
- *       required: true
- *       content:
- *         multipart/form-data:
- *           schema:
- *             type: object
- *             properties:
- *               Image:
- *                 type: string
- *                 format: binary
- *               visible:
- *                 type: integer
- *     responses:
- *       200:
- *         description: About Us Image entry updated successfully
- *       400:
- *         description: Visibility change exceeds limit of three visible images or would reduce visible images below three
- *       404:
- *         description: About Us Image entry not found
- */
 
 router.put(
-  "/aboutusimages/:id",
+  "/admin/aboutusimages/:id",
   verifyToken,
   checkRole(["Admin"]),
   upload.single("Image"),
@@ -246,76 +127,9 @@ router.put(
   }
 );
 
-/**
- * @swagger
- * /aboutusimages/{id}:
- *   delete:
- *     summary: Delete a What To Do Image entry by ID
- *     tags: [AboutUsImages]
- *     security:
- *       - bearerAuth: []
- *     parameters:
- *       - in: path
- *         name: id
- *         schema:
- *           type: integer
- *         required: true
- *         description: The What To Do Image ID
- *     responses:
- *       200:
- *         description: about us image entry deleted successfully
- *       404:
- *         description: about us image entry not found
- */
-router.delete(
-  "/aboutusimages/:id",
-  verifyToken,
-  checkRole(["Admin"]),
-  (req, res) => {
-    const deleteQuery = "DELETE FROM ImageBanners WHERE ImageBanner_ID = ?";
 
-    req.pool.query(deleteQuery, [req.params.id], (error, results) => {
-      if (error) {
-        console.error("Error deleting What To Do Image entry:", error);
-        return res.status(500).json({ message: "Internal server error" });
-      }
-      if (results.affectedRows === 0) {
-        return res
-          .status(404)
-          .json({ message: "about us image entry not found" });
-      }
-      res.json({ message: "about us image entry deleted successfully" });
-    });
-  }
-);
-
-/**
- * @swagger
- * /switch-visibility:
- *   put:
- *     summary: Switch visibility of two About Us Image entries by ID
- *     tags: [AboutUsImages]
- *     security:
- *       - bearerAuth: []
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             type: object
- *             properties:
- *               visibleOffId:
- *                 type: integer
- *               visibleOnId:
- *                 type: integer
- *     responses:
- *       200:
- *         description: Visibility switched successfully
- *       404:
- *         description: One or both About Us Image entries not found
- */
 router.put(
-  "/switch-visibility",
+  "/admin/switch-visibility",
   verifyToken,
   checkRole(["Admin"]),
   (req, res) => {
@@ -397,5 +211,57 @@ router.put(
     );
   }
 );
+router.delete("/admin/aboutusimages/:id", verifyToken, checkRole(["Admin"]), (req, res) => {
+  const deleteQuery = "DELETE FROM AboutUsImages WHERE AboutUsImages_ID = ?";
+  
+  req.pool.query(deleteQuery, [req.params.id], (error, results) => {
+    if (error) {
+      console.error("Error deleting AboutUsImages entry:", error);
+      return res.status(500).json({ message: "Internal server error" });
+    }
+    if (results.affectedRows === 0) {
+      return res.status(404).json({ message: "Email AboutUsImages not found" });
+    }
+    res.json({ message: "AboutUsImages entry deleted successfully" });
+  });
+});
+
+router.put("/admin/aboutusimages/visible/:id", verifyToken, checkRole(["Admin"]), (req, res) => {
+  const { visible } = req.body;
+  const updateQuery = `
+    UPDATE AboutUsImages 
+    SET visible = ? 
+    WHERE AboutUsImages_ID = ?
+  `;
+  
+  req.pool.query(updateQuery, [visible, req.params.id], (error, results) => {
+    if (error) {
+      console.error("Error updating visibility:", error);
+      return res.status(500).json({ message: "Internal server error" });
+    }
+    if (results.affectedRows === 0) {
+      return res.status(404).json({ message: "About Us image entry not found" });
+    }
+    res.json({ message: "Visibility updated successfully" });
+  });
+});
+
+
+
+
+router.put("/admin/aboutusimages/image/:id", verifyToken, checkRole(["Admin"]), (req, res) => {
+  const { image } = req.body;
+  const updateQuery = `UPDATE AboutUs SET image = ? WHERE AboutUsImages_ID = ?`; // Assuming ID 1 for single row
+  req.pool.query(updateQuery, [image,req.params.id], (error, results) => {
+    if (error) {
+      console.error("Error updating About Us image:", error);
+      return res.status(500).json({ message: "Internal server error" });
+    }
+    if (results.affectedRows === 0) {
+      return res.status(404).json({ message: "About Us image entry not found" });
+    }
+    res.json({ message: "About Us image updated successfully" });
+  });
+});
 
 module.exports = router;

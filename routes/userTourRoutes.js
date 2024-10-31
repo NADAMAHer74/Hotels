@@ -35,8 +35,8 @@ const router = express.Router();
  *       201:
  *         description: User tour created successfully
  */
-router.post("/user_tours", verifyToken, (req, res) => {
-  console.log("User ID:", req.user.userId);
+router.post("/user_tours", (req, res) => {
+/*   console.log("User ID:", req.user.userId); */
   const {
     tour_id,
     adult_quantity,
@@ -45,24 +45,29 @@ router.post("/user_tours", verifyToken, (req, res) => {
     additional_service_ids,
   } = req.body;
 
-  if (!tour_id || !adult_quantity || !kids_quantity || !child_quantity) {
+  console.log(req.body);
+
+/*   if (!tour_id || !adult_quantity || !kids_quantity || !child_quantity) {
     return res.status(400).json({ message: "Missing required fields." });
-  }
+  } */
 
   const insertTourQuery = `
         INSERT INTO user_tours (user_id, tour_id, adult_quantity, kids_quantity, child_quantity)
         VALUES (?, ?, ?, ?, ?)`;
-
+  console.log("trying to insert tour");
   req.pool.query(
     insertTourQuery,
-    [req.user.userId, tour_id, adult_quantity, kids_quantity, child_quantity],
+    [1, tour_id, adult_quantity, kids_quantity, child_quantity],
     (error, tourResult) => {
       if (error) {
         console.error("Error inserting tour:", error);
+        console.error("Error inserting tour:", error);
         return res.status(500).json({ message: "Internal server error" });
       }
+      console.log("Tour result:", tourResult);
 
       const userTourId = tourResult.insertId;
+      console.log("User tour ID:", userTourId);
 
       if (additional_service_ids && additional_service_ids.length > 0) {
         const insertServicesQuery = `
@@ -81,7 +86,7 @@ router.post("/user_tours", verifyToken, (req, res) => {
             trip: {
               data: {
                 user_tour_id: userTourId,
-                user_id: req.userId,
+                user_id: req.user.userId,
                 tour_id,
                 adult_quantity,
                 kids_quantity,
