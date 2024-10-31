@@ -4,6 +4,7 @@ const jwt = require("jsonwebtoken");
 
 const router = express.Router();
 const JWT_SECRET = "your_jwt_secret_key";
+const { verifyToken, checkRole } = require("../middlewares/token");
 
 /**
  * @swagger
@@ -460,5 +461,58 @@ router.put("/users/:id", (req, res) => {
     return res.status(400).json({ message: "Invalid JSON format" });
   }
 });
+
+/**
+ * @swagger
+ *  components:
+ *   securitySchemes:
+ *     bearerAuth:
+ *       type: http
+ *       scheme: bearer
+ *       bearerFormat: JWT
+ * /switchreole:
+ *   put:
+ *     summary: Create a new user (Signup)
+ *     tags: [Users]
+ *     security:
+ *       bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               email:
+ *                 type: string
+ *               role:
+ *                 type: string    
+ *     responses:
+ *       201:
+ *         description: User created successfully
+ *       400:
+ *         description: User already exists
+ */
+router.put("/switchreole",verifyToken, checkRole(["Admin"]), (req, res) => {
+  try {
+    const { email, role } = req.body;
+
+    const updateQuery = `UPDATE users SET role = ? WHERE email = ?`;
+    req.pool.query(updateQuery, [role,email], (error, results) => {
+      if (error) {
+        console.error("Error updating user role:", error);
+        return res.status(500).json({ message: "Internal server error" });
+      }
+      if (results.affectedRows === 0) {
+        return res.status(404).json({ message: "User not found" });
+      }
+      res.json({ message: "User role updated successfully" });
+    });
+  } catch (error) {
+    console.error("Unexpected error:", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+});
+
 
 module.exports = router;
