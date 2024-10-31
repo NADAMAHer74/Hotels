@@ -110,7 +110,7 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="aboutPart ">
+      {/* <div className="aboutPart ">
         <div className="container ">
           <div className="row align-items-center">
             <div className="col-12 col-md-6 mb-4 mb-md-0 align-items-start ">
@@ -128,6 +128,66 @@ const Home = () => {
                       </div>
                     ))}
                   </div>
+                ) : (
+                  <div>Loading...</div>
+                )}
+              </div>
+            </div>
+
+            <div className="col-12 col-md-6 aboutContent">
+              <h3 className="sectionTitle">About Company</h3>
+              <h2 className="mainTitle">{aboutContent.head}</h2>
+              <p className="description">{aboutContent.Body}</p>
+              <div className="feature d-flex align-items-center mb-3">
+                <div className="icons mr-3">
+                  <img src={SafetyIcon} alt="Safety Icon" />
+                </div>
+                <div className="featureText">
+                  <h5 className="iconName">Safety First Always</h5>
+                  <p>
+                    Duis aute irure dolor in reprehenderit in voluptate velit
+                    esse cillum dolore
+                  </p>
+                </div>
+              </div>
+              <div className="feature d-flex align-items-center mb-3">
+                <div className="icons mr-3">
+                  <img src={SafetyIcon} alt="Service Icon" />
+                </div>
+                <div className="featureText">
+                  <h5 className="iconName">Nllamco laboris nisi</h5>
+                  <p>
+                    Duis aute irure dolor in reprehenderit in voluptate velit
+                    esse cillum dolore
+                  </p>
+                </div>
+              </div>
+              <button className="btn btn-primary">Discover More</button>
+            </div>
+          </div>
+        </div>
+        <div className="backgroundOverlay">
+          <img src={AboutBg} className="backgroundImage" alt="Background" />
+        </div>
+      </div> */}
+      <div className="aboutPart">
+        <div className="container">
+          <div className="row align-items-center">
+            <div className="col-12 col-md-6 mb-4 mb-md-0 align-items-start">
+              <div className="align-items-start imageStack">
+                {about ? (
+                  about.map((aboutImage, index) => (
+                    <div
+                      key={index}
+                      className={imagesClasses[index]?.className}
+                    >
+                      <img
+                        className="img-fluid mb-3"
+                        src={`http://localhost:1000/${aboutImage.Image}`}
+                        alt="About Image"
+                      />
+                    </div>
+                  ))
                 ) : (
                   <div>Loading...</div>
                 )}
