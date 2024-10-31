@@ -15,7 +15,7 @@ router.get("/admin/aboutus", (req, res) => {
     // res.json(results[0]); // Return the single row
   });
 });
-router.get("/aboutus/:id/edit", async (req, res) => {
+router.get("admin/aboutus/:id/edit", async (req, res) => {
   const query = "SELECT * FROM AboutUs LIMIT 1"; // Only fetch the single row
   req.pool.query(query, [req.params.id], (error, results) => {
     if (error) {
