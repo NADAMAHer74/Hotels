@@ -1,7 +1,9 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const BASE_URL = "http://localhost:1000/api/destinations";
+import BaseUrl from "./Url";
+
+const BASE_URL = `${BaseUrl}/destinations`;
 export const fetchDestinations = createAsyncThunk(
   "distinations/fetchDestinations",
   async () => {

@@ -1,4 +1,4 @@
-.card {
+/* .blogCard {
   border: none;
 }
 
@@ -12,4 +12,43 @@
 .positionValues {
   top: 20px;
   left: 20px;
+} */
+
+/* Card styling */
+.blogCard {
+  height: 400px; /* Set a fixed height */
+  overflow: hidden;
+  position: relative;
+  border-radius: 10px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.blogCard:hover {
+  transform: scale(1.05); /* Adds a scale effect when hovering */
+}
+
+/* Image styling */
+.blogImage {
+  height: 200px; /* Fixed height for the image */
+  width: 100%;
+  object-fit: cover; /* Ensures the image scales without distortion */
+  transition: transform 0.3s ease-in-out;
+}
+
+.blogImage:hover {
+  transform: scale(1.1); /* Adds scale effect to the image on hover */
+}
+.card-title {
+  min-height: 48px; /* Adjust as needed */
+  line-height: 1.2;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+}
+
+.card-button {
+  align-self: start;
+  margin-top: auto; /* Forces button to bottom of the card-content */
 }

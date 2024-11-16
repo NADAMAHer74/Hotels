@@ -1,11 +1,15 @@
-
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { submitContactForm, getWorkingHours, getLocation, getPhones } from "../../../Reducers/contactSlice";
+import {
+  submitContactForm,
+  getWorkingHours,
+  getLocation,
+  getPhones,
+} from "../../../Reducers/contactSlice";
 import MainBanner from "../MainBanner/MainBanner";
 import "leaflet/dist/leaflet.css";
-import { toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "./Contact.css";
 
 const Contact = () => {
@@ -16,19 +20,19 @@ const Contact = () => {
   const phones = useSelector((state) => state.contactInfo.phones);
 
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    phone: '',
-    subject: '',
-    message: ''
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    subject: "",
+    message: "",
   });
 
   const [formErrors, setFormErrors] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    phone: ''
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
   });
 
   useEffect(() => {
@@ -40,7 +44,7 @@ const Contact = () => {
   const handleChange = (e) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
@@ -49,13 +53,13 @@ const Contact = () => {
 
     // Validate required fields and phone length
     const errors = {};
-    if (!formData.firstName.trim()) errors.firstName = 'First name is required';
-    if (!formData.lastName.trim()) errors.lastName = 'Last name is required';
-    if (!formData.email.trim()) errors.email = 'Email is required';
+    if (!formData.firstName.trim()) errors.firstName = "First name is required";
+    if (!formData.lastName.trim()) errors.lastName = "Last name is required";
+    if (!formData.email.trim()) errors.email = "Email is required";
     if (!formData.phone.trim()) {
-      errors.phone = 'Phone number is required';
+      errors.phone = "Phone number is required";
     } else if (formData.phone.length < 11) {
-      errors.phone = 'Phone number must be at least 11 digits';
+      errors.phone = "Phone number must be at least 11 digits";
     }
 
     if (Object.keys(errors).length > 0) {
@@ -67,9 +71,17 @@ const Contact = () => {
 
     dispatch(submitContactForm(formData))
       .then((action) => {
-        if (action.meta.requestStatus === 'fulfilled') {
+        if (action.meta.requestStatus === "fulfilled") {
           toast.success("Message sent successfully!");
-        } else if (action.meta.requestStatus === 'rejected') {
+          setFormData({
+            firstName: "",
+            lastName: "",
+            email: "",
+            phone: "",
+            subject: "",
+            message: "",
+          });
+        } else if (action.meta.requestStatus === "rejected") {
           toast.error("Failed to send message. Please try again.");
         }
       })
@@ -93,7 +105,9 @@ const Contact = () => {
                 value={formData.firstName}
                 onChange={handleChange}
               />
-              {formErrors.firstName && <p className="error">{formErrors.firstName}</p>}
+              {formErrors.firstName && (
+                <p className="error">{formErrors.firstName}</p>
+              )}
               <input
                 type="text"
                 name="lastName"
@@ -101,7 +115,9 @@ const Contact = () => {
                 value={formData.lastName}
                 onChange={handleChange}
               />
-              {formErrors.lastName && <p className="error">{formErrors.lastName}</p>}
+              {formErrors.lastName && (
+                <p className="error">{formErrors.lastName}</p>
+              )}
             </div>
             <div className="input-row">
               <input
@@ -137,7 +153,7 @@ const Contact = () => {
               onChange={handleChange}
             ></textarea>
             <button type="submit" className="submit-btn">
-              {status === 'loading' ? 'Sending...' : 'Send Message'}
+              {status === "loading" ? "Sending..." : "Send Message"}
             </button>
           </form>
 
@@ -148,15 +164,15 @@ const Contact = () => {
                 <i className="fas fa-clock icon"></i>
                 <div>
                   <h4>Hours:</h4>
-                
+
                   {workingHours && workingHours.length > 0 ? (
-            <p>
-              {workingHours[0].start_day} - {workingHours[0].end_day}: {workingHours[0].start_hour} - {workingHours[0].end_hour}
-            </p>
-          ) : (
-            <p>Loading hours...</p>
-          )}
-                  
+                    <p>
+                      {workingHours[0].start_day} - {workingHours[0].end_day}:{" "}
+                      {workingHours[0].start_hour} - {workingHours[0].end_hour}
+                    </p>
+                  ) : (
+                    <p>Loading hours...</p>
+                  )}
                 </div>
               </div>
               <hr />
@@ -167,7 +183,10 @@ const Contact = () => {
                   <p>
                     {phones.length > 0
                       ? phones.map((phone, index) => (
-                          <span key={index}>{phone.phone_number}<br /></span>
+                          <span key={index}>
+                            {phone.phone_number}
+                            <br />
+                          </span>
                         ))
                       : "Loading..."}
                   </p>
@@ -178,12 +197,15 @@ const Contact = () => {
                 <i className="fas fa-map-marker-alt mapIcon icon"></i>
                 <div>
                   <h4>Location:</h4>
-                  <p>  {location.map((loc) => (
-                  <div key={loc.location_id}>
-                    <p> {loc.location}</p>
-                    {/* <p>Visible: {loc.visible ? "Yes" : "No"}</p> */}
-                  </div>
-                ))}</p>
+                  <p>
+                    {" "}
+                    {location.map((loc) => (
+                      <div key={loc.location_id}>
+                        <p> {loc.location}</p>
+                        {/* <p>Visible: {loc.visible ? "Yes" : "No"}</p> */}
+                      </div>
+                    ))}
+                  </p>
                 </div>
               </div>
             </div>
@@ -207,5 +229,3 @@ const Contact = () => {
 };
 
 export default Contact;
-
-

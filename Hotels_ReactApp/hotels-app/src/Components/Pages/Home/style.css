@@ -187,7 +187,16 @@ body {
   color: #ff6525;
   font-family: "Gloss And Bloom", sans-serif;
 }
-
+@media (max-width: 576px) {
+  .aboutContent {
+    position: relative; /* Change to relative positioning */
+    top: auto; /* Reset top position */
+    left: auto; /* Reset left position */
+    transform: none; /* Remove transform */
+    width: 100%; /* Optional: Set width to full */
+    margin: 20px 0; /* Add margin for spacing */
+  }
+}
 .mainTitle {
   font-size: 36px;
   font-weight: bold;
@@ -261,7 +270,7 @@ body {
 }
 .translateValues {
   right: 10%;
-  bottom: 38%;
+  bottom: 50%;
 }
 @media screen and (max-width: 750px) {
   .translateValues {
@@ -371,7 +380,6 @@ body {
   color: #11bb67;
 }
 
-
 .BannerContent {
   position: relative;
   overflow: hidden;
@@ -379,7 +387,7 @@ body {
 }
 
 .BannerContent::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -414,11 +422,21 @@ body {
 }
 
 @keyframes fadeAnimation {
-  0% { opacity: 0; }
-  10% { opacity: 1; }
-  50% { opacity: 1; }
-  60% { opacity: 0; }
-  100% { opacity: 0; }
+  0% {
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 1;
+  }
+  60% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
 }
 
 .BannerText {
@@ -430,7 +448,6 @@ body {
   transform: translateY(-50%);
 }
 
-
 .BannerContent {
   position: relative;
   overflow: hidden;
@@ -438,7 +455,7 @@ body {
 }
 
 .BannerContent::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -473,18 +490,64 @@ body {
 }
 
 @keyframes fadeAnimation {
-  0% { opacity: 0; }
-  10% { opacity: 1; }
-  50% { opacity: 1; }
-  60% { opacity: 0; }
-  100% { opacity: 0; }
+  0% {
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 1;
+  }
+  60% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
 }
 
 .BannerText {
   position: relative;
-  z-index: 2; /* Ensures text is above the overlay */
+  z-index: 2;
   color: #fff;
   text-align: center;
   top: 50%;
   transform: translateY(-50%);
+}
+
+.card {
+  width: 100%;
+  max-width: 350px;
+  height: 400px; /* Fixed card height */
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  background-color: #fff;
+  transition: transform 0.3s;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-img-top {
+  height: 170px;
+  width: 100%;
+  object-fit: cover;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+.card-body {
+  padding: 1rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card-title {
+  flex: 1; /* Makes the title area grow to match others in the row */
+}
+.card-text,
+.other-flexible-text-elements {
+  flex: 1; /* Allows flexible items to take the same height */
 }

@@ -1,14 +1,13 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import BaseUrl from "./Url";
 
-// Define the API endpoint
-
-const aboutImgs = "http://localhost:1000/api/aboutusimages";
-const aboutContent = "http://localhost:1000/api/aboutus";
-const aboutStats = "http://localhost:1000/api/statistics";
-const whatWeDoImg = "http://localhost:1000/api/whattodoimages";
-const WhatWeDo = "http://localhost:1000/api/whattodo";
-const aboutServices = "http://localhost:1000/api/services";
+const aboutImgs = `${BaseUrl}/aboutusimages`;
+const aboutContent = `${BaseUrl}/aboutus`;
+const aboutStats = `${BaseUrl}/statistics`;
+const whatWeDoImg = `${BaseUrl}/whattodoimages`;
+const WhatWeDo = `${BaseUrl}/whattodo`;
+const aboutServices = `${BaseUrl}/services`;
 export const fetchAboutImgs = createAsyncThunk(
   "about/fetchAboutImg",
   async () => {

@@ -2,7 +2,8 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchTours } from "../../../APIs/TourGridApi";
 import { Link } from "react-router-dom";
-import "./style.css";
+
+import "./tourStyle.css";
 import Pagination from "../../Shared/Pagination/Pagination";
 import MainBanner from "../MainBanner/MainBanner";
 
@@ -43,7 +44,7 @@ const TourGrid = () => {
                 >
                   <div
                     key={tour.tour_id}
-                    className="card tourCard col-lg-4 col-md-6 col-sm-12 mb-4"
+                    className=" tourCard col-lg-4 col-md-6 col-sm-12 mb-4"
                   >
                     <img
                       className="cardImgTop"

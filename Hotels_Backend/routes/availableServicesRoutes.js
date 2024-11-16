@@ -4,7 +4,6 @@ const { verifyToken, checkRole } = require("../middlewares/token");
 const getCurrentTimestamp = require("../migrations/time");
 const router = express.Router();
 
-
 /**
  * @swagger
  * components:
@@ -35,19 +34,28 @@ const router = express.Router();
  *       201:
  *         description: Service created successfully
  */
-router.post("/available_additional_services", verifyToken, checkRole(["Admin"]), (req, res) => {
-  const { service_name, price } = req.body;
-  const insertQuery = `INSERT INTO available_additional_services (service_name, price, created_at) VALUES (?, ?, ?)`;
-  const created_at = getCurrentTimestamp();
-  
-  req.pool.query(insertQuery, [service_name, price, created_at], (error, results) => {
-    if (error) {
-      console.error("Error creating service:", error);
-      return res.status(500).json({ message: "Internal server error" });
-    }
-    res.status(201).json({ message: "Service created successfully" });
-  });
-});
+router.post(
+  "/available_additional_services",
+  verifyToken,
+  checkRole(["Admin"]),
+  (req, res) => {
+    const { service_name, price } = req.body;
+    const insertQuery = `INSERT INTO available_additional_services (service_name, price, created_at) VALUES (?, ?, ?)`;
+    const created_at = getCurrentTimestamp();
+
+    req.pool.query(
+      insertQuery,
+      [service_name, price, created_at],
+      (error, results) => {
+        if (error) {
+          console.error("Error creating service:", error);
+          return res.status(500).json({ message: "Internal server error" });
+        }
+        res.status(201).json({ message: "Service created successfully" });
+      }
+    );
+  }
+);
 
 /**
  * @swagger
@@ -216,4 +224,42 @@ router.delete(
     }
   }
 );
+
+/**
+ * @swagger
+ * /available_additional_services/{id}:
+ *   get:
+ *     summary: Get available additional service by ID
+ *     tags: [Available Additional Services]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: integer
+ *         required: true
+ *         description: The ID of the additional service
+ *     responses:
+ *       200:
+ *         description: Service retrieved successfully
+ *       404:
+ *         description: Service not found
+ */
+router.get("/available_additional_services/:id", (req, res) => {
+  const { id } = req.params;
+  const query = `SELECT * FROM available_additional_services WHERE available_additional_service_id = ?`;
+
+  req.pool.query(query, [id], (error, results) => {
+    if (error) {
+      console.error("Error fetching service:", error);
+      return res.status(500).json({ message: "Internal server error" });
+    }
+
+    if (results.length === 0) {
+      return res.status(404).json({ message: "Service not found" });
+    }
+
+    res.json(results[0]);
+  });
+});
+
 module.exports = router;

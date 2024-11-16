@@ -48,10 +48,10 @@ app.use(cookieParser());
 
 const pool = mysql.createPool({
   connectionLimit: 50,
-  host: "sql7.freesqldatabase.com",
-  user: "sql7741161",
-  database: "sql7741161",
-  password: "ykxiIkPIIt",
+  host: "sql8.freesqldatabase.com",
+  user: "sql8742467",
+  database: "sql8742467",
+  password: "9m6T2yvyrh",
   /*   host: "localhost",
   user: "root",
   database: "hotels",

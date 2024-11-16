@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+
 import "./style.css";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
@@ -103,8 +104,8 @@ const Home = () => {
             {distination ? (
               distination.map((item) => (
                 <div
-                  className="col-12 col-md-6 col-lg-3 mb-4"
                   key={item.destination_id}
+                  className="col-12 col-md-6 col-lg-3 mb-4"
                 >
                   <div className="cardContainer position-relative">
                     <img
@@ -211,7 +212,7 @@ const Home = () => {
 
         <div className="container pb-5">
           <div className="row gy-4">
-            {tour ? (
+            {tour && tour.length > 0 ? (
               tour.map((tourItem) => (
                 <div className="col-lg-4 col-md-6" key={tourItem.tour_id}>
                   <div className="card shadow-lg">
@@ -415,7 +416,6 @@ const Home = () => {
                         src={`http://localhost:1000/${blog.imageUrl}`}
                         alt="Travel Image"
                       />
-                      <div className="categoryBadge">{blog.title}</div>
                     </div>
                   </div>
                   <div className="cardBody">
@@ -423,7 +423,7 @@ const Home = () => {
                       <i className="fas fa-calendar-alt calenderSticker"></i>{" "}
                       {blog.created_at}
                     </p>
-                    <h5 className="cardTitle">{blog.content}</h5>
+                    <h5 className="cardTitle">{blog.title}</h5>
                     <Link
                       to={`/Blogdetail/${blog.blog_id}`}
                       className="cardBtn"

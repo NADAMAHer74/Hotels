@@ -15,9 +15,7 @@ const TourDetail = () => {
   useEffect(() => {
     dispatch(fetchTour({ id }));
   }, []);
-  // useEffect(() => {
-  //   dispatch(fetchTour({ id })).then(() => {});
-  // }, []);
+
   console.log(tour);
   return (
     <div>

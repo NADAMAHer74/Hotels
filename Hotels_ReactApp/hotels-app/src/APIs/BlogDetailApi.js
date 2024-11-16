@@ -1,9 +1,11 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
+import BaseUrl from "./Url";
+
 // Define the API endpoint
 
-const BASE_URL = "http://localhost:1000/api/blogs";
+const BASE_URL = `${BaseUrl}/blogs`;
 
 export const fetchBlogData = createAsyncThunk(
   "BlogData/fetchBlogData",

@@ -86,7 +86,7 @@ router.post("/user_tours", (req, res) => {
             trip: {
               data: {
                 user_tour_id: userTourId,
-                user_id: req.user.userId,
+                user_id: 1,
                 tourId,
                 adult_quantity,
                 kids_quantity,

@@ -1,7 +1,8 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import BaseUrl from "./Url";
 
-const BASE_URL = "http://localhost:1000/api/imagebanners";
+const BASE_URL = `${BaseUrl}/imagebanners`;
 
 export const fetchBanner = createAsyncThunk("banner/fetchBanner", async () => {
   try {

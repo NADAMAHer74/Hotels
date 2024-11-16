@@ -57,7 +57,6 @@ router.post("/pages", verifyToken, checkRole(["Admin"]), (req, res) => {
   });
 });
 
-
 /**
  * @swagger
  * components:
@@ -90,7 +89,9 @@ router.get("/pages", verifyToken, checkRole(["Admin"]), (req, res) => {
       console.error("Error fetching page entries:", error);
       return res.status(500).json({ message: "Internal server error" });
     }
-      res.render("Pages", { pages: results });  });
+    // res.render("Pages", { pages: results });  });
+    res.json(results);
+  });
 });
 
 /**
@@ -137,7 +138,7 @@ router.get("/pages/:id", verifyToken, checkRole(["Admin"]), (req, res) => {
     }
     //res.json(results[0]);
     console.log(results.page_id);
-    res.render("viewPage", { page: results[0] });  ;
+    res.render("viewPage", { page: results[0] });
   });
 });
 

@@ -43,25 +43,55 @@ const BookPackage = ({
     status,
     error,
   } = useSelector((state) => state.package);
+  // const handleBookPackage = (e) => {
+  //   e.preventDefault();
+  //   const packageData = {
+  //     tourId,
+  //     adult_quantity,
+  //     kids_quantity,
+  //     child_quantity,
+  //     additional_service_ids,
+  //   };
+  //   dispatch(TourDetailApi(packageData))
+  //     .then((action) => {
+  //       if (action.meta.requestStatus === "fulfilled") {
+  //         toast.success("Booked successfully");
+  //         dispatch(resetBookingState());
+  //       } else if (action.meta.requestStatus === "rejected") {
+  //         toast.error("Booking failed. Please try again.");
+  //       }
+  //     })
+  //     .catch(() => {
+  //       toast.error("An error occurred. Please try again later.");
+  //     });
+  // };
   const handleBookPackage = (e) => {
     e.preventDefault();
+
+    // Prepare the package data with quantities and selected additional services
     const packageData = {
       tourId,
       adult_quantity,
       kids_quantity,
       child_quantity,
-      additional_service_ids,
+      additional_service_ids, // Ensure this is the array of selected services
     };
+
+    // Proceed with the booking process by dispatching the API action
     dispatch(TourDetailApi(packageData))
       .then((action) => {
         if (action.meta.requestStatus === "fulfilled") {
-          toast.success("Booked successfully");
+          // If booking is successful, show success message
+          toast.success("Booked successfully!");
+
           dispatch(resetBookingState());
         } else if (action.meta.requestStatus === "rejected") {
+          // If booking fails, show error message
           toast.error("Booking failed. Please try again.");
         }
       })
       .catch(() => {
+        // Catch any errors during the booking process and show an error message
         toast.error("An error occurred. Please try again later.");
       });
   };
@@ -187,10 +217,8 @@ const BookPackage = ({
               <input
                 className="inputCheck"
                 type="checkbox"
-                checked={additional_service_ids.includes("Additional Guide")}
-                onChange={() =>
-                  dispatch(toggleAdditionalService("Additional Guide"))
-                }
+                checked={additional_service_ids.includes(1)}
+                onChange={() => dispatch(toggleAdditionalService(1))}
               />
               <label>Additional Guide</label>
               <span>$420</span>
@@ -199,8 +227,8 @@ const BookPackage = ({
               <input
                 className="inputCheck"
                 type="checkbox"
-                checked={additional_service_ids.includes("Internet")}
-                onChange={() => dispatch(toggleAdditionalService("Internet"))}
+                checked={additional_service_ids.includes(2)}
+                onChange={() => dispatch(toggleAdditionalService(2))}
               />
               <label>Internet</label>
               <span>$420</span>
@@ -209,10 +237,8 @@ const BookPackage = ({
               <input
                 className="inputCheck"
                 type="checkbox"
-                checked={additional_service_ids.includes("Photography")}
-                onChange={() =>
-                  dispatch(toggleAdditionalService("Photography"))
-                }
+                checked={additional_service_ids.includes(3)}
+                onChange={() => dispatch(toggleAdditionalService(3))}
               />
               <label>Photography</label>
               <span>$420</span>
@@ -220,8 +246,7 @@ const BookPackage = ({
           </div>
 
           <p className="total-cost">
-            Total Cost: <span className="price">${totalCost.toFixed(2)}</span> /
-            per person
+            Total Cost: <span className="price">${totalCost}</span> / per person
           </p>
           <button
             type="submit"

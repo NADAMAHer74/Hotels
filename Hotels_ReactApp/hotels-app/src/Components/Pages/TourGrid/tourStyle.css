@@ -1,0 +1,89 @@
+.tourGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.tourCard {
+  border: none;
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  width: 80%;
+  max-width: 400px;
+  margin: auto; /* Center align the cards */
+}
+
+.cardImgTop {
+  border-radius: 10px;
+  object-fit: cover;
+  height: 250px; /* Set a specific height for the image */
+  width: 100%;
+}
+
+.cardOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  padding: 10px; /* Reduced padding for smaller screens */
+}
+
+.discountBadge,
+.featuredBadge {
+  font-size: 14px; /* Ensure badge text is clear */
+  padding: 5px 7px;
+  border-radius: 3px;
+  margin-right: 10px;
+}
+.discountBadge {
+  background-color: #ff6525;
+}
+.featuredBadge {
+  background-color: #11bb67;
+}
+
+.address {
+  margin-top: auto; /* Push address down */
+}
+
+.cardTitle {
+  font-size: 1.2em; /* Responsive title font size */
+  font-weight: bold;
+}
+
+.newPrice {
+  color: #0ced63;
+  font-weight: bold;
+  font-size: 1.2em; /* Responsive new price font size */
+}
+
+.price {
+  text-decoration: line-through;
+  color: #ff6525;
+  font-size: 1em; /* Responsive original price font size */
+}
+
+@media (max-width: 576px) {
+  .discountBadge,
+  .featuredBadge {
+    font-size: 12px; /* Adjust badge size on smaller screens */
+    padding: 3px 5px;
+  }
+
+  .newPrice,
+  .price {
+    font-size: 1em; /* Adjust price font size */
+  }
+
+  .cardTitle {
+    font-size: 1em; /* Adjust title font size */
+  }
+}
