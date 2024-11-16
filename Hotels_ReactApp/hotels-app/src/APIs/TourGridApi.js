@@ -4,7 +4,6 @@ import BaseUrl from "./Url";
 
 const PAGINATION_URL = `${BaseUrl}/paginationOfTours`;
 const BASE_URL = `${BaseUrl}/tours`;
-// const Additional_Services_API_URL = `${BaseUrl}/available_additional_services`;
 
 export const fetchTours = createAsyncThunk("tours/fetchTours", async (page) => {
   try {
@@ -22,14 +21,3 @@ export const fetchTour = createAsyncThunk("tour/fetchTour", async ({ id }) => {
     throw error;
   }
 });
-// export const fetchAdditionalServices = createAsyncThunk(
-//   "package/fetchAdditionalServices",
-//   async ({ rejectWithValue }) => {
-//     try {
-//       const response = await axios.get(Additional_Services_API_URL);
-//       return response.data;
-//     } catch (error) {
-//       return rejectWithValue(error.response?.data || "Something went wrong");
-//     }
-//   }
-// );

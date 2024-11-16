@@ -43,28 +43,7 @@ const BookPackage = ({
     status,
     error,
   } = useSelector((state) => state.package);
-  // const handleBookPackage = (e) => {
-  //   e.preventDefault();
-  //   const packageData = {
-  //     tourId,
-  //     adult_quantity,
-  //     kids_quantity,
-  //     child_quantity,
-  //     additional_service_ids,
-  //   };
-  //   dispatch(TourDetailApi(packageData))
-  //     .then((action) => {
-  //       if (action.meta.requestStatus === "fulfilled") {
-  //         toast.success("Booked successfully");
-  //         dispatch(resetBookingState());
-  //       } else if (action.meta.requestStatus === "rejected") {
-  //         toast.error("Booking failed. Please try again.");
-  //       }
-  //     })
-  //     .catch(() => {
-  //       toast.error("An error occurred. Please try again later.");
-  //     });
-  // };
+
   const handleBookPackage = (e) => {
     e.preventDefault();
 
