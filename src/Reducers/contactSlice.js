@@ -52,8 +52,8 @@ const contactSlice = createSlice({
 const contactInfoSlice = createSlice({
   name: 'contactInfo',
   initialState: {
-    workingHours: null,
-    location: null,
+  workingHours:[],
+    location: [],
     phones: [],
     status: 'idle',
     error: null,

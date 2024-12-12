@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import "./style.css";
 import { useSelector, useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -14,26 +15,22 @@ import {
 
 import Balloon from "../../../images/ballon-1.jpeg";
 import Star from "../../../images/star.jpeg";
-import NorthAmerica from "../../../images/blog-1-1.jpg";
-import SouthAfrica from "../../../images/blog-1-2.jpg";
-import CostaRica from "../../../images/blog-1-3.jpg";
-import Europe from "../../../images/blog-1-4.jpg";
-import TopImage from "../../../images/about1.jpg";
-import MiddleImage from "../../../images/about3.jpg";
-import BottomImage from "../../../images/about2.jpg";
+import videoBg from "../../../images/video-bg.jpg";
+import ticket from "../../../images/ticket.png";
+
 import SafetyIcon from "../../../images/safety.jpeg";
 import AboutBg from "../../../images/about-bg.jpeg";
 import sunglass from "../../../images/sunGlass.png";
 import bag from "../../../images/bag.png";
-import featurImage1 from "../../../images/feature-1.jpg";
-import featurImage2 from "../../../images/feature-1.jpg";
-import featurImage3 from "../../../images/feature-1.jpg";
+
 import rocket from "../../../images/inn-rocket.png";
 import {
   fetchDestination,
   fetchAbout,
   fetchTour,
   fetchBlog,
+  fetchAboutContent,
+  fetchBannerHome,
 } from "../../../APIs/HomeApi";
 
 const Home = () => {
@@ -41,21 +38,44 @@ const Home = () => {
     { className: "topImage" },
     { className: "middleImage" },
     { className: "bottomImage" },
-    // Add more images as needed
   ];
+
+  const dispatch = useDispatch();
   const distination = useSelector((state) => state.home.distinationData);
   const about = useSelector((state) => state.home.aboutData);
   const tour = useSelector((state) => state.home.tourData);
   const blog = useSelector((state) => state.home.blogData);
-  const dispatch = useDispatch();
+  const aboutContent = useSelector((state) => state.home.aboutContent);
+  const bannerHome = useSelector((state) => state.home.bannerHomeData);
   useEffect(() => {
     dispatch(fetchDestination());
     dispatch(fetchAbout());
     dispatch(fetchTour());
     dispatch(fetchBlog());
-  }, []);
+    dispatch(fetchAboutContent());
+    dispatch(fetchBannerHome());
+  }, [dispatch]);
+  const visibleBanners = bannerHome
+    ?.filter((banner) => banner.visible === 1)
+    .slice(1, 4);
   return (
     <div>
+      <section className="homeBanner">
+        <div className="BannerContent">
+          {visibleBanners.map((banner, index) => (
+            <img
+              key={index}
+              src={`http://localhost:1000/${banner.image}`}
+              alt="background"
+              className="BannerImage"
+            />
+          ))}
+          <div className="BannerText">
+            <h3>Memories For Life</h3>
+            <h1>Let's Explore The World</h1>
+          </div>
+        </div>
+      </section>
       <div className="topDestinationSection">
         <div className="container-fluid   text-center my-5 position-relative">
           <div className="row">
@@ -107,24 +127,21 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="aboutPart ">
-        <div className="container ">
+      <div className="aboutPart">
+        <div className="container">
           <div className="row align-items-center">
-            <div className="col-12 col-md-6 mb-4 mb-md-0 align-items-start ">
-              <div className=" align-items-start imageStack">
+            <div className="col-12 col-md-6 mb-4 mb-md-0 align-items-start">
+              <div className="align-items-start imageStack">
                 {about ? (
-                  <div>
-                    {" "}
-                    {about.map((aboutImage) => (
-                      <div>
-                        <img
-                          className={`img-fluid mb-3 ${imagesClasses.className}`} // Apply unique and shared class names
-                          src={`http://localhost:1000/${aboutImage.Image}`}
-                          alt="About Image"
-                        />
-                      </div>
-                    ))}
-                  </div>
+                  about.map((aboutImage, index) => (
+                    <div key={index} className={`image-${index}`}>
+                      <img
+                        className="img-fluid mb-3"
+                        src={`http://localhost:1000/${aboutImage.Image}`}
+                        alt="About Image"
+                      />
+                    </div>
+                  ))
                 ) : (
                   <div>Loading...</div>
                 )}
@@ -133,8 +150,8 @@ const Home = () => {
 
             <div className="col-12 col-md-6 aboutContent">
               <h3 className="sectionTitle">About Company</h3>
-              <h2 className="mainTitle">{about.head}</h2>
-              <p className="description">{about.Body}</p>
+              <h2 className="mainTitle">{aboutContent.head}</h2>
+              <p className="description">{aboutContent.Body}</p>
               <div className="feature d-flex align-items-center mb-3">
                 <div className="icons mr-3">
                   <img src={SafetyIcon} alt="Safety Icon" />
@@ -285,12 +302,12 @@ const Home = () => {
                           <p>{tourItem.durationInDays}</p>
                         </div>
                         <div className="col col-lg-auto">
-                          <a
-                            href="#"
+                          <Link
+                            to={`/tourdetail/${tourItem.tour_id}`}
                             className="btn text-white greenBackground buttonHover"
                           >
                             Explore More
-                          </a>
+                          </Link>
                         </div>
                       </div>
                     </div>
@@ -307,7 +324,7 @@ const Home = () => {
       <div className="videoBlock videoOverlay position-relative overflow-hidden">
         <img
           className="videoBackgroundImg"
-          src="assests/images/video-bg.jpg"
+          src={videoBg}
           alt="Video Background"
         />
         <div className="container">
@@ -383,7 +400,7 @@ const Home = () => {
       <div className="blogSection">
         <img
           className="sticker img-fluid d-none d-md-inline-block"
-          src="./assests/images/ticket.png"
+          src={ticket}
         />
         <div className="container">
           <h3>Our Recent Blog</h3>
@@ -391,7 +408,7 @@ const Home = () => {
           <div className="row">
             {blog ? (
               blog.map((blog) => (
-                <div className=" col-12 col-md-6 col-lg-3 " key={blog.blog_id}>
+                <div className=" col-12 col-md-6 col-lg-4 " key={blog.blog_id}>
                   <div className=" travelCard ">
                     <div className="position-relative">
                       <img
@@ -404,34 +421,21 @@ const Home = () => {
                   <div className="cardBody">
                     <p className="card-date">
                       <i className="fas fa-calendar-alt calenderSticker"></i>{" "}
-                      {blog.date}
+                      {blog.created_at}
                     </p>
                     <h5 className="cardTitle">{blog.content}</h5>
-                    <button className="cardBtn">Explore More</button>
+                    <Link
+                      to={`/Blogdetail/${blog.blog_id}`}
+                      className="cardBtn"
+                    >
+                      Explore More
+                    </Link>
                   </div>
                 </div>
               ))
             ) : (
               <p>No blogs found</p>
             )}
-            {/* <div class=" col-12 col-md-6 col-lg-3 ">
-              <div class=" travelCard ">
-                <div className="position-relative">
-                  <img src="./assests/images/blog-1.jpg" alt="Travel Image" />
-                  <div class="categoryBadge">City Tours</div>
-                </div>
-              </div>
-              <div class="cardBody">
-                <p class="card-date">
-                  <i class="fas fa-calendar-alt calenderSticker"></i> March 28,
-                  2023
-                </p>
-                <h5 class="cardTitle">
-                  A place where start new life with adventure Dhaka
-                </h5>
-                <button class="cardBtn">Explore More</button>
-              </div>
-            </div> */}
           </div>
         </div>
       </div>

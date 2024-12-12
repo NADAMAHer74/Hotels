@@ -4,13 +4,17 @@ import {
   fetchAbout,
   fetchTour,
   fetchBlog,
+  fetchAboutContent,
+  fetchBannerHome,
 } from "../APIs/HomeApi";
 
 const initialState = {
   distinationData: [],
   aboutData: [],
   tourData: [],
+  bannerHomeData:[],
   blogData: [],
+  aboutContent: [],
 };
 
 export const HomeSlice = createSlice({
@@ -32,6 +36,12 @@ export const HomeSlice = createSlice({
 
     builder.addCase(fetchBlog.fulfilled, (state, action) => {
       state.blogData = action.payload;
+    });
+    builder.addCase(fetchAboutContent.fulfilled, (state, action) => {
+      state.aboutContent = action.payload;
+    });
+    builder.addCase(fetchBannerHome.fulfilled, (state, action) => {
+      state.bannerHomeData = action.payload;
     });
   },
 });

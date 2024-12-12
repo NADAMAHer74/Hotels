@@ -1,132 +1,75 @@
-// import React from "react";
-// import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
-// import { FaClock, FaPhone, FaMapMarkerAlt } from "react-icons/fa";
-// import MainBanner from "../MainBanner/MainBanner";
-// import "leaflet/dist/leaflet.css";
-// import "./Contact.css";
 
-// const Contact = () => {
-//   return (
-//     <>
-//       <MainBanner title="Contact us" />
-//       <div className="contact-page container">
-//         <div className=" container row">
-//           <form className=" col-md-6 col-sm-12">
-//             <div className="input-row">
-//               <input type="text" placeholder="First Name" />
-//               <input type="text" placeholder="Last Name" />
-//             </div>
-//             <div className="input-row">
-//               <input type="email" placeholder="Email" />
-//               <input type="tel" placeholder="Phone" />
-//             </div>
-//             <input type="text" placeholder="Subject" className="subject-input" />
-//             <textarea placeholder="Write A Message..." className="message-input"></textarea>
-//             <button type="submit" className="submit-btn">Send Message</button>
-//           </form>
-//           <div className="col-md-6 col-sm-12">
-//             <div className="contactInfoForm">
-//               <div className="d-flex align-items-center">
-//                 <i className="fas fa-clock icon"></i>
-//                 <div>
-//                   <a>
-//                     <h4>Hours:</h4>
-//                   </a>
-//                   <p>
-//                     Monday - Friday: 8 AM - 5:30 PM<br />Saturday - Sunday: Closed
-//                   </p>
-//                 </div>
-//               </div>
-//               <hr />
-//               <div className="d-flex align-items-center">
-//                 <i className="fas fa-phone-alt phoneIcon icon"></i>
-//                 <div>
-//                   <a>
-//                     <h4>Call Us:</h4>
-//                   </a>
-//                   <p>(+000) 987-3267<br />+88 568 956 238</p>
-//                 </div>
-//               </div>
-//               <hr />
-//               <div className="d-flex align-items-center">
-//                 <i className="fas fa-map-marker-alt mapIcon icon"></i>
-//                 <div>
-//                   <a>
-//                     <h4>Location:</h4>
-//                   </a>
-//                   <p>242 Carlyle Rd Zebulon, North Carolina (NC), 27597</p>
-//                 </div>
-//               </div>
-//             </div>
-//           </div>
-//         </div>
-
-//         <div className="map">
-//           <iframe
-//             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3021.696922906035!2d-74.00797828459493!3d40.71277597933064!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25a3168ae2b73%3A0xf6b8fe3c0c4b3a5c!2sNew%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2sin!4v1603927603773!5m2!1sen!2sin"
-//             width="100%"
-//             height="450"
-//             allowFullScreen={true}
-//             aria-hidden="false"
-//             tabIndex="0"
-//           ></iframe>
-//         </div>
-//       </div>
-//     </>
-//   );
-// };
-
-// export default Contact;
-
-// src/components/Contact.js
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  submitContactForm,
-  getWorkingHours,
-  getLocation,
-  getPhones,
-} from "../../../Reducers/contactSlice";
+import { submitContactForm, getWorkingHours, getLocation, getPhones } from "../../../Reducers/contactSlice";
 import MainBanner from "../MainBanner/MainBanner";
 import "leaflet/dist/leaflet.css";
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import "./Contact.css";
-import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
 const Contact = () => {
   const dispatch = useDispatch();
-  // const { workingHours, location, phones, status} = useSelector((state) => state.contact.status);
-  const { status: contactStatus } = useSelector((state) => state.contact);
-  const {
-    workingHours,
-    location,
-    phones,
-    status: contactInfoStatus,
-  } = useSelector((state) => state.contactInfo);
+  const status = useSelector((state) => state.contact.status);
+  const workingHours = useSelector((state) => state.contactInfo.workingHours);
+  const location = useSelector((state) => state.contactInfo.location);
+  const phones = useSelector((state) => state.contactInfo.phones);
 
   const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    phone: "",
-    subject: "",
-    message: "",
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
+    subject: '',
+    message: ''
   });
+
+  const [formErrors, setFormErrors] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: ''
+  });
+
+  useEffect(() => {
+    dispatch(getWorkingHours());
+    dispatch(getLocation());
+    dispatch(getPhones());
+  }, [dispatch]);
 
   const handleChange = (e) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value,
+      [e.target.name]: e.target.value
     });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    // Validate required fields and phone length
+    const errors = {};
+    if (!formData.firstName.trim()) errors.firstName = 'First name is required';
+    if (!formData.lastName.trim()) errors.lastName = 'Last name is required';
+    if (!formData.email.trim()) errors.email = 'Email is required';
+    if (!formData.phone.trim()) {
+      errors.phone = 'Phone number is required';
+    } else if (formData.phone.length < 11) {
+      errors.phone = 'Phone number must be at least 11 digits';
+    }
+
+    if (Object.keys(errors).length > 0) {
+      setFormErrors(errors);
+      return;
+    }
+
+    setFormErrors({});
+
     dispatch(submitContactForm(formData))
       .then((action) => {
-        if (action.meta.requestStatus === "fulfilled") {
+        if (action.meta.requestStatus === 'fulfilled') {
           toast.success("Message sent successfully!");
-        } else if (action.meta.requestStatus === "rejected") {
+        } else if (action.meta.requestStatus === 'rejected') {
           toast.error("Failed to send message. Please try again.");
         }
       })
@@ -134,12 +77,6 @@ const Contact = () => {
         toast.error("An error occurred. Please try again later.");
       });
   };
-
-  useEffect(() => {
-    dispatch(getWorkingHours());
-    dispatch(getLocation());
-    dispatch(getPhones());
-  }, []);
 
   return (
     <>
@@ -156,6 +93,7 @@ const Contact = () => {
                 value={formData.firstName}
                 onChange={handleChange}
               />
+              {formErrors.firstName && <p className="error">{formErrors.firstName}</p>}
               <input
                 type="text"
                 name="lastName"
@@ -163,6 +101,7 @@ const Contact = () => {
                 value={formData.lastName}
                 onChange={handleChange}
               />
+              {formErrors.lastName && <p className="error">{formErrors.lastName}</p>}
             </div>
             <div className="input-row">
               <input
@@ -172,6 +111,7 @@ const Contact = () => {
                 value={formData.email}
                 onChange={handleChange}
               />
+              {formErrors.email && <p className="error">{formErrors.email}</p>}
               <input
                 type="tel"
                 name="phone"
@@ -179,6 +119,7 @@ const Contact = () => {
                 value={formData.phone}
                 onChange={handleChange}
               />
+              {formErrors.phone && <p className="error">{formErrors.phone}</p>}
             </div>
             <input
               type="text"
@@ -196,7 +137,7 @@ const Contact = () => {
               onChange={handleChange}
             ></textarea>
             <button type="submit" className="submit-btn">
-              {contactStatus === "loading" ? "Sending..." : "Send Message"}
+              {status === 'loading' ? 'Sending...' : 'Send Message'}
             </button>
           </form>
 
@@ -206,51 +147,43 @@ const Contact = () => {
               <div className="d-flex align-items-center">
                 <i className="fas fa-clock icon"></i>
                 <div>
-                  <a>
-                    <h4>Hours:</h4>
-                  </a>
-                  <p>
-                    {workingHours && workingHours.visible ? (
-                      <p>
-                        {workingHours.start_day} -{workingHours.end_day}:{" "}
-                        {workingHours.start_hour} - {workingHours.end_hour}
-                      </p>
-                    ) : (
-                      <p>Working hours not available</p>
-                    )}
-                  </p>
+                  <h4>Hours:</h4>
+                
+                  {workingHours && workingHours.length > 0 ? (
+            <p>
+              {workingHours[0].start_day} - {workingHours[0].end_day}: {workingHours[0].start_hour} - {workingHours[0].end_hour}
+            </p>
+          ) : (
+            <p>Loading hours...</p>
+          )}
+                  
                 </div>
               </div>
               <hr />
               <div className="d-flex align-items-center">
                 <i className="fas fa-phone-alt phoneIcon icon"></i>
                 <div>
-                  <a>
-                    <h4>Call Us:</h4>
-                  </a>
-                  {/* {phones && phones.length > 0 &&
-                    phones.filter(phone => phone.visible).map((phone, index) => (
-                  <p key={index}>{phone.phone_number}</p>
-                  ))} */}
-                  {phones
-                    ?.filter((phone) => phone.visible)
-                    .map((phone, index) => (
-                      <p key={index}>{phone.phone_number}</p>
-                    ))}
+                  <h4>Call Us:</h4>
+                  <p>
+                    {phones.length > 0
+                      ? phones.map((phone, index) => (
+                          <span key={index}>{phone.phone_number}<br /></span>
+                        ))
+                      : "Loading..."}
+                  </p>
                 </div>
               </div>
               <hr />
               <div className="d-flex align-items-center">
                 <i className="fas fa-map-marker-alt mapIcon icon"></i>
                 <div>
-                  <a>
-                    <h4>Location:</h4>
-                  </a>
-                  {location && location.visible ? (
-                    <p>{location.location}</p>
-                  ) : (
-                    <p>Location not available</p>
-                  )}
+                  <h4>Location:</h4>
+                  <p>  {location.map((loc) => (
+                  <div key={loc.location_id}>
+                    <p> {loc.location}</p>
+                    {/* <p>Visible: {loc.visible ? "Yes" : "No"}</p> */}
+                  </div>
+                ))}</p>
                 </div>
               </div>
             </div>
@@ -274,3 +207,5 @@ const Contact = () => {
 };
 
 export default Contact;
+
+
